@@ -46,7 +46,7 @@ type HiscoreSkill = { name: string; rank: number; level: number; xp: number };
 type HiscorePlayer = { name: string; overall: HiscoreSkill | null; skills: HiscoreSkill[] };
 type HiscoreResult = { group: string; mode: string; size: number; totalLevel: number; totalXp: number; players: HiscorePlayer[]; refreshedAt: string; sourceUrl: string; cached?: boolean; stale?: boolean; warning?: string };
 type GroupActivity = { player:string; date:string; timestamp:number; text:string; details:string };
-type ActivityMember = { name:string; available:boolean; reason?:string };
+type ActivityMember = { name:string; available:boolean; stale?:boolean; reason?:string };
 type SharedItem = { id:string; name:string; detail:string; owner:string; quantity:string; done:boolean };
 type WorkspaceData = { version:number; efficient:Record<string,boolean>; repeatables:Record<string,boolean>; unlocks:Record<string,boolean>; journey:Record<string,boolean>; supplies:SharedItem[]; shops:Record<string,boolean>; pvm:Record<string,boolean>; farming:Record<string,boolean>; kingdom:Record<string,string|boolean>; updatedBy:string };
 type Workspace = { id:string; token:string; name:string; data:WorkspaceData; updatedAt:number };
@@ -76,7 +76,6 @@ export default function Home() {
           <div className="top-actions"><label className="theme-control"><span>Theme</span><select value={theme} onChange={event => changeTheme(event.target.value as Theme)} aria-label="Choose color theme">{themes.map(([id,label]) => <option value={id} key={id}>{label}</option>)}</select></label><div className="status-chip"><CircleDot size={14} /> {active}</div></div>
         </div>
         <div className="navigation-row">
-          <button className="navigation-mark" onClick={() => setActive('Overview')} aria-label="Open Ironpath overview"><img src="/ironpath-mark.png" alt="" /></button>
           <nav aria-label="Primary navigation">{nav.map(([Icon, label]) => <button key={label} className={active === label ? 'nav-button active' : 'nav-button'} onClick={() => setActive(label)} aria-label={label}><Icon size={18} strokeWidth={1.7} /><span>{label}</span></button>)}</nav>
         </div>
       </header>
@@ -139,6 +138,7 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
   const [activityMembers, setActivityMembers] = useState<ActivityMember[]>([]);
   const [activityLoading, setActivityLoading] = useState(false);
   const [activityMember, setActivityMember] = useState('all');
+  const [activityRefresh, setActivityRefresh] = useState(0);
 
   useEffect(() => {
     const saved = window.localStorage.getItem('ironpath-hiscore-group');
@@ -151,12 +151,12 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
     setActivityMember('all');
     const query = result.players.map(player => `player=${encodeURIComponent(player.name)}`).join('&');
     setActivityLoading(true);
-    fetch(`/api/activities?${query}`)
+    fetch(`/api/activities?${query}${activityRefresh ? `&refresh=${activityRefresh}` : ''}`, { cache:'no-store' })
       .then(response => response.ok ? response.json() : { activities:[],members:[] })
       .then((data: { activities?:GroupActivity[];members?:ActivityMember[] }) => { setActivities(data.activities || []); setActivityMembers(data.members || []); })
       .catch(() => { setActivities([]); setActivityMembers([]); })
       .finally(() => setActivityLoading(false));
-  }, [result]);
+  }, [result,activityRefresh]);
 
   const visibleActivities = (activityMember === 'all' ? activities : activities.filter(activity => activity.player === activityMember)).slice(0,40);
 
@@ -207,7 +207,7 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
       </section>
       <section className="panel activity-panel">
         <div className="panel-heading"><div><p className="eyebrow">Adventurer's Log</p><h3>Group milestones</h3></div><a className="source-note source-link-inline" href="https://runescape.wiki/w/Application_programming_interface" target="_blank" rel="noreferrer">RuneMetrics API reference <ExternalLink size={12}/></a></div>
-        <div className="activity-controls"><label><span>Showing activity for</span><select value={activityMember} onChange={event => setActivityMember(event.target.value)}><option value="all">All members ({activities.length})</option>{activityMembers.map(member => <option value={member.name} key={member.name}>{member.name} ({activities.filter(activity => activity.player === member.name).length})</option>)}</select></label><div className="activity-member-status">{activityMembers.map(member => <span className={member.available ? 'available' : 'unavailable'} key={member.name}><i/>{member.name}{!member.available && <small>{member.reason}</small>}</span>)}</div></div>
+        <div className="activity-controls"><div className="activity-filter"><label><span>Showing activity for</span><select value={activityMember} onChange={event => setActivityMember(event.target.value)}><option value="all">All members ({activities.length})</option>{activityMembers.map(member => <option value={member.name} key={member.name}>{member.name} ({activities.filter(activity => activity.player === member.name).length})</option>)}</select></label><button className="secondary-button activity-refresh" onClick={() => setActivityRefresh(value => value + 1)} disabled={activityLoading}><RefreshCw className={activityLoading ? 'spin' : ''} size={14}/> Retry all logs</button></div><div className="activity-member-status">{activityMembers.map(member => <span className={member.stale ? 'stale' : member.available ? 'available' : 'unavailable'} key={member.name}><i/>{member.name}{(member.stale || !member.available) && <small>{member.reason}</small>}</span>)}</div></div>
         {activityLoading ? <div className="small-empty"><RefreshCw className="spin" size={22}/><h3>Gathering group milestones</h3><p>Checking every member's public RuneMetrics activity log. Temporary failures are retried automatically.</p></div> : visibleActivities.length ? <div className="activity-feed">{visibleActivities.map((activity,index) => <article key={`${activity.player}-${activity.timestamp}-${index}`}><div className="activity-avatar">{activity.player.slice(0,2).toUpperCase()}</div><div className="activity-copy"><div><strong>{activity.text}</strong><span>{activity.player}</span></div><p>{activity.details}</p></div><time dateTime={new Date(activity.timestamp).toISOString()}>{activity.date}</time></article>)}</div> : <div className="small-empty"><Clock3 size={22}/><h3>No public milestones found</h3><p>{activityMember === 'all' ? 'Members must set their RuneMetrics profile and online status to public for activities to appear.' : `No recent public activities were returned for ${activityMember}.`}</p></div>}
       </section>
     </>}
@@ -312,7 +312,7 @@ const journeyTiers = [
   ['Tier 10','Add final 10 Storage spaces','Complete the final Journey tier and finish the evolving group armour progression.'],
 ] as const;
 const shopRuns = [
-  ['Runes','Zaff, Aubury, Void Knight and rune shops','Magic, alchemy and vis wax supplies'],
+  ['Runes','Zaff, Aubury, Void Knight and rune shops','Magic, alchemy and utility supplies'],
   ['Herblore supplies','Taverley, Prifddinas and Granny Rowan','Vials, bomb vials and useful secondaries'],
   ['Slayer stock','Every Slayer master, including Burthorpe stock','Broad arrowheads, insulated boots and gem packs'],
   ['Invention disassembly','White Knight Armoury, Betty, Lowe and Ali Morrisane','Cheap common and uncommon components'],

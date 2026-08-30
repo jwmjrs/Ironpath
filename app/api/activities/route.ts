@@ -1,7 +1,7 @@
 import { env } from 'cloudflare:workers';
 
 type RuneMetricsActivity = { date?:string; text?:string; details?:string };
-type MemberResult = { name:string; available:boolean; reason?:string; activities:Array<{ player:string; date:string; timestamp:number; text:string; details:string }> };
+type MemberResult = { name:string; available:boolean; stale?:boolean; reason?:string; activities:Array<{ player:string; date:string; timestamp:number; text:string; details:string }> };
 const wait = (milliseconds:number) => new Promise(resolve => setTimeout(resolve,milliseconds));
 
 function activityTime(value:string) {
@@ -29,18 +29,30 @@ async function loadMember(name:string):Promise<MemberResult> {
 export async function GET(request:Request) {
   const url = new URL(request.url);
   const players = [...new Set(url.searchParams.getAll('player').map(name => name.trim()).filter(Boolean))].slice(0,5);
+  const forceRefresh = Boolean(url.searchParams.get('refresh'));
   if (!players.length || players.some(name => name.length > 20)) return Response.json({ error:'One to five valid member names are required.' }, { status:400 });
-  const cacheKey = `activities:${players.map(name => name.toLowerCase()).sort().join('|')}`;
   await env.DB.prepare('CREATE TABLE IF NOT EXISTS hiscore_cache (cache_key TEXT PRIMARY KEY, response_json TEXT NOT NULL, fetched_at INTEGER NOT NULL)').run();
-  const cached = await env.DB.prepare('SELECT response_json, fetched_at FROM hiscore_cache WHERE cache_key = ?').bind(cacheKey).first<{response_json:string;fetched_at:number}>();
-  if (cached) {
-    const saved = JSON.parse(cached.response_json) as { members?:Array<{available:boolean}> };
-    const ttl = saved.members?.every(member => member.available) ? 300_000 : 20_000;
-    if (Date.now()-cached.fetched_at < ttl) return Response.json({ ...saved,cached:true });
+  const members:MemberResult[] = [];
+  for (const [index,name] of players.entries()) {
+    const memberKey = `activity-member:${name.toLowerCase()}`;
+    const cached = await env.DB.prepare('SELECT response_json, fetched_at FROM hiscore_cache WHERE cache_key = ?').bind(memberKey).first<{response_json:string;fetched_at:number}>();
+    const cachedMember = cached ? JSON.parse(cached.response_json) as MemberResult : null;
+    if (!forceRefresh && cachedMember && Date.now()-cached!.fetched_at < 300_000) {
+      members.push(cachedMember);
+      continue;
+    }
+    const live = await loadMember(name);
+    if (live.available) {
+      members.push(live);
+      await env.DB.prepare('INSERT INTO hiscore_cache (cache_key,response_json,fetched_at) VALUES (?,?,?) ON CONFLICT(cache_key) DO UPDATE SET response_json=excluded.response_json,fetched_at=excluded.fetched_at').bind(memberKey,JSON.stringify(live),Date.now()).run();
+    } else if (cachedMember && cached && Date.now()-cached.fetched_at < 86_400_000) {
+      members.push({ ...cachedMember,available:true,stale:true,reason:`${live.reason} Showing the last successful log.` });
+    } else {
+      members.push(live);
+    }
+    if (index < players.length-1) await wait(450);
   }
-  const members = await Promise.all(players.map(loadMember));
   const activities = members.flatMap(member => member.activities).sort((a,b) => b.timestamp-a.timestamp);
-  const result = { activities,members:members.map(({name,available,reason}) => ({name,available,reason})),refreshedAt:new Date().toISOString() };
-  if (members.some(member => member.available)) await env.DB.prepare('INSERT INTO hiscore_cache (cache_key,response_json,fetched_at) VALUES (?,?,?) ON CONFLICT(cache_key) DO UPDATE SET response_json=excluded.response_json,fetched_at=excluded.fetched_at').bind(cacheKey,JSON.stringify(result),Date.now()).run();
-  return Response.json(result, { headers:{'Cache-Control':'private, max-age=60'} });
+  const result = { activities,members:members.map(({name,available,stale,reason}) => ({name,available,stale,reason})),refreshedAt:new Date().toISOString() };
+  return Response.json(result, { headers:{'Cache-Control':'private, no-store'} });
 }
