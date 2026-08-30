@@ -1,6 +1,6 @@
 'use client';
 
-import { BookOpen, Boxes, CalendarCheck2, Check, ChevronRight, CircleDot, Clock3, Coins, Crown, Dumbbell, ExternalLink, Gem, Hammer, LayoutDashboard, Leaf, ListChecks, Plus, RefreshCw, Search, Shield, Sparkles, Swords, Trash2, Trophy, Users } from 'lucide-react';
+import { BookOpen, Boxes, CalendarCheck2, Check, ChevronRight, CircleDot, Clock3, Coins, Crown, Dumbbell, ExternalLink, Gem, LayoutDashboard, Leaf, ListChecks, Plus, RefreshCw, Search, Shield, Sparkles, Trash2, Trophy, Users } from 'lucide-react';
 import { FormEvent, useEffect, useState } from 'react';
 import progressData from './data/efficient-progress.json';
 
@@ -10,6 +10,13 @@ const tasks = [
   { title: 'Reach 200 total quest points', scope: 'Combined', done: 164, total: 200 },
 ];
 const nav = [[LayoutDashboard, 'Overview'], [Trophy, 'HiScores'], [Boxes, 'Group Hub'], [CalendarCheck2, 'Repeatables'], [BookOpen, 'Ironman Guide'], [ListChecks, 'Efficient Progress']] as const;
+const themes = [
+  ['classic','Classic Gielinor'], ['ember','Wilderness Ember'], ['zaros','Arcane Zaros'],
+  ['seren','Prifddinas Crystal'], ['morytania','Morytania Marsh'], ['fremennik','Fremennik Frost'],
+  ['menaphos','Menaphos Sun'], ['falador','Falador Steel'], ['karamja','Karamja Jungle'], ['necromancy','Necromancy Ritual'],
+] as const;
+type Theme = typeof themes[number][0];
+function isTheme(value:string|null): value is Theme { return themes.some(([id]) => id === value); }
 
 const repeatables = {
   Daily: [
@@ -46,11 +53,11 @@ const emptyWorkspaceData: WorkspaceData = { version:1,efficient:{},repeatables:{
 
 export default function Home() {
   const [active, setActive] = useState('Overview');
-  const [theme, setTheme] = useState<'classic' | 'ember' | 'zaros'>('classic');
+  const [theme, setTheme] = useState<Theme>('classic');
   const [groupData, setGroupData] = useState<HiscoreResult | null>(null);
   const [workspace, setWorkspace] = useState<Workspace | null>(null);
-  useEffect(() => { try { setGroupData(JSON.parse(window.localStorage.getItem('ironpath-hiscore-result') || 'null')); const savedTheme = window.localStorage.getItem('ironpath-theme'); if (savedTheme === 'classic' || savedTheme === 'ember' || savedTheme === 'zaros') setTheme(savedTheme); const savedWorkspace = JSON.parse(window.localStorage.getItem('ironpath-workspace') || 'null'); if (savedWorkspace?.id && savedWorkspace?.token) fetch('/api/workspace',{headers:{'x-ironpath-workspace':savedWorkspace.id,'x-ironpath-token':savedWorkspace.token}}).then(response=>response.ok?response.json():null).then(remote=>remote&&setWorkspace({ ...remote, token:savedWorkspace.token, data:{...emptyWorkspaceData,...remote.data} })).catch(()=>{}); if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{}); } catch { /* ignore */ } }, []);
-  function changeTheme(value: 'classic' | 'ember' | 'zaros') { setTheme(value); window.localStorage.setItem('ironpath-theme', value); }
+  useEffect(() => { try { setGroupData(JSON.parse(window.localStorage.getItem('ironpath-hiscore-result') || 'null')); const savedTheme = window.localStorage.getItem('ironpath-theme'); if (isTheme(savedTheme)) setTheme(savedTheme); const savedWorkspace = JSON.parse(window.localStorage.getItem('ironpath-workspace') || 'null'); if (savedWorkspace?.id && savedWorkspace?.token) fetch('/api/workspace',{headers:{'x-ironpath-workspace':savedWorkspace.id,'x-ironpath-token':savedWorkspace.token}}).then(response=>response.ok?response.json() as Promise<Omit<Workspace,'token'>>:null).then(remote=>remote&&setWorkspace({ ...remote, token:savedWorkspace.token, data:{...emptyWorkspaceData,...remote.data} })).catch(()=>{}); if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{}); } catch { /* ignore */ } }, []);
+  function changeTheme(value: Theme) { setTheme(value); window.localStorage.setItem('ironpath-theme', value); }
   function updateWorkspace<K extends keyof WorkspaceData>(key: K, value: WorkspaceData[K]) { if (!workspace) return; const next = { ...workspace, data:{ ...workspace.data, [key]:value }, updatedAt:Date.now() }; setWorkspace(next); fetch('/api/workspace',{method:'PUT',headers:{'content-type':'application/json','x-ironpath-workspace':workspace.id,'x-ironpath-token':workspace.token},body:JSON.stringify({name:workspace.name,data:next.data})}).catch(()=>{}); }
   const views: Record<string, React.ReactNode> = {
     Overview: <Overview groupData={groupData} goTo={setActive} />,
@@ -69,10 +76,10 @@ export default function Home() {
       <section className="workspace">
         <header className="topbar">
           <div><p className="eyebrow">Group Ironman command center</p><h1>Ironpath</h1></div>
-          <div className="top-actions"><label className="theme-control"><span>Theme</span><select value={theme} onChange={event => changeTheme(event.target.value as 'classic' | 'ember' | 'zaros')} aria-label="Choose color theme"><option value="classic">Classic Gielinor</option><option value="ember">Wilderness Ember</option><option value="zaros">Arcane Zaros</option></select></label><div className="status-chip"><CircleDot size={14} /> {active}</div></div>
+          <div className="top-actions"><label className="theme-control"><span>Theme</span><select value={theme} onChange={event => changeTheme(event.target.value as Theme)} aria-label="Choose color theme">{themes.map(([id,label]) => <option value={id} key={id}>{label}</option>)}</select></label><div className="status-chip"><CircleDot size={14} /> {active}</div></div>
         </header>
         {views[active]}
-        <footer className="app-credit"><span>Created by <strong>Justjay btw</strong></span><i aria-hidden="true"/><span>Developed with AI assistance</span><i aria-hidden="true"/><span>Built for the community</span><i aria-hidden="true"/><a href="/privacy">Privacy &amp; data</a><span className="legal-note">Unofficial fan project; not affiliated with Jagex.</span></footer>
+        <footer className="app-credit"><span>Concept and direction by <strong>Justjay</strong></span><i aria-hidden="true"/><span>Built with AI-assisted development</span><i aria-hidden="true"/><span>For the community</span><i aria-hidden="true"/><a href="/privacy">Privacy &amp; data</a><span className="legal-note">Unofficial fan project; not affiliated with Jagex.</span></footer>
       </section>
     </div>
   </main>;
@@ -138,7 +145,7 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
     const competitiveMode = result.mode === 'competitive';
     fetch(`/api/hiscores/history?group=${encodeURIComponent(result.group)}&size=${result.size}&competitive=${competitiveMode}`)
       .then(response => response.ok ? response.json() : { snapshots: [] })
-      .then(data => setHistory(data.snapshots || []))
+      .then((data: { snapshots?:HiscoreSnapshot[] }) => setHistory(data.snapshots || []))
       .catch(() => setHistory([]));
   }, [result]);
 
@@ -148,7 +155,7 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
     setLoading(true); setError('');
     try {
       const response = await fetch(`/api/hiscores?group=${encodeURIComponent(group)}&size=${size}&competitive=${competitive}`);
-      const data = await response.json();
+      const data = await response.json() as HiscoreResult & { error?:string };
       if (!response.ok) throw new Error(data.error || 'Unable to retrieve this group.');
       setResult(data);
       window.localStorage.setItem('ironpath-hiscore-group', JSON.stringify({ group, size, competitive }));
@@ -353,7 +360,15 @@ function RepeatablesView({ shared, setShared }: { shared?:Record<string,boolean>
     </section>
     <section className="repeatable-overview">
       <div className="panel repeatable-progress"><div className="ring" style={{ '--value': `${(done / list.length) * 360}deg` } as React.CSSProperties}><span>{done}/{list.length}</span></div><div><p className="eyebrow">Current cycle</p><h3>{period} checklist</h3><p>{list.length - done} activities remaining</p></div></div>
-      <div className="period-tabs">{(['Daily','Weekly','Monthly'] as const).map(tab => <button key={tab} onClick={() => setPeriod(tab)} className={period === tab ? 'active' : ''}><span>{tab}</span><strong>{repeatables[tab].filter(([name]) => completed[name]).length}/{repeatables[tab].length}</strong></button>)}</div>
+      <div className="repeatable-period-tabs" aria-label="Repeatable period">{(['Daily','Weekly','Monthly'] as const).map(tab => {
+        const complete = repeatables[tab].filter(([name]) => completed[name]).length;
+        const total = repeatables[tab].length;
+        return <button key={tab} onClick={() => setPeriod(tab)} className={period === tab ? 'active' : ''} aria-pressed={period === tab}>
+          <span className="period-copy"><strong>{tab}</strong><small>{complete === total ? 'Complete' : `${total - complete} remaining`}</small></span>
+          <span className="period-count"><strong>{complete}</strong><em>/ {total}</em></span>
+          <span className="period-meter" aria-hidden="true"><i style={{width:`${(complete/total)*100}%`}}/></span>
+        </button>;
+      })}</div>
     </section>
     <section className="panel repeatable-list-panel">
       <div className="panel-heading"><div><p className="eyebrow">{period} activities</p><h3>Ironman checklist</h3></div><button className="text-button" onClick={() => { const next = { ...completed }; list.forEach(([name]) => delete next[name]); persist(next); }}>Clear cycle</button></div>

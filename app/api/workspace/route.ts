@@ -28,7 +28,7 @@ async function authorized(request: Request) {
 
 export async function POST(request: Request) {
   await initialize();
-  const body = await request.json<{ name?: string }>().catch(() => ({}));
+  const body: { name?: string } = await request.json<{ name?: string }>().catch(() => ({}));
   const name = String(body.name || 'My Ironman Group').trim().slice(0, 60);
   const id = crypto.randomUUID().replaceAll('-', '').slice(0, 12);
   const token = `${crypto.randomUUID().replaceAll('-', '')}${crypto.randomUUID().replaceAll('-', '')}`;
