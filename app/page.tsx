@@ -136,6 +136,7 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
   const [activities, setActivities] = useState<GroupActivity[]>([]);
   const [activityMembers, setActivityMembers] = useState<ActivityMember[]>([]);
   const [activityLoading, setActivityLoading] = useState(false);
+  const [activityMember, setActivityMember] = useState('all');
 
   useEffect(() => {
     const saved = window.localStorage.getItem('ironpath-hiscore-group');
@@ -144,7 +145,8 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
   }, []);
 
   useEffect(() => {
-    if (!result) { setActivities([]); setActivityMembers([]); return; }
+    if (!result) { setActivities([]); setActivityMembers([]); setActivityMember('all'); return; }
+    setActivityMember('all');
     const query = result.players.map(player => `player=${encodeURIComponent(player.name)}`).join('&');
     setActivityLoading(true);
     fetch(`/api/activities?${query}`)
@@ -153,6 +155,8 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
       .catch(() => { setActivities([]); setActivityMembers([]); })
       .finally(() => setActivityLoading(false));
   }, [result]);
+
+  const visibleActivities = (activityMember === 'all' ? activities : activities.filter(activity => activity.player === activityMember)).slice(0,40);
 
   async function refresh(event?: FormEvent) {
     event?.preventDefault();
@@ -201,8 +205,8 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
       </section>
       <section className="panel activity-panel">
         <div className="panel-heading"><div><p className="eyebrow">Adventurer's Log</p><h3>Group milestones</h3></div><a className="source-note source-link-inline" href="https://runescape.wiki/w/Application_programming_interface" target="_blank" rel="noreferrer">RuneMetrics API reference <ExternalLink size={12}/></a></div>
-        <div className="activity-member-status">{activityMembers.map(member => <span className={member.available ? 'available' : 'unavailable'} key={member.name}><i/>{member.name}{!member.available && <small>{member.reason}</small>}</span>)}</div>
-        {activityLoading ? <div className="small-empty"><RefreshCw className="spin" size={22}/><h3>Gathering group milestones</h3><p>Checking every member's public RuneMetrics activity log.</p></div> : activities.length ? <div className="activity-feed">{activities.map((activity,index) => <article key={`${activity.player}-${activity.timestamp}-${index}`}><div className="activity-avatar">{activity.player.slice(0,2).toUpperCase()}</div><div className="activity-copy"><div><strong>{activity.text}</strong><span>{activity.player}</span></div><p>{activity.details}</p></div><time dateTime={new Date(activity.timestamp).toISOString()}>{activity.date}</time></article>)}</div> : <div className="small-empty"><Clock3 size={22}/><h3>No public milestones found</h3><p>Members must set their RuneMetrics profile and online status to public for activities to appear.</p></div>}
+        <div className="activity-controls"><label><span>Showing activity for</span><select value={activityMember} onChange={event => setActivityMember(event.target.value)}><option value="all">All members ({activities.length})</option>{activityMembers.map(member => <option value={member.name} key={member.name}>{member.name} ({activities.filter(activity => activity.player === member.name).length})</option>)}</select></label><div className="activity-member-status">{activityMembers.map(member => <span className={member.available ? 'available' : 'unavailable'} key={member.name}><i/>{member.name}{!member.available && <small>{member.reason}</small>}</span>)}</div></div>
+        {activityLoading ? <div className="small-empty"><RefreshCw className="spin" size={22}/><h3>Gathering group milestones</h3><p>Checking every member's public RuneMetrics activity log. Temporary failures are retried automatically.</p></div> : visibleActivities.length ? <div className="activity-feed">{visibleActivities.map((activity,index) => <article key={`${activity.player}-${activity.timestamp}-${index}`}><div className="activity-avatar">{activity.player.slice(0,2).toUpperCase()}</div><div className="activity-copy"><div><strong>{activity.text}</strong><span>{activity.player}</span></div><p>{activity.details}</p></div><time dateTime={new Date(activity.timestamp).toISOString()}>{activity.date}</time></article>)}</div> : <div className="small-empty"><Clock3 size={22}/><h3>No public milestones found</h3><p>{activityMember === 'all' ? 'Members must set their RuneMetrics profile and online status to public for activities to appear.' : `No recent public activities were returned for ${activityMember}.`}</p></div>}
       </section>
     </>}
   </div>;
