@@ -45,7 +45,8 @@ const repeatables = {
 type HiscoreSkill = { name: string; rank: number; level: number; xp: number };
 type HiscorePlayer = { name: string; overall: HiscoreSkill | null; skills: HiscoreSkill[] };
 type HiscoreResult = { group: string; mode: string; size: number; totalLevel: number; totalXp: number; players: HiscorePlayer[]; refreshedAt: string; sourceUrl: string; cached?: boolean; stale?: boolean; warning?: string };
-type HiscoreSnapshot = { totalLevel:number; totalXp:number; capturedAt:string };
+type GroupActivity = { player:string; date:string; timestamp:number; text:string; details:string };
+type ActivityMember = { name:string; available:boolean; reason?:string };
 type SharedItem = { id:string; name:string; detail:string; owner:string; quantity:string; done:boolean };
 type WorkspaceData = { version:number; efficient:Record<string,boolean>; repeatables:Record<string,boolean>; unlocks:Record<string,boolean>; journey:Record<string,boolean>; supplies:SharedItem[]; shops:Record<string,boolean>; pvm:Record<string,boolean>; farming:Record<string,boolean>; kingdom:Record<string,string|boolean>; updatedBy:string };
 type Workspace = { id:string; token:string; name:string; data:WorkspaceData; updatedAt:number };
@@ -132,7 +133,9 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [expandedMember, setExpandedMember] = useState<string | null>(null);
-  const [history, setHistory] = useState<HiscoreSnapshot[]>([]);
+  const [activities, setActivities] = useState<GroupActivity[]>([]);
+  const [activityMembers, setActivityMembers] = useState<ActivityMember[]>([]);
+  const [activityLoading, setActivityLoading] = useState(false);
 
   useEffect(() => {
     const saved = window.localStorage.getItem('ironpath-hiscore-group');
@@ -141,12 +144,14 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
   }, []);
 
   useEffect(() => {
-    if (!result) { setHistory([]); return; }
-    const competitiveMode = result.mode === 'competitive';
-    fetch(`/api/hiscores/history?group=${encodeURIComponent(result.group)}&size=${result.size}&competitive=${competitiveMode}`)
-      .then(response => response.ok ? response.json() : { snapshots: [] })
-      .then((data: { snapshots?:HiscoreSnapshot[] }) => setHistory(data.snapshots || []))
-      .catch(() => setHistory([]));
+    if (!result) { setActivities([]); setActivityMembers([]); return; }
+    const query = result.players.map(player => `player=${encodeURIComponent(player.name)}`).join('&');
+    setActivityLoading(true);
+    fetch(`/api/activities?${query}`)
+      .then(response => response.ok ? response.json() : { activities:[],members:[] })
+      .then((data: { activities?:GroupActivity[];members?:ActivityMember[] }) => { setActivities(data.activities || []); setActivityMembers(data.members || []); })
+      .catch(() => { setActivities([]); setActivityMembers([]); })
+      .finally(() => setActivityLoading(false));
   }, [result]);
 
   async function refresh(event?: FormEvent) {
@@ -194,12 +199,10 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
           return <section className={expanded ? 'score-entry expanded' : 'score-entry'} key={player.name}><button className="hiscore-row clickable" onClick={() => setExpandedMember(expanded ? null : player.name)} aria-expanded={expanded}><div className="score-member"><span>{player.name.slice(0,2).toUpperCase()}</span><strong>{player.name}</strong></div><strong>{player.overall?.level.toLocaleString() || '—'}</strong><span>{compactNumber(player.overall?.xp || 0)}</span><span>#{position + 1} of {result.players.length}</span><span className="top-skill-cell">{top ? `${top.name} ${top.level}` : 'Stats unavailable'}<ChevronRight size={14} /></span></button>{expanded && <div className="skill-drawer"><div className="skill-drawer-head"><div><p className="eyebrow">Individual statistics</p><h3>{player.name}</h3></div><span>{statistics.length} ranked skills</span></div><div className="skill-grid"><div className="skill-grid-head"><span>Skill</span><span>Level</span><span>XP</span><span>Rank</span></div>{statistics.map(skill => <div className="skill-stat-row" key={skill.name}><strong>{skill.name}</strong><span>{skill.level.toLocaleString()}</span><span>{skill.xp.toLocaleString()}</span><span>{skill.rank > 0 ? `#${skill.rank.toLocaleString()}` : '—'}</span></div>)}</div></div>}</section>;
         })}</div>
       </section>
-      <section className="panel history-panel">
-        <div className="panel-heading"><div><p className="eyebrow">Saved snapshots</p><h3>Progress history</h3></div><span className="source-note">A snapshot is saved whenever fresh stats are retrieved</span></div>
-        {history.length < 2 ? <div className="small-empty"><Clock3 size={22}/><h3>One more refresh unlocks comparisons</h3><p>Ironpath now has {history.length || 'no'} saved snapshot{history.length === 1 ? '' : 's'} for this group.</p></div> : (() => {
-          const first = history[0]; const latest = history[history.length - 1];
-          return <><div className="history-summary"><article><span>Total XP gained</span><strong>+{compactNumber(Math.max(0, latest.totalXp-first.totalXp))}</strong></article><article><span>Total levels gained</span><strong>+{Math.max(0, latest.totalLevel-first.totalLevel).toLocaleString()}</strong></article><article><span>Tracking since</span><strong>{new Date(first.capturedAt).toLocaleDateString()}</strong></article><article><span>Snapshots</span><strong>{history.length}</strong></article></div><div className="history-list">{history.slice(-6).reverse().map((snapshot,index) => <div key={snapshot.capturedAt}><span>{new Date(snapshot.capturedAt).toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</span><strong>{compactNumber(snapshot.totalXp)} XP</strong><em>{snapshot.totalLevel.toLocaleString()} levels</em>{index === 0 && <small>Latest</small>}</div>)}</div></>;
-        })()}
+      <section className="panel activity-panel">
+        <div className="panel-heading"><div><p className="eyebrow">Adventurer's Log</p><h3>Group milestones</h3></div><a className="source-note source-link-inline" href="https://runescape.wiki/w/Application_programming_interface" target="_blank" rel="noreferrer">RuneMetrics API reference <ExternalLink size={12}/></a></div>
+        <div className="activity-member-status">{activityMembers.map(member => <span className={member.available ? 'available' : 'unavailable'} key={member.name}><i/>{member.name}{!member.available && <small>{member.reason}</small>}</span>)}</div>
+        {activityLoading ? <div className="small-empty"><RefreshCw className="spin" size={22}/><h3>Gathering group milestones</h3><p>Checking every member's public RuneMetrics activity log.</p></div> : activities.length ? <div className="activity-feed">{activities.map((activity,index) => <article key={`${activity.player}-${activity.timestamp}-${index}`}><div className="activity-avatar">{activity.player.slice(0,2).toUpperCase()}</div><div className="activity-copy"><div><strong>{activity.text}</strong><span>{activity.player}</span></div><p>{activity.details}</p></div><time dateTime={new Date(activity.timestamp).toISOString()}>{activity.date}</time></article>)}</div> : <div className="small-empty"><Clock3 size={22}/><h3>No public milestones found</h3><p>Members must set their RuneMetrics profile and online status to public for activities to appear.</p></div>}
       </section>
     </>}
   </div>;
