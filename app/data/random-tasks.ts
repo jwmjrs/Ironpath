@@ -1,0 +1,73 @@
+export type IronTask = {
+  id:string;
+  title:string;
+  description:string;
+  category:'Progression'|'Gathering'|'Skilling'|'Combat'|'Supplies'|'Exploration'|'Group';
+  effort:'Quick'|'Focused'|'Long';
+  scope:'Solo'|'Group';
+  skill?:string;
+  minLevel?:number;
+  link:string;
+};
+
+const wiki = (page:string) => `https://runescape.wiki/w/${page.replaceAll(' ','_')}`;
+
+export const ironTasks:IronTask[] = [
+  {id:'daily-challenges',title:'Clear your Daily Challenges',description:'Complete the available challenges and claim their experience rewards.',category:'Progression',effort:'Quick',scope:'Solo',link:wiki('Daily Challenge')},
+  {id:'nemi-forest',title:'Run Nemi Forest',description:'Gather the available experience from the forest nodes for several useful Ironman skills.',category:'Exploration',effort:'Quick',scope:'Solo',link:wiki('Nemi Forest')},
+  {id:'shooting-star',title:'Find a Shooting Star',description:'Mine a crashed star and claim the useful Ironman rewards when available.',category:'Gathering',effort:'Focused',scope:'Solo',skill:'Mining',minLevel:10,link:wiki('Shooting Star')},
+  {id:'guthix-cache',title:'Complete a Guthixian Cache',description:'Join an active cache for efficient Divination experience.',category:'Skilling',effort:'Quick',scope:'Solo',skill:'Divination',minLevel:1,link:wiki('Guthixian Cache')},
+  {id:'herb-run',title:'Complete a full herb run',description:'Plant the most useful herb seeds currently available and note which patches need better teleports.',category:'Supplies',effort:'Quick',scope:'Solo',skill:'Farming',minLevel:9,link:wiki('Herb patch')},
+  {id:'pof-check',title:'Tend the Player-owned Farm',description:'Check animals, breeding pens, food troughs and bean opportunities.',category:'Supplies',effort:'Quick',scope:'Solo',skill:'Farming',minLevel:17,link:wiki('Player-owned farm')},
+  {id:'shop-run',title:'Complete a targeted shop run',description:'Restock only the runes, vials, feathers, broad ammunition or components your account currently needs.',category:'Supplies',effort:'Quick',scope:'Solo',link:wiki('Ironman Mode/Strategies')},
+  {id:'wicked-hood',title:'Use the Wicked hood',description:'Claim the essence, runes and altar teleports available from the hood.',category:'Supplies',effort:'Quick',scope:'Solo',skill:'Runecrafting',minLevel:1,link:wiki('Wicked hood')},
+  {id:'ports',title:'Send Player-owned Ports voyages',description:'Check visitors, crew and voyages, then send the best available missions.',category:'Progression',effort:'Quick',scope:'Solo',minLevel:90,link:wiki('Player-owned port')},
+  {id:'anachronia-camp',title:'Check the Anachronia base camp',description:'Collect resources and queue the next upgrade that advances the account.',category:'Progression',effort:'Quick',scope:'Solo',link:wiki('Anachronia base camp')},
+  {id:'fort-rested',title:'Use your Fort Forinthry rested experience',description:'Claim or spend rested experience and inspect the next useful fort upgrade.',category:'Progression',effort:'Quick',scope:'Solo',link:wiki('Fort Forinthry')},
+  {id:'kingdom',title:'Maintain Managing Miscellania',description:'Restore approval, check the treasury and allocate workers to resources the group needs.',category:'Supplies',effort:'Quick',scope:'Solo',link:wiki('Managing Miscellania')},
+  {id:'penguins',title:'Hunt this week’s penguins',description:'Find several Penguin Hide and Seek spies and spend the points on a priority skill.',category:'Exploration',effort:'Focused',scope:'Solo',link:wiki('Penguin Hide and Seek')},
+  {id:'tears',title:'Complete Tears of Guthix',description:'Give your lowest skill a useful weekly experience boost.',category:'Skilling',effort:'Quick',scope:'Solo',link:wiki('Tears of Guthix')},
+  {id:'oyster',title:'Check the Giant Oyster',description:'Feed or open the monthly oyster when its cycle is ready.',category:'Progression',effort:'Quick',scope:'Solo',link:wiki('Giant Oyster')},
+  {id:'area-task',title:'Complete three Area Tasks',description:'Choose an unfinished easy or medium achievement set and clear three requirements.',category:'Progression',effort:'Focused',scope:'Solo',link:wiki('Tasks set')},
+  {id:'quest-short',title:'Complete one short quest',description:'Choose an unfinished novice or intermediate quest with an unlock or useful experience reward.',category:'Progression',effort:'Focused',scope:'Solo',link:wiki('Quests')},
+  {id:'quest-requirements',title:'Prepare the next quest',description:'Select a valuable unfinished quest and complete at least two skill or item requirements.',category:'Progression',effort:'Focused',scope:'Solo',link:wiki('Ironman Mode/Strategies')},
+  {id:'lodestones',title:'Unlock a missing lodestone',description:'Visit and activate one accessible lodestone that will shorten future routes.',category:'Exploration',effort:'Quick',scope:'Solo',link:wiki('Lodestone Network')},
+  {id:'toolbelt',title:'Improve the tool belt',description:'Find one useful tool-belt item or upgrade that the account has not yet unlocked.',category:'Progression',effort:'Focused',scope:'Solo',link:wiki('Tool belt')},
+  {id:'arch-mystery',title:'Advance an Archaeology mystery',description:'Restore artefacts or gather pages until one active mystery meaningfully progresses.',category:'Progression',effort:'Focused',scope:'Solo',skill:'Archaeology',minLevel:5,link:wiki('Archaeology mysteries')},
+  {id:'arch-collections',title:'Finish an Archaeology collection step',description:'Restore and contribute at least one missing artefact to a useful collection.',category:'Skilling',effort:'Focused',scope:'Solo',skill:'Archaeology',minLevel:5,link:wiki('Archaeology collections')},
+  {id:'mine-ore',title:'Bank 200 useful ore',description:'Mine an ore tier currently needed for Smithing, bars or future equipment.',category:'Gathering',effort:'Focused',scope:'Solo',skill:'Mining',minLevel:10,link:wiki('Ironman Mode/Strategies/Smithing')},
+  {id:'smith-bars',title:'Smelt and use 100 bars',description:'Turn banked ore into bars, then make equipment, burial armour or useful components.',category:'Skilling',effort:'Focused',scope:'Solo',skill:'Smithing',minLevel:10,link:wiki('Ironman Mode/Strategies/Smithing')},
+  {id:'fish-food',title:'Bank 200 useful fish',description:'Catch food appropriate to the account’s level and save it for combat or Cooking.',category:'Gathering',effort:'Focused',scope:'Solo',skill:'Fishing',minLevel:10,link:wiki('Ironman Mode/Strategies/Fishing')},
+  {id:'cook-food',title:'Cook a combat-food batch',description:'Cook 150 useful fish and place the successful food into the group supply plan.',category:'Supplies',effort:'Focused',scope:'Solo',skill:'Cooking',minLevel:10,link:wiki('Ironman Mode/Strategies/Cooking')},
+  {id:'woodcut-logs',title:'Bank 300 useful logs',description:'Gather a log tier needed for Fletching, Firemaking, Construction or Invention.',category:'Gathering',effort:'Focused',scope:'Solo',skill:'Woodcutting',minLevel:10,link:wiki('Ironman Mode/Strategies/Woodcutting')},
+  {id:'fletch-ammo',title:'Produce a useful ammunition batch',description:'Turn available logs and metal into arrows, bolts or components the account will actually consume.',category:'Supplies',effort:'Focused',scope:'Solo',skill:'Fletching',minLevel:15,link:wiki('Ironman Mode/Strategies/Fletching')},
+  {id:'runes',title:'Craft a priority rune batch',description:'Make at least 1,000 runes currently needed for combat, alchemy or utility spells.',category:'Supplies',effort:'Focused',scope:'Solo',skill:'Runecrafting',minLevel:10,link:wiki('Ironman Mode/Strategies/Runecrafting')},
+  {id:'div-energy',title:'Gather divine energy',description:'Collect a focused batch of the best accessible energy for signs, porters or divine charges.',category:'Gathering',effort:'Focused',scope:'Solo',skill:'Divination',minLevel:10,link:wiki('Ironman Mode/Strategies/Divination')},
+  {id:'herblore-pot',title:'Make 100 useful potions',description:'Use banked herbs and secondaries on a potion tier the account will need soon.',category:'Supplies',effort:'Focused',scope:'Solo',skill:'Herblore',minLevel:12,link:wiki('Ironman Mode/Strategies/Herblore')},
+  {id:'summoning-pouches',title:'Make a Summoning pouch batch',description:'Convert available charms and secondaries into 100 useful pouches.',category:'Supplies',effort:'Focused',scope:'Solo',skill:'Summoning',minLevel:4,link:wiki('Ironman Mode/Strategies/Summoning')},
+  {id:'craft-jewellery',title:'Craft a jewellery batch',description:'Turn stored gems and bars into teleport, alchemy or component-ready jewellery.',category:'Supplies',effort:'Focused',scope:'Solo',skill:'Crafting',minLevel:20,link:wiki('Ironman Mode/Strategies/Crafting')},
+  {id:'hunter',title:'Complete 30 Hunter catches',description:'Use the best practical creature or activity available and bank useful products.',category:'Skilling',effort:'Focused',scope:'Solo',skill:'Hunter',minLevel:10,link:wiki('Ironman Mode/Strategies/Hunter')},
+  {id:'agility',title:'Run 20 Agility laps',description:'Train on an appropriate course and work toward shortcuts or quest requirements.',category:'Skilling',effort:'Focused',scope:'Solo',skill:'Agility',minLevel:10,link:wiki('Ironman Mode/Strategies/Agility')},
+  {id:'thieving',title:'Complete a Thieving session',description:'Pickpocket, safecrack or steal from stalls for 30 minutes using a suitable method.',category:'Skilling',effort:'Focused',scope:'Solo',skill:'Thieving',minLevel:10,link:wiki('Ironman Mode/Strategies/Thieving')},
+  {id:'dungeoneering',title:'Clear three Daemonheim floors',description:'Complete three appropriate floors and spend tokens only on a planned unlock.',category:'Skilling',effort:'Focused',scope:'Solo',skill:'Dungeoneering',minLevel:6,link:wiki('Ironman Mode/Strategies/Dungeoneering')},
+  {id:'slayer-task',title:'Complete one Slayer assignment',description:'Finish an assignment, bank useful drops and note any supply bottleneck it exposes.',category:'Combat',effort:'Focused',scope:'Solo',skill:'Slayer',minLevel:10,link:wiki('Ironman Mode/Strategies/Slayer')},
+  {id:'reaper',title:'Complete a Soul Reaper assignment',description:'Take a suitable boss assignment and progress the weekly Reaper-point allowance.',category:'Combat',effort:'Long',scope:'Solo',link:wiki('Soul Reaper')},
+  {id:'boss-five',title:'Earn five boss kills',description:'Choose a comfortable boss with a useful drop table and complete five clean kills.',category:'Combat',effort:'Focused',scope:'Solo',link:wiki('Boss')},
+  {id:'boss-upgrade',title:'Practice the next boss upgrade',description:'Spend a focused session learning a boss that offers a meaningful equipment upgrade.',category:'Combat',effort:'Long',scope:'Solo',link:wiki('Ironman Mode/Strategies')},
+  {id:'war-retreat',title:'Advance a War’s Retreat unlock',description:'Earn boss kills toward the next useful War’s Retreat milestone.',category:'Combat',effort:'Focused',scope:'Solo',link:wiki("War's Retreat")},
+  {id:'necromancy-ritual',title:'Complete a Necromancy ritual batch',description:'Perform enough rituals to replenish ink, essence or souls for the next upgrade.',category:'Supplies',effort:'Focused',scope:'Solo',skill:'Necromancy',minLevel:5,link:wiki('Necromancy')},
+  {id:'prayer-supplies',title:'Gather Prayer training supplies',description:'Collect a useful batch of bones, ashes or other resources for future Prayer levels.',category:'Gathering',effort:'Focused',scope:'Solo',skill:'Prayer',minLevel:10,link:wiki('Ironman Mode/Strategies/Prayer')},
+  {id:'invention-components',title:'Restock one Invention component',description:'Choose a low component and disassemble a sensible shop-bought or gathered source.',category:'Supplies',effort:'Focused',scope:'Solo',skill:'Invention',minLevel:20,link:wiki('Ironman Mode/Strategies/Invention')},
+  {id:'divine-charges',title:'Create a divine-charge reserve',description:'Gather energy and produce enough divine charges for the next equipment session.',category:'Supplies',effort:'Long',scope:'Solo',skill:'Invention',minLevel:22,link:wiki('Divine charge')},
+  {id:'clue',title:'Complete five clue steps',description:'Work through clue steps, filling missing emote or teleport requirements as you go.',category:'Exploration',effort:'Focused',scope:'Solo',link:wiki('Treasure Trails')},
+  {id:'bank-clean',title:'Organise one bank category',description:'Clean one tab, identify shortages and move shared priorities into the Group Hub.',category:'Supplies',effort:'Quick',scope:'Solo',link:wiki('Bank')},
+  {id:'preset',title:'Build a reliable activity preset',description:'Create or improve one bank preset for clues, herb runs, Slayer or a repeatable activity.',category:'Progression',effort:'Quick',scope:'Solo',link:wiki('Bank preset')},
+  {id:'group-supply',title:'Fill a group supply shortage',description:'Choose one requested shared resource and gather a practical batch for the team.',category:'Group',effort:'Focused',scope:'Group',link:wiki('Group Ironman Mode')},
+  {id:'group-boss',title:'Run a group boss session',description:'Choose an accessible boss, agree on roles and complete at least ten team kills.',category:'Group',effort:'Long',scope:'Group',link:wiki('Group Ironman Mode')},
+  {id:'group-quest',title:'Prepare a shared quest night',description:'Choose a quest several members need and help everyone gather its item requirements.',category:'Group',effort:'Focused',scope:'Group',link:wiki('Quests')},
+  {id:'group-specialise',title:'Advance a group specialism',description:'Have one member train or gather for the production role they handle for the team.',category:'Group',effort:'Long',scope:'Group',link:wiki('Group Ironman Mode')},
+  {id:'group-storage',title:'Audit shared supplies',description:'Review shared resources and choose the three most useful shortages to address next.',category:'Group',effort:'Quick',scope:'Group',link:wiki('Group Ironman Mode')},
+  {id:'unlock-session',title:'Finish one meaningful unlock',description:'Choose a nearly completed teleport, tool-belt, quest, area-task or combat unlock and finish it.',category:'Progression',effort:'Long',scope:'Solo',link:wiki('Ironman Mode/Strategies')},
+  {id:'one-level',title:'Gain one useful skill level',description:'Pick the nearest level that unlocks a quest, method, item or repeatable activity and complete it.',category:'Skilling',effort:'Focused',scope:'Solo',link:wiki('Skills')},
+  {id:'supply-hour',title:'Run a one-hour supply mission',description:'Spend one focused hour gathering the account’s most limiting food, potion, rune or component resource.',category:'Gathering',effort:'Long',scope:'Solo',link:wiki('Ironman Mode/Strategies')},
+];

@@ -1,15 +1,16 @@
 'use client';
 
-import { BookOpen, Boxes, CalendarCheck2, Check, ChevronRight, CircleDot, Clock3, Coins, Crown, Dumbbell, ExternalLink, Gem, LayoutDashboard, Leaf, ListChecks, Plus, RefreshCw, Search, Shield, Sparkles, Trash2, Trophy, Users } from 'lucide-react';
+import { BookOpen, Boxes, CalendarCheck2, Check, ChevronRight, CircleDot, Clock3, Coins, Crown, Dice5, Dumbbell, ExternalLink, Gem, LayoutDashboard, Leaf, ListChecks, Plus, RefreshCw, Search, Shield, Sparkles, Trash2, Trophy, Users } from 'lucide-react';
 import { FormEvent, useEffect, useState } from 'react';
 import progressData from './data/efficient-progress.json';
+import { ironTasks, type IronTask } from './data/random-tasks';
 
 const tasks = [
   { title: 'Complete The Restless Ghost', scope: 'All members', done: 3, total: 4 },
   { title: 'The Provider of Misthalin', scope: 'Any member', done: 1, total: 1 },
   { title: 'Reach 200 total quest points', scope: 'Combined', done: 164, total: 200 },
 ];
-const nav = [[LayoutDashboard, 'Overview'], [Trophy, 'HiScores'], [Boxes, 'Group Hub'], [CalendarCheck2, 'Repeatables'], [BookOpen, 'Ironman Guide'], [ListChecks, 'Efficient Progress']] as const;
+const nav = [[LayoutDashboard, 'Overview'], [Trophy, 'HiScores'], [Dice5, 'Task Generator'], [Boxes, 'Group Hub'], [CalendarCheck2, 'Repeatables'], [BookOpen, 'Ironman Guide'], [ListChecks, 'Efficient Progress']] as const;
 const themes = [
   ['classic','Classic Gielinor'], ['ember','Wilderness Ember'], ['zaros','Arcane Zaros'],
   ['seren','Prifddinas Crystal'], ['morytania','Morytania Marsh'], ['fremennik','Fremennik Frost'],
@@ -63,6 +64,7 @@ export default function Home() {
   const views: Record<string, React.ReactNode> = {
     Overview: <Overview groupData={groupData} goTo={setActive} />,
     HiScores: <HiScoresView result={groupData} setResult={setGroupData} />,
+    'Task Generator': <TaskGenerator groupData={groupData} />,
     'Group Hub': <GroupHubView groupData={groupData} workspace={workspace} setWorkspace={setWorkspace} updateWorkspace={updateWorkspace} />,
     Repeatables: <RepeatablesView shared={workspace?.data.repeatables} setShared={value=>updateWorkspace('repeatables',value)} />,
     'Ironman Guide': <IronmanGuideView shared={workspace?.data.unlocks} setShared={value=>updateWorkspace('unlocks',value)} />,
@@ -211,6 +213,61 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
         {activityLoading ? <div className="small-empty"><RefreshCw className="spin" size={22}/><h3>Gathering group milestones</h3><p>Checking every member's public RuneMetrics activity log. Temporary failures are retried automatically.</p></div> : visibleActivities.length ? <div className="activity-feed">{visibleActivities.map((activity,index) => <article key={`${activity.player}-${activity.timestamp}-${index}`}><div className="activity-avatar">{activity.player.slice(0,2).toUpperCase()}</div><div className="activity-copy"><div><strong>{activity.text}</strong><span>{activity.player}</span></div><p>{activity.details}</p></div><time dateTime={new Date(activity.timestamp).toISOString()}>{activity.date}</time></article>)}</div> : <div className="small-empty"><Clock3 size={22}/><h3>No public milestones found</h3><p>{activityMember === 'all' ? 'Members must set their RuneMetrics profile and online status to public for activities to appear.' : `No recent public activities were returned for ${activityMember}.`}</p></div>}
       </section>
     </>}
+  </div>;
+}
+
+function TaskGenerator({ groupData }:{ groupData:HiscoreResult|null }) {
+  const [category,setCategory] = useState('All');
+  const [effort,setEffort] = useState('All');
+  const [scope,setScope] = useState('All');
+  const [member,setMember] = useState('Any member');
+  const [current,setCurrent] = useState<{task:IronTask;assignee:string}|null>(null);
+  const [recent,setRecent] = useState<string[]>([]);
+  const [completed,setCompleted] = useState(0);
+  useEffect(() => { try { setRecent(JSON.parse(localStorage.getItem('ironpath-random-recent') || '[]')); setCompleted(Number(localStorage.getItem('ironpath-random-completed') || 0)); } catch { /* ignore local history */ } },[]);
+  const categories = ['All',...new Set(ironTasks.map(task => task.category))];
+  const efforts = ['All','Quick','Focused','Long'];
+  const skillLevel = (player:HiscorePlayer,skill:string) => player.skills.find(item => item.name.toLowerCase() === skill.toLowerCase())?.level || 0;
+  function candidates() {
+    const chosen = groupData?.players.find(player => player.name === member);
+    return ironTasks.filter(task => {
+      if (category !== 'All' && task.category !== category) return false;
+      if (effort !== 'All' && task.effort !== effort) return false;
+      if (scope !== 'All' && task.scope !== scope) return false;
+      if (!task.skill || !task.minLevel || !groupData) return true;
+      return chosen ? skillLevel(chosen,task.skill) >= task.minLevel : groupData.players.some(player => skillLevel(player,task.skill!) >= task.minLevel!);
+    });
+  }
+  function generate() {
+    const pool = candidates();
+    const fresh = pool.filter(task => !recent.includes(task.id));
+    const options = fresh.length ? fresh : pool;
+    if (!options.length) { setCurrent(null); return; }
+    const task = options[Math.floor(Math.random()*options.length)];
+    let assignee = task.scope === 'Group' ? groupData?.group || 'The group' : member;
+    if (task.scope === 'Solo' && member === 'Any member') {
+      const eligible = groupData?.players.filter(player => !task.skill || !task.minLevel || skillLevel(player,task.skill) >= task.minLevel) || [];
+      assignee = eligible.length ? eligible[Math.floor(Math.random()*eligible.length)].name : 'Any member';
+    }
+    const next = [task.id,...recent.filter(id => id !== task.id)].slice(0,8);
+    setRecent(next); setCurrent({task,assignee}); localStorage.setItem('ironpath-random-recent',JSON.stringify(next));
+  }
+  function finish() { const next=completed+1; setCompleted(next); localStorage.setItem('ironpath-random-completed',String(next)); generate(); }
+  const available = candidates().length;
+  return <div className="content feature-page task-generator-page">
+    <section className="feature-heading"><div><p className="date-line">IRONMAN TASK GENERATOR</p><h2>What should we do next?</h2><p>Roll a practical RS3 Ironman goal, tuned to your available time and the group roster you looked up.</p></div><div className="status-chip"><Sparkles size={14}/> {completed} tasks completed</div></section>
+    <section className="panel generator-controls">
+      <label className="field"><span>Category</span><select value={category} onChange={event=>setCategory(event.target.value)}>{categories.map(value=><option key={value}>{value}</option>)}</select></label>
+      <label className="field"><span>Time commitment</span><select value={effort} onChange={event=>setEffort(event.target.value)}>{efforts.map(value=><option key={value}>{value}</option>)}</select></label>
+      <label className="field"><span>Task type</span><select value={scope} onChange={event=>setScope(event.target.value)}><option>All</option><option>Solo</option><option>Group</option></select></label>
+      <label className="field"><span>Assign to</span><select value={member} onChange={event=>setMember(event.target.value)}><option>Any member</option>{groupData?.players.map(player=><option key={player.name}>{player.name}</option>)}</select></label>
+      <button className="primary-button generator-button" onClick={generate}><Dice5 size={18}/> Generate task</button>
+    </section>
+    {!groupData && <div className="generator-note"><CircleDot size={14}/><span>Look up your group in HiScores to filter skill requirements and assign suitable members automatically. General tasks still work now.</span></div>}
+    <section className={current ? 'panel generated-task has-task' : 'panel generated-task'}>
+      {current ? <><div className="generated-task-top"><span className="task-category">{current.task.category}</span><span>{current.task.effort} · {current.task.scope}</span></div><div className="task-die"><Dice5 size={34}/></div><p className="eyebrow">Assigned to {current.assignee}</p><h3>{current.task.title}</h3><p>{current.task.description}</p>{current.task.skill && <div className="task-requirement"><strong>{current.task.skill}</strong><span>Level {current.task.minLevel}+ recommended</span></div>}<div className="generated-actions"><button className="primary-button" onClick={finish}><Check size={16}/> Mark complete</button><button className="secondary-button" onClick={generate}><RefreshCw size={15}/> Try another</button><a className="text-button" href={current.task.link} target="_blank" rel="noreferrer">Open Wiki guidance <ExternalLink size={13}/></a></div></> : <><div className="task-die"><Dice5 size={34}/></div><p className="eyebrow">{available} suitable tasks in this roll</p><h3>Ready when you are</h3><p>Choose any filters you care about, then generate a task. Recently shown tasks are held back so the results stay varied.</p><button className="primary-button" onClick={generate}><Dice5 size={18}/> Give me a task</button></>}
+    </section>
+    <section className="generator-principles"><article><Shield size={20}/><strong>Ironman-first</strong><p>Tasks emphasize self-sufficient supplies, unlocks and account progress.</p></article><article><Users size={20}/><strong>Group-aware</strong><p>Skill-gated rolls can be assigned to a currently suitable team member.</p></article><article><Clock3 size={20}/><strong>Reasonable scope</strong><p>Quick, focused and long tasks avoid absurd grinds or fragile drop-rate promises.</p></article></section>
   </div>;
 }
 
