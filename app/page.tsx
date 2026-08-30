@@ -79,7 +79,7 @@ export default function Home() {
           <div className="top-actions"><label className="theme-control"><span>Theme</span><select value={theme} onChange={event => changeTheme(event.target.value as Theme)} aria-label="Choose color theme">{themes.map(([id,label]) => <option value={id} key={id}>{label}</option>)}</select></label><div className="status-chip"><CircleDot size={14} /> {active}</div></div>
         </header>
         {views[active]}
-        <footer className="app-credit"><span>Concept and direction by <strong>Justjay</strong></span><i aria-hidden="true"/><span>Built with AI-assisted development</span><i aria-hidden="true"/><span>For the community</span><i aria-hidden="true"/><a href="/privacy">Privacy &amp; data</a><span className="legal-note">Unofficial fan project; not affiliated with Jagex.</span></footer>
+        <footer className="app-credit"><span>By <strong>Justjay</strong></span><i aria-hidden="true"/><span>AI-assisted development</span><i aria-hidden="true"/><span>For the community</span><i aria-hidden="true"/><a href="/privacy">Privacy &amp; data</a><i aria-hidden="true"/><span className="legal-note">Unofficial · Not affiliated with Jagex</span></footer>
       </section>
     </div>
   </main>;
