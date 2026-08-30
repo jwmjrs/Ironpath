@@ -70,15 +70,17 @@ export default function Home() {
   };
   return <main className="min-h-screen bg-background text-foreground" data-theme={theme}>
     <div className="app-shell">
-      <aside className="sidebar">
-        <div className="brand-mark"><Shield size={20} strokeWidth={1.8} /></div>
-        <nav aria-label="Primary navigation">{nav.map(([Icon, label]) => <button key={label} className={active === label ? 'nav-button active' : 'nav-button'} onClick={() => setActive(label)} aria-label={label}><Icon size={18} strokeWidth={1.7} /><span>{label}</span></button>)}</nav>
-      </aside>
-      <section className="workspace">
-        <header className="topbar">
-          <div><p className="eyebrow">Group Ironman command center</p><h1>Ironpath</h1></div>
+      <header className="site-header">
+        <div className="brand-bar">
+          <button className="brand-home" onClick={() => setActive('Overview')} aria-label="Open Ironpath overview"><img src="/ironpath-wordmark.png" alt="Ironpath" /></button>
           <div className="top-actions"><label className="theme-control"><span>Theme</span><select value={theme} onChange={event => changeTheme(event.target.value as Theme)} aria-label="Choose color theme">{themes.map(([id,label]) => <option value={id} key={id}>{label}</option>)}</select></label><div className="status-chip"><CircleDot size={14} /> {active}</div></div>
-        </header>
+        </div>
+        <div className="navigation-row">
+          <button className="navigation-mark" onClick={() => setActive('Overview')} aria-label="Open Ironpath overview"><img src="/ironpath-mark.png" alt="" /></button>
+          <nav aria-label="Primary navigation">{nav.map(([Icon, label]) => <button key={label} className={active === label ? 'nav-button active' : 'nav-button'} onClick={() => setActive(label)} aria-label={label}><Icon size={18} strokeWidth={1.7} /><span>{label}</span></button>)}</nav>
+        </div>
+      </header>
+      <section className="workspace">
         {views[active]}
         <footer className="app-credit"><span>By <strong>Justjay</strong></span><i aria-hidden="true"/><span>AI-assisted development</span><i aria-hidden="true"/><span>For the community</span><i aria-hidden="true"/><a href="/privacy">Privacy &amp; data</a><i aria-hidden="true"/><span className="legal-note">Unofficial · Not affiliated with Jagex</span></footer>
       </section>
@@ -91,7 +93,7 @@ function Overview({ groupData, goTo }: { groupData: HiscoreResult | null; goTo: 
   if (!groupData) return <ConnectGroup goTo={goTo} />;
   return <div className="content">
           <section className="welcome-row">
-            <div><p className="date-line">GROUP COMMAND CENTER</p><h2>{groupData.group}</h2><p>Your live roster and local planning ledger are ready.</p></div>
+            <div><p className="date-line">GROUP OVERVIEW</p><h2>{groupData.group}</h2><p>Your live roster and local planning ledger are ready.</p></div>
             <div className="status-chip"><CircleDot size={14} /> {groupData.mode} GIM · {groupData.size} members</div>
           </section>
           <section className="journey-banner">
