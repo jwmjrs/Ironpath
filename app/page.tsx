@@ -185,7 +185,7 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
     <form className="lookup-panel panel" onSubmit={refresh}>
       <label className="field group-field"><span>Group name</span><input value={group} onChange={event => setGroup(event.target.value)} placeholder="Enter exact group name" /></label>
       <label className="field"><span>Group size</span><select value={size} onChange={event => setSize(event.target.value)}><option value="2">2 members</option><option value="3">3 members</option><option value="4">4 members</option><option value="5">5 members</option></select></label>
-      <label className="mode-toggle"><input type="checkbox" checked={competitive} onChange={event => setCompetitive(event.target.checked)} /><span><strong>Competitive</strong><small>Strict group-only rules</small></span></label>
+      <label className="mode-toggle"><input type="checkbox" checked={competitive} onChange={event => setCompetitive(event.target.checked)} /><span><strong>Competitive</strong></span></label>
       <button className="primary-button lookup-button" disabled={loading}>{loading ? <RefreshCw className="spin" size={16} /> : <Search size={16} />}{loading ? 'Refreshing…' : 'Look up group'}</button>
     </form>
     {error && <div className="error-banner">{error}</div>}
