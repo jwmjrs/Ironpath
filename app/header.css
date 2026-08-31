@@ -1,0 +1,52 @@
+/* Centered, always-available primary navigation. */
+.brand-bar{
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:5px;
+  padding:10px 20px 8px;
+}
+
+.brand-home,
+.brand-rune-banner{
+  width:300px;
+}
+
+.brand-home{
+  height:76px;
+  justify-self:auto;
+}
+
+.brand-rune-banner{
+  height:76px;
+  object-fit:contain;
+}
+
+.navigation-row{
+  width:100%;
+  justify-content:center;
+}
+
+.navigation-row nav{
+  justify-content:center;
+  gap:8px;
+}
+
+.nav-button{
+  height:44px;
+  padding-inline:15px;
+  font-size:14px;
+  letter-spacing:.01em;
+}
+
+.header-tagline{display:none!important}
+
+@media(max-width:760px){
+  .brand-bar{align-items:stretch;padding:7px 10px 6px;gap:3px}
+  .brand-home{align-self:center;width:224px;height:56px}
+  .brand-rune-banner{width:224px;height:56px}
+  .navigation-row{justify-content:flex-start}
+  .navigation-row nav{justify-content:flex-start;gap:5px;overflow-x:auto;overflow-y:hidden}
+  .nav-button{height:40px;padding-inline:12px;font-size:13px}
+}

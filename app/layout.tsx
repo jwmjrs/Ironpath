@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import './header.css';
 
 export const metadata: Metadata = {
   title: "Ironpath — RuneScape 3 Group Ironman Companion",

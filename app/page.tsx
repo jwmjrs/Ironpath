@@ -19,9 +19,9 @@ const milestoneCandidates = [
   { id:'group-mining-40', title:'Have a member reach Mining level 40', detail:'Assign the closest member and build the group’s ore supply.', scope:'Group', skills:[['Mining',40]] },
   { id:'group-crafting-40', title:'Have a member reach Crafting level 40', detail:'Set up a crafter for early equipment and jewellery needs.', scope:'Group', skills:[['Crafting',40]] },
 ] as const;
-const nav = [[LayoutDashboard, 'Overview'], [Trophy, 'HiScores'], [Dice5, 'Task Generator'], [Boxes, 'Group Hub'], [CalendarCheck2, 'Repeatables']] as const;
+const nav = [[LayoutDashboard, 'Overview'], [Boxes, 'Group Hub'], [Trophy, 'HiScores'], [CalendarCheck2, 'Repeatables'], [Dice5, 'Task Generator']] as const;
 const themes = [
-  ['ironpath','Ironpath'], ['classic','Classic'], ['necromancy','Necromancy'],
+  ['necromancy','Necromancy'], ['classic','Classic'],
 ] as const;
 type Theme = typeof themes[number][0];
 function isTheme(value:string|null): value is Theme { return themes.some(([id]) => id === value); }
@@ -68,7 +68,7 @@ const fruitCrops = [[27,'Apple'],[33,'Banana'],[39,'Orange'],[42,'Curry'],[51,'P
 
 export default function Home() {
   const [active, setActive] = useState('Overview');
-  const [theme, setTheme] = useState<Theme>('ironpath');
+  const [theme, setTheme] = useState<Theme>('necromancy');
   const [extrasOpen, setExtrasOpen] = useState(false);
   const [groupData, setGroupData] = useState<HiscoreResult | null>(null);
   const [preferredMember, setPreferredMember] = useState('');
@@ -81,9 +81,9 @@ export default function Home() {
   function updateWorkspace<K extends keyof WorkspaceData>(key: K, value: WorkspaceData[K]) { if (!workspace) return; const next = { ...workspace, data:{ ...workspace.data, [key]:value }, updatedAt:Date.now() }; setWorkspace(next); fetch('/api/workspace',{method:'PUT',headers:{'content-type':'application/json','x-ironpath-workspace':workspace.id,'x-ironpath-token':workspace.token},body:JSON.stringify({name:workspace.name,data:next.data})}).catch(()=>{}); }
   const views: Record<string, React.ReactNode> = {
     Overview: <Overview groupData={groupData} preferredMember={preferredMember} setPreferredMember={choosePreferredMember} completed={workspace?.data.efficient} completeRoadmapTask={completeRoadmapTask} goTo={setActive} />,
-    HiScores: <HiScoresView result={groupData} setResult={setGroupData} workspace={workspace} />,
+    HiScores: <HiScoresView result={groupData} setResult={setGroupData} workspace={workspace} preferredMember={preferredMember} />,
     'Task Generator': <TaskGenerator groupData={groupData} preferredMember={preferredMember} />,
-    'Group Hub': <GroupHubView groupData={groupData} workspace={workspace} setWorkspace={setWorkspace} updateWorkspace={updateWorkspace} />,
+    'Group Hub': <GroupHubView groupData={groupData} workspace={workspace} setWorkspace={setWorkspace} updateWorkspace={updateWorkspace} preferredMember={preferredMember} />,
     Repeatables: <RepeatablesView shared={workspace?.data.repeatables} setShared={value=>updateWorkspace('repeatables',value)} />,
     'Ironman Guide': <IronmanGuideView shared={workspace?.data.unlocks} setShared={value=>updateWorkspace('unlocks',value)} />,
     'Efficient Progress': <EfficientProgressView groupData={groupData} preferredMember={preferredMember} shared={workspace?.data.efficient} setShared={value=>updateWorkspace('efficient',value)} farming={workspace?.data.farming} setFarming={value=>updateWorkspace('farming',value)} />,
@@ -94,7 +94,7 @@ export default function Home() {
       <header className="site-header">
         <div className="brand-bar">
           <button className="brand-home" onClick={() => setActive('Overview')} aria-label="Open Ironpath overview">
-            <img className="brand-rune-banner" src="/ironpath-banner-v3.png" alt="Ironpath" />
+            <img className="brand-rune-banner" src="/ironpath-banner-transparent-v1.png" alt="Ironpath" />
           </button>
           <div className="navigation-row">
             <nav aria-label="Primary navigation">{nav.map(([, label]) => <button key={label} className={active === label ? 'nav-button active' : 'nav-button'} onClick={() => setActive(label)} aria-label={label}><span>{label}</span></button>)}<div className="extras-menu" onMouseEnter={() => setExtrasOpen(true)} onMouseLeave={() => setExtrasOpen(false)} onFocus={() => setExtrasOpen(true)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setExtrasOpen(false); }}><button className={['Ironman Guide','Efficient Progress','Good general information'].includes(active) ? 'nav-button active' : 'nav-button'} onClick={() => setExtrasOpen(value => !value)} aria-label="Open extras" aria-expanded={extrasOpen} aria-haspopup="true"><Sparkles size={18} strokeWidth={1.7}/><span>Extras</span><ChevronRight className={extrasOpen ? 'extras-chevron open' : 'extras-chevron'} size={14}/></button>{extrasOpen && <div className="extras-popover"><p className="eyebrow">Ironman reference</p><button onClick={() => { setActive('Ironman Guide'); setExtrasOpen(false); }}><BookOpen size={17}/><span><strong>Ironman Guide</strong><small>Unlocks, habits and priorities</small></span></button><button onClick={() => { setActive('Efficient Progress'); setExtrasOpen(false); }}><ListChecks size={17}/><span><strong>Efficient Progress</strong><small>Roadmap, training and farming tools</small></span></button><button onClick={() => { setActive('Good general information'); setExtrasOpen(false); }}><Gem size={17}/><span><strong>Good General Information</strong><small>Consumables and armour effects</small></span></button></div>}</div></nav>
@@ -176,7 +176,7 @@ function Overview({ groupData, preferredMember, setPreferredMember, completed:sh
   </div>;
 }
 
-function HiScoresView({ result, setResult, workspace }: { result: HiscoreResult | null; setResult: (value: HiscoreResult | null) => void; workspace:Workspace|null }) {
+function HiScoresView({ result, setResult, workspace, preferredMember }: { result: HiscoreResult | null; setResult: (value: HiscoreResult | null) => void; workspace:Workspace|null; preferredMember:string }) {
   const [group, setGroup] = useState('');
   const [size, setSize] = useState('4');
   const [competitive, setCompetitive] = useState(false);
@@ -197,7 +197,7 @@ function HiScoresView({ result, setResult, workspace }: { result: HiscoreResult 
 
   useEffect(() => {
     if (!result) { setActivities([]); setActivityMembers([]); setActivityMember('all'); return; }
-    setActivityMember('all');
+    setActivityMember(result.players.some(player => player.name === preferredMember) ? preferredMember : 'all');
     const query = result.players.map(player => `player=${encodeURIComponent(player.name)}`).join('&');
     setActivityLoading(true);
     fetch(`/api/activities?${query}${activityRefresh ? `&refresh=${activityRefresh}` : ''}`, { cache:'no-store' })
@@ -205,7 +205,9 @@ function HiScoresView({ result, setResult, workspace }: { result: HiscoreResult 
       .then((data: { activities?:GroupActivity[];members?:ActivityMember[] }) => { setActivities(data.activities || []); setActivityMembers(data.members || []); })
       .catch(() => { setActivities([]); setActivityMembers([]); })
       .finally(() => setActivityLoading(false));
-  }, [result,activityRefresh]);
+  }, [result,activityRefresh,preferredMember]);
+
+  useEffect(() => { if (result?.players.some(player => player.name === preferredMember)) setExpandedMember(preferredMember); }, [result,preferredMember]);
 
   const visibleActivities = activityMember === 'all'
     ? activities.reduce<GroupActivity[]>((limited, activity) => limited.filter(item => item.player === activity.player).length < 5 ? [...limited, activity] : limited, [])
@@ -256,7 +258,7 @@ function HiScoresView({ result, setResult, workspace }: { result: HiscoreResult 
           return <section className={expanded ? 'score-entry expanded' : 'score-entry'} key={player.name}><button className="hiscore-row clickable" onClick={() => setExpandedMember(expanded ? null : player.name)} aria-expanded={expanded}><div className="score-member"><span>{player.name.slice(0,2).toUpperCase()}</span><strong>{player.name}</strong></div><strong>{player.overall?.level.toLocaleString() || '—'}</strong><span>{compactNumber(player.overall?.xp || 0)}</span><span>#{position + 1} of {result.players.length}</span><span className="top-skill-cell">{top ? <><img src={skillIconUrl(top.name)} alt="" onError={event => { event.currentTarget.style.display = 'none'; }} /><span>{top.name} {top.level}</span></> : 'Stats unavailable'}<ChevronRight size={14} /></span></button>{expanded && <div className="skill-drawer"><div className="skill-drawer-head"><div><p className="eyebrow">Individual statistics</p><h3>{player.name}</h3></div><span>{statistics.length} ranked skills</span></div><div className="skill-grid"><div className="skill-grid-head"><span>Skill</span><span>Level</span><span>XP</span><span>Rank</span></div>{statistics.map(skill => <div className="skill-stat-row" key={skill.name}><strong className="skill-name-cell"><img src={skillIconUrl(skill.name)} alt="" onError={event => { event.currentTarget.style.display = 'none'; }} />{skill.name}</strong><span>{skill.level.toLocaleString()}</span><span>{skill.xp.toLocaleString()}</span><span>{skill.rank > 0 ? `#${skill.rank.toLocaleString()}` : '—'}</span></div>)}</div></div>}</section>;
         })}</div>
       </section>
-      <GroupDropLog group={result.group} players={result.players.map(player => player.name)} workspace={workspace} />
+      <GroupDropLog group={result.group} players={result.players.map(player => player.name)} workspace={workspace} preferredMember={preferredMember} />
       <section className="panel activity-panel">
         <div className="panel-heading"><div><p className="eyebrow">Adventurer's Log</p><h3>See what your group has been up to</h3></div><a className="source-note source-link-inline" href="https://runescape.wiki/w/Application_programming_interface" target="_blank" rel="noreferrer">RuneMetrics API reference <ExternalLink size={12}/></a></div>
         <div className="activity-controls"><div className="activity-filter"><label><span>Showing activity for</span><select value={activityMember} onChange={event => setActivityMember(event.target.value)}><option value="all">All members ({activities.length})</option>{activityMembers.map(member => <option value={member.name} key={member.name}>{member.name} ({activities.filter(activity => activity.player === member.name).length})</option>)}</select></label><button className="secondary-button activity-refresh" onClick={() => setActivityRefresh(value => value + 1)} disabled={activityLoading}><RefreshCw className={activityLoading ? 'spin' : ''} size={14}/> Retry all logs</button></div><div className="activity-member-status">{activityMembers.map(member => <span className={member.stale ? 'stale' : member.available ? 'available' : 'unavailable'} key={member.name}><i/>{member.name}{(member.stale || !member.available) && <small>{member.reason}</small>}</span>)}</div></div>
@@ -267,12 +269,13 @@ function HiScoresView({ result, setResult, workspace }: { result: HiscoreResult 
 }
 
 type LoggedDrop = { item:string; quantity:number; player:string; date:string; timestamp:number; source:string };
-function GroupDropLog({ group, players, workspace }:{ group:string; players:string[]; workspace:Workspace|null }) {
-  const [member, setMember] = useState('all');
+function GroupDropLog({ group, players, workspace, preferredMember }:{ group:string; players:string[]; workspace:Workspace|null; preferredMember:string }) {
+  const [member, setMember] = useState(preferredMember || 'all');
   const [search, setSearch] = useState('');
   const [dropEvents, setDropEvents] = useState<LoggedDrop[]>([]);
   const [loading, setLoading] = useState(true);
   const [historyOpen, setHistoryOpen] = useState(false); const [historyItem, setHistoryItem] = useState(''); const [historyQuantity, setHistoryQuantity] = useState('1'); const [historyPlayer, setHistoryPlayer] = useState(players[0] || ''); const [historyDate, setHistoryDate] = useState(new Date().toISOString().slice(0,10)); const [bulkHistory, setBulkHistory] = useState(''); const [historyMessage, setHistoryMessage] = useState(''); const [savingHistory, setSavingHistory] = useState(false); const [archiveRefresh, setArchiveRefresh] = useState(0);
+  useEffect(() => { if (players.includes(preferredMember)) setMember(preferredMember); }, [preferredMember,players.join('|')]);
   useEffect(() => { const query = players.map(player => `player=${encodeURIComponent(player)}`).join('&'); setLoading(true); fetch(`/api/drops?group=${encodeURIComponent(group)}&${query}`,{cache:'no-store'}).then(response => response.ok ? response.json() : { events:[] }).then((data:{events?:LoggedDrop[]}) => setDropEvents(data.events || [])).catch(() => setDropEvents([])).finally(() => setLoading(false)); },[group,players.join('|'),archiveRefresh]);
   const visible = (member === 'all' ? dropEvents : dropEvents.filter(drop => drop.player === member)).filter(drop => `${drop.item} ${drop.player}`.toLowerCase().includes(search.toLowerCase()));
   const rows = Object.values(visible.reduce<Record<string,{ item:string; quantity:number; events:LoggedDrop[] }>>((groups, drop) => { const key = drop.item.toLocaleLowerCase(); const group = groups[key] || { item:drop.item,quantity:0,events:[] }; group.quantity += drop.quantity; group.events.push(drop); groups[key] = group; return groups; }, {})).sort((a,b) => Math.max(...b.events.map(event => event.timestamp)) - Math.max(...a.events.map(event => event.timestamp)));
@@ -397,7 +400,7 @@ function EfficientProgressView({ groupData, preferredMember, shared, setShared, 
   const [questSyncMessage, setQuestSyncMessage] = useState('');
   useEffect(() => { if (shared) setCompleted(shared); else try { setCompleted(JSON.parse(window.localStorage.getItem('ironpath-efficient-progress') || '{}')); } catch { /* ignore */ } }, [shared]);
   useEffect(() => { if (preferredMember && groupData?.players.some(player => player.name === preferredMember)) setMember(preferredMember); }, [groupData,preferredMember]);
-  useEffect(() => { if (groupData?.players.length && !groupData.players.some(player => player.name === questPlayer)) setQuestPlayer(groupData.players[0].name); }, [groupData, questPlayer]);
+  useEffect(() => { if (preferredMember && groupData?.players.some(player => player.name === preferredMember)) setQuestPlayer(preferredMember); else if (groupData?.players.length && !groupData.players.some(player => player.name === questPlayer)) setQuestPlayer(groupData.players[0].name); }, [groupData, preferredMember, questPlayer]);
   const allRows = progressData.progression.flatMap(section => section.rows);
   const completedCount = allRows.filter(row => completed[row.id]).length;
   const activeSection = progressData.progression.find(section => section.id === sectionId) || progressData.progression[0];
@@ -608,10 +611,11 @@ const inventionSources = [
   ['Precise','Broad arrows, bows and ranged-shop equipment','Weapon and tool perks'],['Precious','Slayer rings','Scavenging and equipment siphons'],['Powerful','Insulated boots, battlestaves and terrorbird pouches','Augmentors and useful devices'],['Simple','Maple or acadia logs, divine energy products','Divine charges and devices'],['Dextrous','Shortbows, claws and ranged armour','Equipment siphons and rod-o-matics'],['Enhancing','Slayer rings','Augmentors'],['Protective','White Knight armour, smithed armour and dragonhide','Armour gizmos'],['Historic','Venator artefacts and archaeology materials','Ancient gizmos and early ancient perks'],['Vintage','Completed high-level archaeology artefacts','Crackling, Relentless and Fortune combinations'],['Fortunate','Clue-scroll fortunate items','Alchemical onyx and hydrix products'],
 ] as const;
 
-function GroupHubView({ groupData, workspace, setWorkspace, updateWorkspace }: { groupData:HiscoreResult|null; workspace:Workspace|null; setWorkspace:(value:Workspace|null)=>void; updateWorkspace:<K extends keyof WorkspaceData>(key:K,value:WorkspaceData[K])=>void }) {
+function GroupHubView({ groupData, workspace, setWorkspace, updateWorkspace, preferredMember }: { groupData:HiscoreResult|null; workspace:Workspace|null; setWorkspace:(value:Workspace|null)=>void; updateWorkspace:<K extends keyof WorkspaceData>(key:K,value:WorkspaceData[K])=>void; preferredMember:string }) {
   const [tab,setTab] = useState<'Overview'|'Journey'|'Supplies'|'Shops'|'Invention'|'PvM'|'Estate'>('Overview');
   const [name,setName] = useState(groupData?.group || ''); const [code,setCode] = useState(''); const [error,setError] = useState(''); const [loading,setLoading] = useState(false);
-  const [supplyName,setSupplyName] = useState(''); const [quantity,setQuantity] = useState(''); const [owner,setOwner] = useState(''); const [purpose,setPurpose] = useState(''); const [componentQuery,setComponentQuery] = useState('');
+  const [supplyName,setSupplyName] = useState(''); const [quantity,setQuantity] = useState(''); const [owner,setOwner] = useState(preferredMember); const [purpose,setPurpose] = useState(''); const [componentQuery,setComponentQuery] = useState('');
+  useEffect(() => { if (preferredMember && groupData?.players.some(player => player.name === preferredMember)) setOwner(preferredMember); }, [groupData,preferredMember]);
   async function createWorkspace() { setLoading(true);setError(''); try { const response=await fetch('/api/workspace',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:name||groupData?.group||'My Ironman Group'})}); const value=await response.json(); if(!response.ok) throw new Error(value.error); const next={...value,data:{...emptyWorkspaceData,...value.data}}; setWorkspace(next); window.localStorage.setItem('ironpath-workspace',JSON.stringify({id:next.id,token:next.token})); } catch(reason){setError(reason instanceof Error?reason.message:'Unable to create workspace.');} finally{setLoading(false);} }
   async function joinWorkspace() { const [id,token]=code.trim().split('.'); if(!id||!token){setError('Paste the complete workspace key.');return;} setLoading(true);setError(''); try { const response=await fetch('/api/workspace',{headers:{'x-ironpath-workspace':id,'x-ironpath-token':token}}); const value=await response.json(); if(!response.ok) throw new Error(value.error); const next={...value,token,data:{...emptyWorkspaceData,...value.data}};setWorkspace(next);window.localStorage.setItem('ironpath-workspace',JSON.stringify({id,token}));}catch(reason){setError(reason instanceof Error?reason.message:'Unable to join workspace.');}finally{setLoading(false);} }
   if(!workspace) return <div className="content feature-page"><section className="feature-heading"><div><p className="date-line">SHARED TEAM DATA</p><h2>Group Hub</h2><p>Create one workspace for your team or join using a key shared by another member.</p></div></section><div className="workspace-connect-grid"><section className="panel hub-connect"><Users size={30}/><h3>Create a group workspace</h3><p>This stores Journey, supplies, shops, PvM and estate progress online for the whole team.</p><label className="field"><span>Workspace name</span><input value={name} onChange={event=>setName(event.target.value)} placeholder="Your group name"/></label><button className="primary-button" onClick={createWorkspace} disabled={loading}>Create workspace</button></section><section className="panel hub-connect"><Boxes size={30}/><h3>Join an existing workspace</h3><p>Ask a group member for the workspace key, then paste it below.</p><label className="field"><span>Workspace key</span><input value={code} onChange={event=>setCode(event.target.value)} placeholder="workspace.token"/></label><button className="secondary-button" onClick={joinWorkspace} disabled={loading}>Join workspace</button></section></div>{error&&<div className="error-banner">{error}</div>}</div>;
