@@ -5,11 +5,20 @@ import { FormEvent, useEffect, useState } from 'react';
 import progressData from './data/efficient-progress.json';
 import { ironTasks, type IronTask } from './data/random-tasks';
 
-const tasks = [
-  { title: 'Complete The Restless Ghost', scope: 'All members', done: 3, total: 4 },
-  { title: 'The Provider of Misthalin', scope: 'Any member', done: 1, total: 1 },
-  { title: 'Reach 200 total quest points', scope: 'Combined', done: 164, total: 200 },
-];
+const milestoneCandidates = [
+  { id:'part1-002-the-blood-pact', title:'Complete The Blood Pact', detail:'Start the route with an early quest and useful combat rewards.', scope:'Personal', skills:[] },
+  { id:'part1-003-the-restless-ghost', title:'Complete The Restless Ghost', detail:'Quick quest points and an early progression requirement.', scope:'Personal', skills:[] },
+  { id:'part1-004-cook-s-assistant', title:"Complete Cook's Assistant", detail:'A fast early quest and a foundation for the group route.', scope:'Personal', skills:[] },
+  { id:'part1-006-complete-the-archaeology-tutorial-at-the-varrock-dig-site-and-activate-the-font-of-life-relic', title:'Complete the Archaeology tutorial', detail:'Unlock the Font of Life relic and an early source of progress.', scope:'Personal', skills:[] },
+  { id:'part1-007-necromancy', title:'Complete Necromancy!', detail:'Pick up early Necromancer gear and establish a combat style.', scope:'Personal', skills:[] },
+  { id:'part1-010-druidic-ritual', title:'Complete Druidic Ritual', detail:'Unlock Herblore for supplies and future quest requirements.', scope:'Personal', skills:[] },
+  { id:'part1-011-wolf-whistle', title:'Unlock Summoning through Wolf Whistle', detail:'Open an essential Ironman combat and utility skill.', scope:'Personal', skills:[] },
+  { id:'skill-mining-20', title:'Reach Mining level 20', detail:'A useful early gathering milestone for ores and quest preparation.', scope:'Personal', skills:[['Mining',20]] },
+  { id:'skill-crafting-20', title:'Reach Crafting level 20', detail:'Build toward self-made gear, jewellery and key unlocks.', scope:'Personal', skills:[['Crafting',20]] },
+  { id:'skill-divination-20', title:'Reach Divination level 20', detail:'Begin building toward Guthixian Cache and future Invention.', scope:'Personal', skills:[['Divination',20]] },
+  { id:'group-mining-40', title:'Have a member reach Mining level 40', detail:'Assign the closest member and build the group’s ore supply.', scope:'Group', skills:[['Mining',40]] },
+  { id:'group-crafting-40', title:'Have a member reach Crafting level 40', detail:'Set up a crafter for early equipment and jewellery needs.', scope:'Group', skills:[['Crafting',40]] },
+] as const;
 const nav = [[LayoutDashboard, 'Overview'], [Trophy, 'HiScores'], [Dice5, 'Task Generator'], [Boxes, 'Group Hub'], [CalendarCheck2, 'Repeatables'], [BookOpen, 'Ironman Guide'], [ListChecks, 'Efficient Progress']] as const;
 const themes = [
   ['classic','Classic Gielinor'], ['ember','Wilderness Ember'], ['zaros','Arcane Zaros'],
@@ -48,6 +57,7 @@ type HiscorePlayer = { name: string; overall: HiscoreSkill | null; skills: Hisco
 type HiscoreResult = { group: string; mode: string; size: number; totalLevel: number; totalXp: number; players: HiscorePlayer[]; refreshedAt: string; sourceUrl: string; cached?: boolean; stale?: boolean; warning?: string };
 type GroupActivity = { player:string; date:string; timestamp:number; text:string; details:string };
 type ActivityMember = { name:string; available:boolean; stale?:boolean; reason?:string };
+type QuestSyncResult = { player:string; quests:Array<{ title:string; status:string; completed:boolean }>; refreshedAt:string; cached?:boolean };
 type SharedItem = { id:string; name:string; detail:string; owner:string; quantity:string; done:boolean };
 type WorkspaceData = { version:number; efficient:Record<string,boolean>; repeatables:Record<string,boolean>; unlocks:Record<string,boolean>; journey:Record<string,boolean>; supplies:SharedItem[]; shops:Record<string,boolean>; pvm:Record<string,boolean>; farming:Record<string,boolean>; kingdom:Record<string,string|boolean>; updatedBy:string };
 type Workspace = { id:string; token:string; name:string; data:WorkspaceData; updatedAt:number };
@@ -57,18 +67,22 @@ export default function Home() {
   const [active, setActive] = useState('Overview');
   const [theme, setTheme] = useState<Theme>('classic');
   const [groupData, setGroupData] = useState<HiscoreResult | null>(null);
+  const [preferredMember, setPreferredMember] = useState('');
   const [workspace, setWorkspace] = useState<Workspace | null>(null);
   useEffect(() => { try { setGroupData(JSON.parse(window.localStorage.getItem('ironpath-hiscore-result') || 'null')); const savedTheme = window.localStorage.getItem('ironpath-theme'); if (isTheme(savedTheme)) setTheme(savedTheme); const savedWorkspace = JSON.parse(window.localStorage.getItem('ironpath-workspace') || 'null'); if (savedWorkspace?.id && savedWorkspace?.token) fetch('/api/workspace',{headers:{'x-ironpath-workspace':savedWorkspace.id,'x-ironpath-token':savedWorkspace.token}}).then(response=>response.ok?response.json() as Promise<Omit<Workspace,'token'>>:null).then(remote=>remote&&setWorkspace({ ...remote, token:savedWorkspace.token, data:{...emptyWorkspaceData,...remote.data} })).catch(()=>{}); if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{}); } catch { /* ignore */ } }, []);
+  useEffect(() => { if (!groupData?.players.length) return; const saved = window.localStorage.getItem('ironpath-preferred-member'); setPreferredMember(current => groupData.players.some(player => player.name === current) ? current : groupData.players.some(player => player.name === saved) ? saved! : groupData.players[0].name); }, [groupData]);
   function changeTheme(value: Theme) { setTheme(value); window.localStorage.setItem('ironpath-theme', value); }
+  function choosePreferredMember(name:string) { setPreferredMember(name); window.localStorage.setItem('ironpath-preferred-member',name); }
+  function completeRoadmapTask(id:string) { if (workspace) { updateWorkspace('efficient',{ ...workspace.data.efficient,[id]:true }); return; } try { const current = JSON.parse(window.localStorage.getItem('ironpath-efficient-progress') || '{}') as Record<string,boolean>; window.localStorage.setItem('ironpath-efficient-progress',JSON.stringify({ ...current,[id]:true })); } catch { /* ignore local storage failure */ } }
   function updateWorkspace<K extends keyof WorkspaceData>(key: K, value: WorkspaceData[K]) { if (!workspace) return; const next = { ...workspace, data:{ ...workspace.data, [key]:value }, updatedAt:Date.now() }; setWorkspace(next); fetch('/api/workspace',{method:'PUT',headers:{'content-type':'application/json','x-ironpath-workspace':workspace.id,'x-ironpath-token':workspace.token},body:JSON.stringify({name:workspace.name,data:next.data})}).catch(()=>{}); }
   const views: Record<string, React.ReactNode> = {
-    Overview: <Overview groupData={groupData} goTo={setActive} />,
+    Overview: <Overview groupData={groupData} preferredMember={preferredMember} setPreferredMember={choosePreferredMember} completed={workspace?.data.efficient} completeRoadmapTask={completeRoadmapTask} goTo={setActive} />,
     HiScores: <HiScoresView result={groupData} setResult={setGroupData} />,
-    'Task Generator': <TaskGenerator groupData={groupData} />,
+    'Task Generator': <TaskGenerator groupData={groupData} preferredMember={preferredMember} />,
     'Group Hub': <GroupHubView groupData={groupData} workspace={workspace} setWorkspace={setWorkspace} updateWorkspace={updateWorkspace} />,
     Repeatables: <RepeatablesView shared={workspace?.data.repeatables} setShared={value=>updateWorkspace('repeatables',value)} />,
     'Ironman Guide': <IronmanGuideView shared={workspace?.data.unlocks} setShared={value=>updateWorkspace('unlocks',value)} />,
-    'Efficient Progress': <EfficientProgressView groupData={groupData} shared={workspace?.data.efficient} setShared={value=>updateWorkspace('efficient',value)} />,
+    'Efficient Progress': <EfficientProgressView groupData={groupData} preferredMember={preferredMember} shared={workspace?.data.efficient} setShared={value=>updateWorkspace('efficient',value)} />,
   };
   return <main className="min-h-screen bg-background text-foreground" data-theme={theme}>
     <div className="app-shell">
@@ -83,20 +97,47 @@ export default function Home() {
       </header>
       <section className="workspace">
         {views[active]}
-        <footer className="app-credit"><span>By <strong>Justjay</strong></span><i aria-hidden="true"/><span>AI-assisted development</span><i aria-hidden="true"/><span>For the community</span><i aria-hidden="true"/><a href="/privacy">Privacy &amp; data</a><i aria-hidden="true"/><span className="legal-note">Unofficial · Not affiliated with Jagex</span></footer>
+        <footer className="app-credit"><span>Concept created by <strong>Justjay btw</strong></span><i aria-hidden="true"/><span>AI-assisted development</span><i aria-hidden="true"/><span>For the community</span><i aria-hidden="true"/><a href="/privacy">Privacy &amp; data</a><i aria-hidden="true"/><span className="legal-note">Unofficial · Not affiliated with Jagex</span></footer>
       </section>
     </div>
   </main>;
 }
 
-function Overview({ groupData, goTo }: { groupData: HiscoreResult | null; goTo: (view: string) => void }) {
+function Overview({ groupData, preferredMember, setPreferredMember, completed:sharedCompleted, completeRoadmapTask, goTo }: { groupData: HiscoreResult | null; preferredMember:string; setPreferredMember:(name:string)=>void; completed?:Record<string,boolean>; completeRoadmapTask:(id:string)=>void; goTo: (view: string) => void }) {
   const roster = groupData?.players || [];
+  const [localCompleted, setLocalCompleted] = useState<Record<string,boolean>>({});
+  const [suggestionCompleted, setSuggestionCompleted] = useState<Record<string,boolean>>({});
+  useEffect(() => { if (sharedCompleted) setLocalCompleted(sharedCompleted); else try { setLocalCompleted(JSON.parse(window.localStorage.getItem('ironpath-efficient-progress') || '{}')); } catch { /* ignore */ } }, [sharedCompleted]);
+  useEffect(() => { try { setSuggestionCompleted(JSON.parse(window.localStorage.getItem('ironpath-personal-suggestions') || '{}')); } catch { /* ignore */ } }, []);
   if (!groupData) return <ConnectGroup goTo={goTo} />;
+  const selected = roster.find(player => player.name === preferredMember) || roster[0]!;
+  const suggestionKey = (id:string) => `${selected.name}:${id}`;
+  const finishSuggestion = (id:string) => { const key = suggestionKey(id); setSuggestionCompleted(current => { const next = { ...current,[key]:true }; window.localStorage.setItem('ironpath-personal-suggestions',JSON.stringify(next)); return next; }); if (id.startsWith('part')) completeRoadmapTask(id); };
+  const skillLevel = (player:HiscorePlayer, skill:string) => player.skills.find(value => value.name.toLowerCase() === skill.toLowerCase())?.level || 0;
+  const milestoneProgress = milestoneCandidates.map(milestone => {
+    const target = milestone.scope === 'Group' ? roster.reduce((best, player) => milestone.skills.every(([skill,level]) => skillLevel(player,skill) >= level) ? player : best, undefined as HiscorePlayer | undefined) : selected;
+    const doneByStats = milestone.skills.length > 0 && (milestone.scope === 'Group' ? Boolean(target) : milestone.skills.every(([skill,level]) => skillLevel(selected,skill) >= level));
+    const complete = Boolean(localCompleted[milestone.id]) || Boolean(suggestionCompleted[suggestionKey(milestone.id)]) || doneByStats;
+    const done = complete ? 1 : 0;
+    return { ...milestone, complete, done, total:1, target };
+  });
+  const nextSkillGoal = (player:HiscorePlayer, skill:string, scope:'Personal'|'Group') => {
+    const current = skillLevel(player,skill);
+    const target = current >= 99 ? 99 : Math.max(10,Math.ceil((current + 1) / 10) * 10);
+    const id = `${scope}-${player.name}-${skill}-${target}`;
+    const complete = Boolean(suggestionCompleted[suggestionKey(id)]);
+    return current >= target ? null : { id,title:`Reach ${skill} level ${target}`,detail:`${player.name} is currently level ${current}.`,scope,complete,done:complete ? target : current,total:target,target:scope === 'Group' ? player : undefined };
+  };
+  const focusSkills = ['Mining','Crafting','Divination','Herblore','Agility'];
+  const personalGoals = focusSkills.map(skill => nextSkillGoal(selected,skill,'Personal')).filter((goal): goal is NonNullable<typeof goal> => Boolean(goal)).filter(goal => !goal.complete).sort((a,b) => (a.total-a.done) - (b.total-b.done));
+  const groupGoals = focusSkills.map(skill => roster.map(player => nextSkillGoal(player,skill,'Group')).filter((goal): goal is NonNullable<typeof goal> => Boolean(goal)).filter(goal => !goal.complete).sort((a,b) => (a.total-a.done) - (b.total-b.done))[0]).filter((goal): goal is NonNullable<typeof goal> => Boolean(goal)).sort((a,b) => (a.total-a.done) - (b.total-b.done));
+  const visibleMilestones = [...milestoneProgress.filter(milestone => !milestone.complete).slice(0,1), ...personalGoals.slice(0,1), ...groupGoals.slice(0,1), ...personalGoals.slice(1), ...groupGoals.slice(1)].slice(0,3);
   return <div className="content">
           <section className="welcome-row">
-            <div><p className="date-line">GROUP OVERVIEW</p><h2>{groupData.group}</h2><p>Your live roster and local planning ledger are ready.</p></div>
+            <div><p className="date-line">GROUP OVERVIEW</p><h2>{groupData.group}</h2><p>Viewing recommendations for {selected.name} using your group’s live stats.</p></div>
             <div className="status-chip"><CircleDot size={14} /> {groupData.mode} GIM · {groupData.size} members</div>
-          </section>
+            </section>
+          <section className="panel member-home-selector"><div><p className="eyebrow">Your character</p><h3>Personalize Ironpath</h3><p>Choose your group member to tailor Overview, task suggestions and training levels to you.</p></div><label className="field"><span>Viewing as</span><select value={selected.name} onChange={event => setPreferredMember(event.target.value)}>{roster.map(player => <option value={player.name} key={player.name}>{player.name}</option>)}</select></label><div className="personal-stat"><span>Total level</span><strong>{selected.overall?.level.toLocaleString() || '—'}</strong></div><div className="personal-stat"><span>Top skill</span><strong>{[...selected.skills].sort((a,b)=>b.xp-a.xp)[0] ? `${[...selected.skills].sort((a,b)=>b.xp-a.xp)[0].name} ${[...selected.skills].sort((a,b)=>b.xp-a.xp)[0].level}` : '—'}</strong></div></section>
           <section className="journey-banner">
             <div className="journey-emblem"><Crown size={25} strokeWidth={1.5} /></div>
             <div className="journey-copy"><p className="eyebrow">Guided progression</p><h3>Efficient Progress</h3><p>Follow the ordered Ironman route and find training methods for every skill.</p></div>
@@ -119,7 +160,7 @@ function Overview({ groupData, goTo }: { groupData: HiscoreResult | null; goTo: 
             </aside>
             <section className="panel tasks-panel">
               <div className="panel-heading"><div><p className="eyebrow">Starter milestones</p><h3>Progress suggestions</h3></div><button className="text-button" onClick={() => goTo('Efficient Progress')}>Open route <ChevronRight size={14} /></button></div>
-              <div className="task-list">{tasks.map(task => { const complete = task.done === task.total; return <article className="task-row" key={task.title}><div className={complete ? 'task-check complete' : 'task-check'}>{complete ? <Check size={14} /> : <span />}</div><div className="task-copy"><strong>{task.title}</strong><span>{task.scope}</span></div><div className="task-meter"><div><span style={{ width: `${(task.done / task.total) * 100}%` }} /></div><strong>{task.done}/{task.total}</strong></div></article>; })}</div>
+              <div className="task-list">{visibleMilestones.map(task => <article className="task-row" key={task.id}><button className={task.complete ? 'task-check complete' : 'task-check'} onClick={() => finishSuggestion(task.id)} aria-label={`Mark ${task.title} complete`}>{task.complete ? <Check size={14} /> : <span />}</button><div className="task-copy"><strong>{task.title}</strong><span>{task.scope} {task.target && task.scope === 'Group' ? `· ${task.target.name}` : ''} · {task.detail}</span></div><div className="task-meter"><div><span style={{ width: `${Math.min(100,(task.done / task.total) * 100)}%` }} /></div><strong>{task.done}/{task.total}</strong></div></article>)}</div>
             </section>
             <aside className="panel storage-panel">
               <div className="panel-heading"><div><p className="eyebrow">Guided route</p><h3>Efficient Progress</h3></div><BookOpen size={18} className="muted-icon" /></div>
@@ -216,7 +257,7 @@ function HiScoresView({ result, setResult }: { result: HiscoreResult | null; set
   </div>;
 }
 
-function TaskGenerator({ groupData }:{ groupData:HiscoreResult|null }) {
+function TaskGenerator({ groupData, preferredMember }:{ groupData:HiscoreResult|null; preferredMember:string }) {
   const [category,setCategory] = useState('All');
   const [effort,setEffort] = useState('All');
   const [scope,setScope] = useState('All');
@@ -225,6 +266,7 @@ function TaskGenerator({ groupData }:{ groupData:HiscoreResult|null }) {
   const [recent,setRecent] = useState<string[]>([]);
   const [completed,setCompleted] = useState(0);
   useEffect(() => { try { setRecent(JSON.parse(localStorage.getItem('ironpath-random-recent') || '[]')); setCompleted(Number(localStorage.getItem('ironpath-random-completed') || 0)); } catch { /* ignore local history */ } },[]);
+  useEffect(() => { if (preferredMember && groupData?.players.some(player => player.name === preferredMember)) setMember(preferredMember); }, [groupData,preferredMember]);
   const categories = ['All',...new Set(ironTasks.map(task => task.category))];
   const efforts = ['All','Quick','Focused','Long'];
   const skillLevel = (player:HiscorePlayer,skill:string) => player.skills.find(item => item.name.toLowerCase() === skill.toLowerCase())?.level || 0;
@@ -316,14 +358,20 @@ function IronmanGuideView({ shared, setShared }: { shared?:Record<string,boolean
   </div>;
 }
 
-function EfficientProgressView({ groupData, shared, setShared }: { groupData: HiscoreResult | null; shared?:Record<string,boolean>; setShared:(value:Record<string,boolean>)=>void }) {
+function EfficientProgressView({ groupData, preferredMember, shared, setShared }: { groupData: HiscoreResult | null; preferredMember:string; shared?:Record<string,boolean>; setShared:(value:Record<string,boolean>)=>void }) {
   const [view, setView] = useState<'Roadmap' | 'Training'>('Roadmap');
   const [sectionId, setSectionId] = useState(progressData.progression[0].id);
   const [skill, setSkill] = useState('agility');
   const [member, setMember] = useState(groupData?.players[0]?.name || '');
   const [query, setQuery] = useState('');
   const [completed, setCompleted] = useState<Record<string, boolean>>({});
+  const [questPlayer, setQuestPlayer] = useState(groupData?.players[0]?.name || '');
+  const [questName, setQuestName] = useState('');
+  const [syncingQuests, setSyncingQuests] = useState(false);
+  const [questSyncMessage, setQuestSyncMessage] = useState('');
   useEffect(() => { if (shared) setCompleted(shared); else try { setCompleted(JSON.parse(window.localStorage.getItem('ironpath-efficient-progress') || '{}')); } catch { /* ignore */ } }, [shared]);
+  useEffect(() => { if (preferredMember && groupData?.players.some(player => player.name === preferredMember)) setMember(preferredMember); }, [groupData,preferredMember]);
+  useEffect(() => { if (groupData?.players.length && !groupData.players.some(player => player.name === questPlayer)) setQuestPlayer(groupData.players[0].name); }, [groupData, questPlayer]);
   const allRows = progressData.progression.flatMap(section => section.rows);
   const completedCount = allRows.filter(row => completed[row.id]).length;
   const activeSection = progressData.progression.find(section => section.id === sectionId) || progressData.progression[0];
@@ -333,6 +381,27 @@ function EfficientProgressView({ groupData, shared, setShared }: { groupData: Hi
   const currentLevel = selectedPlayer?.skills.find(value => value.name.toLowerCase() === skill)?.level;
   const methods = progressData.training[skill as keyof typeof progressData.training];
   function toggle(id: string) { setCompleted(current => { const next = { ...current, [id]: !current[id] }; if (shared) setShared(next); else window.localStorage.setItem('ironpath-efficient-progress', JSON.stringify(next)); return next; }); }
+  function normalQuestTitle(value:string) { return value.normalize('NFKD').replace(/[’‘`]/gu, "'").toLowerCase().replace(/[^a-z0-9]+/gu, ' ').trim(); }
+  async function syncQuests() {
+    const player = (groupData ? questPlayer : questName).trim();
+    if (!player) { setQuestSyncMessage('Choose a group member or enter a RuneScape name first.'); return; }
+    setSyncingQuests(true); setQuestSyncMessage('');
+    try {
+      const response = await fetch(`/api/quests?player=${encodeURIComponent(player)}`);
+      const result = await response.json() as QuestSyncResult & { error?:string };
+      if (!response.ok) throw new Error(result.error || 'Quest sync could not be completed.');
+      const completedQuestNames = new Set(result.quests.filter(quest => quest.completed).map(quest => normalQuestTitle(quest.title)));
+      const matched = allRows.filter(row => row.type === 'quest' && 'questName' in row && row.questName && completedQuestNames.has(normalQuestTitle(row.questName)));
+      setCompleted(current => {
+        const next = { ...current };
+        matched.forEach(row => { next[row.id] = true; });
+        if (shared) setShared(next); else window.localStorage.setItem('ironpath-efficient-progress', JSON.stringify(next));
+        return next;
+      });
+      setQuestSyncMessage(`${result.player}: marked ${matched.length} completed roadmap quest${matched.length === 1 ? '' : 's'}. Existing checklist choices were kept.`);
+    } catch (error) { setQuestSyncMessage(error instanceof Error ? error.message : 'Quest sync could not be completed.'); }
+    finally { setSyncingQuests(false); }
+  }
   return <div className="content feature-page efficient-page">
     <section className="feature-heading">
       <div><p className="date-line">IRONMAN PROGRESSION</p><h2>Efficient Progress</h2><p>Follow the ordered Ironman pathway or find the best training method for your current levels.</p></div>
@@ -345,10 +414,11 @@ function EfficientProgressView({ groupData, shared, setShared }: { groupData: Hi
     {view === 'Roadmap' ? <div className="roadmap-layout">
       <aside className="phase-list panel"><p className="eyebrow">Route phases</p>{progressData.progression.map(section => { const done = section.rows.filter(row => completed[row.id]).length; return <button key={section.id} className={section.id === activeSection.id ? 'active' : ''} onClick={() => setSectionId(section.id)}><span><strong>{section.title}</strong><small>{section.rows.length} steps</small></span><em>{done}/{section.rows.length}</em></button>; })}</aside>
       <section className="panel route-panel"><div className="route-toolbar"><div><p className="eyebrow">Current phase</p><h3>{activeSection.title}</h3></div><label className="route-search"><Search size={14}/><input value={query} onChange={event => setQuery(event.target.value)} placeholder="Filter this phase" /></label></div>
+        <div className="quest-sync"><div><p className="eyebrow">Quest sync</p><strong>Update this roadmap from RuneMetrics</strong><small>Verified completed quests are added to the checklist. Manual progress remains untouched.</small></div><div className="quest-sync-actions">{groupData ? <select value={questPlayer} onChange={event => setQuestPlayer(event.target.value)} aria-label="Choose a group member to sync">{groupData.players.map(player => <option key={player.name}>{player.name}</option>)}</select> : <input value={questName} onChange={event => setQuestName(event.target.value)} placeholder="RuneScape character name" aria-label="RuneScape character name" />}<button className="secondary-button" onClick={syncQuests} disabled={syncingQuests}><RefreshCw size={14} className={syncingQuests ? 'spin' : ''}/>{syncingQuests ? 'Syncing…' : 'Sync quests'}</button></div>{questSyncMessage && <p className={questSyncMessage.includes('marked') ? 'quest-sync-message success' : 'quest-sync-message'}>{questSyncMessage}</p>}</div>
         <div className="route-list">{visibleRows.map((row, index) => <article className={completed[row.id] ? 'route-row done' : 'route-row'} key={row.id}><button className="route-check" onClick={() => toggle(row.id)} aria-label={`Mark ${row.title} ${completed[row.id] ? 'incomplete' : 'complete'}`}>{completed[row.id] && <Check size={14}/>}</button><span className="route-number">{String(index + 1).padStart(2, '0')}</span><div><strong>{row.title}</strong>{'notes' in row && row.notes && <p>{row.notes}</p>}</div><span className="route-type">{row.type}</span>{row.type === 'quest' && 'questName' in row && row.questName ? <a href={`https://runescape.wiki/w/${encodeURIComponent(row.questName.replaceAll(' ', '_'))}/Quick_guide`} target="_blank" rel="noreferrer" aria-label={`Open ${row.title} quick guide`}><ExternalLink size={14}/></a> : <span/>}</article>)}</div>
       </section>
     </div> : <section className="training-layout">
-      <div className="panel training-controls"><div><p className="eyebrow">Training lookup</p><h3>Choose a skill</h3></div><label className="field"><span>Skill</span><select value={skill} onChange={event => setSkill(event.target.value)}>{skills.map(value => <option value={value} key={value}>{titleCase(value)}</option>)}</select></label>{groupData && <label className="field"><span>Use member level</span><select value={member} onChange={event => setMember(event.target.value)}>{groupData.players.map(player => <option key={player.name}>{player.name}</option>)}</select></label>}<div className="level-chip"><span>Current level</span><strong>{currentLevel ?? '—'}</strong></div></div>
+      <div className="panel training-controls"><div><p className="eyebrow">Training lookup</p><h3>Choose a skill</h3></div><label className="field"><span>Skill</span><select value={skill} onChange={event => setSkill(event.target.value)}>{skills.map(value => <option value={value} key={value}>{titleCase(value)}</option>)}</select></label>{groupData && <label className="field"><span>Use member level</span><select value={member} onChange={event => setMember(event.target.value)}>{groupData.players.map(player => <option key={player.name}>{player.name}</option>)}</select></label>}<div className="level-summary" aria-label={`Current ${titleCase(skill)} level`}><span>Current level</span><strong>{currentLevel ?? '—'}</strong><small>{selectedPlayer?.name || 'Choose a member'}</small></div></div>
       <div className="method-grid">{methods.map((method, index) => { const current = currentLevel !== undefined && currentLevel >= method.start && currentLevel <= method.end; return <article className={current ? 'panel method-card current' : 'panel method-card'} key={`${skill}-${method.start}-${method.end}-${index}`}><div><span className="level-range">Levels {method.start}–{method.end}</span>{current && <span className="current-tag">Current</span>}</div><p>{method.desc}</p>{method.link && <a href={method.link} target="_blank" rel="noreferrer">RuneScape Wiki <ExternalLink size={12}/></a>}</article>; })}</div>
     </section>}
     <p className="guide-credit"><BookOpen size={14}/> Progression and training data adapted from the <a href={progressData.source.wiki} target="_blank" rel="noreferrer">RuneScape Wiki source</a>. Guide data retrieved {progressData.source.retrieved}.</p>
