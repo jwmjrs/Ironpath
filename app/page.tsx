@@ -63,6 +63,10 @@ type WorkspaceData = { version:number; efficient:Record<string,boolean>; repeata
 type Workspace = { id:string; token:string; name:string; data:WorkspaceData; updatedAt:number };
 const emptyWorkspaceData: WorkspaceData = { version:1,efficient:{},repeatables:{},unlocks:{},journey:{},supplies:[],shops:{},pvm:{},farming:{},kingdom:{},updatedBy:'' };
 
+const herbCrops = [[9,'Guam'],[14,'Marrentill'],[19,'Tarromin'],[26,'Harralander'],[32,'Ranarr'],[38,'Toadflax'],[44,'Irit'],[50,'Avantoe'],[56,'Kwuarm'],[62,'Snapdragon'],[67,'Cadantine'],[73,'Lantadyme'],[79,'Dwarf weed'],[85,'Torstol'],[91,'Fellstalk']] as const;
+const treeCrops = [[15,'Oak'],[30,'Willow'],[45,'Maple'],[60,'Yew'],[75,'Magic']] as const;
+const fruitCrops = [[27,'Apple'],[33,'Banana'],[39,'Orange'],[42,'Curry'],[51,'Pineapple'],[57,'Papaya'],[68,'Palm'],[101,'Ciku'],[107,'Guarana'],[113,'Carambola']] as const;
+
 export default function Home() {
   const [active, setActive] = useState('Overview');
   const [theme, setTheme] = useState<Theme>('classic');
@@ -359,7 +363,7 @@ function IronmanGuideView({ shared, setShared }: { shared?:Record<string,boolean
 }
 
 function EfficientProgressView({ groupData, preferredMember, shared, setShared }: { groupData: HiscoreResult | null; preferredMember:string; shared?:Record<string,boolean>; setShared:(value:Record<string,boolean>)=>void }) {
-  const [view, setView] = useState<'Roadmap' | 'Training'>('Roadmap');
+  const [view, setView] = useState<'Roadmap' | 'Training' | 'Farm Runs'>('Roadmap');
   const [sectionId, setSectionId] = useState(progressData.progression[0].id);
   const [skill, setSkill] = useState('agility');
   const [member, setMember] = useState(groupData?.players[0]?.name || '');
@@ -409,7 +413,7 @@ function EfficientProgressView({ groupData, preferredMember, shared, setShared }
     </section>
     <section className="efficient-overview">
       <div className="panel progress-card"><div className="ring" style={{ '--value': `${(completedCount / allRows.length) * 360}deg` } as React.CSSProperties}><span>{Math.round((completedCount / allRows.length) * 100)}%</span></div><div><p className="eyebrow">Local checklist</p><h3>{completedCount} of {allRows.length} complete</h3><p>Your progress is saved on this device.</p></div></div>
-      <div className="guide-tabs"><button className={view === 'Roadmap' ? 'active' : ''} onClick={() => setView('Roadmap')}><ListChecks size={16}/><span>Progression roadmap</span></button><button className={view === 'Training' ? 'active' : ''} onClick={() => setView('Training')}><Dumbbell size={16}/><span>Skill training</span></button></div>
+      <div className="guide-tabs"><button className={view === 'Roadmap' ? 'active' : ''} onClick={() => setView('Roadmap')}><ListChecks size={16}/><span>Progression roadmap</span></button><button className={view === 'Training' ? 'active' : ''} onClick={() => setView('Training')}><Dumbbell size={16}/><span>Skill training</span></button><button className={view === 'Farm Runs' ? 'active' : ''} onClick={() => setView('Farm Runs')}><Leaf size={16}/><span>Farm runs</span></button></div>
     </section>
     {view === 'Roadmap' ? <div className="roadmap-layout">
       <aside className="phase-list panel"><p className="eyebrow">Route phases</p>{progressData.progression.map(section => { const done = section.rows.filter(row => completed[row.id]).length; return <button key={section.id} className={section.id === activeSection.id ? 'active' : ''} onClick={() => setSectionId(section.id)}><span><strong>{section.title}</strong><small>{section.rows.length} steps</small></span><em>{done}/{section.rows.length}</em></button>; })}</aside>
@@ -417,12 +421,34 @@ function EfficientProgressView({ groupData, preferredMember, shared, setShared }
         <div className="quest-sync"><div><p className="eyebrow">Quest sync</p><strong>Update this roadmap from RuneMetrics</strong><small>Verified completed quests are added to the checklist. Manual progress remains untouched.</small></div><div className="quest-sync-actions">{groupData ? <select value={questPlayer} onChange={event => setQuestPlayer(event.target.value)} aria-label="Choose a group member to sync">{groupData.players.map(player => <option key={player.name}>{player.name}</option>)}</select> : <input value={questName} onChange={event => setQuestName(event.target.value)} placeholder="RuneScape character name" aria-label="RuneScape character name" />}<button className="secondary-button" onClick={syncQuests} disabled={syncingQuests}><RefreshCw size={14} className={syncingQuests ? 'spin' : ''}/>{syncingQuests ? 'Syncing…' : 'Sync quests'}</button></div>{questSyncMessage && <p className={questSyncMessage.includes('marked') ? 'quest-sync-message success' : 'quest-sync-message'}>{questSyncMessage}</p>}</div>
         <div className="route-list">{visibleRows.map((row, index) => <article className={completed[row.id] ? 'route-row done' : 'route-row'} key={row.id}><button className="route-check" onClick={() => toggle(row.id)} aria-label={`Mark ${row.title} ${completed[row.id] ? 'incomplete' : 'complete'}`}>{completed[row.id] && <Check size={14}/>}</button><span className="route-number">{String(index + 1).padStart(2, '0')}</span><div><strong>{row.title}</strong>{'notes' in row && row.notes && <p>{row.notes}</p>}</div><span className="route-type">{row.type}</span>{row.type === 'quest' && 'questName' in row && row.questName ? <a href={`https://runescape.wiki/w/${encodeURIComponent(row.questName.replaceAll(' ', '_'))}/Quick_guide`} target="_blank" rel="noreferrer" aria-label={`Open ${row.title} quick guide`}><ExternalLink size={14}/></a> : <span/>}</article>)}</div>
       </section>
-    </div> : <section className="training-layout">
+    </div> : view === 'Training' ? <section className="training-layout">
       <div className="panel training-controls"><div><p className="eyebrow">Training lookup</p><h3>Choose a skill</h3></div><label className="field"><span>Skill</span><select value={skill} onChange={event => setSkill(event.target.value)}>{skills.map(value => <option value={value} key={value}>{titleCase(value)}</option>)}</select></label>{groupData && <label className="field"><span>Use member level</span><select value={member} onChange={event => setMember(event.target.value)}>{groupData.players.map(player => <option key={player.name}>{player.name}</option>)}</select></label>}<div className="level-summary" aria-label={`Current ${titleCase(skill)} level`}><span>Current level</span><strong>{currentLevel ?? '—'}</strong><small>{selectedPlayer?.name || 'Choose a member'}</small></div></div>
       <div className="method-grid">{methods.map((method, index) => { const current = currentLevel !== undefined && currentLevel >= method.start && currentLevel <= method.end; return <article className={current ? 'panel method-card current' : 'panel method-card'} key={`${skill}-${method.start}-${method.end}-${index}`}><div><span className="level-range">Levels {method.start}–{method.end}</span>{current && <span className="current-tag">Current</span>}</div><p>{method.desc}</p>{method.link && <a href={method.link} target="_blank" rel="noreferrer">RuneScape Wiki <ExternalLink size={12}/></a>}</article>; })}</div>
-    </section>}
+    </section> : <FarmRunsView player={selectedPlayer} />}
     <p className="guide-credit"><BookOpen size={14}/> Progression and training data adapted from the <a href={progressData.source.wiki} target="_blank" rel="noreferrer">RuneScape Wiki source</a>. Guide data retrieved {progressData.source.retrieved}.</p>
   </div>;
+}
+
+function FarmRunsView({ player }:{ player?:HiscorePlayer }) {
+  const [run, setRun] = useState<'Herb'|'Tree'|'Fruit tree'>('Herb');
+  const farming = player?.skills.find(skill => skill.name === 'Farming')?.level || 1;
+  const bestCrop = (crops:readonly (readonly [number,string])[]) => [...crops].reverse().find(([level]) => farming >= level) || crops[0];
+  const plans = {
+    Herb: {
+      crop:bestCrop(herbCrops), cadence:'Every 80 minutes', note:'Use this for a steady Ironman Herblore supply. Start with the longest or hardest-to-reach patch, then work toward free teleports.',
+      steps:[['Trollheim','Trollheim Farm Teleport if unlocked; otherwise Trollheim Teleport and run in. This patch is disease-free after My Arm’s Big Adventure.'],['Falador','Explorer’s ring cabbage-port is the fastest practical early option.'],['Morytania','Ectophial or a modified farmer’s hat puts you close to the patch west of Port Phasmatys.'],['Catherby','Catherby lodestone, Lunar teleport, or modified botanist’s mask.'],['Ardougne','Ardougne cloak/Manor Farm teleport when available; otherwise the lodestone.'],['Crwys, Prifddinas','Add this optional late-game patch after Plague’s End; crystal teleport seed is fastest.'],['Wilderness','Optional risk/reward stop. Wilderness sword teleports here after tasks; the patch becomes disease-free after hard achievements.']],
+    },
+    Tree: {
+      crop:bestCrop(treeCrops), cadence:'Check once per growth cycle', note:'Prepare saplings before leaving the bank. Tree runs are best used for large Farming experience rather than Herblore supplies.',
+      steps:[['Varrock Palace','Varrock lodestone, then run north into the palace courtyard.'],['Falador Park','Falador lodestone or ring of wealth, then cross the park.'],['Taverley','Taverley lodestone; a redirected house teleport is an excellent upgrade.'],['Tree Gnome Stronghold','Spirit tree or gnome glider access.'],['Tree Gnome Village','Spirit tree to the village; Elkoy’s guidance saves time through the maze.'],['Prifddinas','Optional late-game tree patch once the city is unlocked.']],
+    },
+    'Fruit tree': {
+      crop:bestCrop(fruitCrops), cadence:'Check once per growth cycle', note:'Fruit trees provide strong Farming experience and renewable produce. Keep the fruit instead of paying with it whenever it is useful to your group.',
+      steps:[['Tree Gnome Stronghold','Spirit tree or gnome glider; a reliable early fruit-tree stop.'],['Catherby','Catherby lodestone or Lunar teleport.'],['Tree Gnome Village','Spirit tree and Elkoy’s shortcut through the maze.'],['Brimhaven','Use a Brimhaven house teleport, gnome glider, or other Karamja access.'],['Lletya','Add after gaining access to Tirannwn; crystal teleport seed is fastest.'],['Herblore Habitat','Optional: juju teleport spiritbag or witchdoctor mask makes this much faster.'],['Meilyr, Prifddinas','Optional late-game patch; crystal teleport seed to Meilyr is fastest.'],["Dalia's Tree Nursery",'Optional newer patch west of the Shrine of Inanna; use Wendlewick lodestone or fairy ring BKS.']],
+    },
+  } as const;
+  const plan = plans[run];
+  return <section className="farm-run-layout"><div className="farm-run-intro panel"><div><p className="eyebrow">Farming for Herblore</p><h3>Efficient farm runs</h3><p>Route order, transport options and the highest crop currently available to {player?.name || 'your selected member'}.</p></div><div className="farm-crop"><span>Recommended crop</span><strong>{plan.crop[1]}</strong><small>Requires {plan.crop[0]} Farming · currently {farming}</small></div></div><div className="farm-tabs">{(['Herb','Tree','Fruit tree'] as const).map(value => <button className={run === value ? 'active' : ''} onClick={() => setRun(value)} key={value}><span>{value} run</span><small>{value === 'Herb' ? 'Herblore supplies' : 'Farming XP'}</small></button>)}</div><section className="panel farm-route"><div className="farm-route-head"><div><p className="eyebrow">Recommended order</p><h3>{run} run</h3></div><span>{plan.cadence}</span></div><p className="farm-route-note">{plan.note}</p><ol>{plan.steps.map(([place,travel], index) => <li key={place}><span>{String(index + 1).padStart(2,'0')}</span><div><strong>{place}</strong><p>{travel}</p></div></li>)}</ol></section><p className="guide-credit"><Leaf size={14}/> Route details based on the RuneScape Wiki’s <a href="https://runescape.wiki/w/All_farming_patches" target="_blank" rel="noreferrer">farming patch locations</a>, <a href="https://runescape.wiki/w/Herb_patch" target="_blank" rel="noreferrer">herb patch guide</a>, and <a href="https://runescape.wiki/w/Fruit_Tree_Patch" target="_blank" rel="noreferrer">fruit tree patch guide</a>.</p></section>;
 }
 
 const journeyTiers = [
