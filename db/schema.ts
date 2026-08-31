@@ -29,3 +29,15 @@ export const requestLimits = sqliteTable('request_limits', {
   requestCount: integer('request_count').notNull(),
   windowStart: integer('window_start').notNull(),
 });
+
+export const groupDropArchive = sqliteTable('group_drop_archive', {
+  id: integer('id').primaryKey({ autoIncrement:true }),
+  groupKey: text('group_key').notNull(),
+  itemKey: text('item_key').notNull(),
+  itemName: text('item_name').notNull(),
+  quantity: integer('quantity').notNull(),
+  playerName: text('player_name').notNull(),
+  occurredAt: integer('occurred_at').notNull(),
+  occurredDate: text('occurred_date').notNull(),
+  activityText: text('activity_text').notNull(),
+}, table => [index('idx_group_drop_archive_group_time').on(table.groupKey, table.occurredAt)]);

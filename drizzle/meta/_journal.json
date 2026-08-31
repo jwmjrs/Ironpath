@@ -15,6 +15,13 @@
       "when": 1788118866084,
       "tag": "0001_clever_living_lightning",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1788120000000,
+      "tag": "0002_group_drop_archive",
+      "breakpoints": true
     }
   ]
 }
