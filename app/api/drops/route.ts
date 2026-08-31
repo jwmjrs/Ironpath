@@ -11,6 +11,19 @@ function dropFromActivity(player:string, activity:Activity) {
   return item && item.length <= 80 ? { item,quantity:match[1] ? Number(match[1].replaceAll(',','')) : 1,player,occurredAt,occurredDate:activity.date || '',activityText:title } : null;
 }
 async function setup() { await env.DB.batch([env.DB.prepare('CREATE TABLE IF NOT EXISTS group_drop_archive (id INTEGER PRIMARY KEY AUTOINCREMENT, group_key TEXT NOT NULL, item_key TEXT NOT NULL, item_name TEXT NOT NULL, quantity INTEGER NOT NULL, player_name TEXT NOT NULL, occurred_at INTEGER NOT NULL, occurred_date TEXT NOT NULL, activity_text TEXT NOT NULL)'),env.DB.prepare('CREATE UNIQUE INDEX IF NOT EXISTS idx_group_drop_archive_unique ON group_drop_archive (group_key, item_key, player_name, occurred_at, activity_text)'),env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_group_drop_archive_group_time ON group_drop_archive (group_key, occurred_at)')]); }
+async function hash(value:string) { const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value)); return [...new Uint8Array(digest)].map(byte=>byte.toString(16).padStart(2,'0')).join(''); }
+async function workspaceAuthorized(request:Request) { const id=request.headers.get('x-ironpath-workspace') || ''; const token=request.headers.get('x-ironpath-token') || ''; if (!id || !token) return false; await env.DB.prepare('CREATE TABLE IF NOT EXISTS workspaces (id TEXT PRIMARY KEY, token_hash TEXT NOT NULL, name TEXT NOT NULL, data_json TEXT NOT NULL DEFAULT \'{}\', created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL)').run(); const workspace=await env.DB.prepare('SELECT token_hash FROM workspaces WHERE id = ?').bind(id).first<{token_hash:string}>(); return Boolean(workspace && workspace.token_hash === await hash(token)); }
+
+export async function POST(request:Request) {
+  await setup();
+  if (!await workspaceAuthorized(request)) return Response.json({ error:'Connect your Group Hub workspace before adding archive history.' },{status:401});
+  const body=await request.json<{group?:string;events?:Array<{item?:string;quantity?:number;player?:string;date?:string}>}>().catch(()=>({}));
+  const group=normalize(String(body.group || '')); const events=Array.isArray(body.events) ? body.events.slice(0,200) : [];
+  if (!group || !events.length) return Response.json({ error:'A group and at least one historical entry are required.' },{status:400});
+  const key=group.toLocaleLowerCase(); let added=0;
+  for (const [index,event] of events.entries()) { const item=normalize(String(event.item || '')).slice(0,80); const player=normalize(String(event.player || '')).slice(0,20); const quantity=Math.max(1,Math.min(1_000_000,Math.floor(Number(event.quantity) || 1))); const date=String(event.date || '').trim(); const base=Date.parse(`${date}T12:00:00Z`); if (!item || !player || !/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(base)) continue; const occurredAt=base+index; const result=await env.DB.prepare('INSERT OR IGNORE INTO group_drop_archive (group_key,item_key,item_name,quantity,player_name,occurred_at,occurred_date,activity_text) VALUES (?,?,?,?,?,?,?,?)').bind(key,item.toLocaleLowerCase(),item,quantity,player,occurredAt,date,'Historical backfill').run(); added+=result.meta.changes || 0; }
+  return Response.json({ added });
+}
 
 export async function GET(request:Request) {
   const url=new URL(request.url); const group=normalize(url.searchParams.get('group') || ''); const players=[...new Set(url.searchParams.getAll('player').map(normalize).filter(Boolean))].slice(0,5);
