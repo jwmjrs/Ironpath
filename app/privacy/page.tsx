@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Privacy & Data — Ironpath',
-  description: 'How Ironpath stores and uses Group Ironman planning data.',
+  title: "Privacy & Data — Ironpath",
+  description: "How Ironpath stores and uses Group Ironman planning data.",
 };
 
 export default function PrivacyPage() {

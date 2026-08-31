@@ -1,4 +1,4 @@
-const CACHE = 'ironpath-shell-v1';
+const CACHE = 'ironpath-shell-v3';
 const CORE = ['/favicon.svg', '/manifest.webmanifest'];
 
 self.addEventListener('install', event => {
