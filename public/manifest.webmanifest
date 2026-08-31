@@ -7,6 +7,6 @@
   "background_color": "#10120e",
   "theme_color": "#d8b75d",
   "icons": [
-    { "src": "/ironpath-mark.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any maskable" }
+    { "src": "/ironpath-mark-v2.png", "sizes": "1254x1254", "type": "image/png", "purpose": "any maskable" }
   ]
 }

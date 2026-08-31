@@ -74,7 +74,7 @@ export default function Home() {
     <div className="app-shell">
       <header className="site-header">
         <div className="brand-bar">
-          <button className="brand-home" onClick={() => setActive('Overview')} aria-label="Open Ironpath overview"><img src="/ironpath-wordmark.png" alt="Ironpath" /></button>
+          <button className="brand-home" onClick={() => setActive('Overview')} aria-label="Open Ironpath overview"><img src="/ironpath-wordmark-v2.png" alt="Ironpath" /></button>
           <div className="top-actions"><label className="theme-control"><span>Theme</span><select value={theme} onChange={event => changeTheme(event.target.value as Theme)} aria-label="Choose color theme">{themes.map(([id,label]) => <option value={id} key={id}>{label}</option>)}</select></label><div className="status-chip"><CircleDot size={14} /> {active}</div></div>
         </div>
         <div className="navigation-row">

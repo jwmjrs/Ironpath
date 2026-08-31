@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   applicationName: 'Ironpath',
   manifest: '/manifest.webmanifest',
   robots: { index: true, follow: true },
-  icons: { icon: '/ironpath-mark.png', apple: '/ironpath-mark.png' },
+  icons: { icon: '/ironpath-mark-v2.png', apple: '/ironpath-mark-v2.png' },
 };
 
 export default function RootLayout({
