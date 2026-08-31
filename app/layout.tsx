@@ -5,7 +5,7 @@ import './themes.css';
 
 export const metadata: Metadata = {
   title: "Ironpath — RuneScape 3 Group Ironman Companion",
-  description: 'Track Group Ironman HiScores, shared progression, repeatables, unlocks, supplies and milestones for RuneScape 3.',
+  description: 'Track Group Ironman HiScores, shared progression, distractions and diversions, unlocks, supplies and milestones for RuneScape 3.',
   applicationName: "Ironpath",
   manifest: '/manifest.webmanifest',
   robots: { index: true, follow: true },

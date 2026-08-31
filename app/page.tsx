@@ -19,7 +19,7 @@ const milestoneCandidates = [
   { id:'group-mining-40', title:'Have a member reach Mining level 40', detail:'Assign the closest member and build the group’s ore supply.', scope:'Group', skills:[['Mining',40]] },
   { id:'group-crafting-40', title:'Have a member reach Crafting level 40', detail:'Set up a crafter for early equipment and jewellery needs.', scope:'Group', skills:[['Crafting',40]] },
 ] as const;
-const nav = [[LayoutDashboard, 'Overview'], [Trophy, 'Dashboard'], [CalendarCheck2, 'Repeatables'], [Dice5, 'Task Generator']] as const;
+const nav = [[LayoutDashboard, 'Overview'], [Trophy, 'Dashboard'], [CalendarCheck2, 'Distractions and Diversions'], [Dice5, 'Task Generator']] as const;
 const themes = [
   ['necromancy','Necromancy'], ['classic','Classic'], ['gielinor','Gielinor'], ['prifddinas','Prifddinas'], ['kharidian','Kharidian'], ['wilderness','Wilderness'], ['saradomin','Saradomin'], ['zamorak','Zamorak'],
 ] as const;
@@ -155,7 +155,7 @@ export default function Home() {
     Overview: <Overview groupData={groupData} goTo={setActive} unsyncGroup={unsyncGroup} />,
     Dashboard: <HiScoresView result={groupData} setResult={setGroupData} workspace={workspace} setWorkspace={setWorkspace} preferredMember={preferredMember} setPreferredMember={choosePreferredMember} />,
     'Task Generator': <TaskGenerator groupData={groupData} preferredMember={preferredMember} />,
-    Repeatables: <RepeatablesView groupData={groupData} preferredMember={preferredMember} />,
+    'Distractions and Diversions': <RepeatablesView groupData={groupData} preferredMember={preferredMember} />,
     'Ironman Guide': <IronmanGuideView />,
     'Progression Roadmap': <EfficientProgressView fixedView="Roadmap" groupData={groupData} preferredMember={preferredMember} />,
     'Skill Training': <EfficientProgressView fixedView="Training" groupData={groupData} preferredMember={preferredMember} />,
@@ -198,7 +198,7 @@ function IronpathLanding({ onEnter, theme, changeTheme }: { onEnter: () => void;
         <p>Live group standings, shared planning, practical references, and helpful routines—made for the way Group Ironmen actually progress.</p>
         <div className="entry-actions"><button className="entry-primary" onClick={onEnter}>Enter Ironpath <ChevronRight size={18}/></button></div>
       </div>
-      <div className="entry-feature-stack" aria-label="Ironpath features"><article><Trophy size={17}/><div><strong>Group Dashboard</strong><span>Standings, activity, and shared history</span></div></article><article><CalendarCheck2 size={17}/><div><strong>Keep the rhythm</strong><span>Repeatables, runs, and practical routes</span></div></article><article><ListChecks size={17}/><div><strong>Make progress clear</strong><span>Resources shaped for Ironman accounts</span></div></article></div>
+      <div className="entry-feature-stack" aria-label="Ironpath features"><article><Trophy size={17}/><div><strong>Group Dashboard</strong><span>Standings, activity, and shared history</span></div></article><article><CalendarCheck2 size={17}/><div><strong>Keep the rhythm</strong><span>Distractions, diversions, runs, and practical routes</span></div></article><article><ListChecks size={17}/><div><strong>Make progress clear</strong><span>Resources shaped for Ironman accounts</span></div></article></div>
     </div>
     <footer className="entry-footer entry-credit"><label className="theme-control entry-theme-control"><span>Theme</span><select value={theme} onChange={event => changeTheme(event.target.value as Theme)} aria-label="Choose color theme">{themes.map(([id,label]) => <option value={id} key={id}>{label}</option>)}</select></label><i aria-hidden="true"/><span>Concept created by <strong>Justjay btw</strong></span><i aria-hidden="true"/><span>AI-assisted development</span><i aria-hidden="true"/><span>For the community</span><i aria-hidden="true"/><a href="/faq">FAQ</a><i aria-hidden="true"/><a href="/privacy">Privacy &amp; data</a><i aria-hidden="true"/><span>Unofficial · Not affiliated with Jagex</span></footer>
   </section>;
@@ -439,7 +439,7 @@ const ironmanPrinciples = [
   ['Quest before grinding','Quest rewards skip slow early levels and unlock efficient travel, bosses, spellbooks and supply sources.'],
   ['Protect future supplies','Bank herbs, seeds, logs, gems, secondary ingredients and useful salvage. Today’s spare item is often tomorrow’s unlock requirement.'],
   ['Spend lamps deliberately','Herblore is commonly the best default because ingredients gate training. Change course when a specific unlock needs another slow skill.'],
-  ['Build recurring income','Shop stocks, kingdom resources, Player-owned Farm and repeatable activities reduce the need for emergency gathering later.'],
+  ['Build recurring income','Shop stocks, kingdom resources, Player-owned Farm and distractions and diversions reduce the need for emergency gathering later.'],
   ['Share roles within the group','Group Ironmen can trade internally. Specialising early goals and sharing tools or rare drops can avoid duplicated grinds.'],
   ['Keep cash flowing','No Grand Exchange means alchemy, shops, Slayer drops and activity rewards matter more. Keep enough coins for upkeep and unlock costs.'],
 ] as const;
@@ -762,13 +762,13 @@ function RepeatablesView({ shared, setShared=()=>{}, groupData, preferredMember 
 
   return <div className="content feature-page">
     <section className="feature-heading">
-      <div><p className="date-line">ROUTINE PLANNER</p><h2>Repeatables</h2><p>Keep your daily, weekly, and monthly Ironman routines visible without letting them run your game.</p></div>
+      <div><p className="date-line">ROUTINE PLANNER</p><h2>Distractions and Diversions</h2><p>Keep your daily, weekly, and monthly Ironman activities visible without letting them run your game.</p></div>
       <div className="reset-card"><Clock3 size={16} /><div><span>Next {period.toLowerCase()} reset</span><strong>{resetLabel(period)}</strong></div></div>
     </section>
     <section className="tracker-personal-strip"><Users size={16}/><span>{player ? `Tracking for ${player.name}` : 'Connect a group to personalise activities'}</span>{player && <div className="quest-sync-status"><em className={syncError ? 'sync-error' : completedQuests ? 'sync-ready' : ''}>{syncing ? 'Syncing quest access…' : syncError || (completedQuests ? 'Quest access synced' : 'Quest access not synced')}</em><button className="quest-sync-button" onClick={syncAccess} disabled={syncing}><RefreshCw size={16} className={syncing?'spin':''}/>{syncing ? 'Syncing…' : 'Sync quest access'}</button></div>}</section>
     <section className="repeatable-overview">
       <div className="panel repeatable-progress"><div className="ring" style={{ '--value': `${(done / list.length) * 360}deg` } as React.CSSProperties}><span>{done}/{list.length}</span></div><div className="cycle-progress-copy"><p className="eyebrow">Current cycle</p><h3>{period} checklist</h3><p>{list.length - done} activities remaining</p></div></div>
-      <div className="repeatable-period-tabs" aria-label="Repeatable period">{(['Daily','Weekly','Monthly'] as const).map(tab => {
+      <div className="repeatable-period-tabs" aria-label="Distraction and diversion period">{(['Daily','Weekly','Monthly'] as const).map(tab => {
         const complete = repeatables[tab].filter(([name]) => completed[name]).length;
         const total = repeatables[tab].length;
         return <button key={tab} onClick={() => setPeriod(tab)} className={period === tab ? 'active' : ''} aria-pressed={period === tab}>
