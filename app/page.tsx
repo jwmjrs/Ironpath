@@ -153,7 +153,7 @@ export default function Home() {
   function updateWorkspace<K extends keyof WorkspaceData>(key: K, value: WorkspaceData[K]) { if (!workspace) return; const next = { ...workspace, data:{ ...workspace.data, [key]:value }, updatedAt:Date.now() }; setWorkspace(next); fetch('/api/workspace',{method:'PUT',headers:{'content-type':'application/json','x-ironpath-workspace':workspace.id,'x-ironpath-token':workspace.token},body:JSON.stringify({name:workspace.name,data:next.data})}).catch(()=>{}); }
   const views: Record<string, React.ReactNode> = {
     Overview: <Overview groupData={groupData} goTo={setActive} unsyncGroup={unsyncGroup} />,
-    Dashboard: <HiScoresView result={groupData} setResult={setGroupData} workspace={workspace} preferredMember={preferredMember} setPreferredMember={choosePreferredMember} />,
+    Dashboard: <HiScoresView result={groupData} setResult={setGroupData} workspace={workspace} setWorkspace={setWorkspace} preferredMember={preferredMember} setPreferredMember={choosePreferredMember} />,
     'Task Generator': <TaskGenerator groupData={groupData} preferredMember={preferredMember} />,
     Repeatables: <RepeatablesView shared={workspace?.data.repeatables} setShared={value=>updateWorkspace('repeatables',value)} groupData={groupData} preferredMember={preferredMember} />,
     'Ironman Guide': <IronmanGuideView shared={workspace?.data.unlocks} setShared={value=>updateWorkspace('unlocks',value)} />,
@@ -218,7 +218,7 @@ function Overview({ groupData, goTo, unsyncGroup }: { groupData:HiscoreResult|nu
   return <div className="content feature-page landing-page"><section className="panel landing-hero"><div><p className="date-line">RUNESCAPE 3 GROUP IRONMAN COMPANION</p><h1>Build your group’s next chapter.</h1><p>Ironpath brings together live group standings, shared routines, progression references and practical Ironman planning—without replacing the way your group plays.</p><div className="landing-actions"><button className="primary-button" onClick={()=>goTo('Dashboard')}><Trophy size={16}/>{connected?'Open your dashboard':'Look up your group'}</button><button className="secondary-button" onClick={()=>goTo('Progression Roadmap')}><ListChecks size={16}/>Explore the roadmap</button></div></div><aside className="landing-status"><CircleDot size={18}/><span>{connected?'Group connected':'Ready when you are'}</span><strong>{connected ? groupData!.group : 'Start with a group lookup'}</strong><small>{connected ? `${groupData!.mode} · ${groupData!.players.length} members` : 'Use Dashboard to connect an official Group Ironman roster.'}</small>{connected && <button className="unsync-group-button" onClick={unsyncGroup}>Unsync group</button>}</aside></section><section className="landing-section"><div className="landing-section-heading"><p className="eyebrow">What Ironpath helps with</p><h2>One home for the useful things.</h2></div><div className="landing-feature-grid"><article className="panel"><Trophy size={22}/><h3>Group Dashboard</h3><p>Refresh member totals, compare skill leaders, review public activity and keep a group drop archive.</p></article><article className="panel"><CalendarCheck2 size={22}/><h3>Repeatables</h3><p>Keep daily, weekly and monthly group habits visible without losing your own routine.</p></article><article className="panel"><ListChecks size={22}/><h3>Progression References</h3><p>Use the roadmap, training guidance, familiars and Invention notes whenever you need direction.</p></article><article className="panel"><Dice5 size={22}/><h3>Task Generator</h3><p>Pull a sensible Ironman objective when your group wants something productive to do next.</p></article></div></section><section className="landing-steps panel"><div><p className="eyebrow">Getting started</p><h2>Set up in a few steps.</h2></div><ol><li><span>01</span><div><strong>Look up your group</strong><p>Open Dashboard and enter the exact official Group Ironman name.</p></div></li><li><span>02</span><div><strong>Choose your character</strong><p>Select who you are on Dashboard to tailor level-aware resources.</p></div></li><li><span>03</span><div><strong>Plan and play</strong><p>Use the resources, repeatables and shared routes as your group needs them.</p></div></li></ol></section></div>;
 }
 
-function HiScoresView({ result, setResult, workspace, preferredMember, setPreferredMember }: { result: HiscoreResult | null; setResult: (value: HiscoreResult | null) => void; workspace:Workspace|null; preferredMember:string; setPreferredMember:(name:string)=>void }) {
+function HiScoresView({ result, setResult, workspace, setWorkspace, preferredMember, setPreferredMember }: { result: HiscoreResult | null; setResult: (value: HiscoreResult | null) => void; workspace:Workspace|null; setWorkspace:(value:Workspace|null)=>void; preferredMember:string; setPreferredMember:(name:string)=>void }) {
   const [group, setGroup] = useState('');
   const [size, setSize] = useState('4');
   const [competitive, setCompetitive] = useState(false);
@@ -230,6 +230,7 @@ function HiScoresView({ result, setResult, workspace, preferredMember, setPrefer
   const [activityLoading, setActivityLoading] = useState(false);
   const [activityMember, setActivityMember] = useState('all');
   const [activityRefresh, setActivityRefresh] = useState(0);
+  const [shareMessage, setShareMessage] = useState('');
 
   useEffect(() => {
     const saved = window.localStorage.getItem('ironpath-hiscore-group');
@@ -267,6 +268,34 @@ function HiScoresView({ result, setResult, workspace, preferredMember, setPrefer
       window.localStorage.setItem('ironpath-hiscore-result', JSON.stringify(data));
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'Unable to refresh HiScores.'); }
     finally { setLoading(false); }
+  }
+
+  async function copyPrivateGroupKey() {
+    if (!workspace) return;
+    const key = `${workspace.id}.${workspace.token}`;
+    try {
+      await navigator.clipboard.writeText(key);
+      setShareMessage('Private group key copied. Share it only with your group.');
+    } catch {
+      setShareMessage('Could not copy automatically. Please try again in a supported browser.');
+    }
+  }
+
+  async function createPrivateGroupKey() {
+    if (!result) return;
+    setShareMessage('Creating your private group key…');
+    try {
+      const response = await fetch('/api/workspace',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:result.group})});
+      const value = await response.json() as Workspace & { error?:string };
+      if (!response.ok) throw new Error(value.error || 'Unable to create a private group key.');
+      const next = { ...value, data:{...emptyWorkspaceData,...value.data} };
+      setWorkspace(next);
+      window.localStorage.setItem('ironpath-workspace',JSON.stringify({id:next.id,token:next.token}));
+      await navigator.clipboard.writeText(`${next.id}.${next.token}`);
+      setShareMessage('Private group key created and copied. Share it only with your group.');
+    } catch (reason) {
+      setShareMessage(reason instanceof Error ? reason.message : 'Unable to create a private group key.');
+    }
   }
 
   return <div className="content feature-page repeatables-tracker">
@@ -309,6 +338,7 @@ function HiScoresView({ result, setResult, workspace, preferredMember, setPrefer
         {activityLoading ? <div className="small-empty"><RefreshCw className="spin" size={22}/><h3>Gathering group milestones</h3><p>Checking every member's public RuneMetrics activity log. Temporary failures are retried automatically.</p></div> : visibleActivities.length ? <div className="activity-feed">{visibleActivities.map((activity,index) => <article key={`${activity.player}-${activity.timestamp}-${index}`}><div className="activity-avatar">{activity.player.slice(0,2).toUpperCase()}</div><div className="activity-copy"><div><strong>{activity.text}</strong><span>{activity.player}</span></div><p>{activity.details}</p></div><time dateTime={new Date(activity.timestamp).toISOString()}>{activity.date}</time></article>)}</div> : <div className="small-empty"><Clock3 size={22}/><h3>No public milestones found</h3><p>{activityMember === 'all' ? 'Members must set their RuneMetrics profile and online status to public for activities to appear.' : `No recent public activities were returned for ${activityMember}.`}</p></div>}
       </section>
       </div>
+      <section className="panel dashboard-share-key"><div><p className="eyebrow">Shared group progress</p><h3>{workspace ? 'Invite your group to this shared board' : 'Create a private group key'}</h3><p>{workspace ? 'Copy this key and send it only to members you trust. It connects their Ironpath progress to the same shared group board.' : 'Create a private key to let your Group Ironman teammates share repeatables, routes, drop history, and other progress.'}</p></div><div className="dashboard-share-actions"><button className="primary-button" onClick={workspace ? copyPrivateGroupKey : createPrivateGroupKey}>{workspace ? 'Copy private group key' : 'Create and copy group key'}</button>{shareMessage && <span role="status">{shareMessage}</span>}</div></section>
     </>}
   </div>;
 }
