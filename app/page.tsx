@@ -190,7 +190,7 @@ function IronpathLanding({ onEnter }: { onEnter: () => void }) {
   return <section className="ironpath-entry" aria-label="Ironpath introduction">
     <div className="entry-orbit entry-orbit-one" aria-hidden="true"/>
     <div className="entry-orbit entry-orbit-two" aria-hidden="true"/>
-    <header className="entry-header"><span className="entry-kicker"><i/> RuneScape 3 · Group Ironman</span><button className="entry-text-link" onClick={onEnter}>Open companion <ChevronRight size={15}/></button></header>
+    <header className="entry-header"><span className="entry-kicker"><i/> RuneScape 3 · Group Ironman</span></header>
     <div className="entry-main">
       <div className="entry-copy">
         <p className="eyebrow">Your group’s shared companion</p>
@@ -199,10 +199,7 @@ function IronpathLanding({ onEnter }: { onEnter: () => void }) {
         <p>Live group standings, shared planning, practical references, and helpful routines—made for the way Group Ironmen actually progress.</p>
         <div className="entry-actions"><button className="entry-primary" onClick={onEnter}>Enter Ironpath <ChevronRight size={18}/></button><span>No account required · Community-built</span></div>
       </div>
-      <aside className="entry-showcase" aria-label="Ironpath features">
-        <div className="entry-banner-wrap"><img src="/ironpath-banner-transparent-v1.png" alt=""/><span className="entry-banner-glow" aria-hidden="true"/></div>
-        <div className="entry-feature-stack"><article><Trophy size={17}/><div><strong>Group Dashboard</strong><span>Standings, activity, and shared history</span></div></article><article><CalendarCheck2 size={17}/><div><strong>Keep the rhythm</strong><span>Repeatables, runs, and practical routes</span></div></article><article><ListChecks size={17}/><div><strong>Make progress clear</strong><span>Resources shaped for Ironman accounts</span></div></article></div>
-      </aside>
+      <div className="entry-feature-stack" aria-label="Ironpath features"><article><Trophy size={17}/><div><strong>Group Dashboard</strong><span>Standings, activity, and shared history</span></div></article><article><CalendarCheck2 size={17}/><div><strong>Keep the rhythm</strong><span>Repeatables, runs, and practical routes</span></div></article><article><ListChecks size={17}/><div><strong>Make progress clear</strong><span>Resources shaped for Ironman accounts</span></div></article></div>
     </div>
     <footer className="entry-footer"><span>Concept created by Justjay btw · AI-assisted development</span><span>Unofficial · Not affiliated with Jagex</span></footer>
   </section>;
