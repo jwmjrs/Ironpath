@@ -165,7 +165,7 @@ export default function Home() {
     'Farming Routes': <FarmRunsView player={groupData?.players.find(member => member.name === preferredMember) || groupData?.players[0]} />,
     'Shop Runs': <ShopRunsView />,
   };
-  if (showLanding) return <main className="min-h-screen bg-background text-foreground" data-theme={theme}><IronpathLanding onEnter={() => setShowLanding(false)} /></main>;
+  if (showLanding) return <main className="min-h-screen bg-background text-foreground" data-theme={theme}><IronpathLanding onEnter={() => setShowLanding(false)} theme={theme} changeTheme={changeTheme} /></main>;
   return <main className="min-h-screen bg-background text-foreground" data-theme={theme}>
     <div className="app-shell">
       <header className="site-header">
@@ -186,7 +186,7 @@ export default function Home() {
   </main>;
 }
 
-function IronpathLanding({ onEnter }: { onEnter: () => void }) {
+function IronpathLanding({ onEnter, theme, changeTheme }: { onEnter: () => void; theme:Theme; changeTheme:(value:Theme)=>void }) {
   return <section className="ironpath-entry" aria-label="Ironpath introduction">
     <div className="entry-orbit entry-orbit-one" aria-hidden="true"/>
     <div className="entry-orbit entry-orbit-two" aria-hidden="true"/>
@@ -200,7 +200,7 @@ function IronpathLanding({ onEnter }: { onEnter: () => void }) {
       </div>
       <div className="entry-feature-stack" aria-label="Ironpath features"><article><Trophy size={17}/><div><strong>Group Dashboard</strong><span>Standings, activity, and shared history</span></div></article><article><CalendarCheck2 size={17}/><div><strong>Keep the rhythm</strong><span>Repeatables, runs, and practical routes</span></div></article><article><ListChecks size={17}/><div><strong>Make progress clear</strong><span>Resources shaped for Ironman accounts</span></div></article></div>
     </div>
-    <footer className="entry-footer entry-credit"><span>Concept created by <strong>Justjay btw</strong></span><i aria-hidden="true"/><span>AI-assisted development</span><i aria-hidden="true"/><span>For the community</span><i aria-hidden="true"/><a href="/faq">FAQ</a><i aria-hidden="true"/><a href="/privacy">Privacy &amp; data</a><i aria-hidden="true"/><span>Unofficial · Not affiliated with Jagex</span></footer>
+    <footer className="entry-footer entry-credit"><label className="theme-control entry-theme-control"><span>Theme</span><select value={theme} onChange={event => changeTheme(event.target.value as Theme)} aria-label="Choose color theme">{themes.map(([id,label]) => <option value={id} key={id}>{label}</option>)}</select></label><i aria-hidden="true"/><span>Concept created by <strong>Justjay btw</strong></span><i aria-hidden="true"/><span>AI-assisted development</span><i aria-hidden="true"/><span>For the community</span><i aria-hidden="true"/><a href="/faq">FAQ</a><i aria-hidden="true"/><a href="/privacy">Privacy &amp; data</a><i aria-hidden="true"/><span>Unofficial · Not affiliated with Jagex</span></footer>
   </section>;
 }
 
