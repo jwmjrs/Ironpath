@@ -136,6 +136,7 @@ const treeCrops = [[15,'Oak'],[30,'Willow'],[45,'Maple'],[60,'Yew'],[75,'Magic']
 const fruitCrops = [[27,'Apple'],[33,'Banana'],[39,'Orange'],[42,'Curry'],[51,'Pineapple'],[57,'Papaya'],[68,'Palm'],[101,'Ciku'],[107,'Guarana'],[113,'Carambola']] as const;
 
 export default function Home() {
+  const [showLanding, setShowLanding] = useState(true);
   const [active, setActive] = useState('Overview');
   const [theme, setTheme] = useState<Theme>('necromancy');
   const [extrasOpen, setExtrasOpen] = useState(false);
@@ -164,6 +165,7 @@ export default function Home() {
     'Farming Routes': <FarmRunsView player={groupData?.players.find(member => member.name === preferredMember) || groupData?.players[0]} shared={workspace?.data.farming} setShared={value=>updateWorkspace('farming',value)} />,
     'Shop Runs': <ShopRunsView shared={workspace?.data.shops} setShared={value=>updateWorkspace('shops',value)} />,
   };
+  if (showLanding) return <main className="min-h-screen bg-background text-foreground" data-theme={theme}><IronpathLanding onEnter={() => setShowLanding(false)} /></main>;
   return <main className="min-h-screen bg-background text-foreground" data-theme={theme}>
     <div className="app-shell">
       <header className="site-header">
@@ -182,6 +184,28 @@ export default function Home() {
       </section>
     </div>
   </main>;
+}
+
+function IronpathLanding({ onEnter }: { onEnter: () => void }) {
+  return <section className="ironpath-entry" aria-label="Ironpath introduction">
+    <div className="entry-orbit entry-orbit-one" aria-hidden="true"/>
+    <div className="entry-orbit entry-orbit-two" aria-hidden="true"/>
+    <header className="entry-header"><span className="entry-kicker"><i/> RuneScape 3 · Group Ironman</span><button className="entry-text-link" onClick={onEnter}>Open companion <ChevronRight size={15}/></button></header>
+    <div className="entry-main">
+      <div className="entry-copy">
+        <p className="eyebrow">Your group’s shared companion</p>
+        <button className="entry-logo-button" onClick={onEnter} aria-label="Enter Ironpath"><img src="/ironpath-banner-transparent-v1.png" alt="Ironpath"/></button>
+        <h1>Build the next chapter together.</h1>
+        <p>Live group standings, shared planning, practical references, and helpful routines—made for the way Group Ironmen actually progress.</p>
+        <div className="entry-actions"><button className="entry-primary" onClick={onEnter}>Enter Ironpath <ChevronRight size={18}/></button><span>No account required · Community-built</span></div>
+      </div>
+      <aside className="entry-showcase" aria-label="Ironpath features">
+        <div className="entry-banner-wrap"><img src="/ironpath-banner-transparent-v1.png" alt=""/><span className="entry-banner-glow" aria-hidden="true"/></div>
+        <div className="entry-feature-stack"><article><Trophy size={17}/><div><strong>Group Dashboard</strong><span>Standings, activity, and shared history</span></div></article><article><CalendarCheck2 size={17}/><div><strong>Keep the rhythm</strong><span>Repeatables, runs, and practical routes</span></div></article><article><ListChecks size={17}/><div><strong>Make progress clear</strong><span>Resources shaped for Ironman accounts</span></div></article></div>
+      </aside>
+    </div>
+    <footer className="entry-footer"><span>Concept created by Justjay btw · AI-assisted development</span><span>Unofficial · Not affiliated with Jagex</span></footer>
+  </section>;
 }
 
 function ShopRunsView({ shared, setShared }:{ shared?:Record<string,boolean>; setShared:(value:Record<string,boolean>)=>void }) {
