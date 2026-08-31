@@ -149,21 +149,21 @@ export default function Home() {
   function changeTheme(value: Theme) { setTheme(value); window.localStorage.setItem('ironpath-theme', value); }
   function choosePreferredMember(name:string) { setPreferredMember(name); window.localStorage.setItem('ironpath-preferred-member',name); }
   function unsyncGroup() { if (!window.confirm('Unsync this group from this browser? Your shared workspace will not be deleted.')) return; setGroupData(null); setPreferredMember(''); window.localStorage.removeItem('ironpath-hiscore-result'); window.localStorage.removeItem('ironpath-hiscore-group'); window.localStorage.removeItem('ironpath-preferred-member'); }
-  function completeRoadmapTask(id:string) { if (workspace) { updateWorkspace('efficient',{ ...workspace.data.efficient,[id]:true }); return; } try { const current = JSON.parse(window.localStorage.getItem('ironpath-efficient-progress') || '{}') as Record<string,boolean>; window.localStorage.setItem('ironpath-efficient-progress',JSON.stringify({ ...current,[id]:true })); } catch { /* ignore local storage failure */ } }
+  function completeRoadmapTask(id:string) { try { const current = JSON.parse(window.localStorage.getItem('ironpath-efficient-progress') || '{}') as Record<string,boolean>; window.localStorage.setItem('ironpath-efficient-progress',JSON.stringify({ ...current,[id]:true })); } catch { /* ignore local storage failure */ } }
   function updateWorkspace<K extends keyof WorkspaceData>(key: K, value: WorkspaceData[K]) { if (!workspace) return; const next = { ...workspace, data:{ ...workspace.data, [key]:value }, updatedAt:Date.now() }; setWorkspace(next); fetch('/api/workspace',{method:'PUT',headers:{'content-type':'application/json','x-ironpath-workspace':workspace.id,'x-ironpath-token':workspace.token},body:JSON.stringify({name:workspace.name,data:next.data})}).catch(()=>{}); }
   const views: Record<string, React.ReactNode> = {
     Overview: <Overview groupData={groupData} goTo={setActive} unsyncGroup={unsyncGroup} />,
     Dashboard: <HiScoresView result={groupData} setResult={setGroupData} workspace={workspace} setWorkspace={setWorkspace} preferredMember={preferredMember} setPreferredMember={choosePreferredMember} />,
     'Task Generator': <TaskGenerator groupData={groupData} preferredMember={preferredMember} />,
-    Repeatables: <RepeatablesView shared={workspace?.data.repeatables} setShared={value=>updateWorkspace('repeatables',value)} groupData={groupData} preferredMember={preferredMember} />,
-    'Ironman Guide': <IronmanGuideView shared={workspace?.data.unlocks} setShared={value=>updateWorkspace('unlocks',value)} />,
-    'Progression Roadmap': <EfficientProgressView fixedView="Roadmap" groupData={groupData} preferredMember={preferredMember} shared={workspace?.data.efficient} setShared={value=>updateWorkspace('efficient',value)} />,
-    'Skill Training': <EfficientProgressView fixedView="Training" groupData={groupData} preferredMember={preferredMember} shared={workspace?.data.efficient} setShared={value=>updateWorkspace('efficient',value)} />,
-    Familiars: <EfficientProgressView fixedView="Familiars" groupData={groupData} preferredMember={preferredMember} shared={workspace?.data.efficient} setShared={value=>updateWorkspace('efficient',value)} />,
+    Repeatables: <RepeatablesView groupData={groupData} preferredMember={preferredMember} />,
+    'Ironman Guide': <IronmanGuideView />,
+    'Progression Roadmap': <EfficientProgressView fixedView="Roadmap" groupData={groupData} preferredMember={preferredMember} />,
+    'Skill Training': <EfficientProgressView fixedView="Training" groupData={groupData} preferredMember={preferredMember} />,
+    Familiars: <EfficientProgressView fixedView="Familiars" groupData={groupData} preferredMember={preferredMember} />,
     Invention: <InventionView />,
     'Good general information': <GeneralInformationView />,
-    'Farming Routes': <FarmRunsView player={groupData?.players.find(member => member.name === preferredMember) || groupData?.players[0]} shared={workspace?.data.farming} setShared={value=>updateWorkspace('farming',value)} />,
-    'Shop Runs': <ShopRunsView shared={workspace?.data.shops} setShared={value=>updateWorkspace('shops',value)} />,
+    'Farming Routes': <FarmRunsView player={groupData?.players.find(member => member.name === preferredMember) || groupData?.players[0]} />,
+    'Shop Runs': <ShopRunsView />,
   };
   if (showLanding) return <main className="min-h-screen bg-background text-foreground" data-theme={theme}><IronpathLanding onEnter={() => setShowLanding(false)} /></main>;
   return <main className="min-h-screen bg-background text-foreground" data-theme={theme}>
@@ -205,7 +205,7 @@ function IronpathLanding({ onEnter }: { onEnter: () => void }) {
   </section>;
 }
 
-function ShopRunsView({ shared, setShared }:{ shared?:Record<string,boolean>; setShared:(value:Record<string,boolean>)=>void }) {
+function ShopRunsView({ shared, setShared=()=>{} }:{ shared?:Record<string,boolean>; setShared?:(value:Record<string,boolean>)=>void }) {
   const [completed, setCompleted] = useState<Record<string,boolean>>({});
   useEffect(() => { if (shared) setCompleted(shared); else try { setCompleted(JSON.parse(window.localStorage.getItem('ironpath-shop-runs') || '{}')); } catch { /* ignore */ } }, [shared]);
   function toggle(name:string) { setCompleted(current => { const next={...current,[name]:!current[name]}; if(shared) setShared(next); else window.localStorage.setItem('ironpath-shop-runs',JSON.stringify(next)); return next; }); }
@@ -275,7 +275,7 @@ function HiScoresView({ result, setResult, workspace, setWorkspace, preferredMem
     const key = `${workspace.id}.${workspace.token}`;
     try {
       await navigator.clipboard.writeText(key);
-      setShareMessage('Private group key copied. Share it only with your group.');
+      setShareMessage('Drop archive key copied. Share it only with your group.');
     } catch {
       setShareMessage('Could not copy automatically. Please try again in a supported browser.');
     }
@@ -283,18 +283,18 @@ function HiScoresView({ result, setResult, workspace, setWorkspace, preferredMem
 
   async function createPrivateGroupKey() {
     if (!result) return;
-    setShareMessage('Creating your private group key…');
+    setShareMessage('Creating your private drop archive key…');
     try {
       const response = await fetch('/api/workspace',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:result.group})});
       const value = await response.json() as Workspace & { error?:string };
-      if (!response.ok) throw new Error(value.error || 'Unable to create a private group key.');
+      if (!response.ok) throw new Error(value.error || 'Unable to create a private drop archive key.');
       const next = { ...value, data:{...emptyWorkspaceData,...value.data} };
       setWorkspace(next);
       window.localStorage.setItem('ironpath-workspace',JSON.stringify({id:next.id,token:next.token}));
       await navigator.clipboard.writeText(`${next.id}.${next.token}`);
-      setShareMessage('Private group key created and copied. Share it only with your group.');
+      setShareMessage('Drop archive key created and copied. Share it only with your group.');
     } catch (reason) {
-      setShareMessage(reason instanceof Error ? reason.message : 'Unable to create a private group key.');
+      setShareMessage(reason instanceof Error ? reason.message : 'Unable to create a private drop archive key.');
     }
   }
 
@@ -338,7 +338,7 @@ function HiScoresView({ result, setResult, workspace, setWorkspace, preferredMem
         {activityLoading ? <div className="small-empty"><RefreshCw className="spin" size={22}/><h3>Gathering group milestones</h3><p>Checking every member's public RuneMetrics activity log. Temporary failures are retried automatically.</p></div> : visibleActivities.length ? <div className="activity-feed">{visibleActivities.map((activity,index) => <article key={`${activity.player}-${activity.timestamp}-${index}`}><div className="activity-avatar">{activity.player.slice(0,2).toUpperCase()}</div><div className="activity-copy"><div><strong>{activity.text}</strong><span>{activity.player}</span></div><p>{activity.details}</p></div><time dateTime={new Date(activity.timestamp).toISOString()}>{activity.date}</time></article>)}</div> : <div className="small-empty"><Clock3 size={22}/><h3>No public milestones found</h3><p>{activityMember === 'all' ? 'Members must set their RuneMetrics profile and online status to public for activities to appear.' : `No recent public activities were returned for ${activityMember}.`}</p></div>}
       </section>
       </div>
-      <section className="panel dashboard-share-key"><div><p className="eyebrow">Shared group progress</p><h3>{workspace ? 'Invite your group to this shared board' : 'Create a private group key'}</h3><p>{workspace ? 'Copy this key and send it only to members you trust. It connects their Ironpath progress to the same shared group board.' : 'Create a private key to let your Group Ironman teammates share repeatables, routes, drop history, and other progress.'}</p></div><div className="dashboard-share-actions"><button className="primary-button" onClick={workspace ? copyPrivateGroupKey : createPrivateGroupKey}>{workspace ? 'Copy private group key' : 'Create and copy group key'}</button>{shareMessage && <span role="status">{shareMessage}</span>}</div></section>
+      <section className="panel dashboard-share-key"><div><p className="eyebrow">Shared drop archive</p><h3>{workspace ? 'Share your group’s item history' : 'Create a private drop archive key'}</h3><p>{workspace ? 'Copy this key for trusted group members. It only connects everyone to the shared drop archive, so item history and past drops appear together.' : 'Create a private key to combine your group’s item history and archived drops. Checklists, routes, and personal progress remain private to each device.'}</p></div><div className="dashboard-share-actions"><button className="primary-button" onClick={workspace ? copyPrivateGroupKey : createPrivateGroupKey}>{workspace ? 'Copy drop archive key' : 'Create and copy archive key'}</button>{shareMessage && <span role="status">{shareMessage}</span>}</div></section>
     </>}
   </div>;
 }
@@ -445,7 +445,7 @@ const ironmanPrinciples = [
   ['Keep cash flowing','No Grand Exchange means alchemy, shops, Slayer drops and activity rewards matter more. Keep enough coins for upkeep and unlock costs.'],
 ] as const;
 
-function IronmanGuideView({ shared, setShared }: { shared?:Record<string,boolean>; setShared:(value:Record<string,boolean>)=>void }) {
+function IronmanGuideView({ shared, setShared=()=>{} }: { shared?:Record<string,boolean>; setShared?:(value:Record<string,boolean>)=>void }) {
   const [stage, setStage] = useState<'All' | 'Early' | 'Mid' | 'Late'>('All');
   const [unlocked, setUnlocked] = useState<Record<string, boolean>>({});
   useEffect(() => { if (shared) setUnlocked(shared); else try { setUnlocked(JSON.parse(window.localStorage.getItem('ironpath-unlocks') || '{}')); } catch { /* ignore */ } }, [shared]);
@@ -462,7 +462,7 @@ function IronmanGuideView({ shared, setShared }: { shared?:Record<string,boolean
   </div>;
 }
 
-function EfficientProgressView({ groupData, preferredMember, shared, setShared, fixedView }: { groupData: HiscoreResult | null; preferredMember:string; shared?:Record<string,boolean>; setShared:(value:Record<string,boolean>)=>void; fixedView?:'Roadmap'|'Training'|'Familiars' }) {
+function EfficientProgressView({ groupData, preferredMember, shared, setShared=()=>{}, fixedView }: { groupData: HiscoreResult | null; preferredMember:string; shared?:Record<string,boolean>; setShared?:(value:Record<string,boolean>)=>void; fixedView?:'Roadmap'|'Training'|'Familiars' }) {
   const [view, setView] = useState<'Roadmap' | 'Training' | 'Familiars'>(fixedView || 'Roadmap');
   const [sectionId, setSectionId] = useState(progressData.progression[0].id);
   const [skill, setSkill] = useState('agility');
@@ -528,7 +528,7 @@ function EfficientProgressView({ groupData, preferredMember, shared, setShared, 
   </div>;
 }
 
-function FarmRunsView({ player, shared, setShared }:{ player?:HiscorePlayer; shared?:Record<string,boolean>; setShared:(value:Record<string,boolean>)=>void }) {
+function FarmRunsView({ player, shared, setShared=()=>{} }:{ player?:HiscorePlayer; shared?:Record<string,boolean>; setShared?:(value:Record<string,boolean>)=>void }) {
   const [run, setRun] = useState<'Herb'|'Tree'|'Fruit tree'>('Herb');
   const [completed, setCompleted] = useState<Record<string,boolean>>({});
   useEffect(() => { if (shared) setCompleted(shared); else try { setCompleted(JSON.parse(window.localStorage.getItem('ironpath-farm-runs') || '{}')); } catch { /* ignore */ } }, [shared]);
@@ -737,7 +737,7 @@ function GroupHubView({ groupData, workspace, setWorkspace, updateWorkspace, pre
   </div>;
 }
 
-function RepeatablesView({ shared, setShared, groupData, preferredMember }: { shared?:Record<string,boolean>; setShared:(value:Record<string,boolean>)=>void; groupData:HiscoreResult|null; preferredMember:string }) {
+function RepeatablesView({ shared, setShared=()=>{}, groupData, preferredMember }: { shared?:Record<string,boolean>; setShared?:(value:Record<string,boolean>)=>void; groupData:HiscoreResult|null; preferredMember:string }) {
   const [period, setPeriod] = useState<keyof typeof repeatables>('Daily');
   const [completed, setCompleted] = useState<Record<string, boolean>>({});
   const [completedQuests,setCompletedQuests] = useState<Set<string>|null>(null);
