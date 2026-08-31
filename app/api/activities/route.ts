@@ -3,6 +3,7 @@ import { env } from 'cloudflare:workers';
 type RuneMetricsActivity = { date?:string; text?:string; details?:string };
 type MemberResult = { name:string; available:boolean; stale?:boolean; reason?:string; activities:Array<{ player:string; date:string; timestamp:number; text:string; details:string }> };
 const wait = (milliseconds:number) => new Promise(resolve => setTimeout(resolve,milliseconds));
+const normalizePlayerName = (value:string) => value.replace(/[\u200B-\u200D\uFEFF]/gu,'').replace(/\s+/gu,' ').trim();
 
 function activityTime(value:string) {
   const match = value.match(/^(\d{1,2})-([A-Za-z]{3})-(\d{4}) (\d{2}):(\d{2})$/);
@@ -28,7 +29,7 @@ async function loadMember(name:string):Promise<MemberResult> {
 
 export async function GET(request:Request) {
   const url = new URL(request.url);
-  const players = [...new Set(url.searchParams.getAll('player').map(name => name.trim()).filter(Boolean))].slice(0,5);
+  const players = [...new Set(url.searchParams.getAll('player').map(normalizePlayerName).filter(Boolean))].slice(0,5);
   const forceRefresh = Boolean(url.searchParams.get('refresh'));
   if (!players.length || players.some(name => name.length > 20)) return Response.json({ error:'One to five valid member names are required.' }, { status:400 });
   await env.DB.prepare('CREATE TABLE IF NOT EXISTS hiscore_cache (cache_key TEXT PRIMARY KEY, response_json TEXT NOT NULL, fetched_at INTEGER NOT NULL)').run();

@@ -36,7 +36,20 @@ function parsePlayerHiscores(csv: string): Skill[] {
 }
 
 function decodeName(value: string) {
-  return value.replaceAll('\\u0026', '&').replaceAll('\\"', '"');
+  return normalizePlayerName(value.replaceAll('\\u0026', '&').replaceAll('\\"', '"'));
+}
+
+function normalizePlayerName(value:string) {
+  return value.replace(/[\u200B-\u200D\uFEFF]/gu,'').replace(/\s+/gu,' ').trim();
+}
+
+function normalizeCachedResult(value:Record<string,unknown>) {
+  const players = Array.isArray(value.players) ? value.players.map(player => {
+    if (!player || typeof player !== 'object') return player;
+    const record = player as Record<string,unknown>;
+    return { ...record,name:typeof record.name === 'string' ? normalizePlayerName(record.name) : record.name };
+  }) : value.players;
+  return { ...value,players };
 }
 
 function pageNumber(html: string, key: string) {
@@ -91,14 +104,14 @@ export async function GET(request: Request) {
   const groupUrl = `https://rs.runescape.com/hiscores/group-ironman/${mode}/${size}/${encodeURIComponent(group)}`;
   const cacheKey = `${mode}:${size}:${group.toLowerCase()}`;
   const cached = await env.DB.prepare('SELECT response_json, fetched_at FROM hiscore_cache WHERE cache_key = ?').bind(cacheKey).first<{ response_json:string; fetched_at:number }>();
-  if (cached && Date.now() - cached.fetched_at < 300_000) return Response.json({ ...JSON.parse(cached.response_json), cached: true }, { headers: { 'Cache-Control': 'private, max-age=60' } });
+  if (cached && Date.now() - cached.fetched_at < 300_000) return Response.json({ ...normalizeCachedResult(JSON.parse(cached.response_json)), cached: true }, { headers: { 'Cache-Control': 'private, max-age=60' } });
 
   try {
     const groupResponse = await fetch(groupUrl, {
       headers: { 'User-Agent': 'Ironpath local Group Ironman tracker' },
     });
     if (!groupResponse.ok) throw new Error('The RuneScape group page did not respond.');
-    const html = await groupResponse.text();
+    const html = (await groupResponse.text()).replace(/\s/gu, character => character === '\n' || character === '\r' || character === '\t' || character === ' ' ? character : ' ');
     const memberMatches = [...html.matchAll(/\\"displayName\\":\\"([^"\\]+)\\"/g)];
     const members = [...new Set(memberMatches.map(match => decodeName(match[1])))]
       .filter(name => name && name !== group)
@@ -139,7 +152,7 @@ export async function GET(request: Request) {
     ]);
     return Response.json(result, { headers: { 'Cache-Control': 'private, max-age=60' } });
   } catch (error) {
-    if (cached) return Response.json({ ...JSON.parse(cached.response_json), cached: true, stale: true, warning: 'RuneScape did not respond; showing the most recent saved result.' });
+    if (cached) return Response.json({ ...normalizeCachedResult(JSON.parse(cached.response_json)), cached: true, stale: true, warning: 'RuneScape did not respond; showing the most recent saved result.' });
     return Response.json({ error: error instanceof Error ? error.message : 'Unable to refresh HiScores.' }, { status: 502 });
   }
 }
