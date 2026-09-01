@@ -1,68 +1,37 @@
 # Ironpath
 
-Ironpath is a community-made companion for RuneScape 3 Group Ironman groups. It brings group lookup, shared planning, progression references, repeatables, farming routes, shop runs, invention resources, and task ideas into one responsive web app.
+Ironpath is a community-built RuneScape 3 Group Ironman companion. It brings public group standings, activity, routine tracking, practical references, and focused task ideas into one place.
 
-> Ironpath is an unofficial fan project. It is not affiliated with or endorsed by Jagex or RuneScape.
+> Ironpath is an unofficial fan project. It is not affiliated with, endorsed by, or sponsored by Jagex or RuneScape.
 
-## What it does
+## Start here
 
-- Look up a Group Ironman team and view member standings.
-- Keep the selected member consistent throughout relevant parts of the app.
-- Read public RuneScape Hiscores and public Adventurer's Log activity.
-- Browse a group drop archive and historic HiScore snapshots.
-- Track repeatable daily, weekly, and monthly activities.
-- Use group-specific shared settings and task completion states.
-- Browse progression, skill training, familiars, invention components, farming routes, shop runs, and general Ironman references.
-- Generate focused, practical Ironman task ideas.
+- [Quick start guide](docs/quick-start.md) — connect a group and begin using Ironpath.
+- [Feature guide](docs/features.md) — what every section does, with examples.
+- [Privacy and data sources](docs/data-sources.md) — what information Ironpath can and cannot read.
 
-## Before you begin
+## About the project
 
-Ironpath relies on publicly available RuneScape information. Results can be unavailable when a profile is private, a display name is entered incorrectly, RuneScape temporarily limits requests, or a public source changes its format.
+Ironpath began as a passion project for **Justjay and his friend group** when they started Group Ironman accounts together. What began as a way to keep their own progress, routines, and discoveries organised quickly grew into a one-stop hub for the useful information the group kept finding while researching RuneScape.
 
-For the best experience, make each group member's public RuneMetrics/Adventurer's Log visibility available in-game and confirm the exact display-name spelling.
+Ironpath brings together ideas and public reference information from across the community. Special thanks go to the creators and maintainers of the **RuneScape Wiki**, **The RS Guy** and his excellent website for ideas and insight, the Wiki’s **Optimal Ironman Guide**, and the many players, guide writers, and creators who share helpful RuneScape knowledge publicly.
 
-## Run locally
+The project is built iteratively around real in-game needs, community testing, and practical use. AI assisted with implementation, research organisation, copy, and iteration; feature direction and testing remain human-led.
 
-### Requirements
+Ironpath is available as a lightweight desktop launcher for macOS and Windows. It opens the official Ironpath website, so ordinary website updates do not require a new installer.
 
-- Node.js 22 or later
-- pnpm
+## Feedback and contributions
 
-### Setup
+Ironpath is shaped by player feedback. Please use GitHub issues for bugs, corrections, and feature requests. A Discord feedback server will be linked here in the future.
 
-```bash
-pnpm install
-pnpm dev
-```
+Helpful reports include the page you were using, what you expected to happen, what happened instead, and a screenshot when possible.
 
-Open `http://localhost:3000`.
-
-### Production-style local run
-
-```bash
-pnpm build
-pnpm start
-```
-
-This project uses a Cloudflare-compatible runtime. Use the production-style command when validating API-powered features such as group lookup, workspace saving, Adventurer's Log activity, and character sync.
-
-## Data and privacy
-
-Ironpath uses publicly available RuneScape data only when you request a lookup. Group preferences and shared tracking information are stored in the application's workspace database. Review the in-app Privacy and Data page before sharing a workspace with others.
-
-## Documentation
+## More documentation
 
 - [Architecture](docs/architecture.md)
-- [Development](docs/development.md)
-- [Hosting and test sharing](docs/hosting.md)
-- [Data sources and limitations](docs/data-sources.md)
 - [Contributing](CONTRIBUTING.md)
 - [Security reporting](SECURITY.md)
 
-## Project status
-
-Ironpath is under active community testing. Feedback on accuracy, useful Ironman workflows, visual clarity, and mobile usability is especially welcome.
-
 ## Credits
 
-Concept created by Justjay btw, with AI-assisted development and community feedback.
+Concept created by **Justjay**, with AI-assisted development and community feedback.
