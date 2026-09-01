@@ -400,7 +400,6 @@ export default function Home() {
   const [active, setActive] = useState('Overview');
   const [theme, setTheme] = useState<Theme>('necromancy');
   const [progressionOpen, setProgressionOpen] = useState(false);
-  const [extrasOpen, setExtrasOpen] = useState(false);
   const [testOpen, setTestOpen] = useState(false);
   const [groupData, setGroupData] = useState<HiscoreResult | null>(null);
   const [preferredMember, setPreferredMember] = useState('');
@@ -592,13 +591,11 @@ export default function Home() {
                   className="extras-menu"
                   onMouseEnter={() => {
                     setProgressionOpen(true);
-                    setExtrasOpen(false);
                     setTestOpen(false);
                   }}
                   onMouseLeave={() => setProgressionOpen(false)}
                   onFocus={() => {
                     setProgressionOpen(true);
-                    setExtrasOpen(false);
                     setTestOpen(false);
                   }}
                   onBlur={(event) => {
@@ -608,7 +605,12 @@ export default function Home() {
                 >
                   <button
                     className={
-                      ['Progression Roadmap', 'Skill Training'].includes(active)
+                      [
+                        'Progression Roadmap',
+                        'Skill Training',
+                        'Ironman Guide',
+                        'Good general information',
+                      ].includes(active)
                         ? 'nav-button active'
                         : 'nav-button'
                     }
@@ -655,57 +657,11 @@ export default function Home() {
                           <small>Level-based training methods</small>
                         </span>
                       </button>
-                    </div>
-                  )}
-                </div>
-                <div
-                  className="extras-menu"
-                  onMouseEnter={() => {
-                    setExtrasOpen(true);
-                    setProgressionOpen(false);
-                    setTestOpen(false);
-                  }}
-                  onMouseLeave={() => setExtrasOpen(false)}
-                  onFocus={() => {
-                    setExtrasOpen(true);
-                    setProgressionOpen(false);
-                    setTestOpen(false);
-                  }}
-                  onBlur={(event) => {
-                    if (!event.currentTarget.contains(event.relatedTarget))
-                      setExtrasOpen(false);
-                  }}
-                >
-                  <button
-                    className={
-                      [
-                        'Ironman Guide',
-                        'Good general information',
-                      ].includes(active)
-                        ? 'nav-button active'
-                        : 'nav-button'
-                    }
-                    onClick={() => setExtrasOpen((value) => !value)}
-                    aria-label="Open resources"
-                    aria-expanded={extrasOpen}
-                    aria-haspopup="true"
-                  >
-                    <Sparkles size={18} strokeWidth={1.7} />
-                    <span>Resources</span>
-                    <ChevronRight
-                      className={
-                        extrasOpen ? 'extras-chevron open' : 'extras-chevron'
-                      }
-                      size={14}
-                    />
-                  </button>
-                  {extrasOpen && (
-                    <div className="extras-popover">
-                      <p className="eyebrow">Ironman reference</p>
+                      <p className="extras-divider">Ironman reference</p>
                       <button
                         onClick={() => {
                           setActive('Ironman Guide');
-                          setExtrasOpen(false);
+                          setProgressionOpen(false);
                         }}
                       >
                         <BookOpen size={17} />
@@ -717,7 +673,7 @@ export default function Home() {
                       <button
                         onClick={() => {
                           setActive('Good general information');
-                          setExtrasOpen(false);
+                          setProgressionOpen(false);
                         }}
                       >
                         <Gem size={17} />
@@ -734,13 +690,11 @@ export default function Home() {
                   onMouseEnter={() => {
                     setTestOpen(true);
                     setProgressionOpen(false);
-                    setExtrasOpen(false);
                   }}
                   onMouseLeave={() => setTestOpen(false)}
                   onFocus={() => {
                     setTestOpen(true);
                     setProgressionOpen(false);
-                    setExtrasOpen(false);
                   }}
                   onBlur={(event) => {
                     if (!event.currentTarget.contains(event.relatedTarget))
@@ -4024,11 +3978,50 @@ function FarmRunsView({
 }
 
 function EfficientFamiliarsView({ player }: { player?: HiscorePlayer }) {
+  const usefulFamiliarUses: Record<string, string> = {
+    meerkats: 'Treasure Trail utility: its special searches for clue caskets.',
+    'spirit spider': 'Forages red spiders\' eggs, useful for early Herblore supplies.',
+    dreadfowl: 'Early Farming boost for small level breakpoints.',
+    'spirit kalphite': 'Early beast of burden for inventory-limited activities.',
+    'spirit terrorbird': 'Early beast of burden for longer skilling trips.',
+    'compost mound': 'Farming boost and a small supply of compost for farm runs.',
+    jackalope: 'Archaeology soil storage and screening support.',
+    beaver: 'Woodcutting boost; can also forage logs and planks.',
+    'void spinner': 'Early passive healing option for Slayer and combat.',
+    'bull ant': 'Early beast of burden for extended skilling and combat trips.',
+    'war tortoise': 'Reliable mid-level beast of burden for long trips.',
+    'granite lobster': 'Fishing boost for training and catch-rate breakpoints.',
+    'arctic bear': 'Large invisible Hunter boost for requirement breakpoints.',
+    gargoyle: 'Large Mining boost for gathering and Mining requirements.',
+    bunyip: 'Passive healing for Slayer, skilling, and lower-intensity combat.',
+    hellhound: 'Damage-reduction option for learners and difficult combat.',
+    'abyssal lurker': 'Carries essence and offers a temporary Agility/Thieving boost.',
+    'stranger plant': 'Strong Farming boost for crop and tree-run breakpoints.',
+    waterfiend:
+      'Can duplicate and store selected gathered resources, then bank them with its special.',
+    'lava titan': 'Large invisible Mining boost for ore and requirement breakpoints.',
+    'giant ent': 'Improves yield from select high-value Farming patches.',
+    'blood reaver': 'Turns part of your healing into extra damage; excellent with healing-based combat setups.',
+    'talon beast': 'A dependable combat familiar before the highest-level options.',
+    'blood nihil': 'Improves melee accuracy when a target is difficult to hit.',
+    'shadow nihil': 'Improves Ranged accuracy when a target is difficult to hit.',
+    'smoke nihil': 'Improves Magic accuracy when a target is difficult to hit.',
+    'ice nihil': 'Improves Necromancy accuracy when a target is difficult to hit.',
+    'unicorn stallion': 'Strong healing familiar for sustained combat and Slayer.',
+    wolpertinger: 'Useful for bush harvesting, doubling base experience and yield.',
+    'ripper demon': 'High-level damage familiar that becomes stronger as a target weakens.',
+    'pack yak': 'Large beast of burden for extended gathering, Slayer, and PvM trips.',
+    'pack mammoth': 'Maximum inventory space for very long gathering or combat trips.',
+    'steel titan': 'Reliable high-level damage familiar for general combat.',
+  };
   const level =
     player?.skills.find((skill) => skill.name === 'Summoning')?.level || 1;
   const [familiars, setFamiliars] = useState<FamiliarReference[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [catalogue, setCatalogue] = useState<'recommended' | 'all'>(
+    'recommended',
+  );
   useEffect(() => {
     fetch('/api/familiars')
       .then(async (response) => {
@@ -4051,7 +4044,18 @@ function EfficientFamiliarsView({ player }: { player?: HiscorePlayer }) {
       )
       .finally(() => setLoading(false));
   }, []);
-  const available = familiars.filter((familiar) => familiar.level <= level);
+  const usefulFamiliars = familiars
+    .filter((familiar) =>
+      Boolean(usefulFamiliarUses[familiar.name.toLowerCase()]),
+    )
+    .sort((left, right) => left.level - right.level);
+  const displayedFamiliars =
+    catalogue === 'all'
+      ? [...familiars].sort((left, right) => left.level - right.level)
+      : usefulFamiliars;
+  const displayedAvailable = displayedFamiliars.filter(
+    (familiar) => familiar.level <= level,
+  );
   const charmTone = (charm: string = '') =>
     ['crimson', 'blue', 'green', 'gold'].find((value) =>
       charm.toLowerCase().includes(value),
@@ -4061,21 +4065,39 @@ function EfficientFamiliarsView({ player }: { player?: HiscorePlayer }) {
       <section className="panel familiar-intro">
         <div>
           <p className="eyebrow">Summoning reference</p>
-          <h3>Available familiars</h3>
+          <h3>
+            {catalogue === 'recommended' ? 'Recommended familiars' : 'All familiars'}
+          </h3>
           <p>
-            Every familiar currently usable by this member, with its pouch
-            materials and practical effects.
+            {catalogue === 'recommended'
+              ? 'The most valuable combat, gathering, skilling, healing, and inventory familiars. Future unlocks stay visible to plan ahead.'
+              : 'Every familiar from the live Wiki catalogue, including future unlocks.'}
           </p>
         </div>
         <div className="familiar-level">
-          <span>{player?.name || 'Selected member'}</span>
+          <span>{player?.name || 'Selected member'} · Summoning</span>
           <strong>{level}</strong>
           <small>
-            Summoning ·{' '}
             {loading
               ? 'checking familiar list…'
-              : `${available.length} familiar${available.length === 1 ? '' : 's'} available`}
+              : `${displayedAvailable.length} of ${displayedFamiliars.length} available`}
           </small>
+          <div className="familiar-filter" aria-label="Familiar catalogue view">
+            <button
+              className={catalogue === 'recommended' ? 'active' : ''}
+              onClick={() => setCatalogue('recommended')}
+              type="button"
+            >
+              Recommended
+            </button>
+            <button
+              className={catalogue === 'all' ? 'active' : ''}
+              onClick={() => setCatalogue('all')}
+              type="button"
+            >
+              All
+            </button>
+          </div>
         </div>
       </section>
       {loading ? (
@@ -4086,11 +4108,13 @@ function EfficientFamiliarsView({ player }: { player?: HiscorePlayer }) {
         </div>
       ) : error ? (
         <div className="error-banner">{error}</div>
-      ) : available.length ? (
+      ) : displayedFamiliars.length ? (
         <div className="familiar-grid">
-          {available.map((familiar) => (
+          {displayedFamiliars.map((familiar) => (
             <article
-              className="panel familiar-card unlocked"
+              className={`panel familiar-card ${
+                familiar.level <= level ? 'unlocked' : 'locked'
+              }`}
               key={`${familiar.level}-${familiar.name}`}
             >
               <div className="familiar-card-head">
@@ -4103,7 +4127,8 @@ function EfficientFamiliarsView({ player }: { player?: HiscorePlayer }) {
               </div>
               <h3>{familiar.name}</h3>
               <p>
-                {familiar.ability ||
+                {usefulFamiliarUses[familiar.name.toLowerCase()] ||
+                  familiar.ability ||
                   'Combat familiar with its listed special move.'}
               </p>
               <div
@@ -4128,22 +4153,26 @@ function EfficientFamiliarsView({ player }: { player?: HiscorePlayer }) {
                   Special: {familiar.special}
                 </small>
               )}
-              <em>Available to this member</em>
+              <em>
+                {familiar.level <= level
+                  ? 'Available to this member'
+                  : `Unlocks at Summoning ${familiar.level}`}
+              </em>
             </article>
           ))}
         </div>
       ) : (
         <div className="panel small-empty">
           <Users size={24} />
-          <h3>No familiars unlocked yet</h3>
+          <h3>Useful familiars unavailable</h3>
           <p>
-            Train Summoning a little further, then return to see every familiar
+            Train Summoning a little further, then return to see useful options
             available at the selected level.
           </p>
         </div>
       )}
       <p className="guide-credit">
-        <Users size={14} /> Familiar and pouch data comes from the live{' '}
+        <Users size={14} /> Pouch ingredients come from the live{' '}
         <a
           href="https://runescape.wiki/w/Summoning_familiars"
           target="_blank"
@@ -4151,7 +4180,15 @@ function EfficientFamiliarsView({ player }: { player?: HiscorePlayer }) {
         >
           RuneScape Wiki familiar catalogue
         </a>{' '}
-        and is refreshed periodically.
+        and the shortlist is informed by its{' '}
+        <a
+          href="https://runescape.wiki/w/Guide_to_useful_items_and_unlocks"
+          target="_blank"
+          rel="noreferrer"
+        >
+          useful unlocks guide
+        </a>
+        .
       </p>
     </section>
   );
