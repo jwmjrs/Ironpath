@@ -1,0 +1,3347 @@
+{
+  "source": {
+    "title": "Efficient Ironman Progression Guide",
+    "wiki": "https://runescape.wiki/w/Guide:The_RS_Guy%27s_Updated_Ironman_Progression_Guide",
+    "retrieved": "2026-08-30"
+  },
+  "progression": [
+    {
+      "id": "part1",
+      "title": "Early Game: Part 1",
+      "rows": [
+        {
+          "id": "part1-001-skip-basic-challenges-by-speaking-to-challenge-mistress-fara",
+          "type": "task",
+          "title": "Skip basic challenges by speaking to Challenge Mistress Fara",
+          "notes": "This will allow you to receive standard Daily Challenges. Optional: Disable combat challenges"
+        },
+        {
+          "id": "part1-002-the-blood-pact",
+          "type": "quest",
+          "title": "The Blood Pact",
+          "questName": "The Blood Pact",
+          "notes": "Keep Caitlyn's staff and Kayle's chargebow"
+        },
+        {
+          "id": "part1-003-the-restless-ghost",
+          "type": "quest",
+          "title": "The Restless Ghost",
+          "questName": "The Restless Ghost"
+        },
+        {
+          "id": "part1-004-cook-s-assistant",
+          "type": "quest",
+          "title": "Cook's Assistant",
+          "questName": "Cook's Assistant"
+        },
+        {
+          "id": "part1-005-monk-s-friend",
+          "type": "quest",
+          "title": "Monk's Friend",
+          "questName": "Monk's Friend",
+          "notes": "For 2000 Woodcutting Experience and Ardy tasks."
+        },
+        {
+          "id": "part1-006-complete-the-archaeology-tutorial-at-the-varrock-dig-site-and-activate-the-font-of-life-relic",
+          "type": "task",
+          "title": "Complete the Archaeology tutorial at the Varrock Dig Site and activate the Font of Life relic."
+        },
+        {
+          "id": "part1-007-necromancy",
+          "type": "quest",
+          "title": "Necromancy!",
+          "questName": "Necromancy!",
+          "notes": "Talk to Sostratus after the quest for a set of Necromancer robes. Use Necromancy for most early game quest combat."
+        },
+        {
+          "id": "part1-008-violet-is-blue",
+          "type": "quest",
+          "title": "Violet is Blue",
+          "questName": "Violet is Blue",
+          "notes": "Use Exp lamps on farming to skip early game allotment farming"
+        },
+        {
+          "id": "part1-009-violet-is-blue-too",
+          "type": "quest",
+          "title": "Violet is Blue Too",
+          "questName": "Violet is Blue Too",
+          "notes": "1 XP lamp on Mining Mining; 1 XP lamp on Smithing Smithing; 1 XP lamp on Summoning Summoning"
+        },
+        {
+          "id": "part1-010-druidic-ritual",
+          "type": "quest",
+          "title": "Druidic Ritual",
+          "questName": "Druidic Ritual",
+          "notes": "For easy quest points and early Herblore experience."
+        },
+        {
+          "id": "part1-011-wolf-whistle",
+          "type": "quest",
+          "title": "Wolf Whistle",
+          "questName": "Wolf Whistle",
+          "notes": "To Unlock the Summoning skill."
+        },
+        {
+          "id": "part1-012-complete-the-first-3-floors-of-the-stronghold-of-security",
+          "type": "task",
+          "title": "Complete the first 3 floors of the Stronghold of Security",
+          "notes": "For Early game GP. Complete the Stronghold of Safety for an additional 5000 GP and small exp lamps. Use a lamp on Construction"
+        },
+        {
+          "id": "part1-013-gunnar-s-ground",
+          "type": "quest",
+          "title": "Gunnar's Ground",
+          "questName": "Gunnar's Ground",
+          "notes": "1 XP lamp on Construction Construction"
+        },
+        {
+          "id": "part1-014-ernest-the-chicken",
+          "type": "quest",
+          "title": "Ernest the Chicken",
+          "questName": "Ernest the Chicken",
+          "notes": "For easy quest points."
+        },
+        {
+          "id": "part1-015-swept-away",
+          "type": "quest",
+          "title": "Swept Away",
+          "questName": "Swept Away",
+          "notes": "Use exp reward on anything you like. Scales at 10x whatever your current skill level."
+        },
+        {
+          "id": "part1-016-goblin-diplomacy",
+          "type": "quest",
+          "title": "Goblin Diplomacy",
+          "questName": "Goblin Diplomacy",
+          "notes": "For easy quest points."
+        },
+        {
+          "id": "part1-017-what-s-mine-is-yours",
+          "type": "quest",
+          "title": "What's Mine is Yours",
+          "questName": "What's Mine is Yours",
+          "notes": "Gofannon amulet XP reward on Smithing Smithing"
+        },
+        {
+          "id": "part1-018-new-foundations",
+          "type": "quest",
+          "title": "New Foundations",
+          "questName": "New Foundations",
+          "notes": "This quest requires some preparation as you need to purchase supplies from Construction Supplies (Fort Forinthry); 352 limestone bricks. You can also purchase 500 limestone bricks in Keldagrim."
+        },
+        {
+          "id": "part1-019-missing-presumed-death",
+          "type": "quest",
+          "title": "Missing, Presumed Death",
+          "questName": "Missing, Presumed Death",
+          "notes": "Required for many later quests. Invitation box is a great teleport."
+        },
+        {
+          "id": "part1-020-gertrude-s-cat",
+          "type": "quest",
+          "title": "Gertrude's Cat",
+          "questName": "Gertrude's Cat",
+          "notes": "A Cat is required for later quests."
+        },
+        {
+          "id": "part1-021-start-growing-your-cat",
+          "type": "task",
+          "title": "Start growing your cat",
+          "notes": "Feed your cat using the following food from your bank:; Sardines; Raw Sardines"
+        },
+        {
+          "id": "part1-022-priest-in-peril",
+          "type": "quest",
+          "title": "Priest in Peril",
+          "questName": "Priest in Peril",
+          "notes": "Required for Vampyre questline."
+        },
+        {
+          "id": "part1-023-sheep-herder",
+          "type": "quest",
+          "title": "Sheep Herder",
+          "questName": "Sheep Herder",
+          "notes": "Required for Plague's End quest Series."
+        },
+        {
+          "id": "part1-024-hazeel-cult",
+          "type": "quest",
+          "title": "Hazeel Cult",
+          "questName": "Hazeel Cult",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part1-025-waterfall-quest",
+          "type": "quest",
+          "title": "Waterfall Quest",
+          "questName": "Waterfall Quest",
+          "notes": "Optional: Start the Tree Gnome Village quest to unlock Elkoy's guidance to skip the maze in the future. Very good early Melee Exp."
+        },
+        {
+          "id": "part1-026-merlin-s-crystal",
+          "type": "quest",
+          "title": "Merlin's Crystal",
+          "questName": "Merlin's Crystal",
+          "notes": "Good early Quest Points, required for Holy Grail."
+        },
+        {
+          "id": "part1-027-holy-grail",
+          "type": "quest",
+          "title": "Holy Grail",
+          "questName": "Holy Grail",
+          "notes": "Very good early Prayer and Defence experience."
+        },
+        {
+          "id": "part1-028-stolen-hearts",
+          "type": "quest",
+          "title": "Stolen Hearts",
+          "questName": "Stolen Hearts",
+          "notes": "Required for unlocking Menaphos"
+        },
+        {
+          "id": "part1-029-diamond-in-the-rough",
+          "type": "quest",
+          "title": "Diamond in the Rough",
+          "questName": "Diamond in the Rough",
+          "notes": "Required for unlocking Menaphos"
+        },
+        {
+          "id": "part1-030-the-jack-of-spades",
+          "type": "quest",
+          "title": "The Jack of Spades",
+          "questName": "The Jack of Spades",
+          "notes": "Grants access to Menaphos."
+        },
+        {
+          "id": "part1-031-icthlarin-s-little-helper",
+          "type": "quest",
+          "title": "Icthlarin's Little Helper",
+          "questName": "Icthlarin's Little Helper",
+          "notes": "Good early Agility and Thieving experience, and required for Smoking kills"
+        },
+        {
+          "id": "part1-032-once-upon-a-slime",
+          "type": "quest",
+          "title": "Once Upon a Slime",
+          "questName": "Once Upon a Slime",
+          "notes": "Optional for 2500 Cooking experience."
+        },
+        {
+          "id": "part1-033-tribal-totem",
+          "type": "quest",
+          "title": "Tribal Totem",
+          "questName": "Tribal Totem",
+          "notes": "Optional for 1775 Thieving experience. Very short quest."
+        },
+        {
+          "id": "part1-034-jungle-potion",
+          "type": "quest",
+          "title": "Jungle Potion",
+          "questName": "Jungle Potion",
+          "notes": "Required for Shilo Village and Legend's Quest"
+        },
+        {
+          "id": "part1-035-recruitment-drive",
+          "type": "quest",
+          "title": "Recruitment Drive",
+          "questName": "Recruitment Drive",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part1-036-the-dig-site",
+          "type": "quest",
+          "title": "The Dig Site",
+          "questName": "The Dig Site",
+          "notes": "Good early game Mining and Herblore Experience, and required for important quests. Unlocks Shadow Tendrils and Smoke Tendrils"
+        },
+        {
+          "id": "part1-037-witch-s-house",
+          "type": "quest",
+          "title": "Witch's House",
+          "questName": "Witch's House",
+          "notes": "Good early game Constitution Experience. Combat section can be slightly difficult at very low levels. Bring food."
+        },
+        {
+          "id": "part1-038-death-plateau",
+          "type": "quest",
+          "title": "Death Plateau",
+          "questName": "Death Plateau"
+        },
+        {
+          "id": "part1-039-the-lost-tribe",
+          "type": "quest",
+          "title": "The Lost Tribe",
+          "questName": "The Lost Tribe",
+          "notes": "Required for a number of important quests including Extinction"
+        },
+        {
+          "id": "part1-040-the-knight-s-sword",
+          "type": "quest",
+          "title": "The Knight's Sword",
+          "questName": "The Knight's Sword",
+          "notes": "Very good early game Smithing experience. Bring food and ensure you have an Iron Pickaxe or above to mine the Blurite Ore"
+        },
+        {
+          "id": "part1-041-the-tourist-trap",
+          "type": "quest",
+          "title": "The Tourist Trap",
+          "questName": "The Tourist Trap",
+          "notes": "2 XP lamp on Agility Agility"
+        },
+        {
+          "id": "part1-042-murder-mystery",
+          "type": "quest",
+          "title": "Murder Mystery",
+          "questName": "Murder Mystery",
+          "notes": "Required for Recipe for Disaster and King's Ransom"
+        },
+        {
+          "id": "part1-043-plague-city",
+          "type": "quest",
+          "title": "Plague City",
+          "questName": "Plague City",
+          "notes": "Required for Plague's End and good early Mining Exp."
+        },
+        {
+          "id": "part1-044-biohazard",
+          "type": "quest",
+          "title": "Biohazard",
+          "questName": "Biohazard",
+          "notes": "Required for Plague's End"
+        },
+        {
+          "id": "part1-045-fight-arena",
+          "type": "quest",
+          "title": "Fight Arena",
+          "questName": "Fight Arena",
+          "notes": "Required for Ritual of the Mahjarrat and very good early Attack Exp."
+        },
+        {
+          "id": "part1-046-tree-gnome-village",
+          "type": "quest",
+          "title": "Tree Gnome Village",
+          "questName": "Tree Gnome Village",
+          "notes": "Very good early Combat Exp. Required for Monkey Madness"
+        },
+        {
+          "id": "part1-047-the-grand-tree",
+          "type": "quest",
+          "title": "The Grand Tree",
+          "questName": "The Grand Tree",
+          "notes": "Use the combat lamp on whatever combat skill you plan to use most."
+        },
+        {
+          "id": "part1-048-dragon-slayer",
+          "type": "quest",
+          "title": "Dragon Slayer",
+          "questName": "Dragon Slayer",
+          "notes": "Recommended to use Melee or Necromancy for this fight. 37 Prayer for Protect from Magic is recommended but not required."
+        }
+      ]
+    },
+    {
+      "id": "part2",
+      "title": "Early Game: Part 2",
+      "rows": [
+        {
+          "id": "part2-001-one-piercing-note",
+          "type": "quest",
+          "title": "One Piercing Note",
+          "questName": "One Piercing Note",
+          "notes": "Unlocks the Devotion ability, which is very powerful"
+        },
+        {
+          "id": "part2-002-observatory-quest",
+          "type": "quest",
+          "title": "Observatory Quest",
+          "questName": "Observatory Quest",
+          "notes": "Optional: 5 Varrock museum Kudos and 2,250 Crafting Exp."
+        },
+        {
+          "id": "part2-003-recipe-for-disaster-another-cook-s-quest",
+          "type": "quest",
+          "title": "Recipe for Disaster: Another Cook's Quest",
+          "questName": "Recipe for Disaster: Another Cook's Quest",
+          "notes": "Required for Evil Dave's Big Day Out which offers a boost to Spicy Stew"
+        },
+        {
+          "id": "part2-004-nature-spirit",
+          "type": "quest",
+          "title": "Nature Spirit",
+          "questName": "Nature Spirit",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part2-005-elemental-workshop-i",
+          "type": "quest",
+          "title": "Elemental Workshop I",
+          "questName": "Elemental Workshop I",
+          "notes": "Optional very short quest for 5,000 Crafting and Smithing Exp."
+        },
+        {
+          "id": "part2-006-sea-slug",
+          "type": "quest",
+          "title": "Sea Slug",
+          "questName": "Sea Slug",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part2-007-fishing-contest",
+          "type": "quest",
+          "title": "Fishing Contest",
+          "questName": "Fishing Contest",
+          "notes": "Required for a number of important quests. Good early Fishing Exp."
+        },
+        {
+          "id": "part2-008-shilo-village",
+          "type": "quest",
+          "title": "Shilo Village",
+          "questName": "Shilo Village",
+          "notes": "Required for the Legend's Quest."
+        },
+        {
+          "id": "part2-009-shades-of-mort-ton",
+          "type": "quest",
+          "title": "Shades of Mort'ton",
+          "questName": "Shades of Mort'ton",
+          "notes": "World 88 is not always active, so you may possibly need to either use alts to help with the minigame or find others to help you. Make 20 Flamtaer bracelets to speed up building the walls. Make an extra Sacred oil for Legacy of Seergaze. Required for Vampyre questline."
+        },
+        {
+          "id": "part2-010-big-chompy-bird-hunting",
+          "type": "quest",
+          "title": "Big Chompy Bird Hunting",
+          "questName": "Big Chompy Bird Hunting",
+          "notes": "Required for Plague's End."
+        },
+        {
+          "id": "part2-011-zogre-flesh-eaters",
+          "type": "quest",
+          "title": "Zogre Flesh Eaters",
+          "questName": "Zogre Flesh Eaters",
+          "notes": "Optional for 2,000 Herblore and Fletching Exp."
+        },
+        {
+          "id": "part2-012-demon-slayer",
+          "type": "quest",
+          "title": "Demon Slayer",
+          "questName": "Demon Slayer",
+          "notes": "Required for the desert questline and Evil Dave's Big Day Out"
+        },
+        {
+          "id": "part2-013-complete-the-varrock-museum-quiz",
+          "type": "task",
+          "title": "Complete the Varrock Museum Quiz.",
+          "notes": "Very fast Slayer and Hunter Exp."
+        },
+        {
+          "id": "part2-014-the-golem",
+          "type": "quest",
+          "title": "The Golem",
+          "questName": "The Golem",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part2-015-shadow-of-the-storm",
+          "type": "quest",
+          "title": "Shadow of the Storm",
+          "questName": "Shadow of the Storm",
+          "notes": "Use the combat lamp on whatever you like."
+        },
+        {
+          "id": "part2-016-recipe-for-disaster-freeing-evil-dave",
+          "type": "quest",
+          "title": "Recipe for Disaster: Freeing Evil Dave",
+          "questName": "Recipe for Disaster: Freeing Evil Dave",
+          "notes": "Required for Evil Dave's Big Day Out"
+        },
+        {
+          "id": "part2-017-evil-dave-s-big-day-out",
+          "type": "quest",
+          "title": "Evil Dave's Big Day Out",
+          "questName": "Evil Dave's Big Day Out",
+          "notes": "Very good Herblore and Magic Exp, and unlocks +6 Spicy Stew boost."
+        },
+        {
+          "id": "part2-018-beneath-cursed-tides",
+          "type": "quest",
+          "title": "Beneath Cursed Tides",
+          "questName": "Beneath Cursed Tides",
+          "notes": "You can now start completing Giant Oyster monthly"
+        },
+        {
+          "id": "part2-019-a-shadow-over-ashdale",
+          "type": "quest",
+          "title": "A Shadow over Ashdale",
+          "questName": "A Shadow over Ashdale"
+        },
+        {
+          "id": "part2-020-you-can-now-start-completing-agoroth-weekly",
+          "type": "task",
+          "title": "You can now start completing Agoroth weekly"
+        },
+        {
+          "id": "part2-021-in-search-of-the-myreque",
+          "type": "quest",
+          "title": "In Search of the Myreque",
+          "questName": "In Search of the Myreque",
+          "notes": "Part of the Vampyre Questline."
+        },
+        {
+          "id": "part2-022-in-aid-of-the-myreque",
+          "type": "quest",
+          "title": "In Aid of the Myreque",
+          "questName": "In Aid of the Myreque",
+          "notes": "Part of the Vampyre Questline."
+        },
+        {
+          "id": "part2-023-buyers-and-cellars",
+          "type": "quest",
+          "title": "Buyers and Cellars",
+          "questName": "Buyers and Cellars",
+          "notes": "Unlocks the Thieve's Guild, for Safecracking later."
+        },
+        {
+          "id": "part2-024-from-tiny-acorns-miniquest",
+          "type": "quest",
+          "title": "From Tiny Acorns (miniquest)",
+          "questName": "From Tiny Acorns (miniquest)",
+          "notes": "Unlocks the Thieve's Guild, for Safecracking later."
+        },
+        {
+          "id": "part2-025-the-feud",
+          "type": "quest",
+          "title": "The Feud",
+          "questName": "The Feud",
+          "notes": "Unlocks the Thieve's Guild, for Safecracking later and Ali's Discount Wares"
+        },
+        {
+          "id": "part2-026-lost-her-marbles-miniquest",
+          "type": "quest",
+          "title": "Lost Her Marbles (miniquest)",
+          "questName": "Lost Her Marbles (miniquest)",
+          "notes": "Unlocks the Thieve's Guild, for Safecracking later."
+        },
+        {
+          "id": "part2-027-carnillean-rising",
+          "type": "quest",
+          "title": "Carnillean Rising",
+          "questName": "Carnillean Rising",
+          "notes": "Use the exp lamps for whatever you like. Bank the 10 Mahogany planks for future quests."
+        },
+        {
+          "id": "part2-028-dimension-of-disaster-coin-of-the-realm",
+          "type": "quest",
+          "title": "Dimension of Disaster: Coin of the Realm",
+          "questName": "Dimension of Disaster: Coin of the Realm",
+          "notes": "This quest takes less than a minute."
+        },
+        {
+          "id": "part2-029-cold-war",
+          "type": "quest",
+          "title": "Cold War",
+          "questName": "Cold War",
+          "notes": "Mahogany planks can be found in your bank"
+        },
+        {
+          "id": "part2-030-hunt-for-red-raktuber",
+          "type": "quest",
+          "title": "Hunt for Red Raktuber",
+          "questName": "Hunt for Red Raktuber",
+          "notes": "Penguin questline offers boosts to the Penguin Hide and Seek Weekly."
+        },
+        {
+          "id": "part2-031-the-fremennik-trials",
+          "type": "quest",
+          "title": "The Fremennik Trials",
+          "questName": "The Fremennik Trials",
+          "notes": "You can get the raw shark from Temple Trekking or Mogres."
+        },
+        {
+          "id": "part2-032-monkey-madness",
+          "type": "quest",
+          "title": "Monkey Madness",
+          "questName": "Monkey Madness",
+          "notes": "Very good Combat Exp, and required for Phite Club."
+        },
+        {
+          "id": "part2-033-talk-to-king-narnode-and-then-daero-about-being-enrolled-into-the-royal-guard",
+          "type": "task",
+          "title": "Talk to King Narnode and then Daero about being enrolled into the royal guard",
+          "notes": "Choose experience in Attack & Defence"
+        }
+      ]
+    },
+    {
+      "id": "part3",
+      "title": "Early Game: Part 3",
+      "rows": [
+        {
+          "id": "part3-001-haunted-mine",
+          "type": "quest",
+          "title": "Haunted Mine",
+          "questName": "Haunted Mine",
+          "notes": "Unlocks the Salve Amulet, which is very good for Training."
+        },
+        {
+          "id": "part3-002-kili-row",
+          "type": "quest",
+          "title": "Kili Row",
+          "questName": "Kili Row",
+          "notes": "Optional if you wish to play through necromancy or unlock the Gate of Elidinis."
+        },
+        {
+          "id": "part3-003-rune-mythos",
+          "type": "quest",
+          "title": "Rune Mythos",
+          "questName": "Rune Mythos",
+          "notes": "Optional: if you wish to play through necromancy unlock the Gate of Elidinis Allows crafting of Necromancy runes."
+        },
+        {
+          "id": "part3-004-soul-searching",
+          "type": "quest",
+          "title": "Soul Searching",
+          "questName": "Soul Searching",
+          "notes": "Optional: if you wish to play through necromancy unlock the Gate of Elidinis Unlocks the Sanctum of Rebirth"
+        },
+        {
+          "id": "part3-005-ghosts-ahoy",
+          "type": "quest",
+          "title": "Ghosts Ahoy",
+          "questName": "Ghosts Ahoy",
+          "notes": "Required for Necromancy Questline."
+        },
+        {
+          "id": "part3-006-vessel-of-the-harbinger",
+          "type": "quest",
+          "title": "Vessel of the Harbinger",
+          "questName": "Vessel of the Harbinger",
+          "notes": "Optional: if you wish to play through necromancy or unlock the Gate of Elidinis"
+        },
+        {
+          "id": "part3-007-the-spirit-of-war",
+          "type": "quest",
+          "title": "The Spirit of War",
+          "questName": "The Spirit of War",
+          "notes": "Optional: if you wish to play through necromancy or unlock the Gate of Elidinis"
+        },
+        {
+          "id": "part3-008-murder-on-the-border",
+          "type": "quest",
+          "title": "Murder on the Border",
+          "questName": "Murder on the Border",
+          "notes": "Required for the Gate of Elidinis"
+        },
+        {
+          "id": "part3-009-unwelcome-guests",
+          "type": "quest",
+          "title": "Unwelcome Guests",
+          "questName": "Unwelcome Guests",
+          "notes": "Required for the Gate of Elidinis Also unlocks a new Slayer Master."
+        },
+        {
+          "id": "part3-010-dead-and-buried",
+          "type": "quest",
+          "title": "Dead and Buried",
+          "questName": "Dead and Buried",
+          "notes": "Required for the Gate of Elidinis"
+        },
+        {
+          "id": "part3-011-ancient-awakening",
+          "type": "quest",
+          "title": "Ancient Awakening",
+          "questName": "Ancient Awakening",
+          "notes": "Required for the Gate of Elidinis and unlocks Vorkath"
+        },
+        {
+          "id": "part3-012-the-darkness-of-hallowvale",
+          "type": "quest",
+          "title": "The Darkness of Hallowvale",
+          "questName": "The Darkness of Hallowvale",
+          "notes": "Part of the Vampyre Questline."
+        },
+        {
+          "id": "part3-013-troll-stronghold",
+          "type": "quest",
+          "title": "Troll Stronghold",
+          "questName": "Troll Stronghold",
+          "notes": "2x 10,000 Exp lamps, and required for Desert Treasure"
+        },
+        {
+          "id": "part3-014-troll-romance",
+          "type": "quest",
+          "title": "Troll Romance",
+          "questName": "Troll Romance",
+          "notes": "Optional: grants 8,000 Agility Exp."
+        },
+        {
+          "id": "part3-015-shield-of-arrav",
+          "type": "quest",
+          "title": "Shield of Arrav",
+          "questName": "Shield of Arrav",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part3-016-lost-city",
+          "type": "quest",
+          "title": "Lost City",
+          "questName": "Lost City",
+          "notes": "Required for a number of important quests and unlocks."
+        },
+        {
+          "id": "part3-017-heroes-quest",
+          "type": "quest",
+          "title": "Heroes' Quest",
+          "questName": "Heroes' Quest",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part3-018-throne-of-miscellania",
+          "type": "quest",
+          "title": "Throne of Miscellania",
+          "questName": "Throne of Miscellania",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part3-019-royal-trouble",
+          "type": "quest",
+          "title": "Royal Trouble",
+          "questName": "Royal Trouble"
+        },
+        {
+          "id": "part3-020-you-can-now-start-completing-the-managing-miscellania-weekly-distribute-your-workers-like-so-mahogany-full-bar-of-workers-maple-your-leftover-workers",
+          "type": "task",
+          "title": "You can now start completing the Managing Miscellania weekly Distribute your workers like so: # Mahogany (Full bar of workers) # Maple (Your leftover workers)"
+        },
+        {
+          "id": "part3-021-tears-of-guthix-quest",
+          "type": "quest",
+          "title": "Tears of Guthix (quest)",
+          "questName": "Tears of Guthix (quest)"
+        },
+        {
+          "id": "part3-022-you-can-now-start-completing-the-tears-of-guthix-weekly",
+          "type": "task",
+          "title": "You can now start completing the Tears of Guthix weekly"
+        },
+        {
+          "id": "part3-023-pirate-s-treasure",
+          "type": "quest",
+          "title": "Pirate's Treasure",
+          "questName": "Pirate's Treasure",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part3-024-rum-deal",
+          "type": "quest",
+          "title": "Rum Deal",
+          "questName": "Rum Deal",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part3-025-cabin-fever",
+          "type": "quest",
+          "title": "Cabin Fever",
+          "questName": "Cabin Fever",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part3-026-legacy-of-seergaze",
+          "type": "quest",
+          "title": "Legacy of Seergaze",
+          "questName": "Legacy of Seergaze",
+          "notes": "Required for a number of important quests. Unlocks access to the Blood Altar"
+        },
+        {
+          "id": "part3-027-underground-pass",
+          "type": "quest",
+          "title": "Underground Pass",
+          "questName": "Underground Pass",
+          "notes": "Required for a number of important quests including Plague's End"
+        },
+        {
+          "id": "part3-028-death-to-the-dorgeshuun",
+          "type": "quest",
+          "title": "Death to the Dorgeshuun",
+          "questName": "Death to the Dorgeshuun",
+          "notes": "1 XP lamp on Ranged Ranged"
+        },
+        {
+          "id": "part3-029-the-giant-dwarf",
+          "type": "quest",
+          "title": "The Giant Dwarf",
+          "questName": "The Giant Dwarf",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part3-030-another-slice-of-h-a-m",
+          "type": "quest",
+          "title": "Another Slice of H.A.M.",
+          "questName": "Another Slice of H.A.M.",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part3-031-land-of-the-goblins",
+          "type": "quest",
+          "title": "Land of the Goblins",
+          "questName": "Land of the Goblins",
+          "notes": "How to obtain clean toadflax:; Purchase from Brimhaven Agility Arena Ticket Exchange for 1 ticket; Create Divine herb patch I with 5 Flickering energy and 10 Clean guam"
+        },
+        {
+          "id": "part3-032-the-chosen-commander",
+          "type": "quest",
+          "title": "The Chosen Commander",
+          "questName": "The Chosen Commander",
+          "notes": "Required for Nomad's Elegy, which is required for Sliske's Endgame."
+        },
+        {
+          "id": "part3-033-family-crest",
+          "type": "quest",
+          "title": "Family Crest",
+          "questName": "Family Crest",
+          "notes": "Access to Smelting and Cooking Gauntlets."
+        },
+        {
+          "id": "part3-034-temple-of-ikov",
+          "type": "quest",
+          "title": "Temple of Ikov",
+          "questName": "Temple of Ikov",
+          "notes": "Required for While Guthix Sleeps, and Ancient Curses. Good early Fletching Exp."
+        },
+        {
+          "id": "part3-035-a-guild-of-our-own-miniquest",
+          "type": "quest",
+          "title": "A Guild of Our Own (miniquest)",
+          "questName": "A Guild of Our Own (miniquest)",
+          "notes": "Optional: Unlocks Safecracking for Thieving Training to 90/99."
+        },
+        {
+          "id": "part3-036-extremely-optional-train-your-thieving-to-level-90-for-player-owned-ports",
+          "type": "task",
+          "title": "Extremely optional* Train your Thieving to level 90 for Player-owned-ports"
+        },
+        {
+          "id": "part3-037-optional-get-6000-menaphos-reputation-in-the-port-district",
+          "type": "task",
+          "title": "Optional* Get 6000 Menaphos reputation in the Port district",
+          "notes": "Make sure to right click port faction (overlay in Menaphos) and set active! The quickest way to gain reputation is to join \"Soulobby\" friends chat and interact with soul obelisks"
+        },
+        {
+          "id": "part3-038-train-your-fishing-to-level-65",
+          "type": "task",
+          "title": "Train your Fishing to level 65"
+        },
+        {
+          "id": "part3-039-do-this-in-the-menaphos-port-district-deposit-fish-in-the-deposit-box",
+          "type": "task",
+          "title": "Do this in the Menaphos Port district. Deposit fish in the deposit box."
+        },
+        {
+          "id": "part3-040-some-like-it-cold",
+          "type": "quest",
+          "title": "Some Like It Cold",
+          "questName": "Some Like It Cold",
+          "notes": "Penguin questline is extremely strong and offers boosts to the Penguin Hide and Seek Weekly."
+        },
+        {
+          "id": "part3-041-back-to-the-freezer",
+          "type": "quest",
+          "title": "Back to the Freezer",
+          "questName": "Back to the Freezer",
+          "notes": "Penguin questline is extremely strong and offers boosts to the Penguin Hide and Seek Weekly."
+        },
+        {
+          "id": "part3-042-rune-mysteries",
+          "type": "quest",
+          "title": "Rune Mysteries",
+          "questName": "Rune Mysteries",
+          "notes": "Required for a number of important future quests."
+        },
+        {
+          "id": "part3-043-rune-memories",
+          "type": "quest",
+          "title": "Rune Memories",
+          "questName": "Rune Memories",
+          "notes": "Required for a number of important future quests."
+        },
+        {
+          "id": "part3-044-enter-the-abyss-miniquest",
+          "type": "quest",
+          "title": "Enter the Abyss (miniquest)",
+          "questName": "Enter the Abyss (miniquest)",
+          "notes": "Required for a number of important future quests."
+        },
+        {
+          "id": "part3-045-regicide",
+          "type": "quest",
+          "title": "Regicide",
+          "questName": "Regicide",
+          "notes": "Required for Plague's End."
+        },
+        {
+          "id": "part3-046-desert-treasure",
+          "type": "quest",
+          "title": "Desert Treasure",
+          "questName": "Desert Treasure",
+          "notes": "Unlocks the Ancient Magicks Spellbook. Consider claiming a Guthix staff to use as a weapon for this quest."
+        },
+        {
+          "id": "part3-047-lunar-diplomacy",
+          "type": "quest",
+          "title": "Lunar Diplomacy",
+          "questName": "Lunar Diplomacy",
+          "notes": "Unlocks the Lunar Spellbook."
+        },
+        {
+          "id": "part3-048-optional-train-divination-to-level-20-complete-the-memorial-to-guthix-tutorial-collect-450-bright-energy-collect-and-charge-the-sword-of-edicts-engram-and-activate-the-echo",
+          "type": "task",
+          "title": "Optional: Train Divination to level 20. Complete the Memorial to Guthix tutorial, collect 450 Bright energy, collect and charge the Sword of Edicts engram and activate the echo.",
+          "notes": "Activating the echo will allow you to collect Memory shards while training Hunter. These can be used to create various products, but Sign of the porter IV are recommended (the shards can be banked and used later). 400-800 shards can be obtained per hour, equivalent to 25-50 Sign of the porter IV when weaved (500-1000 porter charges)."
+        }
+      ]
+    },
+    {
+      "id": "part4",
+      "title": "Mid-game Questing",
+      "rows": [
+        {
+          "id": "part4-001-roving-elves",
+          "type": "quest",
+          "title": "Roving Elves",
+          "questName": "Roving Elves",
+          "notes": "Required for Plague's End and Priffddinas."
+        },
+        {
+          "id": "part4-002-mourning-s-end-part-i",
+          "type": "quest",
+          "title": "Mourning's End Part I",
+          "questName": "Mourning's End Part I",
+          "notes": "Required for Plague's End and Priffddinas."
+        },
+        {
+          "id": "part4-003-mourning-s-end-part-ii",
+          "type": "quest",
+          "title": "Mourning's End Part II",
+          "questName": "Mourning's End Part II",
+          "notes": "Required for Plague's End and Priffddinas."
+        },
+        {
+          "id": "part4-004-impressing-the-locals",
+          "type": "quest",
+          "title": "Impressing the Locals",
+          "questName": "Impressing the Locals",
+          "notes": "Required for the Arc, and elite dungeon chest teleport."
+        },
+        {
+          "id": "part4-005-bringing-home-the-bacon",
+          "type": "quest",
+          "title": "Bringing Home the Bacon",
+          "questName": "Bringing Home the Bacon",
+          "notes": "Required for making Binding Contracts."
+        },
+        {
+          "id": "part4-006-one-small-favour",
+          "type": "quest",
+          "title": "One Small Favour",
+          "questName": "One Small Favour",
+          "notes": "2 XP lamp on Herblore Herblore"
+        },
+        {
+          "id": "part4-007-legends-quest",
+          "type": "quest",
+          "title": "Legends' Quest",
+          "questName": "Legends' Quest",
+          "notes": "4 XP lamp on Herblore Herblore"
+        },
+        {
+          "id": "part4-008-recipe-for-disaster-freeing-the-goblin-generals",
+          "type": "quest",
+          "title": "Recipe for Disaster: Freeing the Goblin Generals",
+          "questName": "Recipe for Disaster: Freeing the Goblin Generals",
+          "notes": "Optional: Small amount of EXP and 1 QP."
+        },
+        {
+          "id": "part4-009-recipe-for-disaster-freeing-the-lumbridge-sage",
+          "type": "quest",
+          "title": "Recipe for Disaster: Freeing the Lumbridge Sage",
+          "questName": "Recipe for Disaster: Freeing the Lumbridge Sage",
+          "notes": "Optional: Small amount of EXP and 1 QP."
+        },
+        {
+          "id": "part4-010-recipe-for-disaster-freeing-the-mountain-dwarf",
+          "type": "quest",
+          "title": "Recipe for Disaster: Freeing the Mountain Dwarf",
+          "questName": "Recipe for Disaster: Freeing the Mountain Dwarf",
+          "notes": "Optional: Small amount of EXP and 1 QP."
+        },
+        {
+          "id": "part4-011-recipe-for-disaster-freeing-pirate-pete",
+          "type": "quest",
+          "title": "Recipe for Disaster: Freeing Pirate Pete",
+          "questName": "Recipe for Disaster: Freeing Pirate Pete",
+          "notes": "Required for the Pirate Questline."
+        },
+        {
+          "id": "part4-012-recipe-for-disaster-freeing-skrach-uglogwee",
+          "type": "quest",
+          "title": "Recipe for Disaster: Freeing Skrach Uglogwee",
+          "questName": "Recipe for Disaster: Freeing Skrach Uglogwee",
+          "notes": "Optional: Small amount of EXP and 1 QP."
+        },
+        {
+          "id": "part4-013-recipe-for-disaster-freeing-king-awowogei",
+          "type": "quest",
+          "title": "Recipe for Disaster: Freeing King Awowogei",
+          "questName": "Recipe for Disaster: Freeing King Awowogei",
+          "notes": "Optional: required for the Do No Evil quest."
+        },
+        {
+          "id": "part4-014-recipe-for-disaster-freeing-sir-amik-varze",
+          "type": "quest",
+          "title": "Recipe for Disaster: Freeing Sir Amik Varze",
+          "questName": "Recipe for Disaster: Freeing Sir Amik Varze",
+          "notes": "Optional: small amount of EXP and 1 QP."
+        },
+        {
+          "id": "part4-015-bar-crawl-miniquest",
+          "type": "quest",
+          "title": "Bar Crawl (miniquest)",
+          "questName": "Bar Crawl (miniquest)",
+          "notes": "Optional: required for Horror from the Deep."
+        },
+        {
+          "id": "part4-016-horror-from-the-deep",
+          "type": "quest",
+          "title": "Horror from the Deep",
+          "questName": "Horror from the Deep",
+          "notes": "Optional: unlocks God Books and Optional Quest Blood Runs Deep"
+        },
+        {
+          "id": "part4-017-recipe-for-disaster-defeating-the-culinaromancer",
+          "type": "quest",
+          "title": "Recipe for Disaster: Defeating the Culinaromancer",
+          "questName": "Recipe for Disaster: Defeating the Culinaromancer",
+          "notes": "1 XP lamp on Herblore Herblore"
+        },
+        {
+          "id": "part4-018-eadgar-s-ruse",
+          "type": "quest",
+          "title": "Eadgar's Ruse",
+          "questName": "Eadgar's Ruse",
+          "notes": "Optional: required for My Arm's Big Adventure."
+        },
+        {
+          "id": "part4-019-my-arm-s-big-adventure",
+          "type": "quest",
+          "title": "My Arm's Big Adventure",
+          "questName": "My Arm's Big Adventure",
+          "notes": "Optional: required for completing King of the Dwarves."
+        },
+        {
+          "id": "part4-020-dream-mentor",
+          "type": "quest",
+          "title": "Dream Mentor",
+          "questName": "Dream Mentor",
+          "notes": "Unlocks additional spells in the Lunar Spellbook."
+        },
+        {
+          "id": "part4-021-smoking-kills",
+          "type": "quest",
+          "title": "Smoking Kills",
+          "questName": "Smoking Kills",
+          "notes": "Unlocks important boosts for the Slayer skill."
+        },
+        {
+          "id": "part4-022-the-eyes-of-glouphrie",
+          "type": "quest",
+          "title": "The Eyes of Glouphrie",
+          "questName": "The Eyes of Glouphrie",
+          "notes": "Optional: required for While Guthix Sleeps."
+        },
+        {
+          "id": "part4-023-the-path-of-glouphrie",
+          "type": "quest",
+          "title": "The Path of Glouphrie",
+          "questName": "The Path of Glouphrie",
+          "notes": "Optional: required for While Guthix Sleeps."
+        },
+        {
+          "id": "part4-024-king-s-ransom",
+          "type": "quest",
+          "title": "King's Ransom",
+          "questName": "King's Ransom",
+          "notes": "Unlocks Chivalry and Piety variants."
+        },
+        {
+          "id": "part4-025-knight-waves-training-ground",
+          "type": "quest",
+          "title": "Knight Waves training ground",
+          "questName": "Knight Waves training ground",
+          "notes": "Unlocks Chivalry and Piety variants."
+        },
+        {
+          "id": "part4-026-what-lies-below",
+          "type": "quest",
+          "title": "What Lies Below",
+          "questName": "What Lies Below",
+          "notes": "Optional: required for Defender of Varrock which leads to While Guthix Sleeps."
+        },
+        {
+          "id": "part4-027-the-hunt-for-surok-miniquest",
+          "type": "quest",
+          "title": "The Hunt for Surok (miniquest)",
+          "questName": "The Hunt for Surok (miniquest)",
+          "notes": "Optional: required for While Guthix Sleeps which grants 400,000 Exp."
+        },
+        {
+          "id": "part4-028-the-hand-in-the-sand",
+          "type": "quest",
+          "title": "The Hand in the Sand",
+          "questName": "The Hand in the Sand",
+          "notes": "Optional: required for Hard Ardougne Achievements."
+        },
+        {
+          "id": "part4-029-creature-of-fenkenstrain",
+          "type": "quest",
+          "title": "Creature of Fenkenstrain",
+          "questName": "Creature of Fenkenstrain",
+          "notes": "Required for Garden of Tranquility which is a requirement for Ancient Curses."
+        },
+        {
+          "id": "part4-030-garden-of-tranquillity",
+          "type": "quest",
+          "title": "Garden of Tranquillity",
+          "questName": "Garden of Tranquillity",
+          "notes": "Required for Ancient Curses."
+        },
+        {
+          "id": "part4-031-the-tale-of-the-muspah",
+          "type": "quest",
+          "title": "The Tale of the Muspah",
+          "questName": "The Tale of the Muspah",
+          "notes": "Required for Ancient Curses."
+        },
+        {
+          "id": "part4-032-missing-my-mummy",
+          "type": "quest",
+          "title": "Missing My Mummy",
+          "questName": "Missing My Mummy",
+          "notes": "Required for Ancient Curses."
+        },
+        {
+          "id": "part4-033-a-tail-of-two-cats",
+          "type": "quest",
+          "title": "A Tail of Two Cats",
+          "questName": "A Tail of Two Cats",
+          "notes": "Required for Sliske's Endgame. Rewards Amulet of Catspeak."
+        },
+        {
+          "id": "part4-034-the-great-brain-robbery",
+          "type": "quest",
+          "title": "The Great Brain Robbery",
+          "questName": "The Great Brain Robbery",
+          "notes": "Optional: required for Pieces of Hate, and completion of the Pirate quest line."
+        },
+        {
+          "id": "part4-035-a-fairy-tale-i-growing-pains",
+          "type": "quest",
+          "title": "A Fairy Tale I - Growing Pains",
+          "questName": "A Fairy Tale I - Growing Pains",
+          "notes": "Unlocks Fairy Rings."
+        },
+        {
+          "id": "part4-036-a-fairy-tale-ii-cure-a-queen",
+          "type": "quest",
+          "title": "A Fairy Tale II - Cure a Queen",
+          "questName": "A Fairy Tale II - Cure a Queen",
+          "notes": "Improves Fairy Rings."
+        },
+        {
+          "id": "part4-037-a-fairy-tale-iii-battle-at-ork-s-rift",
+          "type": "quest",
+          "title": "A Fairy Tale III - Battle at Ork's Rift",
+          "questName": "A Fairy Tale III - Battle at Ork's Rift",
+          "notes": "Further improves Fairy Rings."
+        },
+        {
+          "id": "part4-038-enakhra-s-lament",
+          "type": "quest",
+          "title": "Enakhra's Lament",
+          "questName": "Enakhra's Lament",
+          "notes": "Optional: Required for Ritual of the Mahjarrat."
+        },
+        {
+          "id": "part4-039-all-fired-up",
+          "type": "quest",
+          "title": "All Fired Up",
+          "questName": "All Fired Up",
+          "notes": "Unlocks the Beacon Network minigame, access to the Ring of Fire and Flame Gloves."
+        },
+        {
+          "id": "part4-040-the-world-wakes",
+          "type": "quest",
+          "title": "The World Wakes",
+          "questName": "The World Wakes",
+          "notes": "If you destroy the reward lamps they can be reclaimed later. Protip: Watch out for fire balls."
+        },
+        {
+          "id": "part4-041-making-history",
+          "type": "quest",
+          "title": "Making History",
+          "questName": "Making History",
+          "notes": "Required for Plague's End."
+        },
+        {
+          "id": "part4-042-meeting-history",
+          "type": "quest",
+          "title": "Meeting History",
+          "questName": "Meeting History",
+          "notes": "Required for Plague's End."
+        },
+        {
+          "id": "part4-043-dishonour-among-thieves",
+          "type": "quest",
+          "title": "Dishonour among Thieves",
+          "questName": "Dishonour among Thieves",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part4-044-you-are-it",
+          "type": "quest",
+          "title": "You Are It",
+          "questName": "You Are It",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part4-045-the-needle-skips",
+          "type": "quest",
+          "title": "The Needle Skips",
+          "questName": "The Needle Skips",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part4-046-desperate-times",
+          "type": "quest",
+          "title": "Desperate Times",
+          "questName": "Desperate Times",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part4-047-imp-catcher",
+          "type": "quest",
+          "title": "Imp Catcher",
+          "questName": "Imp Catcher",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part4-048-wanted",
+          "type": "quest",
+          "title": "Wanted!",
+          "questName": "Wanted!",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part4-049-quiet-before-the-swarm",
+          "type": "quest",
+          "title": "Quiet Before the Swarm",
+          "questName": "Quiet Before the Swarm",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part4-050-heart-of-stone",
+          "type": "quest",
+          "title": "Heart of Stone",
+          "questName": "Heart of Stone",
+          "notes": "Required for a number of important quests."
+        },
+        {
+          "id": "part4-051-tai-bwo-wannai-trio",
+          "type": "quest",
+          "title": "Tai Bwo Wannai Trio",
+          "questName": "Tai Bwo Wannai Trio",
+          "notes": "Required to complete the Barbarian Smithing section of the Barbarian Training activity."
+        },
+        {
+          "id": "part4-052-dwarf-cannon",
+          "type": "quest",
+          "title": "Dwarf Cannon",
+          "questName": "Dwarf Cannon",
+          "notes": "Unlocks the Dwarf multicannon."
+        },
+        {
+          "id": "part4-053-the-death-of-chivalry",
+          "type": "quest",
+          "title": "The Death of Chivalry",
+          "questName": "The Death of Chivalry",
+          "notes": "Required for Sliske's Endgame."
+        }
+      ]
+    },
+    {
+      "id": "part5",
+      "title": "End-game Quests",
+      "rows": [
+        {
+          "id": "part5-001-battle-of-forinthry",
+          "type": "quest",
+          "title": "Battle of Forinthry",
+          "questName": "Battle of Forinthry",
+          "notes": "Optional: required for unlocking the Gate of Elidinis"
+        },
+        {
+          "id": "part5-002-requiem-for-a-dragon",
+          "type": "quest",
+          "title": "Requiem for a Dragon",
+          "questName": "Requiem for a Dragon",
+          "notes": "Optional: required for unlocking the Gate of Elidinis. Unlocks Ungael Ritual Site"
+        },
+        {
+          "id": "part5-003-tomes-of-the-warlock",
+          "type": "quest",
+          "title": "Tomes of the Warlock",
+          "questName": "Tomes of the Warlock",
+          "notes": "Optional: required for unlocking the Gate of Elidinis and Necromancy Storyline."
+        },
+        {
+          "id": "part5-004-ode-of-the-devourer",
+          "type": "quest",
+          "title": "Ode of the Devourer",
+          "questName": "Ode of the Devourer",
+          "notes": "Optional: unlocks the Gate of Elidinis."
+        },
+        {
+          "id": "part5-005-remains-of-the-necrolord",
+          "type": "quest",
+          "title": "Remains of the Necrolord",
+          "questName": "Remains of the Necrolord",
+          "notes": "Optional: part of the Necromancy questline."
+        },
+        {
+          "id": "part5-006-alpha-vs-omega",
+          "type": "quest",
+          "title": "Alpha vs Omega",
+          "questName": "Alpha vs Omega",
+          "notes": "Optional: unlocks the Rasial boss fight."
+        },
+        {
+          "id": "part5-007-as-a-first-resort",
+          "type": "quest",
+          "title": "As a First Resort",
+          "questName": "As a First Resort",
+          "notes": "Unlocks Red Sandstone and Potion Flasks daily."
+        },
+        {
+          "id": "part5-008-catapult-construction",
+          "type": "quest",
+          "title": "Catapult Construction",
+          "questName": "Catapult Construction",
+          "notes": "Required for Priffddinas"
+        },
+        {
+          "id": "part5-009-a-void-dance",
+          "type": "quest",
+          "title": "A Void Dance",
+          "questName": "A Void Dance",
+          "notes": "Required for Sliske's Endgame"
+        },
+        {
+          "id": "part5-010-defender-of-varrock",
+          "type": "quest",
+          "title": "Defender of Varrock",
+          "questName": "Defender of Varrock",
+          "notes": "Required for River of Blood"
+        },
+        {
+          "id": "part5-011-devious-minds",
+          "type": "quest",
+          "title": "Devious Minds",
+          "questName": "Devious Minds",
+          "notes": "Required for Ancient Curses."
+        },
+        {
+          "id": "part5-012-the-branches-of-darkmeyer",
+          "type": "quest",
+          "title": "The Branches of Darkmeyer",
+          "questName": "The Branches of Darkmeyer",
+          "notes": "3 XP Tome on Herblore Herblore"
+        },
+        {
+          "id": "part5-013-kindred-spirits",
+          "type": "quest",
+          "title": "Kindred Spirits",
+          "questName": "Kindred Spirits",
+          "notes": "Required for Sliske's Endgame"
+        },
+        {
+          "id": "part5-014-while-guthix-sleeps",
+          "type": "quest",
+          "title": "While Guthix Sleeps",
+          "questName": "While Guthix Sleeps",
+          "notes": "Optional: if you completed the previous optional required quests."
+        },
+        {
+          "id": "part5-015-spirit-of-summer",
+          "type": "quest",
+          "title": "Spirit of Summer",
+          "questName": "Spirit of Summer",
+          "notes": "Optional: complete if you wish to do the Hard Wilderness achievements for the Exp lamps."
+        },
+        {
+          "id": "part5-016-summer-s-end",
+          "type": "quest",
+          "title": "Summer's End",
+          "questName": "Summer's End",
+          "notes": "Optional: complete if you wish to do the Hard Wilderness achievements for the Exp lamps."
+        },
+        {
+          "id": "part5-017-optional-complete-the-hard-wilderness-achievements",
+          "type": "task",
+          "title": "Optional: complete the Hard Wilderness achievements"
+        },
+        {
+          "id": "part5-018-the-curse-of-arrav",
+          "type": "quest",
+          "title": "The Curse of Arrav",
+          "questName": "The Curse of Arrav",
+          "notes": "Required for Ancient Curses"
+        },
+        {
+          "id": "part5-019-the-temple-at-senntisten",
+          "type": "quest",
+          "title": "The Temple at Senntisten",
+          "questName": "The Temple at Senntisten",
+          "notes": "Unlocks Ancient Curses"
+        },
+        {
+          "id": "part5-020-rocking-out",
+          "type": "quest",
+          "title": "Rocking Out",
+          "questName": "Rocking Out",
+          "notes": "Optional: required for Pieces of Hate."
+        },
+        {
+          "id": "part5-021-the-slug-menace",
+          "type": "quest",
+          "title": "The Slug Menace",
+          "questName": "The Slug Menace",
+          "notes": "Optional: required for Ritual of the Mahjarrat"
+        },
+        {
+          "id": "part5-022-ritual-of-the-mahjarrat",
+          "type": "quest",
+          "title": "Ritual of the Mahjarrat",
+          "questName": "Ritual of the Mahjarrat",
+          "notes": "Optional: if you completed the previous Optional required quests."
+        },
+        {
+          "id": "part5-023-reclaim-the-3-ancient-lamp-from-guthix-s-cave-if-you-have-reached-level-75-in-herblore-summoning-or-agility",
+          "type": "task",
+          "title": "Reclaim the 3 Ancient lamp from Guthix's Cave if you have reached level 75 in Herblore, Summoning, or Agility."
+        },
+        {
+          "id": "part5-024-within-the-light",
+          "type": "quest",
+          "title": "Within the Light",
+          "questName": "Within the Light",
+          "notes": "Required for Plague's End"
+        },
+        {
+          "id": "part5-025-plague-s-end",
+          "type": "quest",
+          "title": "Plague's End",
+          "questName": "Plague's End",
+          "notes": "Priffddinas unlocked!"
+        },
+        {
+          "id": "part5-026-one-of-a-kind",
+          "type": "quest",
+          "title": "One of a Kind",
+          "questName": "One of a Kind",
+          "notes": "Post-Quest: Speak to the Submerged Statue on Entrana for 25,000 bonus XP.; 1 XP Lamp on Herblore Herblore. Required for Sliske's Endgame"
+        },
+        {
+          "id": "part5-027-the-lord-of-vampyrium",
+          "type": "quest",
+          "title": "The Lord of Vampyrium",
+          "questName": "The Lord of Vampyrium"
+        },
+        {
+          "id": "part5-028-river-of-blood",
+          "type": "quest",
+          "title": "River of Blood",
+          "questName": "River of Blood",
+          "notes": "You can now train on Vyres for Prayer, Firemaking and Combat Exp. Great source of Herbs and Congealed Blood."
+        },
+        {
+          "id": "part5-029-the-vault-of-shadows",
+          "type": "quest",
+          "title": "The Vault of Shadows",
+          "questName": "The Vault of Shadows",
+          "notes": "Required for EGWD storyline"
+        },
+        {
+          "id": "part5-030-azzanadra-s-quest",
+          "type": "quest",
+          "title": "Azzanadra's Quest",
+          "questName": "Azzanadra's Quest",
+          "notes": "Required for EGWD storyline"
+        },
+        {
+          "id": "part5-031-battle-of-the-monolith",
+          "type": "quest",
+          "title": "Battle of the Monolith",
+          "questName": "Battle of the Monolith",
+          "notes": "You can skill during this miniquest using the bank inside of the Digsite Exam Centre"
+        },
+        {
+          "id": "part5-032-city-of-senntisten",
+          "type": "quest",
+          "title": "City of Senntisten",
+          "questName": "City of Senntisten",
+          "notes": "Unlocks additional Ancient Magic Spells."
+        },
+        {
+          "id": "part5-033-desperate-measures",
+          "type": "quest",
+          "title": "Desperate Measures",
+          "questName": "Desperate Measures",
+          "notes": "Required for Sins of the Father, which grants access to Effigy Incubator."
+        },
+        {
+          "id": "part5-034-eye-of-het-i",
+          "type": "quest",
+          "title": "Eye of Het I",
+          "questName": "Eye of Het I",
+          "notes": "Required for Extinction."
+        },
+        {
+          "id": "part5-035-eye-of-het-ii",
+          "type": "quest",
+          "title": "Eye of Het II",
+          "questName": "Eye of Het II",
+          "notes": "Required for Extinction."
+        },
+        {
+          "id": "part5-036-sins-of-the-father",
+          "type": "quest",
+          "title": "Sins of the Father",
+          "questName": "Sins of the Father",
+          "notes": "Unlocks Effigy Incubator."
+        },
+        {
+          "id": "part5-037-extinction",
+          "type": "quest",
+          "title": "Extinction",
+          "questName": "Extinction",
+          "notes": "Access to the Dream of Iaia, Ring of Vigour Passive, etc."
+        },
+        {
+          "id": "part5-038-the-void-stares-back",
+          "type": "quest",
+          "title": "The Void Stares Back",
+          "questName": "The Void Stares Back",
+          "notes": "Required for Sliske's Endgame"
+        },
+        {
+          "id": "part5-039-the-mighty-fall",
+          "type": "quest",
+          "title": "The Mighty Fall",
+          "questName": "The Mighty Fall",
+          "notes": "Required for Sliske's Endgame"
+        },
+        {
+          "id": "part5-040-nomad-s-requiem",
+          "type": "quest",
+          "title": "Nomad's Requiem",
+          "questName": "Nomad's Requiem",
+          "notes": "Required for Sliske's Endgame"
+        },
+        {
+          "id": "part5-041-nomad-s-elegy",
+          "type": "quest",
+          "title": "Nomad's Elegy",
+          "questName": "Nomad's Elegy",
+          "notes": "Required for Sliske's Endgame"
+        },
+        {
+          "id": "part5-042-complete-barbarian-training",
+          "type": "task",
+          "title": "Complete Barbarian Training",
+          "notes": "Required for Hero's Welcome"
+        },
+        {
+          "id": "part5-043-hero-s-welcome",
+          "type": "quest",
+          "title": "Hero's Welcome",
+          "questName": "Hero's Welcome",
+          "notes": "Required for Sliske's Endgame"
+        },
+        {
+          "id": "part5-044-fate-of-the-gods",
+          "type": "quest",
+          "title": "Fate of the Gods",
+          "questName": "Fate of the Gods",
+          "notes": "Required for The Light Within, and Sliske's Endgame"
+        },
+        {
+          "id": "part5-045-the-light-within",
+          "type": "quest",
+          "title": "The Light Within",
+          "questName": "The Light Within",
+          "notes": "Required for Sliske's Endgame"
+        },
+        {
+          "id": "part5-046-children-of-mah",
+          "type": "quest",
+          "title": "Children of Mah",
+          "questName": "Children of Mah",
+          "notes": "Required forSliske's Endgame"
+        },
+        {
+          "id": "part5-047-sliske-s-endgame",
+          "type": "quest",
+          "title": "Sliske's Endgame",
+          "questName": "Sliske's Endgame",
+          "notes": "you did it If you do not have 85 Herblore to use the lamps, you can destroy them and reclaim them later from Relomia, Emissary of Sliske"
+        }
+      ]
+    }
+  ],
+  "training": {
+    "agility": [
+      {
+        "start": 1,
+        "end": 30,
+        "desc": "Complete the Burthorpe agility course or the Gnome Stronghold agility course",
+        "link": ""
+      },
+      {
+        "start": 30,
+        "end": 35,
+        "desc": "Complete the Anachronia Beginner agility Course",
+        "link": ""
+      },
+      {
+        "start": 35,
+        "end": 52,
+        "desc": "Complete the Barbarian Outpost Agility Course",
+        "link": ""
+      },
+      {
+        "start": 52,
+        "end": 80,
+        "desc": "Complete the Wilderness Agility Course with the Demonic Skull - warning, the Demonic Skull will grant increase experience rates, however this will enable PvP. You can do the Wilderness agility course without the skull if you would like.",
+        "link": ""
+      },
+      {
+        "start": 65,
+        "end": 80,
+        "desc": "Het's Oasis Agility Course OR Manual Auto-cycles in the Empty Throne Room. Manual Auto-Cycles are extremely slow, but fully AFK.",
+        "link": ""
+      },
+      {
+        "start": 80,
+        "end": 99,
+        "desc": "Island-wide Anachronia Agility Course - Completion of this course requires level 85 Agility for one section, there are several ways to temporarily boost your Agility level including Stamina Potion (+6), Summer Pie (+5), God banner Boost (+5), Abyssal Lurker (+4).",
+        "link": ""
+      }
+    ],
+    "archaeology": [
+      {
+        "start": 1,
+        "end": 4,
+        "desc": "Campus - Centurion Remains",
+        "link": "https://runescape.wiki/w/Centurion_remains"
+      },
+      {
+        "start": 5,
+        "end": 16,
+        "desc": "Kharid-et - Venator Remains",
+        "link": "https://runescape.wiki/w/Venator_remains"
+      },
+      {
+        "start": 17,
+        "end": 19,
+        "desc": "Kharid-et - Castra Debris",
+        "link": "https://runescape.wiki/w/Castra_debris"
+      },
+      {
+        "start": 20,
+        "end": 41,
+        "desc": "Infernal Source - Lodge Bar Storage",
+        "link": "https://runescape.wiki/w/Lodge_bar_storage"
+      },
+      {
+        "start": 42,
+        "end": 44,
+        "desc": "Everlight - Prodromoi Remains",
+        "link": "https://runescape.wiki/w/Prodromoi_remains"
+      },
+      {
+        "start": 45,
+        "end": 46,
+        "desc": "Infernal Source - Dis dungeon debris",
+        "link": "https://runescape.wiki/w/Dis_dungeon_debris"
+      },
+      {
+        "start": 47,
+        "end": 47,
+        "desc": "Kharid-et - Praesidio Remains",
+        "link": "https://runescape.wiki/w/Praesidio_remains"
+      },
+      {
+        "start": 48,
+        "end": 55,
+        "desc": "Everlight - Monoceros Remains",
+        "link": "https://runescape.wiki/w/Monoceros_remains"
+      },
+      {
+        "start": 56,
+        "end": 60,
+        "desc": "Everlight - Ceramic Studio Debris",
+        "link": "https://runescape.wiki/w/Ceramic_studio_debris"
+      },
+      {
+        "start": 61,
+        "end": 67,
+        "desc": "Everlight - Stadio Debris",
+        "link": "https://runescape.wiki/w/Stadio_debris"
+      },
+      {
+        "start": 68,
+        "end": 68,
+        "desc": "Infernal Source - Shakroth Remains",
+        "link": "https://runescape.wiki/w/Shakroth_remains"
+      },
+      {
+        "start": 69,
+        "end": 69,
+        "desc": "Everlight - Dominion Games Podium",
+        "link": "https://runescape.wiki/w/Dominion_games_podium"
+      },
+      {
+        "start": 70,
+        "end": 80,
+        "desc": "Stormguard Citadel - Ikovian Memorial",
+        "link": "https://runescape.wiki/w/Ikovian_memorial"
+      },
+      {
+        "start": 81,
+        "end": 84,
+        "desc": "Warforge - Crucible Stands Debris",
+        "link": "https://runescape.wiki/w/Crucible_stands_debris"
+      },
+      {
+        "start": 83,
+        "end": 94,
+        "desc": "Green Gobbo Goodies I - Tetracompass log",
+        "link": "https://runescape.wiki/w/Green_Gobbo_Goodies_I"
+      },
+      {
+        "start": 85,
+        "end": 85,
+        "desc": "Stormguard Citadel - Weapons Research Debris",
+        "link": "https://runescape.wiki/w/Weapons_research_debris"
+      },
+      {
+        "start": 86,
+        "end": 88,
+        "desc": "Kharid-et - Orcus Alter",
+        "link": "https://runescape.wiki/w/Orcus_alter"
+      },
+      {
+        "start": 89,
+        "end": 89,
+        "desc": "Warforge - Big High War God Shrine",
+        "link": "https://runescape.wiki/w/Big_high_war_god_shrine"
+      },
+      {
+        "start": 90,
+        "end": 92,
+        "desc": "Orthen - Varanasaur Remains",
+        "link": "https://runescape.wiki/w/Varanasaur_remains"
+      },
+      {
+        "start": 93,
+        "end": 94,
+        "desc": "Kharid-et - Armarium Debris",
+        "link": "https://runescape.wiki/w/Armarium_debris"
+      },
+      {
+        "start": 94,
+        "end": 97,
+        "desc": "Red Rum Relics I - Tetracompass log",
+        "link": "https://runescape.wiki/w/Red_Rum_Relics_I"
+      },
+      {
+        "start": 95,
+        "end": 95,
+        "desc": "Stormguard Citadel - Keshik Tower Debris",
+        "link": "https://runescape.wiki/w/Keshik_tower_debris"
+      },
+      {
+        "start": 96,
+        "end": 97,
+        "desc": "Orthen - Dragonkin Reliquary",
+        "link": "https://runescape.wiki/w/Dragonkin_reliquary"
+      },
+      {
+        "start": 98,
+        "end": 98,
+        "desc": "Orthen - Dragonkin Coffin",
+        "link": "https://runescape.wiki/w/Dragonkin_coffin"
+      },
+      {
+        "start": 99,
+        "end": 99,
+        "desc": "Everlight - Icyene Weapon Rack",
+        "link": "https://runescape.wiki/w/Icyene_weapon_rack"
+      },
+      {
+        "start": 100,
+        "end": 100,
+        "desc": "Kharid-et - Culinarum Debris, Warforge - Kyzaj Champion's Boudoir",
+        "link": "https://runescape.wiki/w/Culinarum_debris"
+      },
+      {
+        "start": 101,
+        "end": 101,
+        "desc": "Orthen - Autopsy Table",
+        "link": "https://runescape.wiki/w/Autopsy_table"
+      },
+      {
+        "start": 102,
+        "end": 104,
+        "desc": "Orthen - Experiment Workbench",
+        "link": "https://runescape.wiki/w/Experiment_workbench"
+      },
+      {
+        "start": 105,
+        "end": 105,
+        "desc": "Everlight - Stockpiled Art",
+        "link": "https://runescape.wiki/w/Stockpiled_art"
+      },
+      {
+        "start": 106,
+        "end": 106,
+        "desc": "Orthen - Aughra Remains",
+        "link": "https://runescape.wiki/w/Aughra_remains"
+      },
+      {
+        "start": 107,
+        "end": 107,
+        "desc": "Kharid-et - Ancient Magick Munitions",
+        "link": "https://runescape.wiki/w/Ancient_magick_munitions"
+      },
+      {
+        "start": 108,
+        "end": 108,
+        "desc": "Orthen - Moksha Device",
+        "link": "https://runescape.wiki/w/Moksha_device"
+      },
+      {
+        "start": 109,
+        "end": 109,
+        "desc": "Everlight - Bibliothek Debris",
+        "link": "https://runescape.wiki/w/Bibliotheke_debris"
+      },
+      {
+        "start": 110,
+        "end": 110,
+        "desc": "Warforge - Warforge Weapon Rack",
+        "link": "https://runescape.wiki/w/Warforge_weapon_rack"
+      },
+      {
+        "start": 111,
+        "end": 111,
+        "desc": "Stormguard Citadel - Flight Research Debris",
+        "link": "https://runescape.wiki/w/Flight_research_debris"
+      },
+      {
+        "start": 112,
+        "end": 112,
+        "desc": "Stormguard Citadel - Aetherium Forge",
+        "link": "https://runescape.wiki/w/Aetherium_forge"
+      },
+      {
+        "start": 113,
+        "end": 113,
+        "desc": "Orthen - Xolo Mine",
+        "link": "https://runescape.wiki/w/Xolo_mine"
+      },
+      {
+        "start": 114,
+        "end": 115,
+        "desc": "Kharid-et - Praetorian Remains",
+        "link": "https://runescape.wiki/w/Praetorian_remains"
+      },
+      {
+        "start": 116,
+        "end": 116,
+        "desc": "Infernal Source - Tsutsaroth Debris",
+        "link": "https://runescape.wiki/w/Tsutsaroth_debris"
+      },
+      {
+        "start": 117,
+        "end": 117,
+        "desc": "Everlight - Optimatoi Remains",
+        "link": "https://runescape.wiki/w/Optimatoi_remains"
+      },
+      {
+        "start": 118,
+        "end": 118,
+        "desc": "Warforge - Makeshift Pie Oven",
+        "link": "https://runescape.wiki/w/Makeshift_pie_oven"
+      },
+      {
+        "start": 119,
+        "end": 119,
+        "desc": "Orthen - Xolo Remains",
+        "link": "https://runescape.wiki/w/Xolo_remains"
+      },
+      {
+        "start": 120,
+        "end": 120,
+        "desc": "Orthen - Saurthen Debris",
+        "link": "https://runescape.wiki/w/Saurthen_debris"
+      }
+    ],
+    "attack": [
+      {
+        "start": 1,
+        "end": 30,
+        "desc": "Complete the Waterfall Quest",
+        "link": ""
+      },
+      {
+        "start": 1,
+        "end": 20,
+        "desc": "Troll Chucker in Burthorpe north caves",
+        "link": "https://runescape.wiki/w/Troll_chucker"
+      },
+      {
+        "start": 20,
+        "end": 40,
+        "desc": "Ghost Troll Brutes in Um after the Necromancy! Quest",
+        "link": "https://runescape.wiki/w/Ghost_troll_brute"
+      },
+      {
+        "start": 40,
+        "end": 50,
+        "desc": "Ghoul in Canifis or Fetid Zombie outside Fort Forinthry w/ Salve Amulet",
+        "link": "https://runescape.wiki/w/Ghoul"
+      },
+      {
+        "start": 40,
+        "end": 80,
+        "desc": "Desert Bandits in Bandit Camp w/ 1 piece of Saradomin or Zamorak equipment. A Halberd type weapon is recommended for best experience rates.",
+        "link": "https://runescape.wiki/w/Bandit_Camp_(Kharidian_Desert)#Training"
+      },
+      {
+        "start": 50,
+        "end": 70,
+        "desc": "Hellhound in Taverly Dungeon or the Wilderness, or Abyssal leech/walker/guardian in the Abyss. A Halberd type weapon is recommended for best experience rates.",
+        "link": "https://runescape.wiki/w/Abyss/Combat_training"
+      },
+      {
+        "start": 60,
+        "end": 90,
+        "desc": "Kill Flesh-Hatcher Mhekarnahz. This entry-level boss provides 50% more experience for your damage dealt compared to other options, which makes it a strong active training method. If your hit chance is below 100%, consider using a slash weapon and the Dragon Scimitar special attack for improved damage.",
+        "link": ""
+      },
+      {
+        "start": 70,
+        "end": 80,
+        "desc": "Abyssal leech/walker/guardian in the Abyss or Bound Skeletons outside Fort Forinthry w/ Salve Amulet. A Halberd type weapon is recommended for best experience rates.",
+        "link": "https://runescape.wiki/w/Abyss/Combat_training"
+      },
+      {
+        "start": 80,
+        "end": 90,
+        "desc": "Ravenous ghoul w/ Vampyric Blood Essence for Aggression, Abyssal leech/walker/guardian in the Abyss or Bound Skeletons outside Fort Forinthry w/ Salve Amulet. A Halberd type weapon is recommended for best experience rates.",
+        "link": "https://runescape.wiki/w/Ravenous_ghoul"
+      },
+      {
+        "start": 90,
+        "end": 120,
+        "desc": "Abyssal Demons, Savages, or Beasts, Ravenous ghoul w/ Vampyric Blood Essence for Aggression, Abyssal leech/walker/guardian in the Abyss, or Bound Skeletons outside Fort Forinthry w/ Salve Amulet. Alternatively, train passively by doing PvM or Slayer.",
+        "link": "https://runescape.wiki/w/Abyssal_demon"
+      }
+    ],
+    "constitution": [
+      {
+        "start": 1,
+        "end": 24,
+        "desc": "Witch's House Quest",
+        "link": "https://runescape.wiki/w/Witch%27s_House/Quick_guide"
+      },
+      {
+        "start": 24,
+        "end": 99,
+        "desc": "Train through your preferred combat training method"
+      }
+    ],
+    "construction": [
+      {
+        "start": 1,
+        "end": 40,
+        "desc": "Fort Building - Workshop T1 and Wall as part of the New Foundations Quest",
+        "link": "https://runescape.wiki/w/New_Foundations/Quick_guide"
+      },
+      {
+        "start": 40,
+        "end": 45,
+        "desc": "Fort Building - Guardhouse T1",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 45,
+        "end": 50,
+        "desc": "Fort Building - Townhall T2",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 50,
+        "end": 50,
+        "desc": "Fort Building - Grove T1",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 50,
+        "end": 50,
+        "desc": "Fort Building - Grove T2",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 50,
+        "end": 50,
+        "desc": "Fort Building - Ranger's Workroom T1",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 50,
+        "end": 54,
+        "desc": "Fort Building - Kitchen T2",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 54,
+        "end": 55,
+        "desc": "Fort Building - Botanist's Workbench T1",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 55,
+        "end": 60,
+        "desc": "Fort Building - Chapel T2",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 60,
+        "end": 65,
+        "desc": "Fort Building - Grove T3",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 65,
+        "end": 70,
+        "desc": "Fort Building - Ranger's Workroom T2",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 65,
+        "end": 70,
+        "desc": "Fort Building - Guardhouse T2",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 70,
+        "end": 75,
+        "desc": "Fort Building - Command Centre T2",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 75,
+        "end": 78,
+        "desc": "Fort Building - Workshop T3",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 78,
+        "end": 80,
+        "desc": "Fort Building - Botanist's Workbench T2",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 80,
+        "end": 85,
+        "desc": "Fort Building - Townhall T3",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 80,
+        "end": 85,
+        "desc": "Fort Building - Ranger's Workroom T3",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 85,
+        "end": 90,
+        "desc": "Fort Building - Kitchen T3",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 90,
+        "end": 92,
+        "desc": "Fort Building - Chapel T3",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 92,
+        "end": 95,
+        "desc": "Fort Building - Botanist's Workbench T3",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 95,
+        "end": 99,
+        "desc": "Fort Building - Guardhouse T3",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      },
+      {
+        "start": 99,
+        "end": 120,
+        "desc": "Fort Building - Command Centre T3",
+        "link": "https://runescape.wiki/w/Construction_training#Fortress_buildings"
+      }
+    ],
+    "cooking": [
+      {
+        "start": 1,
+        "end": 20,
+        "desc": "Cook Raw Crayfish or Shrimp",
+        "link": ""
+      },
+      {
+        "start": 20,
+        "end": 52,
+        "desc": "Cook Trout or Salmon",
+        "link": ""
+      },
+      {
+        "start": 32,
+        "end": 80,
+        "desc": "Make Cheesecakes in the cooking guild after the Chef's Assistant quest with the Tier 2 Milky Milky Player Owned Farm Perk",
+        "link": "https://runescape.wiki/w/Cream_cheese"
+      },
+      {
+        "start": 35,
+        "end": 99,
+        "desc": "Make Wine by adding grapes to jugs of water. This is not a good option for Ironman players but provides very high experience rates.",
+        "link": ""
+      },
+      {
+        "start": 52,
+        "end": 80,
+        "desc": "Cook Desert Sole, Catfish, and Beltfish",
+        "link": ""
+      },
+      {
+        "start": 80,
+        "end": 99,
+        "desc": "Cook Raw Fish from PvM Drops or Fish from Swarm Fishing / Blubber Jellyfish",
+        "link": "https://runescape.wiki/w/Swarm"
+      }
+    ],
+    "crafting": [
+      {
+        "start": 1,
+        "end": 20,
+        "desc": "Cut gems from Common Gem Rocks in Burthorpe, or Spin Flax from Burthorpe, Or make Leather Armour from Cows in Burthorpe or Lumbridge.",
+        "link": "https://runescape.wiki/w/Common_gem_rock"
+      },
+      {
+        "start": 20,
+        "end": 75,
+        "desc": "Cutting uncommon gems",
+        "link": "https://runescape.wiki/w/Ironman_Mode/Strategies/Crafting#Levels_20-75:_Cutting_uncommon_gems"
+      },
+      {
+        "start": 75,
+        "end": 110,
+        "desc": "Gate of Elidinis Crafting, Harps in Prifddinas, Cutting Gems, or Making Dragon Leather products.",
+        "link": "https://runescape.wiki/w/Pay-to-play_Crafting_training#Gate_of_Elidinis_(skilling_boss)"
+      },
+      {
+        "start": 100,
+        "end": 110,
+        "desc": "Crafting Starbloom Equipment",
+        "link": "https://runescape.wiki/w/Starbloom_equipment#Creation_and_upgrading"
+      }
+    ],
+    "defence": [
+      {
+        "start": 1,
+        "end": 99,
+        "desc": "Train through your preferred combat training method"
+      }
+    ],
+    "divination": [
+      {
+        "start": 1,
+        "end": 35,
+        "desc": "Complete activities at Memorial to Guthix",
+        "link": "https://runescape.wiki/w/Memorial_to_Guthix"
+      },
+      {
+        "start": 1,
+        "end": 10,
+        "desc": "Collect and deposit Pale energy",
+        "link": "https://runescape.wiki/w/Pale_energy"
+      },
+      {
+        "start": 10,
+        "end": 20,
+        "desc": "Collect and deposit Flickering energy",
+        "link": "https://runescape.wiki/w/Flickering_energy"
+      },
+      {
+        "start": 20,
+        "end": 30,
+        "desc": "Collect and deposit Bright energy",
+        "link": "https://runescape.wiki/w/Bright_energy"
+      },
+      {
+        "start": 30,
+        "end": 35,
+        "desc": "Collect and deposit Glowing energy",
+        "link": "https://runescape.wiki/w/Glowing_energy"
+      },
+      {
+        "start": 35,
+        "end": 99,
+        "desc": "Collect and deposit memories at the highest tier available, and enter Guthixian Caches whenever they are available",
+        "link": "https://runescape.wiki/w/Ironman_Mode/Strategies/Divination#Levels_1-99"
+      },
+      {
+        "start": 70,
+        "end": 99,
+        "desc": "Dungeoneering Divination",
+        "link": "https://runescape.wiki/w/Divination_training#Dungeoneering_Divination"
+      },
+      {
+        "start": 70,
+        "end": 99,
+        "desc": "Hall of Memories",
+        "link": "https://runescape.wiki/w/Hall_of_Memories"
+      },
+      {
+        "start": 85,
+        "end": 90,
+        "desc": "Radiant Wisps on world 79 (for group divination bonuses). Better with a Memory Dowser, or Divine Conversion Archaeology Relic.",
+        "link": ""
+      },
+      {
+        "start": 90,
+        "end": 95,
+        "desc": "Luminescent Wisps on world 79 (for group divination bonuses). Better with a Memory Dowser, or Divine Conversion Archaeology Relic.",
+        "link": ""
+      },
+      {
+        "start": 95,
+        "end": 99,
+        "desc": "Incandescent Wisps on world 79 (for group divination bonuses). Better with a Memory Dowser, or Divine Conversion Archaeology Relic.",
+        "link": ""
+      }
+    ],
+    "dungeoneering": [
+      {
+        "start": 1,
+        "end": 120,
+        "desc": "Complete Elite Dungeons and Redeem Tokens for Exp at the Reward Shop. This is not recommended for speed training but will passively grant experience ",
+        "link": "https://runescape.wiki/w/Daemonheim_Rewards"
+      },
+      {
+        "start": 1,
+        "end": 58,
+        "desc": "Small Complexity 1 floors 1-11, Small, Medium, or Large Complexity 6 floors 12-29 ",
+        "link": "https://runescape.wiki/w/Pay-to-play_Dungeoneering_training#Optimising_floors"
+      },
+      {
+        "start": 59,
+        "end": 70,
+        "desc": "Small Complexity 1 floors 1-17, Small Complexity 6 Floors 18-24, Large Complexity 6 Floors 25-35",
+        "link": "https://runescape.wiki/w/Pay-to-play_Dungeoneering_training#Optimising_floors"
+      },
+      {
+        "start": 71,
+        "end": 94,
+        "desc": "Small Complexity 1 floors 1-29, Large Complexity 6 Floors 30-47",
+        "link": "https://runescape.wiki/w/Pay-to-play_Dungeoneering_training#Optimising_floors"
+      },
+      {
+        "start": 80,
+        "end": 120,
+        "desc": "Complete the Dragonkin V archaeology collection log (Archaeology level 77+) for Dungeoneering Token Boxes that can be exchanged for experience. This method is extremely slow but is a way to passively train Dungeoneering while training Archaeology.",
+        "link": ""
+      },
+      {
+        "start": 95,
+        "end": 120,
+        "desc": "Small Complexity 1 floors 1-35, Large Complexity 6 Floors 36-60",
+        "link": "https://runescape.wiki/w/Pay-to-play_Dungeoneering_training#Optimising_floors"
+      }
+    ],
+    "farming": [
+      {
+        "start": 1,
+        "end": 15,
+        "desc": "Shovelling manure or Violet is Blue Quest",
+        "link": "https://runescape.wiki/w/Manure_mound"
+      },
+      {
+        "start": 15,
+        "end": 35,
+        "desc": "Low level herb and tree runs. Oak at Level 15, Apple at Level 27, Willow at level 30. Low level seeds can be obtained by pickpocketing farmers and master farmers.",
+        "link": ""
+      },
+      {
+        "start": 30,
+        "end": 35,
+        "desc": "Cultivate Roses at Het's Oasis (active method)",
+        "link": ""
+      },
+      {
+        "start": 35,
+        "end": 54,
+        "desc": "Woad Leaf Beehives",
+        "link": ""
+      },
+      {
+        "start": 35,
+        "end": 54,
+        "desc": "Player-owned farm beginning with Sheep at level 35, Frogs at 42, and Cows at level 49",
+        "link": "https://runescape.wiki/w/Player-owned_farm"
+      },
+      {
+        "start": 45,
+        "end": 120,
+        "desc": "Optionally you train farming by doing Tree Runs and Fruit Tree runs if those are preferred to Player Owned Farms.",
+        "link": "https://runescape.wiki/w/Farming_training#Trees"
+      },
+      {
+        "start": 54,
+        "end": 120,
+        "desc": "Player-owned farm, beginning with Chinchompas at level 54, Spiders at level 64, and Dragons at Level 92, and Dinosaurs at the Ranch Out of Time at level 98.",
+        "link": "https://runescape.wiki/w/Player-owned_farm"
+      }
+    ],
+    "firemaking": [
+      {
+        "start": 1,
+        "end": 15,
+        "desc": "Burn logs",
+        "link": "https://runescape.wiki/w/Firemaking_training"
+      },
+      {
+        "start": 15,
+        "end": 30,
+        "desc": "Burn oak logs",
+        "link": "https://runescape.wiki/w/Firemaking_training"
+      },
+      {
+        "start": 30,
+        "end": 45,
+        "desc": "Burn willow logs",
+        "link": "https://runescape.wiki/w/Firemaking_training"
+      },
+      {
+        "start": 45,
+        "end": 60,
+        "desc": "Burn maple logs",
+        "link": "https://runescape.wiki/w/Firemaking_training"
+      },
+      {
+        "start": 60,
+        "end": 75,
+        "desc": "Burn yew logs",
+        "link": "https://runescape.wiki/w/Firemaking_training"
+      },
+      {
+        "start": 75,
+        "end": 87,
+        "desc": "Burn magic logs or corrupted magic logs",
+        "link": "https://runescape.wiki/w/Firemaking_training"
+      },
+      {
+        "start": 76,
+        "end": 95,
+        "desc": "Kill Vyres after the River of Blood quest. These are monsters that provide experience in Prayer, Combat, and Firemaking and are very efficient on an Ironman.",
+        "link": "https://runescape.wiki/w/Vyrewatch/Strategies"
+      },
+      {
+        "start": 87,
+        "end": 95,
+        "desc": "Collecting and burning Sharp Shell Shards. Collecting these requires the Extinction Quest, burning them does not.",
+        "link": ""
+      },
+      {
+        "start": 95,
+        "end": 110,
+        "desc": "Eggsperimentation Activity on Anachronia after the Extinction Quest.",
+        "link": ""
+      }
+    ],
+    "fishing": [
+      {
+        "start": 1,
+        "end": 20,
+        "desc": "Catch Shrimp in Lumbridge or Catch crayfish in Burthorpe",
+        "link": ""
+      },
+      {
+        "start": 20,
+        "end": 45,
+        "desc": "Catch Trout and Salmon in Shilo Village or Lumbridge",
+        "link": "https://runescape.wiki/w/Raw_trout"
+      },
+      {
+        "start": 45,
+        "end": 55,
+        "desc": "Catch Lobsters at the Havenhythe Fish Farm",
+        "link": ""
+      },
+      {
+        "start": 55,
+        "end": 79,
+        "desc": "Catch Swordfish at the Havenhythe Fish Farm",
+        "link": ""
+      },
+      {
+        "start": 79,
+        "end": 84,
+        "desc": "Catch Sharks at the Havenhythe Fish Farm",
+        "link": ""
+      },
+      {
+        "start": 84,
+        "end": 99,
+        "desc": "Catch Giant Crayfish at the Havenhythe Fish Farm",
+        "link": ""
+      },
+      {
+        "start": 54,
+        "end": 68,
+        "desc": "Catch Desert Soles, Catfish and Beltfish in Menaphos",
+        "link": "https://runescape.wiki/w/Raw_desert_sole"
+      },
+      {
+        "start": 66,
+        "end": 99,
+        "desc": "Afk Alternative - Catch Ghostly Soles in Um, Optionally use Shark Outfit to Destroy fish for 15 minute AFK. ",
+        "link": "https://runescape.wiki/w/Raw_ghostly_sole"
+      },
+      {
+        "start": 68,
+        "end": 99,
+        "desc": "Swarm fishing in the Deep Sea Fishing Hub - This is slower but yields useful food for PvM",
+        "link": "https://runescape.wiki/w/Swarm"
+      },
+      {
+        "start": 93,
+        "end": 99,
+        "desc": "Prifddinas waterfall fishing (optional, to unlock the Crystal Fishing Rod)",
+        "link": ""
+      },
+      {
+        "start": 94,
+        "end": 99,
+        "desc": "Fishing Frenzy at DSF (very active)",
+        "link": ""
+      },
+      {
+        "start": 96,
+        "end": 99,
+        "desc": "Wobbegongs on the Arc",
+        "link": ""
+      }
+    ],
+    "fletching": [
+      {
+        "start": 1,
+        "end": 52,
+        "desc": "Make arrow shafts - Optional to stop at 25, but arrow shafts will be needed in abundance later if you are an Ironman. Higher tier logs yield more arrow shafts per log.",
+        "link": "https://runescape.wiki/w/Pay-to-play_Fletching_training"
+      },
+      {
+        "start": 45,
+        "end": 52,
+        "desc": "Make Mithril Arrows. Ironman players may choose to smith Mithril arrowheads for this method.",
+        "link": "https://runescape.wiki/w/Mithril_arrowheads"
+      },
+      {
+        "start": 52,
+        "end": 99,
+        "desc": "Make Broad arrows, arrowheads can be purchased from Slayer Masters.",
+        "link": "https://runescape.wiki/w/Broad_arrowheads#Shop_locations"
+      },
+      {
+        "start": 82,
+        "end": 99,
+        "desc": "Zygomyte Carestyling on Anachronia - These are part of the process of creating Elder God Arrows",
+        "link": "https://runescape.wiki/w/'Accidental'_Fletching_and_Firemaking#Zygomite_Carestyling"
+      },
+      {
+        "start": 100,
+        "end": 103,
+        "desc": "Martial fletch eternal magic shortbows",
+        "link": "https://runescape.wiki/w/Pay-to-play_Fletching_training"
+      },
+      {
+        "start": 103,
+        "end": 110,
+        "desc": "Martial fletch primal crossbows",
+        "link": "https://runescape.wiki/w/Pay-to-play_Fletching_training"
+      }
+    ],
+    "herblore": [
+      {
+        "start": 1,
+        "end": 120,
+        "desc": "Daily Challenges, Herby Werby DnD, Weekly Penguins, and Quest EXP Lamps",
+        "link": "https://runescape.wiki/w/Quests/Experience_rewards#Herblore"
+      }
+    ],
+    "hunter": [
+      {
+        "start": 1,
+        "end": 9,
+        "desc": "Catch Crimson Swifts in Burthorpe or complete the Natural history quiz in the Varrock museum.",
+        "link": ""
+      },
+      {
+        "start": 9,
+        "end": 11,
+        "desc": "Catch Copper Longtails at Eagle's Peak - You can teleport there with Memory Strands",
+        "link": ""
+      },
+      {
+        "start": 11,
+        "end": 19,
+        "desc": "Catch Cerulean Twitches in the Fremennik Hunter Area",
+        "link": ""
+      },
+      {
+        "start": 19,
+        "end": 27,
+        "desc": "Catch Tropical Wagtails in the Feldip Hills",
+        "link": ""
+      },
+      {
+        "start": 27,
+        "end": 46,
+        "desc": "Box trap Cobalt Skillchompas north of the Grand Tree.",
+        "link": ""
+      },
+      {
+        "start": 29,
+        "end": 46,
+        "desc": "Catch Green Salamanders in Canifis.",
+        "link": ""
+      },
+      {
+        "start": 32,
+        "end": 67,
+        "desc": "Rabbit snare Jackalopes on Havenhythe. Optional: Jackalopes can be infused into Jackalope pouches to assist with early game Archaeology training.",
+        "link": ""
+      },
+      {
+        "start": 46,
+        "end": 63,
+        "desc": "Box trap Viridian Skillchompas north of the Port Phasmatys Hunter Area.",
+        "link": ""
+      },
+      {
+        "start": 63,
+        "end": 75,
+        "desc": "Box trap Carnivorous Chinchompas in the Feldip Hunter Area.",
+        "link": ""
+      },
+      {
+        "start": 67,
+        "end": 75,
+        "desc": "Catch Black Salamanders in the Wilderness.",
+        "link": ""
+      },
+      {
+        "start": 68,
+        "end": 75,
+        "desc": "Box trap Azure Skillchompas in the Fremennik Hunter Area.",
+        "link": ""
+      },
+      {
+        "start": 72,
+        "end": 75,
+        "desc": "Capture Charm Sprites for the Enhanced Yaktwee Stick.",
+        "link": ""
+      },
+      {
+        "start": 75,
+        "end": 99,
+        "desc": "Big Game Hunter. This requires level 55 slayer to start and offers higher experience rates at higher levels, ranging from 76-96 Hunter.",
+        "link": "https://runescape.wiki/w/Big_Game_Hunter/Strategies"
+      },
+      {
+        "start": 88,
+        "end": 99,
+        "desc": "Catch Fungal Spores from Decaying Guards on the Croesus front (Semi-Afk), Trap Carrion Jadinkos on Anachronia.",
+        "link": ""
+      },
+      {
+        "start": 96,
+        "end": 98,
+        "desc": "Havenhythe Big Game Hunter (Chinchompa)",
+        "link": ""
+      },
+      {
+        "start": 98,
+        "end": 110,
+        "desc": "Havenhythe Big Game Hunter (Kebbit)",
+        "link": ""
+      }
+    ],
+    "invention": [
+      {
+        "start": 1,
+        "end": 4,
+        "desc": "Complete Invention tutorial with perfect discoveries or disassemble items",
+        "link": "https://runescape.wiki/w/Invention_training#Early_level_training_(Levels_1-27)"
+      },
+      {
+        "start": 4,
+        "end": 27,
+        "desc": "Research level 5 blueprints, augment and disassemble miscellaneous equipment",
+        "link": "https://runescape.wiki/w/Invention_training#Early_level_training_(Levels_1-27)"
+      },
+      {
+        "start": 27,
+        "end": 120,
+        "desc": "Siphon or disassemble leveled, augmented gear and tools, and complete Invention blueprints as you unlock them. You can also use Invention Potions to unlock higher level blueprints sooner for a boost to experience.",
+        "link": "https://runescape.wiki/w/Invention_training#Early_level_training_(Levels_1-27)"
+      }
+    ],
+    "magic": [
+      {
+        "start": 1,
+        "end": 20,
+        "desc": "Troll Brutes in Burthorpe north caves",
+        "link": ""
+      },
+      {
+        "start": 1,
+        "end": 20,
+        "desc": "Complete the Circus DnD",
+        "link": ""
+      },
+      {
+        "start": 20,
+        "end": 40,
+        "desc": "Ghost Troll Brutes in Um after the Necromancy! Quest.",
+        "link": "https://runescape.wiki/w/Ghost_troll_brute"
+      },
+      {
+        "start": 40,
+        "end": 70,
+        "desc": "Ghouls in Canifis with fire spells",
+        "link": "https://runescape.wiki/w/Ghoul"
+      },
+      {
+        "start": 60,
+        "end": 70,
+        "desc": "Abyssal leech/walker/guardian in the Abyss - This is especially good if you have unlocked the Corruption Blast ability.",
+        "link": "https://runescape.wiki/w/Abyss/Combat_training"
+      },
+      {
+        "start": 60,
+        "end": 90,
+        "desc": "Kill Flesh-Hatcher Mhekarnahz. This entry-level boss provides 50% more experience for your damage dealt compared to other options, which makes it a strong active training method.",
+        "link": ""
+      },
+      {
+        "start": 70,
+        "end": 99,
+        "desc": "K'ril Tsutsaroth in God Wars Dungeon - Recommendation is to kite (fire abilities manually while running away from him) to extend trips.",
+        "link": "https://runescape.wiki/w/K%27ril_Tsutsaroth/Strategies"
+      },
+      {
+        "start": 90,
+        "end": 120,
+        "desc": "Abyssal Demons, Savages, and Beasts, Ravenous ghoul w/ Vampyric Blood Essence for Aggression, Abyssal leech/walker/guardian in the Abyss, or Bound Skeletons outside Fort Forinthry w/ Salve Amulet. Alternatively, train passively by doing PvM or Slayer.",
+        "link": "https://runescape.wiki/w/Abyssal_demon"
+      }
+    ],
+    "mining": [
+      {
+        "start": 1,
+        "end": 10,
+        "desc": "Mine copper or tin ore",
+        "link": "https://runescape.wiki/w/Copper_ore#Mine_locations"
+      },
+      {
+        "start": 10,
+        "end": 110,
+        "desc": "Shooting Stars - These are very afk, and great experience per hour at every level. The \"Star Find\" Friendschat can be used to find stars to train on. Limited to 3 per day.",
+        "link": ""
+      },
+      {
+        "start": 10,
+        "end": 20,
+        "desc": "Mine iron ore",
+        "link": "https://runescape.wiki/w/Iron_ore#Mine_locations"
+      },
+      {
+        "start": 20,
+        "end": 30,
+        "desc": "Mine coal",
+        "link": "https://runescape.wiki/w/Coal#Mine_locations"
+      },
+      {
+        "start": 30,
+        "end": 40,
+        "desc": "Mine mithril ore",
+        "link": "https://runescape.wiki/w/Mithril_ore#Mine_locations"
+      },
+      {
+        "start": 40,
+        "end": 50,
+        "desc": "Mine adamantite or luminite",
+        "link": "https://runescape.wiki/w/Adamantite_ore#Mine_locations"
+      },
+      {
+        "start": 50,
+        "end": 60,
+        "desc": "Mine runite ore",
+        "link": "https://runescape.wiki/w/Runite_ore#Mine_locations"
+      },
+      {
+        "start": 60,
+        "end": 70,
+        "desc": "Mine orichalcite or drakolith",
+        "link": "https://runescape.wiki/w/Orichalcite_ore#Mine_locations"
+      },
+      {
+        "start": 70,
+        "end": 80,
+        "desc": "Mine phasmatite or necrite",
+        "link": "https://runescape.wiki/w/Necrite_ore#Mine_locations"
+      },
+      {
+        "start": 80,
+        "end": 110,
+        "desc": "Mine banite ore - This can be made more efficient and AFK by combining a perfect juju mining potion (or perfect plus), with the Explosive perk and the use of Stone Spirits to constantly reset the stamina bar to full.",
+        "link": "https://runescape.wiki/w/Banite_ore#Mine_locations"
+      },
+      {
+        "start": 89,
+        "end": 110,
+        "desc": "Mine corrupted ore in Prifddinas - This is a very strong fully afk method as corrupted ore does not have a traditional stamina bar",
+        "link": "https://runescape.wiki/w/Corrupted_ore#Mining"
+      },
+      {
+        "start": 90,
+        "end": 110,
+        "desc": "Mine light animica or dark animica - This can be made more efficient and AFK by combining a perfect juju mining potion (or perfect plus), with the Explosive perk and the use of Stone Spirits to constantly reset the stamina bar to full.",
+        "link": "https://runescape.wiki/w/Light_animica#Mine_locations"
+      },
+      {
+        "start": 100,
+        "end": 110,
+        "desc": "Mine primal ores on Daemonheim - This can be made more efficient and AFK by combining a perfect juju mining potion (or perfect plus), with the Explosive perk and the use of Stone Spirits to constantly reset the stamina bar to full.",
+        "link": "https://runescape.wiki/w/Ores#Primal_ores"
+      }
+    ],
+    "necromancy": [
+      {
+        "start": 1,
+        "end": 30,
+        "desc": "Kill ghostly troll bruiser or thrower, complete gear upgrades",
+        "link": "https://runescape.wiki/w/Necromancy_training#Levels_1–30"
+      },
+      {
+        "start": 30,
+        "end": 40,
+        "desc": "Kill ghostly troll bruiser or thrower, complete Kili's Knowledge I",
+        "link": "https://runescape.wiki/w/Necromancy_training#Levels_30–40"
+      },
+      {
+        "start": 40,
+        "end": 50,
+        "desc": "Kill ankous w/ Salve Amulet or ghouls, complete Kili's Knowledge II",
+        "link": "https://runescape.wiki/w/Necromancy_training#Levels_40–50"
+      },
+      {
+        "start": 50,
+        "end": 60,
+        "desc": "Kill ghouls, shadow warriors, bandits, or fetid zombies W/ Salve amulet",
+        "link": "https://runescape.wiki/w/Necromancy_training#Levels_50–60"
+      },
+      {
+        "start": 60,
+        "end": 90,
+        "desc": "Kill Flesh-Hatcher Mhekarnahz. This entry-level boss provides 50% more experience for your damage dealt compared to other options, which makes it a strong active training method.",
+        "link": ""
+      },
+      {
+        "start": 60,
+        "end": 70,
+        "desc": "Kill armoured zombies or bound skeletons w/ Salve amulet or exiled kalphite marauders.",
+        "link": "https://runescape.wiki/w/Necromancy_training#Levels_60–70"
+      },
+      {
+        "start": 70,
+        "end": 80,
+        "desc": "Kill armoured zombies or bound skeletons w/ Salve amulet or kill abyssal demons or exiled kalphite marauders.",
+        "link": "https://runescape.wiki/w/Necromancy_training#Levels_70–80"
+      },
+      {
+        "start": 80,
+        "end": 90,
+        "desc": "Kill armoured zombies or bound skeletons w/ Salve amulet or kill abyssal demons or abyssal savages.",
+        "link": "https://runescape.wiki/w/Necromancy_training#Levels_80–90"
+      },
+      {
+        "start": 90,
+        "end": 120,
+        "desc": "Kill ravenous ghouls w/ a Blood Essence for permanent aggro, abyssal savages, abyssal beasts, or armoured phantoms. Alternatively, train passively by doing PvM or Slayer.",
+        "link": "https://runescape.wiki/w/Necromancy_training#Levels_90–120"
+      },
+      {
+        "start": 90,
+        "end": 99,
+        "desc": "Perform greater necroplasm or powerful rituals with tier III glyphs - This can be especially useful to reach 30,000 souls in order to unlock the Rasial boss",
+        "link": "https://runescape.wiki/w/Necromancy_training"
+      },
+      {
+        "start": 99,
+        "end": 120,
+        "desc": "Perform greater necroplasm or powerful rituals with tier III glyphs - in many cases this can be faster than training via combat, but it is more active.",
+        "link": "https://runescape.wiki/w/Necromancy_training"
+      }
+    ],
+    "prayer": [
+      {
+        "start": 1,
+        "end": 43,
+        "desc": "Defeat Ivar, King of Bones. He drops a colossal bone every kill that can be buried for 400 Prayer experience.",
+        "link": "https://runescape.wiki/w/Ivar,_King_of_Bones"
+      },
+      {
+        "start": 1,
+        "end": 75,
+        "desc": "Offer Bones or Ashes at the Ectofuntus to unlock the First-Age outfit. Once unlocked, proceed to other methods",
+        "link": "https://runescape.wiki/w/Ectofuntus#How_to_worship"
+      },
+      {
+        "start": 1,
+        "end": 99,
+        "desc": "Use burial powders with bones at bank - For Ironman players, this requires both 90 Hunter and 90 Farming to do, but will yield the fastest EXP rates and is the most efficient.",
+        "link": "https://runescape.wiki/w/Powder_of_burials"
+      },
+      {
+        "start": 1,
+        "end": 99,
+        "desc": "If Burial Powders are not a viable option for you, offer bones at the Wilderness chaos altar, Fort Forinthry chapel altar, or POH altar - These grant different amounts of experience depending on achievement diary completion, altar type, and chapel tier, ranging from +50% to +250%.",
+        "link": "https://runescape.wiki/w/Chaos_Temple_(Wilderness)#Chaos_altar"
+      },
+      {
+        "start": 75,
+        "end": 99,
+        "desc": "Cleansing crystals in Prifddinas - This is a great Ironman Prayer training method so long as you have sufficient GP, as Cleansing Crystals can be purchased for gp in unlimited supplies.",
+        "link": "https://runescape.wiki/w/Cleansing_crystal"
+      },
+      {
+        "start": 75,
+        "end": 99,
+        "desc": "Vyres after the River of Blood quest. This is a combat activity that provides experience in Prayer, Combat, and Firemaking. Very high requirements but is an efficient method of training multiple skills at once.",
+        "link": "https://runescape.wiki/w/Vyrewatch/Strategies"
+      }
+    ],
+    "ranged": [
+      {
+        "start": 1,
+        "end": 20,
+        "desc": "Troll Shamans in Burthorpe north caves",
+        "link": ""
+      },
+      {
+        "start": 1,
+        "end": 20,
+        "desc": "Complete the Circus DnD",
+        "link": ""
+      },
+      {
+        "start": 20,
+        "end": 45,
+        "desc": "Ghost Troll Brutes in Um after the Necromancy! Quest",
+        "link": "https://runescape.wiki/w/Ghost_troll_brute"
+      },
+      {
+        "start": 44,
+        "end": 70,
+        "desc": "Desert Bandits in Bandit Camp w/ 1 piece of Saradomin or Zamorak equipment.",
+        "link": "https://runescape.wiki/w/Bandit_Camp_(Kharidian_Desert)#Training"
+      },
+      {
+        "start": 55,
+        "end": 90,
+        "desc": "Kill Flesh-Hatcher Mhekarnahz. This entry-level boss provides 50% more experience for your damage dealt compared to other options, which makes it a strong active training method.",
+        "link": ""
+      },
+      {
+        "start": 60,
+        "end": 70,
+        "desc": "Abyssal leech/walker/guardian in the Abyss - This is especially good if you have unlocked the Corruption Shot ability. Chinchompas can be used for greater experience rates.",
+        "link": "https://runescape.wiki/w/Abyss/Combat_training"
+      },
+      {
+        "start": 90,
+        "end": 120,
+        "desc": "Abyssal Demons, Savages, Ravenous ghoul w/ Vampyric Blood Essence for Aggression, Abyssal leech/walker/guardian in the Abyss, or Bound Skeletons outside Fort Forinthry w/ Salve Amulet. Alternatively, train passively by doing PvM or Slayer.",
+        "link": "https://runescape.wiki/w/Abyssal_demon"
+      }
+    ],
+    "runecrafting": [
+      {
+        "start": 1,
+        "end": 60,
+        "desc": "Runespan and RuneSpheres - Runespheres are a daily DnD within the Runespan that rewards a flat 25000 experience per day.",
+        "link": "https://runescape.wiki/w/Runespan#Lower_level"
+      },
+      {
+        "start": 60,
+        "end": 110,
+        "desc": "Craft miasma runes, or any Necromancy runes as needed",
+        "link": "https://runescape.wiki/w/Pay-to-play_Runecrafting_training#Crafting_necrotic_runes"
+      },
+      {
+        "start": 65,
+        "end": 110,
+        "desc": "Runecrafting at your highest level altar via the Abyss.",
+        "link": ""
+      },
+      {
+        "start": 80,
+        "end": 110,
+        "desc": "Runecrafting in the Abyss with the Runic Attuner - This will yield the highest experience rates overall.",
+        "link": ""
+      },
+      {
+        "start": 90,
+        "end": 110,
+        "desc": "Craft Soul Runes via the Abyss - This yields the highest experience per Pure Essence, which makes it a very good option for Essence-starved players.",
+        "link": "https://runescape.wiki/w/Pay-to-play_Runecrafting_training#Runecrafting_at_the_soul_altar"
+      },
+      {
+        "start": 104,
+        "end": 110,
+        "desc": "Upgrading Eternal Magic Weapons - This is more afk than traditional Runecrafting and more experience per essence, which makes it good on ironman accounts. You can expect upwards of 250,000 experience per hour doing this method, at a cost of ~2000 pure essence",
+        "link": ""
+      }
+    ],
+    "slayer": [
+      {
+        "start": 1,
+        "end": 9,
+        "desc": "Complete the \"Natural History Museum\" Quiz in Varrock.",
+        "link": ""
+      },
+      {
+        "start": 1,
+        "end": 99,
+        "desc": "Complete Reaper assignments from Death.",
+        "link": "https://runescape.wiki/w/Soul_Reaper#Assignments"
+      },
+      {
+        "start": 35,
+        "end": 120,
+        "desc": "Story Mode Vorkath with a 'Zamouregal's Undead' or 'Blue Dragons' Slayer assignment - Extra Experience can be gained by also using a Scrimshaw of Sacrifice.",
+        "link": "https://runescape.wiki/w/Story_mode#Zemouregal_&_Vorkath"
+      },
+      {
+        "start": 77,
+        "end": 80,
+        "desc": "Obtain the components required to make a Slayer Helmet",
+        "link": "https://runescape.wiki/w/Slayer_helmet"
+      },
+      {
+        "start": 90,
+        "end": 120,
+        "desc": "Train slayer at high level masters that assign tasks you need unique drops from. This could include Creatures of the Lost Grove, Vile Blooms, Nodon Dragonkin, Abyssal Lords, Abyssal Beasts, and Gemstone Dragons",
+        "link": "https://runescape.wiki/w/Slayer_training"
+      }
+    ],
+    "smithing": [
+      {
+        "start": 1,
+        "end": 29,
+        "desc": "Complete The Knight's Sword quest",
+        "link": "https://runescape.wiki/w/The_Knight%27s_Sword/Quick_guide"
+      },
+      {
+        "start": 29,
+        "end": 30,
+        "desc": "Forge steel bars into steel nails",
+        "link": "https://runescape.wiki/w/Pay-to-play_Smithing_training#Levelling_sheets"
+      },
+      {
+        "start": 30,
+        "end": 40,
+        "desc": "For AFK Smithing experience, select a Mithril item that only requires 1 bar so you don't need to reheat it. Using this method you can smith a full inventory of items without clicking. Go all the way to Mithril +2.",
+        "link": "https://runescape.wiki/w/Pay-to-play_Smithing_training#Levelling_sheets"
+      },
+      {
+        "start": 40,
+        "end": 50,
+        "desc": "Forge Adamant burial sets for increased experience (active) or Burial Adamant Gauntlets (AFK) at the Artisan's Workshop.",
+        "link": "https://runescape.wiki/w/Pay-to-play_Smithing_training#Levelling_sheets"
+      },
+      {
+        "start": 50,
+        "end": 60,
+        "desc": "Forge Rune burial sets for increased experience (active) or Burial Rune Gauntlets (AFK) at the Artisan's Workshop.",
+        "link": "https://runescape.wiki/w/Pay-to-play_Smithing_training#Levelling_sheets"
+      },
+      {
+        "start": 60,
+        "end": 70,
+        "desc": "Forge Orikalkum burial sets for increased experience (active) or Burial Orikalkum Gauntlets (AFK) at the Artisan's Workshop.",
+        "link": "https://runescape.wiki/w/Pay-to-play_Smithing_training#Levelling_sheets"
+      },
+      {
+        "start": 70,
+        "end": 80,
+        "desc": "Forge Necronium burial sets for increased experience (active) or Burial Necronium Gauntlets (AFK) at the Artisan's Workshop.",
+        "link": "https://runescape.wiki/w/Pay-to-play_Smithing_training#Levelling_sheets"
+      },
+      {
+        "start": 80,
+        "end": 90,
+        "desc": "Forge bane burial sets for increased experience (active) or Burial Banite Gauntlets (AFK) at the Artisan's Workshop.",
+        "link": "https://runescape.wiki/w/Pay-to-play_Smithing_training#Levelling_sheets"
+      },
+      {
+        "start": 89,
+        "end": 99,
+        "desc": "Forge corrupted ore - Non optimal, but pretty AFK. Additional Corrupted ore can be obtained by using Crystal Keys on the chest in Prifddinas.",
+        "link": "https://runescape.wiki/w/Crystal_chest_(Prifddinas)"
+      },
+      {
+        "start": 90,
+        "end": 100,
+        "desc": "Forge Elder Rune burial sets for increased experience (active) or Burial Elder Rune Gauntlets (AFK) at the Artisan's Workshop.",
+        "link": "https://runescape.wiki/w/Pay-to-play_Smithing_training#Levelling_sheets"
+      },
+      {
+        "start": 100,
+        "end": 110,
+        "desc": "Forge Primal Burial sets for increased experience (active) or Burial Primal Gauntlets (AFK) at the Artisan's Workshop.",
+        "link": "https://runescape.wiki/w/Pay-to-play_Smithing_training#Levelling_sheets"
+      }
+    ],
+    "strength": [
+      {
+        "start": 1,
+        "end": 30,
+        "desc": "Complete the Waterfall Quest",
+        "link": ""
+      },
+      {
+        "start": 1,
+        "end": 20,
+        "desc": "Troll Chucker in Burthorpe north caves",
+        "link": "https://runescape.wiki/w/Troll_chucker"
+      },
+      {
+        "start": 20,
+        "end": 40,
+        "desc": "Ghost Troll Brutes in Um after the Necromancy! Quest",
+        "link": "https://runescape.wiki/w/Ghost_troll_brute"
+      },
+      {
+        "start": 40,
+        "end": 50,
+        "desc": "Ghoul in Canifis or Fetid Zombie outside Fort Forinthry w/ Salve Amulet",
+        "link": "https://runescape.wiki/w/Ghoul"
+      },
+      {
+        "start": 40,
+        "end": 80,
+        "desc": "Desert Bandits in Bandit Camp w/ 1 piece of Saradomin or Zamorak equipment. A Halberd type weapon is recommended for best experience rates.",
+        "link": "https://runescape.wiki/w/Bandit_Camp_(Kharidian_Desert)#Training"
+      },
+      {
+        "start": 50,
+        "end": 70,
+        "desc": "Hellhound in Taverly Dungeon or the Wilderness, or Abyssal leech/walker/guardian in the Abyss. A Halberd type weapon is recommended for best experience rates.",
+        "link": "https://runescape.wiki/w/Abyss/Combat_training"
+      },
+      {
+        "start": 60,
+        "end": 90,
+        "desc": "Kill Flesh-Hatcher Mhekarnahz. This entry-level boss provides 50% more experience for your damage dealt compared to other options, which makes it a strong active training method. If your hit chance is below 100%, consider using a slash weapon and the Dragon Scimitar special attack for improved damage.",
+        "link": ""
+      },
+      {
+        "start": 70,
+        "end": 80,
+        "desc": "Abyssal leech/walker/guardian in the Abyss or Bound Skeletons outside Fort Forinthry w/ Salve Amulet. A Halberd type weapon is recommended for best experience rates.",
+        "link": "https://runescape.wiki/w/Abyss/Combat_training"
+      },
+      {
+        "start": 80,
+        "end": 90,
+        "desc": "Ravenous ghoul w/ Vampyric Blood Essence for Aggression, Abyssal leech/walker/guardian in the Abyss or Bound Skeletons outside Fort Forinthry w/ Salve Amulet. A Halberd type weapon is recommended for best experience rates.",
+        "link": "https://runescape.wiki/w/Ravenous_ghoul"
+      },
+      {
+        "start": 90,
+        "end": 120,
+        "desc": "Abyssal Demons, Savages, or Beasts, Ravenous ghoul w/ Vampyric Blood Essence for Aggression, Abyssal leech/walker/guardian in the Abyss, or Bound Skeletons outside Fort Forinthry w/ Salve Amulet. Alternatively, train passively by doing PvM or Slayer.",
+        "link": "https://runescape.wiki/w/Abyssal_demon"
+      }
+    ],
+    "summoning": [
+      {
+        "start": 1,
+        "end": 4,
+        "desc": "Complete the wolf whistle Quest.",
+        "link": "https://runescape.wiki/w/Wolf_Whistle/Quick_guide"
+      },
+      {
+        "start": 4,
+        "end": 16,
+        "desc": "Make dreadfowl Pouches. Chickens can be killed in Burthorpe and Lumbridge.",
+        "link": "https://runescape.wiki/w/Summoning_training#Maximising_xp/charm,_reasonable_cost_per_pouch"
+      },
+      {
+        "start": 16,
+        "end": 46,
+        "desc": "Make granite crab pouches. Iron ore can be mined at level 15.",
+        "link": "https://runescape.wiki/w/Summoning_training#Maximising_xp/charm,_reasonable_cost_per_pouch"
+      },
+      {
+        "start": 29,
+        "end": 99,
+        "desc": "Infuse pouches at the Shrine of the Spirit Wolf until you have the full Shaman's outfit. Optional: Grey chinchompas can be used as a stackable secondary to make this faster and more relaxed.",
+        "link": "https://runescape.wiki/w/Shrine_of_the_Spirit_Wolf"
+      },
+      {
+        "start": 46,
+        "end": 49,
+        "desc": "Make pyrelord pouches. Tinderboxes can be purchased from the Firemaking Expert in Seers' Village",
+        "link": "https://runescape.wiki/w/Summoning_training#Maximising_xp/charm,_reasonable_cost_per_pouch"
+      },
+      {
+        "start": 49,
+        "end": 55,
+        "desc": "Make bloated leech pouches - Raw meat can be bought from the shop in Canifis.",
+        "link": "https://runescape.wiki/w/Summoning_training#Maximising_xp/charm,_reasonable_cost_per_pouch"
+      },
+      {
+        "start": 55,
+        "end": 89,
+        "desc": "Make spirit jelly pouches - Jugs of water can be purchased from Shantay in Al Kharid",
+        "link": "https://runescape.wiki/w/Summoning_training#Maximising_xp/charm,_reasonable_cost_per_pouch"
+      },
+      {
+        "start": 66,
+        "end": 74,
+        "desc": "Make mithril minotaurs or stranger plants - Mithril bars can be smelted, bagged plants can be purchased from, the Falador garden.",
+        "link": "https://runescape.wiki/w/Summoning_training#Maximising_xp/charm,_reasonable_cost_per_pouch"
+      },
+      {
+        "start": 74,
+        "end": 86,
+        "desc": "Make granite lobster pouches - Granite can be mined in the desert.",
+        "link": "https://runescape.wiki/w/Summoning_training#Maximising_xp/charm,_reasonable_cost_per_pouch"
+      },
+      {
+        "start": 89,
+        "end": 99,
+        "desc": "Make geyser titan pouches - Water talismans can be obtained from the Arch-Glacor, the Sanctum of Rebirth, and pickpocketing Wizard's Tower Mages.",
+        "link": "https://runescape.wiki/w/Summoning_training#Maximising_xp/charm,_reasonable_cost_per_pouch"
+      },
+      {
+        "start": 96,
+        "end": 99,
+        "desc": "Make pack yack pouches - Yak hide can be purchased in Neitiznot",
+        "link": "https://runescape.wiki/w/Summoning_training#Maximising_xp/charm,_reasonable_cost_per_pouch"
+      }
+    ],
+    "thieving": [
+      {
+        "start": 1,
+        "end": 5,
+        "desc": "Pickpocket men and woman in Lumbridge, or Pompous Merchants in Burthorpe",
+        "link": "https://runescape.wiki/w/Thieving_training"
+      },
+      {
+        "start": 5,
+        "end": 15,
+        "desc": "Steal from bakery stalls - This is a good source of early game food.",
+        "link": "https://runescape.wiki/w/Thieving_training"
+      },
+      {
+        "start": 15,
+        "end": 38,
+        "desc": "Pickpocket Gullible Tourists in Menaphos or Pick locks on Thieves' Guild jail doors in the Lumbridge cellar.",
+        "link": "https://runescape.wiki/w/Gullible_tourist"
+      },
+      {
+        "start": 38,
+        "end": 46,
+        "desc": "Pickpocket Master farmers",
+        "link": ""
+      },
+      {
+        "start": 46,
+        "end": 55,
+        "desc": "Pickpocket Menaphos marketeers",
+        "link": ""
+      },
+      {
+        "start": 55,
+        "end": 64,
+        "desc": "Pickpocket Ardougne knights",
+        "link": ""
+      },
+      {
+        "start": 64,
+        "end": 78,
+        "desc": "Pickpocket Wizard's tower mages",
+        "link": ""
+      },
+      {
+        "start": 78,
+        "end": 83,
+        "desc": "Pickpocket Archaeologists",
+        "link": ""
+      },
+      {
+        "start": 83,
+        "end": 95,
+        "desc": "Pickpocket Crux knights",
+        "link": ""
+      },
+      {
+        "start": 90,
+        "end": 99,
+        "desc": "Pickpocket Dwarf traders with Sticky Fingers Relic and Pickpocketing Bag",
+        "link": "https://runescape.wiki/w/Trader"
+      },
+      {
+        "start": 90,
+        "end": 99,
+        "desc": "Safecracking Hidden Safes",
+        "link": "https://runescape.wiki/w/Safecracking#Hidden"
+      },
+      {
+        "start": 95,
+        "end": 108,
+        "desc": "Vault of Hereditas Heist - You may want to wait until level 98 to boost to level 102 with an Abyssal Lurker Scroll, so you can loot the safes. 72 Agility is also recommended for this but is not needed.",
+        "link": ""
+      },
+      {
+        "start": 104,
+        "end": 108,
+        "desc": "Pickpocket Menaphos market guard",
+        "link": ""
+      },
+      {
+        "start": 108,
+        "end": 120,
+        "desc": "The Arsuran Arsenal Heist - You may want to wait until level 110 to boost to level 114 with an Abyssal Lurker Scroll, so you can loot the safes. This is a dangerous activity, and is not a safe death.",
+        "link": ""
+      },
+      {
+        "start": 111,
+        "end": 113,
+        "desc": "Pickpocket TzHaar-Hur traders",
+        "link": ""
+      },
+      {
+        "start": 113,
+        "end": 118,
+        "desc": "Pickpocket Fairy traders",
+        "link": ""
+      },
+      {
+        "start": 118,
+        "end": 120,
+        "desc": "Pickpocket Vyre consumers",
+        "link": ""
+      }
+    ],
+    "woodcutting": [
+      {
+        "start": 1,
+        "end": 10,
+        "desc": "Cut Regular Trees in Lumbridge or Burthorpe",
+        "link": "https://runescape.wiki/w/Pay-to-play_Woodcutting_training"
+      },
+      {
+        "start": 10,
+        "end": 20,
+        "desc": "Cut Oak Trees",
+        "link": "https://runescape.wiki/w/Oak#Locations"
+      },
+      {
+        "start": 20,
+        "end": 40,
+        "desc": "Cut Willow Trees in Draynor Village, or Seers' Village",
+        "link": "https://runescape.wiki/w/Willow#Locations"
+      },
+      {
+        "start": 40,
+        "end": 50,
+        "desc": "Cut Maple Trees in Seers' Village",
+        "link": "https://runescape.wiki/w/Maple_Tree#Locations"
+      },
+      {
+        "start": 35,
+        "end": 68,
+        "desc": "Chop creeping ivy on Havenhythe. Slightly lower experience rates than other methods, but very AFK.",
+        "link": ""
+      },
+      {
+        "start": 50,
+        "end": 68,
+        "desc": "Cut Acadia Trees in Menaphos",
+        "link": "https://runescape.wiki/w/Acadia_tree#Locations"
+      },
+      {
+        "start": 68,
+        "end": 94,
+        "desc": "Cut Ivy. You may choose to chop other trees if you need logs or wood box upgrades.",
+        "link": "https://runescape.wiki/w/Pay-to-play_Woodcutting_training"
+      },
+      {
+        "start": 94,
+        "end": 96,
+        "desc": "Cut Crystal Trees",
+        "link": ""
+      },
+      {
+        "start": 96,
+        "end": 110,
+        "desc": "Cut Golden Bamboo on the arc",
+        "link": "https://runescape.wiki/w/Golden_Bamboo_(tree)"
+      },
+      {
+        "start": 100,
+        "end": 110,
+        "desc": "Cut eternal magic trees",
+        "link": "https://runescape.wiki/w/Eternal_magic_tree#Locations"
+      }
+    ]
+  }
+}

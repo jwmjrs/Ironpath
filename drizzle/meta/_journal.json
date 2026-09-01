@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1788118851110,
+      "tag": "0000_gigantic_anita_blake",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788118866084,
+      "tag": "0001_clever_living_lightning",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1788120000000,
+      "tag": "0002_group_drop_archive",
+      "breakpoints": true
+    }
+  ]
+}
