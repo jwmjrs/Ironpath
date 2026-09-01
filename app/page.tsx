@@ -1,24 +1,10 @@
 'use client';
 
-import { BookOpen, Boxes, CalendarCheck2, Check, ChevronRight, CircleDot, Clock3, Coins, Crown, Dice5, Dumbbell, ExternalLink, Gem, LayoutDashboard, Leaf, ListChecks, Medal, Plus, RefreshCw, Search, Shield, Sparkles, Trash2, Trophy, Users, Wrench } from 'lucide-react';
+import { BookOpen, Boxes, CalendarCheck2, Check, ChevronRight, CircleDot, Clock3, Coins, Dice5, Dumbbell, ExternalLink, Gem, LayoutDashboard, Leaf, ListChecks, Medal, RefreshCw, Search, Shield, Sparkles, Trophy, Users, Wrench } from 'lucide-react';
 import { FormEvent, useEffect, useState } from 'react';
 import progressData from './data/efficient-progress.json';
 import { ironTasks, type IronTask } from './data/random-tasks';
 
-const milestoneCandidates = [
-  { id:'part1-002-the-blood-pact', title:'Complete The Blood Pact', detail:'Start the route with an early quest and useful combat rewards.', scope:'Personal', skills:[] },
-  { id:'part1-003-the-restless-ghost', title:'Complete The Restless Ghost', detail:'Quick quest points and an early progression requirement.', scope:'Personal', skills:[] },
-  { id:'part1-004-cook-s-assistant', title:"Complete Cook's Assistant", detail:'A fast early quest and a foundation for the group route.', scope:'Personal', skills:[] },
-  { id:'part1-006-complete-the-archaeology-tutorial-at-the-varrock-dig-site-and-activate-the-font-of-life-relic', title:'Complete the Archaeology tutorial', detail:'Unlock the Font of Life relic and an early source of progress.', scope:'Personal', skills:[] },
-  { id:'part1-007-necromancy', title:'Complete Necromancy!', detail:'Pick up early Necromancer gear and establish a combat style.', scope:'Personal', skills:[] },
-  { id:'part1-010-druidic-ritual', title:'Complete Druidic Ritual', detail:'Unlock Herblore for supplies and future quest requirements.', scope:'Personal', skills:[] },
-  { id:'part1-011-wolf-whistle', title:'Unlock Summoning through Wolf Whistle', detail:'Open an essential Ironman combat and utility skill.', scope:'Personal', skills:[] },
-  { id:'skill-mining-20', title:'Reach Mining level 20', detail:'A useful early gathering milestone for ores and quest preparation.', scope:'Personal', skills:[['Mining',20]] },
-  { id:'skill-crafting-20', title:'Reach Crafting level 20', detail:'Build toward self-made gear, jewellery and key unlocks.', scope:'Personal', skills:[['Crafting',20]] },
-  { id:'skill-divination-20', title:'Reach Divination level 20', detail:'Begin building toward Guthixian Cache and future Invention.', scope:'Personal', skills:[['Divination',20]] },
-  { id:'group-mining-40', title:'Have a member reach Mining level 40', detail:'Assign the closest member and build the group’s ore supply.', scope:'Group', skills:[['Mining',40]] },
-  { id:'group-crafting-40', title:'Have a member reach Crafting level 40', detail:'Set up a crafter for early equipment and jewellery needs.', scope:'Group', skills:[['Crafting',40]] },
-] as const;
 const nav = [[LayoutDashboard, 'Overview'], [Trophy, 'Dashboard'], [CalendarCheck2, 'Distractions and Diversions'], [Dice5, 'Task Generator']] as const;
 const themes = [
   ['necromancy','Necromancy'], ['classic','Classic'], ['gielinor','Gielinor'], ['prifddinas','Prifddinas'], ['kharidian','Kharidian'], ['wilderness','Wilderness'], ['saradomin','Saradomin'], ['zamorak','Zamorak'],
@@ -149,8 +135,6 @@ export default function Home() {
   function changeTheme(value: Theme) { setTheme(value); window.localStorage.setItem('ironpath-theme', value); }
   function choosePreferredMember(name:string) { setPreferredMember(name); window.localStorage.setItem('ironpath-preferred-member',name); }
   function unsyncGroup() { if (!window.confirm('Unsync this group from this browser? Your shared workspace will not be deleted.')) return; setGroupData(null); setPreferredMember(''); window.localStorage.removeItem('ironpath-hiscore-result'); window.localStorage.removeItem('ironpath-hiscore-group'); window.localStorage.removeItem('ironpath-preferred-member'); }
-  function completeRoadmapTask(id:string) { try { const current = JSON.parse(window.localStorage.getItem('ironpath-efficient-progress') || '{}') as Record<string,boolean>; window.localStorage.setItem('ironpath-efficient-progress',JSON.stringify({ ...current,[id]:true })); } catch { /* ignore local storage failure */ } }
-  function updateWorkspace<K extends keyof WorkspaceData>(key: K, value: WorkspaceData[K]) { if (!workspace) return; const next = { ...workspace, data:{ ...workspace.data, [key]:value }, updatedAt:Date.now() }; setWorkspace(next); fetch('/api/workspace',{method:'PUT',headers:{'content-type':'application/json','x-ironpath-workspace':workspace.id,'x-ironpath-token':workspace.token},body:JSON.stringify({name:workspace.name,data:next.data})}).catch(()=>{}); }
   const views: Record<string, React.ReactNode> = {
     Overview: <Overview groupData={groupData} goTo={setActive} unsyncGroup={unsyncGroup} />,
     Dashboard: <HiScoresView result={groupData} setResult={setGroupData} workspace={workspace} setWorkspace={setWorkspace} preferredMember={preferredMember} setPreferredMember={choosePreferredMember} />,
@@ -243,7 +227,7 @@ function HiScoresView({ result, setResult, workspace, setWorkspace, preferredMem
     const query = result.players.map(player => `player=${encodeURIComponent(player.name)}`).join('&');
     setActivityLoading(true);
     fetch(`/api/activities?${query}${activityRefresh ? `&refresh=${activityRefresh}` : ''}`, { cache:'no-store' })
-      .then(response => response.ok ? response.json() : { activities:[],members:[] })
+      .then(response => response.ok ? response.json() as Promise<{ activities?:GroupActivity[];members?:ActivityMember[] }> : { activities:[],members:[] })
       .then((data: { activities?:GroupActivity[];members?:ActivityMember[] }) => { setActivities(data.activities || []); setActivityMembers(data.members || []); })
       .catch(() => { setActivities([]); setActivityMembers([]); })
       .finally(() => setActivityLoading(false));
@@ -305,7 +289,7 @@ function HiScoresView({ result, setResult, workspace, setWorkspace, preferredMem
     <form className="lookup-panel panel" onSubmit={refresh}>
       <label className="field group-field"><span>Group name</span><input value={group} onChange={event => setGroup(event.target.value)} placeholder="Enter exact group name" /></label>
       <label className="field"><span>Group size</span><select value={size} onChange={event => setSize(event.target.value)}><option value="2">2 members</option><option value="3">3 members</option><option value="4">4 members</option><option value="5">5 members</option></select></label>
-      <label className="mode-toggle"><input type="checkbox" checked={competitive} onChange={event => setCompetitive(event.target.checked)} /><span><strong>Competitive</strong></span></label>
+      <label className="mode-toggle"><input type="checkbox" aria-label="Competitive mode" checked={competitive} onChange={event => setCompetitive(event.target.checked)} /><span><strong>Competitive mode</strong></span></label>
       <button className="primary-button lookup-button" disabled={loading}>{loading ? <RefreshCw className="spin" size={16} /> : <Search size={16} />}{loading ? 'Refreshing…' : 'Look up group'}</button>
     </form>
     {error && <div className="error-banner">{error}</div>}
@@ -332,12 +316,12 @@ function HiScoresView({ result, setResult, workspace, setWorkspace, preferredMem
       </section>
       <GroupDropLog group={result.group} players={result.players.map(player => player.name)} workspace={workspace} preferredMember={preferredMember} />
       <section className="panel activity-panel">
-        <div className="panel-heading"><div><p className="eyebrow">Adventurer's Log</p><h3>See what your group has been up to</h3></div><a className="source-note source-link-inline" href="https://runescape.wiki/w/Application_programming_interface" target="_blank" rel="noreferrer">RuneMetrics API reference <ExternalLink size={12}/></a></div>
+        <div className="panel-heading"><div><p className="eyebrow">Adventurer&apos;s Log</p><h3>See what your group has been up to</h3></div><a className="source-note source-link-inline" href="https://runescape.wiki/w/Application_programming_interface" target="_blank" rel="noreferrer">RuneMetrics API reference <ExternalLink size={12}/></a></div>
         <div className="activity-controls"><div className="activity-filter"><label><span>Showing activity for</span><select value={activityMember} onChange={event => setActivityMember(event.target.value)}><option value="all">All members ({activities.length})</option>{activityMembers.map(member => <option value={member.name} key={member.name}>{member.name} ({activities.filter(activity => activity.player === member.name).length})</option>)}</select></label><button className="secondary-button activity-refresh" onClick={() => setActivityRefresh(value => value + 1)} disabled={activityLoading}><RefreshCw className={activityLoading ? 'spin' : ''} size={14}/> Retry all logs</button></div><div className="activity-member-status">{activityMembers.map(member => <span className={member.stale ? 'stale' : member.available ? 'available' : 'unavailable'} key={member.name}><i/>{member.name}{(member.stale || !member.available) && <small>{member.reason}</small>}</span>)}</div></div>
-        {activityLoading ? <div className="small-empty"><RefreshCw className="spin" size={22}/><h3>Gathering group milestones</h3><p>Checking every member's public RuneMetrics activity log. Temporary failures are retried automatically.</p></div> : visibleActivities.length ? <div className="activity-feed">{visibleActivities.map((activity,index) => <article key={`${activity.player}-${activity.timestamp}-${index}`}><div className="activity-avatar">{activity.player.slice(0,2).toUpperCase()}</div><div className="activity-copy"><div><strong>{activity.text}</strong><span>{activity.player}</span></div><p>{activity.details}</p></div><time dateTime={new Date(activity.timestamp).toISOString()}>{activity.date}</time></article>)}</div> : <div className="small-empty"><Clock3 size={22}/><h3>No public milestones found</h3><p>{activityMember === 'all' ? 'Members must set their RuneMetrics profile and online status to public for activities to appear.' : `No recent public activities were returned for ${activityMember}.`}</p></div>}
+        {activityLoading ? <div className="small-empty"><RefreshCw className="spin" size={22}/><h3>Gathering group milestones</h3><p>Checking every member&apos;s public RuneMetrics activity log. Temporary failures are retried automatically.</p></div> : visibleActivities.length ? <div className="activity-feed">{visibleActivities.map((activity,index) => <article key={`${activity.player}-${activity.timestamp}-${index}`}><div className="activity-avatar">{activity.player.slice(0,2).toUpperCase()}</div><div className="activity-copy"><div><strong>{activity.text}</strong><span>{activity.player}</span></div><p>{activity.details}</p></div><time dateTime={new Date(activity.timestamp).toISOString()}>{activity.date}</time></article>)}</div> : <div className="small-empty"><Clock3 size={22}/><h3>No public milestones found</h3><p>{activityMember === 'all' ? 'Members must set their RuneMetrics profile and online status to public for activities to appear.' : `No recent public activities were returned for ${activityMember}.`}</p></div>}
       </section>
       </div>
-      <section className="panel dashboard-share-key"><div><p className="eyebrow">Shared drop archive</p><h3>{workspace ? 'Share your group’s item history' : 'Create a private drop archive key'}</h3><p>{workspace ? 'Copy this key for trusted group members. It only connects everyone to the shared drop archive, so item history and past drops appear together.' : 'Create a private key to combine your group’s item history and archived drops. Checklists, routes, and personal progress remain private to each device.'}</p></div><div className="dashboard-share-actions"><button className="primary-button" onClick={workspace ? copyPrivateGroupKey : createPrivateGroupKey}>{workspace ? 'Copy drop archive key' : 'Create and copy archive key'}</button>{shareMessage && <span role="status">{shareMessage}</span>}</div></section>
+      <section className="panel dashboard-share-key"><div><p className="eyebrow">Shared drop archive</p><h3>{workspace ? 'Share your group’s item history' : 'Create a private drop archive key'}</h3><p>{workspace ? 'Copy this key for trusted group members. It only connects everyone to the shared drop archive, so item history and past drops appear together.' : 'Create a private key to combine your group’s item history and archived drops. Checklists, routes, and personal progress remain private to each device.'}</p></div><div className="dashboard-share-actions"><button className="primary-button" onClick={workspace ? copyPrivateGroupKey : createPrivateGroupKey}>{workspace ? 'Copy drop archive key' : 'Create and copy archive key'}</button>{shareMessage && <output>{shareMessage}</output>}</div></section>
     </>}
   </div>;
 }
@@ -350,7 +334,7 @@ function GroupDropLog({ group, players, workspace, preferredMember }:{ group:str
   const [loading, setLoading] = useState(true);
   const [historyOpen, setHistoryOpen] = useState(false); const [historyItem, setHistoryItem] = useState(''); const [historyQuantity, setHistoryQuantity] = useState('1'); const [historyPlayer, setHistoryPlayer] = useState(players[0] || ''); const [historyDate, setHistoryDate] = useState(new Date().toISOString().slice(0,10)); const [bulkHistory, setBulkHistory] = useState(''); const [historyMessage, setHistoryMessage] = useState(''); const [savingHistory, setSavingHistory] = useState(false); const [archiveRefresh, setArchiveRefresh] = useState(0);
   useEffect(() => { if (players.includes(preferredMember)) setMember(preferredMember); }, [preferredMember,players.join('|')]);
-  useEffect(() => { const query = players.map(player => `player=${encodeURIComponent(player)}`).join('&'); setLoading(true); fetch(`/api/drops?group=${encodeURIComponent(group)}&${query}`,{cache:'no-store'}).then(response => response.ok ? response.json() : { events:[] }).then((data:{events?:LoggedDrop[]}) => setDropEvents(data.events || [])).catch(() => setDropEvents([])).finally(() => setLoading(false)); },[group,players.join('|'),archiveRefresh]);
+  useEffect(() => { const query = players.map(player => `player=${encodeURIComponent(player)}`).join('&'); setLoading(true); fetch(`/api/drops?group=${encodeURIComponent(group)}&${query}`,{cache:'no-store'}).then(response => response.ok ? response.json() as Promise<{events?:LoggedDrop[]}> : { events:[] }).then((data:{events?:LoggedDrop[]}) => setDropEvents(data.events || [])).catch(() => setDropEvents([])).finally(() => setLoading(false)); },[group,players.join('|'),archiveRefresh]);
   const visible = (member === 'all' ? dropEvents : dropEvents.filter(drop => drop.player === member)).filter(drop => `${drop.item} ${drop.player}`.toLowerCase().includes(search.toLowerCase()));
   const rows = Object.values(visible.reduce<Record<string,{ item:string; quantity:number; events:LoggedDrop[] }>>((groups, drop) => { const key = drop.item.toLocaleLowerCase(); const group = groups[key] || { item:drop.item,quantity:0,events:[] }; group.quantity += drop.quantity; group.events.push(drop); groups[key] = group; return groups; }, {})).sort((a,b) => Math.max(...b.events.map(event => event.timestamp)) - Math.max(...a.events.map(event => event.timestamp)));
   const previewRows = [['Dragon hatchet',1,players[0] || 'Group member'],['Armadyl crossbow',1,players[1] || players[0] || 'Group member'],['Ranarr seed',6,players[0] || 'Group member'],['Moss golem pet',1,players[2] || players[0] || 'Group member']].map(([item,quantity,player], index) => ({ item:item as string,quantity:quantity as number,events:[{ item:item as string,quantity:quantity as number,player:player as string,date:`Example · ${4-index} days ago`,timestamp:Date.now()-(index+1)*86_400_000,source:'Example preview' }] }));
@@ -414,10 +398,6 @@ function TaskGenerator({ groupData, preferredMember }:{ groupData:HiscoreResult|
     </section>
     <section className="generator-principles"><article><Shield size={20}/><strong>Ironman-first</strong><p>Tasks emphasize self-sufficient supplies, unlocks and account progress.</p></article><article><Users size={20}/><strong>Group-aware</strong><p>Skill-gated rolls can be assigned to a currently suitable team member.</p></article><article><Clock3 size={20}/><strong>Reasonable scope</strong><p>Quick, focused and long tasks avoid absurd grinds or fragile drop-rate promises.</p></article></section>
   </div>;
-}
-
-function ConnectGroup({ goTo }: { goTo: (view: string) => void }) {
-  return <div className="content feature-page"><section className="connect-card panel"><div className="journey-emblem"><Shield size={24} /></div><p className="eyebrow">First-time setup</p><h2>Connect your Group Ironman team</h2><p>Look up your official RuneScape group once. Ironpath will use that roster and its live totals throughout the entire app.</p><button className="primary-button" onClick={() => goTo('Dashboard')}><Search size={15} /> Look up my group</button></section></div>;
 }
 
 const ironmanUnlocks = [
@@ -521,7 +501,7 @@ function EfficientProgressView({ groupData, preferredMember, shared, setShared=(
       </section>
     </div> : view === 'Training' ? <section className="training-layout">
       <div className="panel training-controls"><div><p className="eyebrow">Training lookup</p><h3>Choose a skill</h3></div><label className="field"><span>Skill</span><select value={skill} onChange={event => setSkill(event.target.value)}>{skills.map(value => <option value={value} key={value}>{titleCase(value)}</option>)}</select></label>{groupData && <label className="field"><span>Use member level</span><select value={member} onChange={event => setMember(event.target.value)}>{groupData.players.map(player => <option key={player.name}>{player.name}</option>)}</select></label>}<div className="level-summary" aria-label={`Current ${titleCase(skill)} level`}><span>Current level</span><strong>{currentLevel ?? '—'}</strong><small>{selectedPlayer?.name || 'Choose a member'}</small></div></div>
-      <div className="method-grid">{methods.map((method, index) => { const current = currentLevel !== undefined && currentLevel >= method.start && currentLevel <= method.end; return <article className={current ? 'panel method-card current' : 'panel method-card'} key={`${skill}-${method.start}-${method.end}-${index}`}><div><span className="level-range">Levels {method.start}–{method.end}</span>{current && <span className="current-tag">Current</span>}</div><p>{method.desc}</p>{method.link && <a href={method.link} target="_blank" rel="noreferrer">RuneScape Wiki <ExternalLink size={12}/></a>}</article>; })}</div>
+      <div className="method-grid">{methods.map((method, index) => { const current = currentLevel !== undefined && currentLevel >= method.start && currentLevel <= method.end; return <article className={current ? 'panel method-card current' : 'panel method-card'} key={`${skill}-${method.start}-${method.end}-${index}`}><div><span className="level-range">Levels {method.start}–{method.end}</span>{current && <span className="current-tag">Current</span>}</div><p>{method.desc}</p>{'link' in method && method.link && <a href={method.link} target="_blank" rel="noreferrer">RuneScape Wiki <ExternalLink size={12}/></a>}</article>; })}</div>
     </section> : <EfficientFamiliarsView player={selectedPlayer} />}
     <p className="guide-credit"><BookOpen size={14}/> Progression and training data adapted from the <a href={progressData.source.wiki} target="_blank" rel="noreferrer">RuneScape Wiki source</a>. Guide data retrieved {progressData.source.retrieved}.</p>
   </div>;
@@ -615,6 +595,10 @@ function ArmourEffectsSection() {
   return <section className="general-info-section panel armour-effects"><div className="panel-heading"><div><p className="eyebrow">Mid to late game · 60+ Defence</p><h3>Relevant armour effects</h3></div></div><p className="general-section-note">Open an entry for its requirements, published numeric effects, trigger condition, and where it earns its place on an Ironman account.</p><div className="armour-effect-list">{armourEffects.map(([name, role, stats, passive, trigger, use]) => <details key={name}><summary><span><strong>{name}</strong><small>{role}</small></span><ChevronRight size={16}/></summary><div className="armour-detail-grid"><div><span>Numbers</span><p>{stats}</p></div><div><span>Passive effect</span><p>{passive}</p></div><div><span>Trigger</span><p>{trigger}</p></div><div><span>Practical use</span><p>{use}</p></div></div></details>)}</div></section>;
 }
 
+/*
+ * Retired Group Hub implementation. The previous source remains available in
+ * Git history and is documented in app/legacy/group-hub-archive.ts.
+ * It is intentionally excluded from the active bundle.
 const journeyTiers = [
   ['Tier 0','Unlock Group Storage with 30 spaces','Collect group armour, reach the opening total-level target, and complete Cook’s Assistant as a team.'],
   ['Tier 1','Add 20 Group Storage spaces','Build early quest points and complete the opening Misthalin journey requirements.'],
@@ -668,6 +652,8 @@ function JourneyTierPanel({groupData,data,toggle}:{groupData:HiscoreResult|null;
   function requirementComplete(requirement:JourneyRequirement) { if(requirement.quest){ const completed=members.filter(member=>questChecks[member.name]?.has(requirement.quest!.toLowerCase())); return requirement.allMembers ? members.length>0 && completed.length===members.length : completed.length>0; } if(requirement.totalLevelPerMember) return Boolean(groupData && groupData.totalLevel >= requirement.totalLevelPerMember*members.length); if(requirement.skill){ const [skill,level]=requirement.skill; return members.some(member=>(member.skills.find(value=>value.name===skill)?.level || 0)>=level); } return Boolean(data.journey[`requirement:${requirement.id}`]); }
   return <section className="panel hub-list-panel journey-tier-panel"><div className="panel-heading"><div><p className="eyebrow">Official GIM progression</p><h3>Journey tiers</h3><p className="journey-tier-note">Open a tier to see its requirements and what the reward means for the group.</p></div><div className="journey-tier-actions"><button className="secondary-button" onClick={syncJourney} disabled={!members.length||syncing}>{syncing?'Syncing…':'Sync quest checks'}</button><a className="source-link" href="https://runescape.wiki/w/Group_Ironman_Mode/Strategies#Journey_tiers" target="_blank" rel="noreferrer">Requirements source <ExternalLink size={13}/></a></div></div>{journeyTiers.map(([tier,reward,detail])=>{ const requirements=journeyRequirements[tier]||[]; const complete=requirements.filter(requirementComplete).length; return <details className={data.journey[tier]?'journey-tier done':'journey-tier'} key={tier}><summary><span><strong>{tier}</strong><small>{reward}</small></span><em>{complete}/{requirements.length} verified</em><ChevronRight size={16}/></summary><div className="journey-tier-body"><p>{detail}</p>{requirements.map(requirement=>{ const complete=requirementComplete(requirement); const automatic=Boolean(requirement.quest||requirement.totalLevelPerMember||requirement.skill); return <article className={complete?'journey-requirement complete':'journey-requirement'} key={requirement.id}><button className="route-check" disabled={automatic} onClick={()=>!automatic&&toggle(`requirement:${requirement.id}`)} aria-label={`${complete?'Mark incomplete':'Mark complete'} ${requirement.text}`}>{complete&&<Check size={14}/>}</button><div><strong>{requirement.text}</strong><p>{requirement.explanation}</p>{automatic&&<small>{questChecks && Object.keys(questChecks).length?'Synced from public character data':'Sync to check automatically'}</small>}</div></article>})}<button className="secondary-button journey-tier-finish" onClick={()=>toggle(tier)}>{data.journey[tier]?'Mark tier incomplete':'Mark tier complete'}</button></div></details>;})}</section>;
 }
+*/
+
 const shopRuns = [
   ['Runes and magic','Zaff, Betty, Aubury, Lunar Isle and Void Knight shops','Combat runes, nature runes, astral runes, staves and spell supplies','Prioritise runes for teleports, alchemy and combat. Check stock when you are already nearby rather than making a long detour.'],
   ['Herblore supplies','Taverley, Prifddinas and Granny Rowan','Vials of water, bomb vials and useful secondaries','Buy capped basics that save gathering time; pair this with farm runs instead of buying everything blindly.'],
@@ -675,12 +661,6 @@ const shopRuns = [
   ['Armoury disassembly','White Knight Armoury, Lowe, Betty, Zaff and Ali Morrisane','Weapons, armour, bows, staves, wands and blackjacks','Good low-effort component stock. White Knight equipment needs the Armoury access unlock.'],
   ['Summoning','Taverley and Amlodd','Spirit shards and pouch-making supplies','Keep shards available before long charm sessions so training does not stop halfway through.'],
   ['Construction','Sawmills, Fort Forinthry and Prifddinas','Logs, planks, limestone bricks and bolts of cloth','Buy what supports your current build; Fort stock is especially convenient while progressing its buildings.'],
-] as const;
-const pvmMilestones = [
-  ['War’s Retreat teleport','10 total boss kills'],['Altar of War','200 boss kills'],['Adrenaline crystal','1,000 boss kills'],['Reaper points for hydrix','Complete regular Soul Reaper assignments'],['Entry-level GWD1 gear','Target useful power armour and components'],['Necromancy T70–T90 tasks','Complete Kili upgrade paths'],['Invention-ready combat set','Augment weapon, body and legs'],['Overloads','Reach or boost to 96 Herblore'],['Curses and prayer sustain','Temple at Senntisten plus a Prayer training plan'],['Group boss roles','Assign damage, support and supply responsibilities'],
-] as const;
-const estateTasks = [
-  ['Player-owned Farm','Set breeding pairs and bean targets'],['Herb runs','Choose priority herbs and seed sources'],['Secondary ingredients','Track white berries, potato cactus, limpwurt and fungi'],['Kingdom approval','Keep approval near 100%'],['Kingdom treasury','Maintain sufficient coins for collection cycles'],['Kingdom allocation','Choose herbs, hardwood, maples or fish'],['Player-owned Ports','Send voyages and prioritise story progress'],['Trade goods','Track bones, spices, chi, lacquer and plate'],['Water filtration','Claim passive Fort Forinthry rewards'],
 ] as const;
 const inventionSources = [
   ['Precise','Broad arrowheads, bows and ranged-shop equipment','Buy broad arrowheads after Slayer unlocks; save bows from training.','Weapon and tool perks'],['Precious','Slayer rings','Buy enchanted gem packs, craft rings of slaying, then disassemble.','Scavenging and equipment siphons'],['Powerful','Insulated boots, battlestaves and terrorbird pouches','Slayer masters and magic shops are reliable sources; do not disassemble your only useful gear.','Augmentors and useful devices'],['Simple','Maple or acadia logs and divine energy products','Keep ordinary logs from Woodcutting or Kingdom rather than selling them all.','Divine charges and devices'],['Dextrous','Shortbows, claws and ranged armour','String self-made shortbows and save shop bows when convenient.','Equipment siphons and rod-o-matics'],['Enhancing','Slayer rings','Craft extras from gem packs during Slayer shop runs.','Augmentors'],['Protective','White Knight armour, smithed armour and dragonhide','Armoury stock and Smithing training provide steady batches.','Armour gizmos'],['Historic','Venator artefacts and archaeology materials','Keep duplicate Archaeology artefacts after collections are satisfied.','Ancient gizmos and early ancient perks'],['Vintage','Completed high-level archaeology artefacts','Use duplicate completed artefacts after checking collection needs.','Crackling, Relentless and Fortune combinations'],['Fortunate','Clue-scroll fortunate items','Only disassemble surplus fortunate items after confirming you do not need the item.','Alchemical onyx and hydrix products'],
@@ -711,6 +691,11 @@ function InventionView() {
   return <div className="content feature-page"><section className="feature-heading"><div><p className="date-line">IRONMAN REFERENCE</p><h2>Invention</h2><p>Quick component sources and sensible items to keep before you disassemble.</p></div></section><section><div className="panel invention-search"><div><p className="eyebrow">Complete material catalogue</p><h3>{rows.length} of {inventionCatalogue.length} materials</h3></div><label className="route-search"><Search size={15}/><input value={query} onChange={event=>setQuery(event.target.value)} placeholder="Search materials, perks or sources" /></label></div><div className="method-grid">{rows.map(row=><ComponentCard {...row} key={row.component}/>)}</div></section></div>;
 }
 
+/*
+ * Retired Group Hub view. See app/legacy/group-hub-archive.ts for recovery notes.
+ * The implementation is intentionally excluded from the active bundle.
+ */
+/*
 function GroupHubView({ groupData, workspace, setWorkspace, updateWorkspace, preferredMember, embedded=false }: { groupData:HiscoreResult|null; workspace:Workspace|null; setWorkspace:(value:Workspace|null)=>void; updateWorkspace:<K extends keyof WorkspaceData>(key:K,value:WorkspaceData[K])=>void; preferredMember:string; embedded?:boolean }) {
   const [tab,setTab] = useState<'Invention'|'Requests'>('Invention');
   const [name,setName] = useState(groupData?.group || ''); const [code,setCode] = useState(''); const [error,setError] = useState(''); const [loading,setLoading] = useState(false);
@@ -735,6 +720,7 @@ function GroupHubView({ groupData, workspace, setWorkspace, updateWorkspace, pre
     {tab==='Estate'&&<><section className="estate-summary"><article className="panel"><Leaf size={22}/><span>Farm and Herblore</span><strong>{estateTasks.slice(0,3).filter(([name])=>data.farming[name]).length}/3</strong></article><article className="panel"><Coins size={22}/><span>Kingdom and passive resources</span><strong>{estateTasks.slice(3).filter(([name])=>data.farming[name]).length}/{estateTasks.length-3}</strong></article></section><section className="panel hub-list-panel">{estateTasks.map(([name,detail])=><article className={data.farming[name]?'hub-check-row done':'hub-check-row'} key={name}><button className="route-check" onClick={()=>toggleRecord('farming',name)}>{data.farming[name]&&<Check size={14}/>}</button><div><strong>{name}</strong><p>{detail}</p></div></article>)}</section></>}
   </div>;
 }
+*/
 
 function RepeatablesView({ shared, setShared=()=>{}, groupData, preferredMember }: { shared?:Record<string,boolean>; setShared?:(value:Record<string,boolean>)=>void; groupData:HiscoreResult|null; preferredMember:string }) {
   const [period, setPeriod] = useState<keyof typeof repeatables>('Daily');
@@ -793,9 +779,9 @@ function skillIconUrl(skill:string) { return `https://runescape.wiki/Special:Fil
 function titleCase(value: string) { return value.replace(/\b\w/g, letter => letter.toUpperCase()); }
 function resetLabel(period: keyof typeof repeatables) {
   const now = new Date(); const next = new Date(now);
-  if (period === 'Daily') next.setUTCDate(next.getUTCDate() + 1), next.setUTCHours(0,0,0,0);
+  if (period === 'Daily') { next.setUTCDate(next.getUTCDate() + 1); next.setUTCHours(0,0,0,0); }
   else if (period === 'Weekly') { const days = (10 - next.getUTCDay()) % 7 || 7; next.setUTCDate(next.getUTCDate() + days); next.setUTCHours(0,0,0,0); }
-  else next.setUTCMonth(next.getUTCMonth() + 1, 1), next.setUTCHours(0,0,0,0);
+  else { next.setUTCMonth(next.getUTCMonth() + 1, 1); next.setUTCHours(0,0,0,0); }
   const hours = Math.max(0, Math.floor((next.getTime() - now.getTime()) / 3600000));
   return hours > 48 ? `${Math.floor(hours / 24)}d ${hours % 24}h` : `${hours}h ${Math.floor(((next.getTime() - now.getTime()) % 3600000) / 60000)}m`;
 }
