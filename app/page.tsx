@@ -50,6 +50,7 @@ const themes = [
   ['classic', 'Classic'],
   ['necromancy', 'Necromantic'],
   ['wilderness', 'Wilderness'],
+  ['infernal-wilderness', 'Wilderness: Infernal'],
 ] as const;
 type Theme = (typeof themes)[number][0];
 function isTheme(value: string | null): value is Theme {
@@ -990,6 +991,17 @@ function ArchaeologyCollectionsView() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [checked, setChecked] = useState<Record<string, boolean>>({});
+  const [images, setImages] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    fetch('/api/archaeology-images?kind=collectors', { cache: 'no-store' })
+      .then(async (response) => {
+        if (!response.ok) throw new Error('Collector images unavailable');
+        return (await response.json()) as { images?: Record<string, string> };
+      })
+      .then((payload) => setImages(payload.images || {}))
+      .catch(() => setImages({}));
+  }, []);
 
   useEffect(() => {
     try {
@@ -1012,6 +1024,17 @@ function ArchaeologyCollectionsView() {
       );
       return next;
     });
+  }
+  function snapToPageEnd() {
+    const scrollToEnd = () =>
+      window.scrollTo({
+        top: Math.max(document.documentElement.scrollHeight, document.body.scrollHeight),
+        behavior: 'auto',
+      });
+    window.requestAnimationFrame(() =>
+      window.requestAnimationFrame(scrollToEnd),
+    );
+    window.setTimeout(scrollToEnd, 140);
   }
 
   useEffect(() => {
@@ -1055,6 +1078,26 @@ function ArchaeologyCollectionsView() {
     };
   }, [selected]);
 
+  useEffect(() => {
+    if (!result) return;
+    const titles = [
+      result.collector.name,
+      ...result.collections.flatMap((collection) => collection.artefacts),
+    ];
+    if (!titles.length) return;
+    fetch(`/api/archaeology-images?titles=${encodeURIComponent(titles.join('|'))}`, {
+      cache: 'no-store',
+    })
+      .then(async (response) => {
+        if (!response.ok) throw new Error('Collection images unavailable');
+        return (await response.json()) as { images?: Record<string, string> };
+      })
+      .then((payload) =>
+        setImages((current) => ({ ...current, ...payload.images })),
+      )
+      .catch(() => undefined);
+  }, [result]);
+
   return (
     <div className="content feature-page archaeology-page">
       <section className="feature-heading">
@@ -1088,10 +1131,25 @@ function ArchaeologyCollectionsView() {
                   ? 'archaeology-collector active'
                   : 'archaeology-collector'
               }
-              onClick={() => setSelected(collector)}
+              onClick={() =>
+                setSelected((current) =>
+                  current?.name === collector.name ? null : collector,
+                )
+              }
             >
-              <strong>{collector.name}</strong>
-              <span>{collector.location}</span>
+              <span className="arch-collector-heading">
+                <span className="arch-collector-image" aria-hidden="true">
+                  {images[collector.name] ? (
+                    <img src={images[collector.name]} alt="" />
+                  ) : (
+                    <Archive size={17} />
+                  )}
+                </span>
+                <span>
+                  <strong>{collector.name}</strong>
+                  <span>{collector.location}</span>
+                </span>
+              </span>
               <small>
                 {collector.collections.length} collection
                 {collector.collections.length === 1 ? '' : 's'}
@@ -1103,11 +1161,18 @@ function ArchaeologyCollectionsView() {
       </section>
       {selected && (
         <section className="panel archaeology-detail">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Selected collector</p>
-              <h3>{selected.name}</h3>
-              <span>{selected.location}</span>
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">Selected collector</p>
+                <span className="arch-selected-collector">
+                  {images[selected.name] && (
+                    <img src={images[selected.name]} alt="" />
+                  )}
+                  <span>
+                    <h3>{selected.name}</h3>
+                    <span>{selected.location}</span>
+                  </span>
+                </span>
             </div>
             <a href={wikiLink(selected.name)} target="_blank" rel="noreferrer">
               Collector wiki <ExternalLink size={13} />
@@ -1126,7 +1191,13 @@ function ArchaeologyCollectionsView() {
                   (artefact) => checked[`${collection.name}:${artefact}`],
                 ).length;
                 return (
-                  <details className="arch-collection" key={collection.name}>
+                  <details
+                    className="arch-collection"
+                    key={collection.name}
+                    onToggle={(event) => {
+                      if (event.currentTarget.open) snapToPageEnd();
+                    }}
+                  >
                     <summary>
                       <span>
                         <strong>{collection.name}</strong>
@@ -1167,6 +1238,13 @@ function ArchaeologyCollectionsView() {
                                   <Check size={12} />
                                 )}
                               </button>
+                              <span className="arch-artefact-image" aria-hidden="true">
+                                {images[artefact] ? (
+                                  <img src={images[artefact]} alt="" />
+                                ) : (
+                                  <Archive size={13} />
+                                )}
+                              </span>
                               <span>{artefact}</span>
                             </li>
                           ))}
@@ -4487,9 +4565,70 @@ const armourEffects = [
     'Equip the pieces for their individual power-armour bonuses.',
     'Use for magic-focused PvM when you can maintain its upkeep and do not need a tank set’s safety net.',
   ],
+  [
+    'Elite Dracolich armour',
+    'Ranged power armour · 92 Defence',
+    'Tier 92 ranged power armour. Full five-piece armour total: 1,715.1 armour and +114.8 ranged style bonus.',
+    'Elite Dracolich Remnant improves Rapid Fire adrenaline generation and can grant Dracolich infusion for +40% ranged critical-strike chance.',
+    'After the pieces have been equipped for 9 seconds, channel Rapid Fire for its full duration while using a bow. Three pieces grant the infusion; four and five pieces extend it by 1.8 seconds each.',
+    'Use for bow-based Ranged PvM when you can build around full Rapid Fire channels and critical-strike windows.',
+  ],
+  [
+    'Deathwarden robe armour (tier 90)',
+    'Necromancy tank armour · 90 Defence / 90 Necromancy',
+    'Tier 90 Necromancy tank armour. Each equipped piece has a 2% chance to dodge an incoming attack, up to 10% with five pieces.',
+    'The tank set trades direct power for life points, survivability, and a per-piece dodge chance.',
+    'Complete the tier-90 Kili tank upgrade path and equip each crafted piece; the dodge chance applies passively per piece.',
+    'Use while learning difficult Necromancy encounters or when survival is worth more than a power-armour damage gain.',
+  ],
+  [
+    'Deathdealer robe armour (tier 90)',
+    'Necromancy power armour · 90 Defence / 90 Necromancy',
+    'Tier 90 Necromancy power armour. Each equipped piece provides a 2% chance to apply Death Mark with Necromancy attacks, up to 10% with five pieces.',
+    'Death Mark executes an affected enemy once it falls under its applicable health threshold.',
+    'Complete the tier-90 Kili power upgrade path, then make Necromancy attacks while wearing the set; the chance scales per equipped piece.',
+    'Use as the main craftable Necromancy damage set before Rasial gear, especially for boss and Slayer progression.',
+  ],
+  [
+    'Robes of the First Necromancer',
+    'Rasial Necromancy power armour · 95 Defence / 95 Necromancy',
+    'Tier 95 Necromancy power armour. Two pieces grant +7% conjured-spirit basic damage per piece; four pieces grant +5% conjure duration per piece.',
+    'At five pieces, conjured-spirit basic damage is increased by 35% and their duration by 25%. The Visage counts as two pieces.',
+    'Wear at least two pieces before summoning conjures. The duration bonus begins at four pieces and is set at the moment the conjure is summoned.',
+    'Use as the end-game Necromancy power set from Rasial; the Visage can free a glove slot while preserving the five-piece benefit.',
+  ],
 ] as const;
 
+const armourImageTitles: Record<string, string> = {
+  'Anima Core of Seren / Zaros / Sliske': 'Anima Core of Seren',
+  'Trimmed masterwork melee': 'Trimmed masterwork armour',
+  'Custom-fit trimmed masterwork': 'Custom-fit trimmed masterwork armour',
+  'Achto raid armour': 'Achto armour',
+  'Elite tectonic': 'Elite tectonic armour',
+  'Deathwarden robe armour (tier 90)': 'Deathwarden robe armour',
+  'Deathdealer robe armour (tier 90)': 'Deathdealer robe armour',
+  'Robes of the First Necromancer': "First Necromancer's equipment",
+};
+
+const armourImageOverrides: Record<string, string> = {
+  'Guthan the Infested':
+    'https://runescape.wiki/images/thumb/Guthan_the_Infested.png/160px-Guthan_the_Infested.png?f4033&ironpath=full-model',
+};
+
 function ArmourEffectsSection() {
+  const [selectedSets, setSelectedSets] = useState<string[]>([]);
+  const [images, setImages] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    fetch('/api/armour-images', { cache: 'no-store' })
+      .then(async (response) => {
+        if (!response.ok) throw new Error('Armour images unavailable');
+        return (await response.json()) as { images?: Record<string, string> };
+      })
+      .then((result) => setImages(result.images || {}))
+      .catch(() => setImages({}));
+  }, []);
+
   return (
     <section className="general-info-section panel armour-effects">
       <div className="panel-heading">
@@ -4499,38 +4638,81 @@ function ArmourEffectsSection() {
         </div>
       </div>
       <p className="general-section-note">
-        Open an entry for its requirements, published numeric effects, trigger
+        Select a set for its requirements, published numeric effects, trigger
         condition, and where it earns its place on an Ironman account.
       </p>
-      <div className="armour-effect-list">
+      <div className="armour-card-grid">
         {armourEffects.map(([name, role, stats, passive, trigger, use]) => (
-          <details key={name}>
-            <summary>
-              <span>
+          <article
+            className={
+              selectedSets.includes(name)
+                ? 'armour-card selected'
+                : 'armour-card'
+            }
+            key={name}
+          >
+            <button
+              className="armour-card-trigger"
+              onClick={() =>
+                setSelectedSets((current) =>
+                  current.includes(name)
+                    ? current.filter((setName) => setName !== name)
+                    : [...current, name],
+                )
+              }
+              aria-expanded={selectedSets.includes(name)}
+              type="button"
+            >
+              <span
+                className={
+                  name === 'Guthan the Infested'
+                    ? 'armour-card-image portrait'
+                    : 'armour-card-image'
+                }
+                aria-hidden="true"
+              >
+                {armourImageOverrides[name] ||
+                images[name] ||
+                images[armourImageTitles[name]] ? (
+                  <img
+                    src={
+                      armourImageOverrides[name] ||
+                      images[name] ||
+                      images[armourImageTitles[name]]
+                    }
+                    alt=""
+                  />
+                ) : (
+                  <Shield size={28} />
+                )}
+              </span>
+              <span className="armour-card-title">
                 <strong>{name}</strong>
                 <small>{role}</small>
               </span>
               <ChevronRight size={16} />
-            </summary>
-            <div className="armour-detail-grid">
-              <div>
-                <span>Numbers</span>
-                <p>{stats}</p>
+            </button>
+            {selectedSets.includes(name) && (
+              <div className="armour-card-detail">
+                <div>
+                  <span>Numbers</span>
+                  <p>{stats}</p>
+                </div>
+                <div>
+                  <span>Passive effect</span>
+                  <p>{passive}</p>
+                </div>
+                <div>
+                  <span>Trigger</span>
+                  <p>{trigger}</p>
+                </div>
+                <div>
+                  <span>Practical use</span>
+                  <p>{use}</p>
+                </div>
               </div>
-              <div>
-                <span>Passive effect</span>
-                <p>{passive}</p>
-              </div>
-              <div>
-                <span>Trigger</span>
-                <p>{trigger}</p>
-              </div>
-              <div>
-                <span>Practical use</span>
-                <p>{use}</p>
-              </div>
-            </div>
-          </details>
+            )}
+          </article>
         ))}
       </div>
     </section>

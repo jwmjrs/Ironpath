@@ -1,0 +1,47 @@
+/* Wilderness danger, recast through TzHaar obsidian and ember light. */
+[data-theme="infernal-wilderness"] {
+  --t-bg: #0e0c0b;
+  --t-bg2: #231511;
+  --t-surface: rgb(37 29 26 / 0.9);
+  --t-surface2: rgb(22 18 16 / 0.94);
+  --t-border: rgb(133 80 54 / 0.5);
+  --t-text: #f8eee2;
+  --t-muted: #c7b5a5;
+  --t-accent: #f0a24e;
+  --t-accent2: #bd5139;
+  --t-active: rgb(89 39 29 / 0.82);
+  --t-success: #b8c478;
+  background:
+    radial-gradient(ellipse at 12% -5%, rgb(192 73 39 / 0.2), transparent 34%),
+    radial-gradient(ellipse at 90% 8%, rgb(239 143 52 / 0.16), transparent 28%),
+    linear-gradient(145deg, #090909 0%, #20130f 54%, #0c0b0a 100%);
+}
+
+[data-theme="infernal-wilderness"] .site-header {
+  background: rgb(14 11 10 / 0.88);
+  border-color: rgb(181 82 48 / 0.44);
+  box-shadow: 0 14px 38px rgb(0 0 0 / 0.48), inset 0 -1px rgb(255 164 75 / 0.1);
+  backdrop-filter: blur(20px) saturate(125%);
+}
+
+[data-theme="infernal-wilderness"] .panel,
+[data-theme="infernal-wilderness"] .focus-card,
+[data-theme="infernal-wilderness"] .storage-visual {
+  background: linear-gradient(145deg, rgb(47 35 30 / 0.9), rgb(19 16 14 / 0.95));
+  border-color: rgb(145 82 56 / 0.42);
+  box-shadow: inset 0 1px rgb(255 221 179 / 0.065), 0 16px 40px rgb(0 0 0 / 0.3);
+}
+
+[data-theme="infernal-wilderness"] .nav-button.active,
+[data-theme="infernal-wilderness"] .period-tabs button.active,
+[data-theme="infernal-wilderness"] .guide-tabs button.active {
+  background: linear-gradient(180deg, rgb(92 42 29 / 0.86), rgb(47 26 22 / 0.9));
+  box-shadow: inset 0 -3px #f0a24e;
+}
+
+[data-theme="infernal-wilderness"] .arch-collection,
+[data-theme="infernal-wilderness"] .armour-card,
+[data-theme="infernal-wilderness"] .familiar-card {
+  background: linear-gradient(145deg, rgb(45 34 30 / 0.88), rgb(20 17 15 / 0.94));
+  border-color: rgb(145 82 56 / 0.38);
+}
