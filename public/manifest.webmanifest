@@ -1,0 +1,12 @@
+{
+  "name": "Ironpath — RuneScape 3 Group Ironman Companion",
+  "short_name": "Ironpath",
+  "description": "A shared progression companion for RuneScape 3 Group Ironman teams.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#10120e",
+  "theme_color": "#d8b75d",
+  "icons": [
+    { "src": "/ironpath-mark-v2.png", "sizes": "1254x1254", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
