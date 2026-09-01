@@ -20,6 +20,7 @@ async function loadMember(name:string):Promise<MemberResult> {
       if (!response.ok) { if (attempt<2) { await wait(300*(attempt+1)); continue; } return { name,available:false,reason:`RuneMetrics returned HTTP ${response.status}.`,activities:[] }; }
       const profile = await response.json() as { error?:string; activities?:RuneMetricsActivity[] };
       if (profile.error === 'PROFILE_PRIVATE') return { name,available:false,reason:'RuneMetrics profile is private.',activities:[] };
+      if (profile.error === 'NO_PROFILE') return { name,available:false,reason:'RuneMetrics returned no public profile for this character.',activities:[] };
       if (profile.error) { if (attempt<2) { await wait(300*(attempt+1)); continue; } return { name,available:false,reason:'Activity log is unavailable.',activities:[] }; }
       return { name,available:true,activities:(profile.activities || []).map(item => ({ player:name,date:item.date || '',timestamp:activityTime(item.date || ''),text:item.text || 'RuneScape milestone',details:item.details || '' })) };
     } catch { if (attempt<2) { await wait(300*(attempt+1)); continue; } }
@@ -38,7 +39,7 @@ export async function GET(request:Request) {
     const memberKey = `activity-member:${name.toLowerCase()}`;
     const cached = await env.DB.prepare('SELECT response_json, fetched_at FROM hiscore_cache WHERE cache_key = ?').bind(memberKey).first<{response_json:string;fetched_at:number}>();
     const cachedMember = cached ? JSON.parse(cached.response_json) as MemberResult : null;
-    if (!forceRefresh && cachedMember && Date.now()-cached!.fetched_at < 300_000) {
+    if (!forceRefresh && cachedMember && Date.now()-cached!.fetched_at < 60_000) {
       members.push(cachedMember);
       continue;
     }
