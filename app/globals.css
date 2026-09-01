@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
+@import './familiars.css';
 @theme inline { --color-background:var(--background);--color-foreground:var(--foreground);--color-card:var(--card);--color-card-foreground:var(--foreground);--color-primary:var(--gold);--color-primary-foreground:var(--ink);--color-muted:var(--muted);--color-muted-foreground:var(--muted-foreground);--color-border:var(--border);--font-sans:var(--font-geist-sans);--font-mono:var(--font-geist-mono); }
 :root { --background:#07110f;--foreground:#e4f1eb;--card:#0e1b17;--ink:#06100d;--muted:#14251f;--muted-foreground:#8da69c;--border:#234038;--gold:#48c7a0; }
 *{box-sizing:border-box}html,body{background:var(--background)}html{scrollbar-width:none;-ms-overflow-style:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;width:0;height:0}body{margin:0;color:var(--foreground);font-family:var(--font-geist-sans),sans-serif}button{font:inherit}.app-shell{min-height:100vh;display:grid;grid-template-columns:188px minmax(0,1fr)}

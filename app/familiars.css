@@ -1,0 +1,58 @@
+/* Theme-aware styling for useful familiar cards that have not been unlocked. */
+.familiar-card.locked {
+  border-color: color-mix(in srgb, var(--t-muted) 30%, var(--t-border));
+  background: color-mix(in srgb, var(--t-surface) 84%, #000 16%);
+  box-shadow: inset 0 1px color-mix(in srgb, #000 34%, transparent);
+  opacity: 0.52;
+}
+
+.familiar-card.locked .familiar-card-head strong {
+  color: var(--t-muted);
+}
+
+.familiar-card.locked h3 {
+  color: color-mix(in srgb, var(--t-text) 82%, var(--t-muted));
+}
+
+.familiar-card.locked .familiar-materials {
+  filter: saturate(0.65);
+}
+
+.familiar-level {
+  grid-template-columns: auto 1fr;
+}
+
+.familiar-level strong {
+  justify-self: end;
+}
+
+.familiar-filter {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  margin-top: 5px;
+  padding: 3px;
+  border: 1px solid var(--t-border);
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--t-surface) 74%, transparent);
+}
+
+.familiar-filter button {
+  min-width: 0;
+  padding: 6px 7px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--t-muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.familiar-filter button:hover,
+.familiar-filter button.active {
+  background: var(--t-active);
+  color: var(--t-accent);
+}
