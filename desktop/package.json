@@ -1,0 +1,8 @@
+{
+  "name": "ironpath-desktop",
+  "version": "0.1.0",
+  "description": "A lightweight desktop companion for Ironpath.",
+  "author": "Justjay",
+  "main": "main.cjs",
+  "private": true
+}

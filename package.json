@@ -16,9 +16,9 @@
     "format": "oxfmt",
     "db:generate": "drizzle-kit generate",
     "desktop:dev": "electron .",
-    "desktop:build": "pnpm build && electron-builder --publish never",
+    "desktop:build": "electron-builder --publish never",
     "desktop:mac": "pnpm desktop:build --mac",
-    "desktop:win": "pnpm desktop:build --win"
+    "desktop:win": "pnpm desktop:build --win --x64"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",
@@ -70,24 +70,30 @@
     "appId": "com.justjaybtw.ironpath",
     "productName": "Ironpath",
     "directories": {
+      "app": "desktop",
       "output": "release"
     },
     "files": [
-      "desktop/**/*",
-      "package.json"
+      "**/*",
+      "!node_modules/**/*"
+    ],
+    "asar": true,
+    "npmRebuild": false,
+    "electronLanguages": [
+      "en-US"
     ],
     "mac": {
+      "artifactName": "Ironpath-${version}-${arch}.${ext}",
       "target": [
         "dmg"
       ],
       "category": "public.app-category.utilities"
     },
     "win": {
-      "target": [
-        "nsis"
-      ]
+      "target": [{ "target": "nsis", "arch": ["x64"] }]
     },
     "nsis": {
+      "artifactName": "Ironpath-${version}-setup.${ext}",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     }

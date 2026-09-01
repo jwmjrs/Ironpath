@@ -236,7 +236,13 @@ function DungeonToolsView() {
   const [bossLoading,setBossLoading]=useState(false);
   useEffect(() => { let cancelled=false; fetch('/api/dungeon-tools',{cache:'no-store'}).then(async response => response.ok ? await response.json() as {pouches?:DungeonPouch[]} : {pouches:[]}).then(payload => { if (!cancelled) setPouches(payload.pouches || []); }).finally(() => { if (!cancelled) setLoading(false); }); return () => { cancelled=true; }; },[]);
   useEffect(() => { if (!boss) { setBossDetail(null); return; } let cancelled=false; setBossLoading(true); setBossDetail(null); fetch(`/api/dungeon-boss?name=${encodeURIComponent(boss)}`,{cache:'no-store'}).then(async response => response.ok ? await response.json() as BossDetail : null).then(detail => { if (!cancelled) setBossDetail(detail); }).finally(() => { if (!cancelled) setBossLoading(false); }); return () => { cancelled=true; }; },[boss]);
-  useEffect(() => { if (!boss) return; const timer=window.setTimeout(() => document.getElementById('boss-detail-popover')?.scrollIntoView({behavior:'smooth',block:'end'}),40); return () => window.clearTimeout(timer); },[boss]);
+  useEffect(() => {
+    if (!boss) return;
+    const scrollToPageEnd = () => window.scrollTo({ top: Math.max(document.documentElement.scrollHeight, document.body.scrollHeight), behavior: 'auto' });
+    const firstFrame = window.requestAnimationFrame(() => window.requestAnimationFrame(scrollToPageEnd));
+    const settleTimer = window.setTimeout(scrollToPageEnd, 180);
+    return () => { window.cancelAnimationFrame(firstFrame); window.clearTimeout(settleTimer); };
+  },[boss,bossLoading,bossDetail]);
   return <div className="content feature-page dungeon-tools-page">
     <section className="feature-heading"><p className="eyebrow">Test Features</p><h2>Dungeon Tools</h2><p>A compact Daemonheim reference for potion secondaries, familiar pouches and floor-theme bosses.</p></section>
     <section className="panel dungeon-section"><div className="section-heading"><div><p className="eyebrow">Dungeoneering potions</p><h3>Herbs and secondary ingredients</h3></div><a href="https://runescape.wiki/w/Dungeoneering/Potions" target="_blank" rel="noreferrer">Potion wiki <ExternalLink size={13}/></a></div><div className="dungeon-potion-grid">{dungeonPotions.map(([name,secondary,herbs,effect]) => <article className="dungeon-potion" key={name}><strong>{name}</strong><span>Secondary: <b>{secondary}</b></span><span>Herbs: <b>{herbs}</b></span><small>{effect}</small></article>)}</div></section>

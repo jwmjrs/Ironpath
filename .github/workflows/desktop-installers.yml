@@ -19,10 +19,12 @@ jobs:
         include:
           - os: macos-latest
             label: macOS
-            command: pnpm exec electron-builder --publish never --mac
+            command: pnpm exec electron-builder --publish never --mac --arm64
+            artifact: release/*.dmg
           - os: windows-latest
             label: Windows
-            command: pnpm exec electron-builder --publish never --win
+            command: pnpm exec electron-builder --publish never --win --x64
+            artifact: release/*-setup.exe
 
     steps:
       - uses: actions/checkout@v4
@@ -34,12 +36,11 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm build
       - run: ${{ matrix.command }}
       - uses: actions/upload-artifact@v4
         with:
           name: Ironpath-${{ matrix.label }}
-          path: release/*
+          path: ${{ matrix.artifact }}
           if-no-files-found: error
 
   publish-release:
@@ -55,4 +56,4 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
-          files: release/**/*
+          files: release/*
