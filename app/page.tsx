@@ -399,6 +399,7 @@ export default function Home() {
   const [showLanding, setShowLanding] = useState(true);
   const [active, setActive] = useState('Overview');
   const [theme, setTheme] = useState<Theme>('necromancy');
+  const [progressionOpen, setProgressionOpen] = useState(false);
   const [extrasOpen, setExtrasOpen] = useState(false);
   const [testOpen, setTestOpen] = useState(false);
   const [groupData, setGroupData] = useState<HiscoreResult | null>(null);
@@ -574,7 +575,7 @@ export default function Home() {
             </button>
             <div className="navigation-row">
               <nav aria-label="Primary navigation">
-                {nav.map(([, label]) => (
+                {nav.map(([Icon, label]) => (
                   <button
                     key={label}
                     className={
@@ -583,18 +584,91 @@ export default function Home() {
                     onClick={() => setActive(label)}
                     aria-label={label}
                   >
+                    <Icon size={17} strokeWidth={1.8} />
                     <span>{label}</span>
                   </button>
                 ))}
                 <div
                   className="extras-menu"
                   onMouseEnter={() => {
+                    setProgressionOpen(true);
+                    setExtrasOpen(false);
+                    setTestOpen(false);
+                  }}
+                  onMouseLeave={() => setProgressionOpen(false)}
+                  onFocus={() => {
+                    setProgressionOpen(true);
+                    setExtrasOpen(false);
+                    setTestOpen(false);
+                  }}
+                  onBlur={(event) => {
+                    if (!event.currentTarget.contains(event.relatedTarget))
+                      setProgressionOpen(false);
+                  }}
+                >
+                  <button
+                    className={
+                      ['Progression Roadmap', 'Skill Training'].includes(active)
+                        ? 'nav-button active'
+                        : 'nav-button'
+                    }
+                    onClick={() => setProgressionOpen((value) => !value)}
+                    aria-label="Open progression"
+                    aria-expanded={progressionOpen}
+                    aria-haspopup="true"
+                  >
+                    <ListChecks size={17} strokeWidth={1.8} />
+                    <span>Progression</span>
+                    <ChevronRight
+                      className={
+                        progressionOpen
+                          ? 'extras-chevron open'
+                          : 'extras-chevron'
+                      }
+                      size={14}
+                    />
+                  </button>
+                  {progressionOpen && (
+                    <div className="extras-popover">
+                      <p className="eyebrow">Account planning</p>
+                      <button
+                        onClick={() => {
+                          setActive('Progression Roadmap');
+                          setProgressionOpen(false);
+                        }}
+                      >
+                        <ListChecks size={17} />
+                        <span>
+                          <strong>Progression Roadmap</strong>
+                          <small>Ordered goals and quest progress</small>
+                        </span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setActive('Skill Training');
+                          setProgressionOpen(false);
+                        }}
+                      >
+                        <Dumbbell size={17} />
+                        <span>
+                          <strong>Skill Training</strong>
+                          <small>Level-based training methods</small>
+                        </span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+                <div
+                  className="extras-menu"
+                  onMouseEnter={() => {
                     setExtrasOpen(true);
+                    setProgressionOpen(false);
                     setTestOpen(false);
                   }}
                   onMouseLeave={() => setExtrasOpen(false)}
                   onFocus={() => {
                     setExtrasOpen(true);
+                    setProgressionOpen(false);
                     setTestOpen(false);
                   }}
                   onBlur={(event) => {
@@ -606,8 +680,6 @@ export default function Home() {
                     className={
                       [
                         'Ironman Guide',
-                        'Progression Roadmap',
-                        'Skill Training',
                         'Good general information',
                       ].includes(active)
                         ? 'nav-button active'
@@ -644,30 +716,6 @@ export default function Home() {
                       </button>
                       <button
                         onClick={() => {
-                          setActive('Progression Roadmap');
-                          setExtrasOpen(false);
-                        }}
-                      >
-                        <ListChecks size={17} />
-                        <span>
-                          <strong>Progression Roadmap</strong>
-                          <small>Ordered goals and quest progress</small>
-                        </span>
-                      </button>
-                      <button
-                        onClick={() => {
-                          setActive('Skill Training');
-                          setExtrasOpen(false);
-                        }}
-                      >
-                        <Dumbbell size={17} />
-                        <span>
-                          <strong>Skill Training</strong>
-                          <small>Level-based training methods</small>
-                        </span>
-                      </button>
-                      <button
-                        onClick={() => {
                           setActive('Good general information');
                           setExtrasOpen(false);
                         }}
@@ -685,11 +733,13 @@ export default function Home() {
                   className="extras-menu"
                   onMouseEnter={() => {
                     setTestOpen(true);
+                    setProgressionOpen(false);
                     setExtrasOpen(false);
                   }}
                   onMouseLeave={() => setTestOpen(false)}
                   onFocus={() => {
                     setTestOpen(true);
+                    setProgressionOpen(false);
                     setExtrasOpen(false);
                   }}
                   onBlur={(event) => {
@@ -712,12 +762,12 @@ export default function Home() {
                         : 'nav-button'
                     }
                     onClick={() => setTestOpen((value) => !value)}
-                    aria-label="Open supplemental information"
+                    aria-label="Open utility"
                     aria-expanded={testOpen}
                     aria-haspopup="true"
                   >
                     <Wrench size={17} strokeWidth={1.8} />
-                    <span>Supplemental Info</span>
+                    <span>Utility</span>
                     <ChevronRight
                       className={
                         testOpen ? 'extras-chevron open' : 'extras-chevron'
