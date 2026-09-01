@@ -17,7 +17,7 @@ async function workspaceAuthorized(request:Request) { const id=request.headers.g
 export async function POST(request:Request) {
   await setup();
   if (!await workspaceAuthorized(request)) return Response.json({ error:'Connect your Group Hub workspace before adding archive history.' },{status:401});
-  const body=await request.json<{group?:string;events?:Array<{item?:string;quantity?:number;player?:string;date?:string}>}>().catch(()=>({}));
+  const body = await request.json().catch(() => ({})) as { group?:string; events?:Array<{item?:string;quantity?:number;player?:string;date?:string}> };
   const group=normalize(String(body.group || '')); const events=Array.isArray(body.events) ? body.events.slice(0,200) : [];
   if (!group || !events.length) return Response.json({ error:'A group and at least one historical entry are required.' },{status:400});
   const key=group.toLocaleLowerCase(); let added=0;

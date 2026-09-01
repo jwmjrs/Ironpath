@@ -1,5 +1,4 @@
 const { app, BrowserWindow, Menu, shell } = require('electron');
-const path = require('node:path');
 
 const DEFAULT_IRONPATH_URL = 'https://ironpath-test-2026-08-31.pastel-bream-2451.chatgpt.site';
 const ironpathUrl = process.env.IRONPATH_DESKTOP_URL || DEFAULT_IRONPATH_URL;
