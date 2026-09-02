@@ -6,7 +6,7 @@ import './themes.css';
 const themeBootScript = `
   try {
     const savedTheme = localStorage.getItem('ironpath-theme');
-    const themes = ['classic', 'necromancy', 'infernal-wilderness'];
+    const themes = ['classic', 'necromancy', 'infernal-wilderness', 'menaphos'];
     document.documentElement.dataset.theme = themes.includes(savedTheme) ? savedTheme : 'necromancy';
   } catch {
     document.documentElement.dataset.theme = 'necromancy';

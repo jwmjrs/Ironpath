@@ -46,6 +46,7 @@ const nav = [
 ] as const;
 const themes = [
   ['classic', 'Classic'],
+  ['menaphos', 'Menaphos'],
   ['necromancy', 'Necromantic'],
   ['infernal-wilderness', 'Wilderness: Infernal'],
 ] as const;
@@ -844,7 +845,7 @@ export default function Home() {
               </select>
             </label>
             <span>
-              Concept created by <strong>Justjay btw</strong>
+              Concept created by <a className="project-origin-link" href="/about">Justjay btw</a>
             </span>
             <i aria-hidden="true" />
             <span>AI-assisted development</span>
@@ -904,7 +905,7 @@ function IronpathLanding({
             <CalendarCheck2 size={17} />
             <div>
               <strong>Keep the rhythm</strong>
-              <span>Distractions, diversions, runs, and practical routes</span>
+              <span>Information and routes about all of your favorite D&amp;D&apos;s</span>
             </div>
           </article>
           <article>
@@ -933,7 +934,7 @@ function IronpathLanding({
         </label>
         <i aria-hidden="true" />
         <span>
-          Concept created by <strong>Justjay btw</strong>
+          Concept created by <a className="project-origin-link" href="/about">Justjay btw</a>
         </span>
         <i aria-hidden="true" />
         <span>AI-assisted development</span>
