@@ -15,7 +15,6 @@ import {
   ExternalLink,
   FlaskConical,
   Gem,
-  LayoutDashboard,
   Leaf,
   ListChecks,
   Medal,
@@ -42,14 +41,12 @@ import {
 } from './data/dungeon-tools';
 
 const nav = [
-  [LayoutDashboard, 'Overview'],
   [Trophy, 'Dashboard'],
   [CalendarCheck2, 'Distractions and Diversions'],
 ] as const;
 const themes = [
   ['classic', 'Classic'],
   ['necromancy', 'Necromantic'],
-  ['wilderness', 'Wilderness'],
   ['infernal-wilderness', 'Wilderness: Infernal'],
 ] as const;
 type Theme = (typeof themes)[number][0];
@@ -398,8 +395,12 @@ const fruitCrops = [
 
 export default function Home() {
   const [showLanding, setShowLanding] = useState(true);
-  const [active, setActive] = useState('Overview');
-  const [theme, setTheme] = useState<Theme>('necromancy');
+  const [active, setActive] = useState('Dashboard');
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return 'necromancy';
+    const savedTheme = document.documentElement.dataset.theme || null;
+    return isTheme(savedTheme) ? savedTheme : 'necromancy';
+  });
   const [progressionOpen, setProgressionOpen] = useState(false);
   const [testOpen, setTestOpen] = useState(false);
   const [groupData, setGroupData] = useState<HiscoreResult | null>(null);
@@ -412,8 +413,6 @@ export default function Home() {
           window.localStorage.getItem('ironpath-hiscore-result') || 'null',
         ),
       );
-      const savedTheme = window.localStorage.getItem('ironpath-theme');
-      if (isTheme(savedTheme)) setTheme(savedTheme);
       const savedWorkspace = JSON.parse(
         window.localStorage.getItem('ironpath-workspace') || 'null',
       );
@@ -458,6 +457,7 @@ export default function Home() {
   }, [groupData]);
   function changeTheme(value: Theme) {
     setTheme(value);
+    document.documentElement.dataset.theme = value;
     window.localStorage.setItem('ironpath-theme', value);
   }
   function choosePreferredMember(name: string) {
@@ -478,17 +478,11 @@ export default function Home() {
     window.localStorage.removeItem('ironpath-preferred-member');
   }
   const views: Record<string, React.ReactNode> = {
-    Overview: (
-      <Overview
-        groupData={groupData}
-        goTo={setActive}
-        unsyncGroup={unsyncGroup}
-      />
-    ),
     Dashboard: (
       <HiScoresView
         result={groupData}
         setResult={setGroupData}
+        unsyncGroup={unsyncGroup}
         workspace={workspace}
         setWorkspace={setWorkspace}
         preferredMember={preferredMember}
@@ -545,10 +539,12 @@ export default function Home() {
     return (
       <main
         className="min-h-screen bg-background text-foreground"
-        data-theme={theme}
       >
         <IronpathLanding
-          onEnter={() => setShowLanding(false)}
+          onEnter={() => {
+            setActive('Dashboard');
+            setShowLanding(false);
+          }}
           theme={theme}
           changeTheme={changeTheme}
         />
@@ -557,15 +553,14 @@ export default function Home() {
   return (
     <main
       className="min-h-screen bg-background text-foreground"
-      data-theme={theme}
     >
       <div className="app-shell">
         <header className="site-header">
           <div className="brand-bar">
             <button
               className="brand-home"
-              onClick={() => setActive('Overview')}
-              aria-label="Open Ironpath overview"
+              onClick={() => setActive('Dashboard')}
+              aria-label="Open Ironpath dashboard"
             >
               <img
                 className="brand-rune-banner"
@@ -881,11 +876,8 @@ function IronpathLanding({
 }) {
   return (
     <section className="ironpath-entry" aria-label="Ironpath introduction">
-      <div className="entry-orbit entry-orbit-one" aria-hidden="true" />
-      <div className="entry-orbit entry-orbit-two" aria-hidden="true" />
       <div className="entry-main">
         <div className="entry-copy">
-          <p className="eyebrow">Your group’s shared companion</p>
           <div className="entry-logo-button entry-logo-static">
             <img src="/ironpath-banner-transparent-v1.png" alt="Ironpath" />
           </div>
@@ -1609,145 +1601,10 @@ function ShopRunsView({
   );
 }
 
-function Overview({
-  groupData,
-  goTo,
-  unsyncGroup,
-}: {
-  groupData: HiscoreResult | null;
-  goTo: (view: string) => void;
-  unsyncGroup: () => void;
-}) {
-  const connected = Boolean(groupData?.players.length);
-  return (
-    <div className="content feature-page landing-page">
-      <section className="panel landing-hero">
-        <div>
-          <p className="date-line">RUNESCAPE 3 GROUP IRONMAN COMPANION</p>
-          <h1>Build your group’s next chapter.</h1>
-          <p>
-            Ironpath brings together live group standings, shared routines,
-            progression references and practical Ironman planning—without
-            replacing the way your group plays.
-          </p>
-          <div className="landing-actions">
-            <button
-              className="primary-button"
-              onClick={() => goTo('Dashboard')}
-            >
-              <Trophy size={16} />
-              {connected ? 'Open your dashboard' : 'Look up your group'}
-            </button>
-            <button
-              className="secondary-button"
-              onClick={() => goTo('Progression Roadmap')}
-            >
-              <ListChecks size={16} />
-              Explore the roadmap
-            </button>
-          </div>
-        </div>
-        <aside className="landing-status">
-          <CircleDot size={18} />
-          <span>{connected ? 'Group connected' : 'Ready when you are'}</span>
-          <strong>
-            {connected ? groupData!.group : 'Start with a group lookup'}
-          </strong>
-          <small>
-            {connected
-              ? `${groupData!.mode} · ${groupData!.players.length} members`
-              : 'Use Dashboard to connect an official Group Ironman roster.'}
-          </small>
-          {connected && (
-            <button className="unsync-group-button" onClick={unsyncGroup}>
-              Unsync group
-            </button>
-          )}
-        </aside>
-      </section>
-      <section className="landing-section">
-        <div className="landing-section-heading">
-          <p className="eyebrow">What Ironpath helps with</p>
-          <h2>One home for the useful things.</h2>
-        </div>
-        <div className="landing-feature-grid">
-          <article className="panel">
-            <Trophy size={22} />
-            <h3>Group Dashboard</h3>
-            <p>
-              Refresh member totals, compare skill leaders, review public
-              activity and keep a group drop archive.
-            </p>
-          </article>
-          <article className="panel">
-            <CalendarCheck2 size={22} />
-            <h3>Distractions and Diversions</h3>
-            <p>
-              Keep daily, weekly and monthly activities visible without losing
-              your own routine.
-            </p>
-          </article>
-          <article className="panel">
-            <ListChecks size={22} />
-            <h3>Progression References</h3>
-            <p>
-              Use the roadmap, training guidance, familiars and Invention notes
-              whenever you need direction.
-            </p>
-          </article>
-          <article className="panel">
-            <Dice5 size={22} />
-            <h3>Task Generator</h3>
-            <p>
-              Pull a sensible Ironman objective when your group wants something
-              productive to do next.
-            </p>
-          </article>
-        </div>
-      </section>
-      <section className="landing-steps panel">
-        <div>
-          <p className="eyebrow">Getting started</p>
-          <h2>Set up in a few steps.</h2>
-        </div>
-        <ol>
-          <li>
-            <span>01</span>
-            <div>
-              <strong>Look up your group</strong>
-              <p>
-                Open Dashboard and enter the exact official Group Ironman name.
-              </p>
-            </div>
-          </li>
-          <li>
-            <span>02</span>
-            <div>
-              <strong>Choose your character</strong>
-              <p>
-                Select who you are on Dashboard to tailor level-aware resources.
-              </p>
-            </div>
-          </li>
-          <li>
-            <span>03</span>
-            <div>
-              <strong>Plan and play</strong>
-              <p>
-                Use the resources, distractions and diversions, and shared
-                routes as your group needs them.
-              </p>
-            </div>
-          </li>
-        </ol>
-      </section>
-    </div>
-  );
-}
-
 function HiScoresView({
   result,
   setResult,
+  unsyncGroup,
   workspace,
   setWorkspace,
   preferredMember,
@@ -1755,6 +1612,7 @@ function HiScoresView({
 }: {
   result: HiscoreResult | null;
   setResult: (value: HiscoreResult | null) => void;
+  unsyncGroup: () => void;
   workspace: Workspace | null;
   setWorkspace: (value: Workspace | null) => void;
   preferredMember: string;
@@ -2038,6 +1896,25 @@ function HiScoresView({
       {result?.warning && (
         <div className="warning-banner">{result.warning}</div>
       )}
+      <section className="panel dashboard-group-status">
+        <CircleDot size={19} />
+        <div>
+          <p className="eyebrow">
+            {result ? 'Connected group' : 'Ready when you are'}
+          </p>
+          <h3>{result ? result.group : 'Connect your Group Ironman roster'}</h3>
+          <p>
+            {result
+              ? `${result.mode} · ${result.players.length} members`
+              : 'Enter your exact group name above to connect its official HiScores roster.'}
+          </p>
+        </div>
+        {result && (
+          <button className="unsync-group-button" onClick={unsyncGroup}>
+            Unsync group
+          </button>
+        )}
+      </section>
       {!result && !error && (
         <section className="empty-state">
           <Trophy size={32} />
@@ -3894,10 +3771,6 @@ function FarmRunsView({
         [
           'Tree Gnome Stronghold',
           'Fastest travel: Spirit tree to the Stronghold.',
-        ],
-        [
-          'Tree Gnome Village',
-          'Fastest travel: Spirit tree to Tree Gnome Village, then Elkoy’s guidance.',
         ],
         ['Prifddinas', 'Fastest travel: Crystal teleport seed to the city.'],
       ],

@@ -83,6 +83,7 @@
       "en-US"
     ],
     "mac": {
+      "icon": "desktop/icons/ironpath.png",
       "artifactName": "Ironpath-${version}-${arch}.${ext}",
       "target": [
         "dmg"
@@ -90,6 +91,7 @@
       "category": "public.app-category.utilities"
     },
     "win": {
+      "icon": "desktop/icons/ironpath.png",
       "target": [{ "target": "nsis", "arch": ["x64"] }]
     },
     "nsis": {
