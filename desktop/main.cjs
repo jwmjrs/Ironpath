@@ -1,7 +1,9 @@
+const path = require('node:path');
 const { app, BrowserWindow, Menu, shell } = require('electron');
 
 const DEFAULT_IRONPATH_URL = 'https://ironpath-test-2026-08-31.pastel-bream-2451.chatgpt.site';
 const ironpathUrl = process.env.IRONPATH_DESKTOP_URL || DEFAULT_IRONPATH_URL;
+const appIcon = path.join(__dirname, 'icons', 'ironpath.png');
 
 function createWindow() {
   const window = new BrowserWindow({
@@ -10,6 +12,7 @@ function createWindow() {
     minWidth: 1024,
     minHeight: 700,
     title: 'Ironpath',
+    icon: appIcon,
     backgroundColor: '#111217',
     autoHideMenuBar: process.platform === 'win32',
     webPreferences: {
