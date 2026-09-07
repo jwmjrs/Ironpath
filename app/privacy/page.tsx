@@ -1,9 +1,7 @@
 'use client';
 
 import { ArrowLeft, Database, Eye, KeyRound, ShieldCheck, SlidersHorizontal, UsersRound } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
-const themes = new Set(['necromancy', 'classic', 'gielinor', 'prifddinas', 'kharidian', 'wilderness', 'saradomin', 'zamorak']);
 const privacySections = [
   { icon: SlidersHorizontal, title:'On this device', detail:'Your chosen theme, recent HiScores result, lookup preferences, and private workspace access key stay in your browser. Clearing this site’s data removes those local copies.', note:'You control these local preferences.' },
   { icon: UsersRound, title:'Shared with your group', detail:'Only your group’s drop archive and historical item entries are shared through its private archive key. Checklists, routes, and personal progress stay on each person’s device.', note:'Keep personal or sensitive information out of archive entries.' },
@@ -13,9 +11,7 @@ const privacySections = [
 ];
 
 export default function PrivacyPage() {
-  const [theme, setTheme] = useState('necromancy');
-  useEffect(() => { const saved = window.localStorage.getItem('ironpath-theme'); if (saved && themes.has(saved)) setTheme(saved); }, []);
-  return <main className="privacy-page-shell" data-theme={theme}>
+  return <main className="privacy-page-shell">
     <article className="privacy-page-wrap">
       <header className="privacy-page-hero"><a className="privacy-back-link" href="/"><ArrowLeft size={16}/> Back to Ironpath</a><div className="privacy-hero-copy"><span className="privacy-hero-icon"><ShieldCheck size={27}/></span><div><p className="eyebrow">IRONPATH REFERENCE</p><h1>Privacy, clearly.</h1><p>A straightforward guide to what Ironpath keeps locally, what a shared workspace stores, and how public RuneScape lookups are used.</p></div></div></header>
       <section className="privacy-promise-grid" aria-label="Privacy at a glance"><article><ShieldCheck size={19}/><strong>No advertising trackers</strong><span>Ironpath does not sell personal data or build advertising profiles.</span></article><article><KeyRound size={19}/><strong>Group-controlled access</strong><span>Your private archive key decides who can see and add shared drop history.</span></article></section>

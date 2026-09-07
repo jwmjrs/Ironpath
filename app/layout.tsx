@@ -2,14 +2,16 @@ import type { Metadata } from 'next';
 import './globals.css';
 import './header.css';
 import './themes.css';
+import './dashboard.css';
+import './distractions.css';
 
 const themeBootScript = `
   try {
     const savedTheme = localStorage.getItem('ironpath-theme');
-    const themes = ['classic', 'necromancy', 'infernal-wilderness', 'menaphos'];
-    document.documentElement.dataset.theme = themes.includes(savedTheme) ? savedTheme : 'necromancy';
+    const themes = ['dark'];
+    document.documentElement.dataset.theme = themes.includes(savedTheme) ? savedTheme : 'dark';
   } catch {
-    document.documentElement.dataset.theme = 'necromancy';
+    document.documentElement.dataset.theme = 'dark';
   }
 `;
 
@@ -31,7 +33,7 @@ export default function RootLayout({
     <html
       lang="en"
       className="dark"
-      data-theme="necromancy"
+      data-theme="dark"
       suppressHydrationWarning
     >
       <head>

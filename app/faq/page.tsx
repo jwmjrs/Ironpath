@@ -1,7 +1,6 @@
 'use client';
 
 import { ArrowLeft, ChevronRight, CircleHelp, ShieldCheck, UsersRound } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 const questions = [
   ['Does Ironpath change anything in RuneScape?', 'No. Ironpath is an unofficial companion site. It reads public-facing information where available and keeps its planning features separate from the game.'],
@@ -10,19 +9,12 @@ const questions = [
   ['Is Ironpath affiliated with Jagex?', 'No. Ironpath is a community project and is not affiliated with or endorsed by Jagex.'],
 ];
 
-const themes = new Set(['necromancy', 'classic', 'gielinor', 'prifddinas', 'kharidian', 'wilderness', 'saradomin', 'zamorak']);
-
 export default function FaqPage() {
-  const [theme, setTheme] = useState('necromancy');
-  useEffect(() => {
-    const saved = window.localStorage.getItem('ironpath-theme');
-    if (saved && themes.has(saved)) setTheme(saved);
-  }, []);
-
-  return <main className="faq-page-shell" data-theme={theme}>
+  return <main className="faq-page-shell">
     <article className="faq-page-wrap">
       <header className="faq-page-hero">
         <a className="faq-back-link" href="/"><ArrowLeft size={16}/> Back to Ironpath</a>
+        <img className="faq-brand" src="/ironpath-banner-transparent-v1.png" alt="Ironpath" />
         <div className="faq-hero-copy">
           <span className="faq-hero-icon"><CircleHelp size={27}/></span>
           <div><p className="eyebrow">IRONPATH REFERENCE</p><h1>Questions, answered.</h1><p>A short guide to what Ironpath does, how group data is used, and where a result may be unavailable.</p></div>

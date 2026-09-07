@@ -8,6 +8,7 @@ import {
   Check,
   ChevronRight,
   CircleDot,
+  Compass,
   Clock3,
   Coins,
   Dice5,
@@ -18,7 +19,9 @@ import {
   Leaf,
   ListChecks,
   Medal,
+  MapPin,
   RefreshCw,
+  RotateCcw,
   Search,
   Shield,
   Skull,
@@ -45,10 +48,7 @@ const nav = [
   [CalendarCheck2, 'Distractions and Diversions'],
 ] as const;
 const themes = [
-  ['classic', 'Classic'],
-  ['menaphos', 'Menaphos'],
-  ['necromancy', 'Necromantic'],
-  ['infernal-wilderness', 'Wilderness: Infernal'],
+  ['dark', 'Dark'],
 ] as const;
 type Theme = (typeof themes)[number][0];
 function isTheme(value: string | null): value is Theme {
@@ -398,9 +398,9 @@ export default function Home() {
   const [showLanding, setShowLanding] = useState(true);
   const [active, setActive] = useState('Dashboard');
   const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return 'necromancy';
+    if (typeof window === 'undefined') return 'dark';
     const savedTheme = document.documentElement.dataset.theme || null;
-    return isTheme(savedTheme) ? savedTheme : 'necromancy';
+    return isTheme(savedTheme) ? savedTheme : 'dark';
   });
   const [progressionOpen, setProgressionOpen] = useState(false);
   const [testOpen, setTestOpen] = useState(false);
@@ -499,7 +499,7 @@ export default function Home() {
         preferredMember={preferredMember}
       />
     ),
-    'Ironman Guide': <IronmanGuideView />,
+    Unlocks: <UnlocksView />,
     'Progression Roadmap': (
       <EfficientProgressView
         fixedView="Roadmap"
@@ -525,8 +525,8 @@ export default function Home() {
     'Archaeology Collections': <ArchaeologyCollectionsView />,
     'Dungeon Tools': <DungeonToolsView />,
     'Good general information': <GeneralInformationView />,
-    'Farming Routes': (
-      <FarmRunsView
+    Routes: (
+      <FarmV2View
         player={
           groupData?.players.find(
             (member) => member.name === preferredMember,
@@ -548,6 +548,9 @@ export default function Home() {
           }}
           theme={theme}
           changeTheme={changeTheme}
+          groupData={groupData}
+          setGroupData={setGroupData}
+          unsyncGroup={unsyncGroup}
         />
       </main>
     );
@@ -605,7 +608,7 @@ export default function Home() {
                       [
                         'Progression Roadmap',
                         'Skill Training',
-                        'Ironman Guide',
+                        'Unlocks',
                         'Good general information',
                       ].includes(active)
                         ? 'nav-button active'
@@ -657,14 +660,14 @@ export default function Home() {
                       <p className="extras-divider">Ironman reference</p>
                       <button
                         onClick={() => {
-                          setActive('Ironman Guide');
+                          setActive('Unlocks');
                           setProgressionOpen(false);
                         }}
                       >
                         <BookOpen size={17} />
                         <span>
-                          <strong>Ironman Guide</strong>
-                          <small>Unlocks, habits and priorities</small>
+                          <strong>Unlocks</strong>
+                          <small>Useful items, travel and account upgrades</small>
                         </span>
                       </button>
                       <button
@@ -701,10 +704,9 @@ export default function Home() {
                   <button
                     className={
                       [
-                        'Farming Routes',
+                        'Routes',
                         'Shop Runs',
                         'Familiars',
-                        'Invention',
                         'Task Generator',
                         'Archaeology Collections',
                         'Dungeon Tools',
@@ -731,18 +733,6 @@ export default function Home() {
                       <p className="eyebrow">Practical planning</p>
                       <button
                         onClick={() => {
-                          setActive('Farming Routes');
-                          setTestOpen(false);
-                        }}
-                      >
-                        <Leaf size={17} />
-                        <span>
-                          <strong>Farming Routes</strong>
-                          <small>Herb, tree and fruit-tree circuits</small>
-                        </span>
-                      </button>
-                      <button
-                        onClick={() => {
                           setActive('Shop Runs');
                           setTestOpen(false);
                         }}
@@ -751,18 +741,6 @@ export default function Home() {
                         <span>
                           <strong>Shop Runs</strong>
                           <small>Group stock and supply stops</small>
-                        </span>
-                      </button>
-                      <button
-                        onClick={() => {
-                          setActive('Invention');
-                          setTestOpen(false);
-                        }}
-                      >
-                        <Boxes size={17} />
-                        <span>
-                          <strong>Invention</strong>
-                          <small>Components and useful sources</small>
                         </span>
                       </button>
                       <button
@@ -777,17 +755,16 @@ export default function Home() {
                           <small>Summoning companions by level</small>
                         </span>
                       </button>
-                      <p className="extras-divider">Test Features</p>
                       <button
                         onClick={() => {
-                          setActive('Task Generator');
+                          setActive('Routes');
                           setTestOpen(false);
                         }}
                       >
-                        <Dice5 size={17} />
+                        <Leaf size={17} />
                         <span>
-                          <strong>Task Generator</strong>
-                          <small>Practical Ironman objectives</small>
+                          <strong>Routes</strong>
+                          <small>Interactive patch-route planner</small>
                         </span>
                       </button>
                       <button
@@ -800,6 +777,19 @@ export default function Home() {
                         <span>
                           <strong>Archaeology Collections</strong>
                           <small>Collectors, artefacts and rewards</small>
+                        </span>
+                      </button>
+                      <p className="extras-divider">Test Features</p>
+                      <button
+                        onClick={() => {
+                          setActive('Task Generator');
+                          setTestOpen(false);
+                        }}
+                      >
+                        <Dice5 size={17} />
+                        <span>
+                          <strong>Task Generator</strong>
+                          <small>Practical Ironman objectives</small>
                         </span>
                       </button>
                       <button
@@ -870,11 +860,63 @@ function IronpathLanding({
   onEnter,
   theme,
   changeTheme,
+  groupData,
+  setGroupData,
+  unsyncGroup,
 }: {
   onEnter: () => void;
   theme: Theme;
   changeTheme: (value: Theme) => void;
+  groupData: HiscoreResult | null;
+  setGroupData: (value: HiscoreResult | null) => void;
+  unsyncGroup: () => void;
 }) {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [group, setGroup] = useState('');
+  const [size, setSize] = useState('4');
+  const [competitive, setCompetitive] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [syncingQuests, setSyncingQuests] = useState(false);
+  const [message, setMessage] = useState('');
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(window.localStorage.getItem('ironpath-hiscore-group') || 'null');
+      if (!saved) return;
+      setGroup(saved.group || '');
+      setSize(saved.size || '4');
+      setCompetitive(Boolean(saved.competitive));
+    } catch { /* Keep the connection form ready for a fresh lookup. */ }
+  }, []);
+  async function refreshGroup(event?: FormEvent) {
+    event?.preventDefault();
+    if (!group.trim()) { setMessage('Enter your exact RuneScape group name first.'); return; }
+    setLoading(true); setMessage('');
+    try {
+      const response = await fetch(`/api/hiscores?group=${encodeURIComponent(group)}&size=${size}&competitive=${competitive}`);
+      const data = (await response.json()) as HiscoreResult & { error?: string };
+      if (!response.ok) throw new Error(data.error || 'Unable to retrieve this group.');
+      setGroupData(data);
+      window.localStorage.setItem('ironpath-hiscore-group', JSON.stringify({ group, size, competitive }));
+      window.localStorage.setItem('ironpath-hiscore-result', JSON.stringify(data));
+      setMessage(`${data.group} refreshed with ${data.players.length} members.`);
+    } catch (error) { setMessage(error instanceof Error ? error.message : 'Unable to refresh this group.'); }
+    finally { setLoading(false); }
+  }
+  async function syncQuestAccess() {
+    if (!groupData?.players.length) { setMessage('Connect a group before syncing quest access.'); return; }
+    setSyncingQuests(true); setMessage('');
+    try {
+      const results = await Promise.all(groupData.players.map(async player => {
+        const response = await fetch(`/api/quests?player=${encodeURIComponent(player.name)}`);
+        const payload = (await response.json()) as QuestSyncResult & { error?: string };
+        if (!response.ok) throw new Error(payload.error || `Quest access is unavailable for ${player.name}.`);
+        window.localStorage.setItem(`ironpath-quest-cache:${player.name}`, JSON.stringify(payload));
+        return player.name;
+      }));
+      setMessage(`Quest access synced for ${results.length} group member${results.length === 1 ? '' : 's'}.`);
+    } catch (error) { setMessage(error instanceof Error ? error.message : 'Quest sync could not be completed.'); }
+    finally { setSyncingQuests(false); }
+  }
   return (
     <section className="ironpath-entry" aria-label="Ironpath introduction">
       <div className="entry-main">
@@ -884,68 +926,120 @@ function IronpathLanding({
           </div>
           <h1>Build the next chapter together.</h1>
           <p>
-            Live group standings, shared planning, practical references, and
-            helpful routines—made for the way Group Ironmen actually progress.
+            Ironpath is a shared place for the things your Group Ironman team
+            is already figuring out together. Keep an eye on the group, find
+            the next useful unlock, and stop losing good information between
+            game sessions.
+          </p>
+          <p className="entry-intro-detail">
+            From public HiScores and recent activity to daily routines,
+            farming routes, reference guides, and your group&apos;s item history,
+            it is built around the little things that make a long journey feel
+            easier to manage.
           </p>
           <div className="entry-actions">
             <button className="entry-primary" onClick={onEnter}>
               Enter Ironpath <ChevronRight size={18} />
             </button>
+            <button className="entry-settings-button" onClick={() => setSettingsOpen(value => !value)} aria-expanded={settingsOpen}>
+              <Wrench size={17} /> Settings
+            </button>
           </div>
+          {settingsOpen && (
+            <section className="entry-settings-panel" aria-label="Ironpath settings">
+              <div><p className="eyebrow">GROUP CONNECTION</p><h2>Connect and refresh your group here.</h2><p>Group lookups, stat refreshes, and quest access syncing are kept in one place.</p></div>
+              <form onSubmit={refreshGroup}>
+                <label className="field"><span>Group name</span><input value={group} onChange={event => setGroup(event.target.value)} placeholder="Exact RuneScape group name" /></label>
+                <label className="field"><span>Group size</span><select value={size} onChange={event => setSize(event.target.value)}>{[2,3,4,5].map(value => <option value={value} key={value}>{value} members</option>)}</select></label>
+                <label className="mode-toggle"><input type="checkbox" checked={competitive} onChange={event => setCompetitive(event.target.checked)} /><span><strong>Competitive</strong></span></label>
+                <button className="secondary-button" disabled={loading}>{loading ? 'Refreshing…' : groupData ? 'Refresh group data' : 'Connect group'}</button>
+              </form>
+              <div className="entry-settings-actions">
+                <button className="secondary-button" onClick={syncQuestAccess} disabled={!groupData || syncingQuests}>{syncingQuests ? 'Syncing quest access…' : 'Sync quest access'}</button>
+                {groupData && <button className="text-button" onClick={unsyncGroup}>Unsync group</button>}
+              </div>
+              {message && <p className="entry-settings-message">{message}</p>}
+            </section>
+          )}
         </div>
-        <div className="entry-feature-stack" aria-label="Ironpath features">
-          <article>
-            <Trophy size={17} />
-            <div>
-              <strong>Group Dashboard</strong>
-              <span>Standings, activity, and shared history</span>
-            </div>
-          </article>
-          <article>
-            <CalendarCheck2 size={17} />
-            <div>
-              <strong>Keep the rhythm</strong>
-              <span>Information and routes about all of your favorite D&amp;D&apos;s</span>
-            </div>
-          </article>
-          <article>
-            <ListChecks size={17} />
-            <div>
-              <strong>Make progress clear</strong>
-              <span>Resources shaped for Ironman accounts</span>
-            </div>
-          </article>
+        <div className="entry-feature-area">
+          <div className="entry-feature-heading">
+            <p className="eyebrow">YOUR GROUP, ONE PLACE</p>
+            <h2>Built for the journey ahead.</h2>
+            <p>Plan together, keep momentum, and find the next useful thing without losing the fun of the group.</p>
+          </div>
+          <div className="entry-feature-stack" aria-label="Ironpath features">
+            <article>
+              <Trophy size={17} />
+              <div>
+                <strong>Group Dashboard</strong>
+                <span>Standings, activity, and shared history</span>
+              </div>
+            </article>
+            <article>
+              <CalendarCheck2 size={17} />
+              <div>
+                <strong>Keep the rhythm</strong>
+                <span>Information and routes about all of your favorite D&amp;D&apos;s</span>
+              </div>
+            </article>
+            <article>
+              <ListChecks size={17} />
+              <div>
+                <strong>Make progress clear</strong>
+                <span>Resources shaped for Ironman accounts</span>
+              </div>
+            </article>
+            <article>
+              <Compass size={17} />
+              <div>
+                <strong>Find the next step</strong>
+                <span>Roadmaps, training ideas, unlocks, and useful account references</span>
+              </div>
+            </article>
+            <article>
+              <Archive size={17} />
+              <div>
+                <strong>Keep the memorable stuff</strong>
+                <span>Build a shared record of drops and milestones your group finds</span>
+              </div>
+            </article>
+            <article>
+              <Wrench size={17} />
+              <div>
+                <strong>Made to grow with us</strong>
+                <span>Try new features, keep what helps, and shape the companion around real play</span>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
       <footer className="entry-footer entry-credit">
-        <label className="theme-control entry-theme-control">
-          <span>Theme</span>
-          <select
-            value={theme}
-            onChange={(event) => changeTheme(event.target.value as Theme)}
-            aria-label="Choose color theme"
-          >
-            {themes.map(([id, label]) => (
-              <option value={id} key={id}>
-                {label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <i aria-hidden="true" />
-        <span>
-          Concept created by <a className="project-origin-link" href="/about">Justjay btw</a>
-        </span>
-        <i aria-hidden="true" />
-        <span>AI-assisted development</span>
-        <i aria-hidden="true" />
-        <span>For the community</span>
-        <i aria-hidden="true" />
-        <a href="/faq">FAQ</a>
-        <i aria-hidden="true" />
-        <a href="/privacy">Privacy &amp; data</a>
-        <i aria-hidden="true" />
-        <span>Unofficial · Not affiliated with Jagex</span>
+        <div className="entry-footer-brand">
+          <span>Built by players, for players.</span>
+        </div>
+        <nav className="entry-footer-links" aria-label="Footer links">
+          <a className="project-origin-link" href="/about">About the project</a>
+          <a href="/faq">FAQ</a>
+          <a href="/privacy">Privacy &amp; data</a>
+        </nav>
+        <div className="entry-footer-utility">
+          <label className="theme-control entry-theme-control">
+            <span>Theme</span>
+            <select
+              value={theme}
+              onChange={(event) => changeTheme(event.target.value as Theme)}
+              aria-label="Choose color theme"
+            >
+              {themes.map(([id, label]) => (
+                <option value={id} key={id}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <span className="entry-footer-legal">Unofficial · Not affiliated with Jagex</span>
+        </div>
       </footer>
     </section>
   );
@@ -1559,23 +1653,21 @@ function ShopRunsView({
   const done = shopRuns.filter(([name]) => completed[name]).length;
   return (
     <section className="panel shop-runs-card">
-      <div className="panel-heading">
+      <div className="shop-runs-heading">
         <div>
           <p className="eyebrow">Ironman stock planner</p>
           <h3>Shop Runs</h3>
           <p>
-            Mark a stop when it has been checked. Your group can use this as a
-            simple shared circuit.
+            Keep a compact circuit of the shops that matter most to an
+            Ironman account.
           </p>
         </div>
-        <span className="route-progress">
-          {done}/{shopRuns.length}
-        </span>
+        <div className="shop-runs-progress"><span>Checked</span><strong>{done}/{shopRuns.length}</strong></div>
       </div>
       <div className="shop-run-list">
         {shopRuns.map(([name, locations, stock, advice]) => (
           <article
-            className={completed[name] ? 'hub-check-row done' : 'hub-check-row'}
+            className={completed[name] ? 'shop-run-card done' : 'shop-run-card'}
             key={name}
           >
             <button
@@ -1585,14 +1677,12 @@ function ShopRunsView({
             >
               {completed[name] && <Check size={14} />}
             </button>
-            <div>
-              <strong>{name}</strong>
-              <p>
-                <strong>Where:</strong> {locations}
-              </p>
-              <p>
-                <strong>Key stock:</strong> {stock}
-              </p>
+            <div className="shop-run-copy">
+              <div className="shop-run-title"><span>Shop category</span><strong>{name}</strong></div>
+              <dl>
+                <div><dt>Where</dt><dd>{locations}</dd></div>
+                <div><dt>Keep in stock</dt><dd>{stock}</dd></div>
+              </dl>
               <p>{advice}</p>
             </div>
           </article>
@@ -1831,91 +1921,52 @@ function HiScoresView({
     }
   }
 
+  const selectedPlayer =
+    result?.players.find((player) => player.name === preferredMember) ||
+    result?.players[0];
+  const selectedTopSkill = selectedPlayer
+    ? [...selectedPlayer.skills].sort((a, b) => b.xp - a.xp)[0]
+    : undefined;
+
   return (
-    <div className="content feature-page repeatables-tracker">
-      <section className="feature-heading">
-        <div>
-          <p className="date-line">LIVE FROM RUNESCAPE</p>
-          <h2>Group HiScores</h2>
-          <p>
-            Look up your team, refresh every member, and compare progress in one
-            place.
-          </p>
-        </div>
-        {result && (
-          <div className="status-chip">
-            <CircleDot size={14} /> Refreshed{' '}
-            {new Date(result.refreshedAt).toLocaleTimeString([], {
-              hour: 'numeric',
-              minute: '2-digit',
-            })}
+    <div className="content feature-page repeatables-tracker dashboard-page">
+      {selectedPlayer && (
+        <section className="panel member-home-selector dashboard-personalize">
+          <div>
+            <p className="eyebrow">Your character</p>
+            <h3>Personalize Ironpath</h3>
+            <p>
+              Choose who you are in the group. Ironpath will use this member’s
+              levels and unlocks across the rest of the app.
+            </p>
           </div>
-        )}
+          <label className="field">
+            <span>Viewing as</span>
+            <select value={selectedPlayer.name} onChange={(event) => setPreferredMember(event.target.value)}>
+              {result?.players.map((player) => <option value={player.name} key={player.name}>{player.name}</option>)}
+            </select>
+          </label>
+          <div className="personal-stat"><span>Total level</span><strong>{selectedPlayer.overall?.level.toLocaleString() || '—'}</strong></div>
+          <div className="personal-stat"><span>Top skill</span><strong>{selectedTopSkill ? `${selectedTopSkill.name} ${selectedTopSkill.level}` : '—'}</strong></div>
+        </section>
+      )}
+      <section className="panel dashboard-connection-panel">
+        <div>
+          <p className="eyebrow">Group connection</p>
+          <h3>{result ? `${result.group} · ${result.mode}` : 'Connect your Group Ironman roster'}</h3>
+          <p>{result ? `Last refreshed ${new Date(result.refreshedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}.` : 'Look up your group here to load its official HiScores roster.'}</p>
+        </div>
+        <form onSubmit={refresh}>
+          <label className="field group-field"><span>Group name</span><input value={group} onChange={(event) => setGroup(event.target.value)} placeholder="Exact group name" /></label>
+          <label className="field"><span>Size</span><select value={size} onChange={(event) => setSize(event.target.value)}>{[2,3,4,5].map(value => <option value={value} key={value}>{value} members</option>)}</select></label>
+          <button className="secondary-button" disabled={loading}>{loading ? 'Refreshing…' : result ? 'Refresh group' : 'Connect group'}</button>
+          {result && <button className="text-button unsync-group-button" type="button" onClick={unsyncGroup}>Unsync</button>}
+        </form>
       </section>
-      <form className="lookup-panel panel" onSubmit={refresh}>
-        <label className="field group-field">
-          <span>Group name</span>
-          <input
-            value={group}
-            onChange={(event) => setGroup(event.target.value)}
-            placeholder="Enter exact group name"
-          />
-        </label>
-        <label className="field">
-          <span>Group size</span>
-          <select
-            value={size}
-            onChange={(event) => setSize(event.target.value)}
-          >
-            <option value="2">2 members</option>
-            <option value="3">3 members</option>
-            <option value="4">4 members</option>
-            <option value="5">5 members</option>
-          </select>
-        </label>
-        <label className="mode-toggle">
-          <input
-            type="checkbox"
-            aria-label="Competitive mode"
-            checked={competitive}
-            onChange={(event) => setCompetitive(event.target.checked)}
-          />
-          <span>
-            <strong>Competitive mode</strong>
-          </span>
-        </label>
-        <button className="primary-button lookup-button" disabled={loading}>
-          {loading ? (
-            <RefreshCw className="spin" size={16} />
-          ) : (
-            <Search size={16} />
-          )}
-          {loading ? 'Refreshing…' : 'Look up group'}
-        </button>
-      </form>
       {error && <div className="error-banner">{error}</div>}
       {result?.warning && (
         <div className="warning-banner">{result.warning}</div>
       )}
-      <section className="panel dashboard-group-status">
-        <CircleDot size={19} />
-        <div>
-          <p className="eyebrow">
-            {result ? 'Connected group' : 'Ready when you are'}
-          </p>
-          <h3>{result ? result.group : 'Connect your Group Ironman roster'}</h3>
-          <p>
-            {result
-              ? `${result.mode} · ${result.players.length} members`
-              : 'Enter your exact group name above to connect its official HiScores roster.'}
-          </p>
-        </div>
-        {result && (
-          <button className="unsync-group-button" onClick={unsyncGroup}>
-            Unsync group
-          </button>
-        )}
-      </section>
       {!result && !error && (
         <section className="empty-state">
           <Trophy size={32} />
@@ -1928,77 +1979,6 @@ function HiScoresView({
       )}
       {result && (
         <>
-          <section className="hiscore-summary">
-            <div className="panel summary-main">
-              <p className="eyebrow">
-                {result.mode} group · {result.size} members
-              </p>
-              <h3>{result.group}</h3>
-              <a href={result.sourceUrl} target="_blank" rel="noreferrer">
-                Official HiScores <ExternalLink size={12} />
-              </a>
-            </div>
-            <div className="panel summary-stat">
-              <span>Combined level</span>
-              <strong>{result.totalLevel.toLocaleString()}</strong>
-            </div>
-            <div className="panel summary-stat">
-              <span>Combined XP</span>
-              <strong>{compactNumber(result.totalXp)}</strong>
-            </div>
-            <button
-              className="panel refresh-card"
-              onClick={() => refresh()}
-              disabled={loading}
-            >
-              <RefreshCw className={loading ? 'spin' : ''} size={20} />
-              <span>Refresh stats</span>
-            </button>
-          </section>
-          {(() => {
-            const selected =
-              result.players.find(
-                (player) => player.name === preferredMember,
-              ) || result.players[0];
-            const top = selected
-              ? [...selected.skills].sort((a, b) => b.xp - a.xp)[0]
-              : undefined;
-            return selected ? (
-              <section className="panel member-home-selector">
-                <div>
-                  <p className="eyebrow">Your character</p>
-                  <h3>Personalize Ironpath</h3>
-                  <p>
-                    Choose your group member to tailor suggestions, training
-                    levels and available familiars to you.
-                  </p>
-                </div>
-                <label className="field">
-                  <span>Viewing as</span>
-                  <select
-                    value={selected.name}
-                    onChange={(event) => setPreferredMember(event.target.value)}
-                  >
-                    {result.players.map((player) => (
-                      <option value={player.name} key={player.name}>
-                        {player.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <div className="personal-stat">
-                  <span>Total level</span>
-                  <strong>
-                    {selected.overall?.level.toLocaleString() || '—'}
-                  </strong>
-                </div>
-                <div className="personal-stat">
-                  <span>Top skill</span>
-                  <strong>{top ? `${top.name} ${top.level}` : '—'}</strong>
-                </div>
-              </section>
-            ) : null;
-          })()}
           <div className="dashboard-primary-sections">
             <section className="panel hiscore-table-panel">
               <div className="panel-heading">
@@ -2542,7 +2522,7 @@ function GroupDropLog({
       <div className="panel-heading">
         <div>
           <p className="eyebrow">Group drop archive</p>
-          <h3>{group} item history</h3>
+          <h3>Group item history</h3>
         </div>
         <span className="source-note">
           New public RuneMetrics drop events are retained for this group.
@@ -2663,7 +2643,6 @@ function GroupDropLog({
             <span>Item</span>
             <span>Quantity</span>
             <span>Found by</span>
-            <span>Latest entry</span>
           </div>
           {displayRows.map((row) => {
             const newest = [...row.events].sort(
@@ -2689,15 +2668,6 @@ function GroupDropLog({
                   )}
                   <small>{entryDate}</small>
                 </span>
-                <time
-                  dateTime={
-                    newest.date.startsWith('Example')
-                      ? undefined
-                      : new Date(newest.timestamp).toISOString()
-                  }
-                >
-                  {entryDate}
-                </time>
               </article>
             );
           })}
@@ -2982,139 +2952,72 @@ function TaskGenerator({
 }
 
 const ironmanUnlocks = [
-  {
-    stage: 'Early',
-    name: 'High Level Alchemy',
-    requirement: '55 Magic · 44 Runecrafting recommended',
-    value:
-      'Turns salvage and spare drops into the coins needed for shops, instances, Summoning and kingdom upkeep.',
-    link: 'https://runescape.wiki/w/High_Level_Alchemy',
-  },
-  {
-    stage: 'Early',
-    name: 'Bonecrusher',
-    requirement: '21 Dungeoneering · 34,000 tokens',
-    value:
-      'Automatically buries eligible bones, adding passive Prayer experience to combat and Slayer.',
-    link: 'https://runescape.wiki/w/Bonecrusher',
-  },
-  {
-    stage: 'Early',
-    name: 'War’s Retreat teleport',
-    requirement: '10 total boss kills',
-    value:
-      'Provides a free, fast teleport to a bank, altar and boss portals—one of the best account-wide travel upgrades.',
-    link: 'https://runescape.wiki/w/War%27s_Retreat',
-  },
-  {
-    stage: 'Early',
-    name: 'Giant Oyster',
-    requirement: 'Beneath Cursed Tides',
-    value:
-      'Unlocks a useful monthly source of Fishing and Farming experience with a reward chest.',
-    link: 'https://runescape.wiki/w/Giant_Oyster',
-  },
-  {
-    stage: 'Mid',
-    name: 'Managing Miscellania',
-    requirement: 'Throne of Miscellania · Royal Trouble',
-    value:
-      'Converts daily coins into steady logs, herbs, seeds or fish—valuable supplies that are otherwise slow to gather.',
-    link: 'https://runescape.wiki/w/Managing_Miscellania',
-  },
-  {
-    stage: 'Mid',
-    name: 'Invention',
-    requirement: '80 Crafting · Divination · Smithing',
-    value:
-      'Unlocks augmentation, equipment experience, useful machines and perks that transform both skilling and combat.',
-    link: 'https://runescape.wiki/w/Invention',
-  },
-  {
-    stage: 'Mid',
-    name: 'Ancient Curses',
-    requirement: 'The Temple at Senntisten',
-    value:
-      'Unlocks the Curse prayer book and establishes the foundation for higher-level combat and sustain.',
-    link: 'https://runescape.wiki/w/Ancient_Curses',
-  },
-  {
-    stage: 'Mid',
-    name: 'Prifddinas',
-    requirement: 'Plague’s End · level 75 requirements',
-    value:
-      'Opens the elf city’s training methods, shops, crystal equipment, convenient teleports and skilling services.',
-    link: 'https://runescape.wiki/w/Prifddinas',
-  },
-  {
-    stage: 'Mid',
-    name: 'Augmentable Sunspear',
-    requirement: 'River of Blood',
-    value:
-      'A reusable all-style weapon that works especially well for Vyres and early Invention equipment training.',
-    link: 'https://runescape.wiki/w/Sunspear_(melee)',
-  },
-  {
-    stage: 'Late',
-    name: 'City of Senntisten spells',
-    requirement: 'City of Senntisten',
-    value:
-      'Adds powerful Ancient Magicks options including Animate Dead, Smoke Cloud, Incite Fear and Exsanguinate.',
-    link: 'https://runescape.wiki/w/City_of_Senntisten',
-  },
-  {
-    stage: 'Late',
-    name: 'Extinction rewards',
-    requirement: 'Extinction',
-    value:
-      'Unlocks Dream of Iaia and major passive utility, including the passive Ring of Vigour effect.',
-    link: 'https://runescape.wiki/w/Extinction',
-  },
-  {
-    stage: 'Late',
-    name: 'Player-owned Ports',
-    requirement: '90 in a supporting skill',
-    value:
-      'Provides long-term voyages for trade goods used in high-level armour, scrimshaws and other account upgrades.',
-    link: 'https://runescape.wiki/w/Player-owned_port',
-  },
+  { category: 'Activities', name: 'Giant Oyster', requirement: 'Complete Beneath Cursed Tides', value: 'A monthly Distraction and Diversion with Farming and Fishing experience plus a reward chest.', link: 'https://runescape.wiki/w/Giant_Oyster' },
+  { category: 'Activities', name: 'Managing Miscellania', requirement: 'Throne of Miscellania · Royal Trouble improves it', value: 'Assign workers for passive resources such as logs, herbs, seeds, fish and coal.', link: 'https://runescape.wiki/w/Managing_Miscellania' },
+  { category: 'Activities', name: 'Player-owned Ports', requirement: 'Level 90 in one eligible skill', value: 'Long-term voyages provide trade goods for scrimshaws, rocktail soup, tier-85 gear and more.', link: 'https://runescape.wiki/w/Player-owned_port' },
+  { category: 'Locations', name: 'War’s Retreat', requirement: 'Combat level 60 or total level 1,000', value: 'PvM hub with a bank, altar, adrenaline crystals and boss portals unlocked through boss kills and Marks of War.', link: 'https://runescape.wiki/w/War%27s_Retreat' },
+  { category: 'Locations', name: 'Menaphos', requirement: 'Complete The Jack of Spades', value: 'Mid-level city with skilling, Soul obelisks, Shifting Tombs, marketeers and desert activities.', link: 'https://runescape.wiki/w/Menaphos' },
+  { category: 'Locations', name: 'Prifddinas', requirement: 'Complete Plague’s End', value: 'Elf city districts, high-level skilling, shops, crystal services and convenient teleports.', link: 'https://runescape.wiki/w/Prifddinas' },
+  { category: 'Locations', name: 'The Arc', requirement: 'Complete Impressing the Locals', value: 'High-level island skilling, an Elite Dungeon and access to uncharted-island content.', link: 'https://runescape.wiki/w/The_Arc' },
+  { category: 'Travel', name: 'Lodestone Network', requirement: 'Visit and activate each lodestone', value: 'Free home-teleport access to major cities and locations; quick charges make the teleport instant.', link: 'https://runescape.wiki/w/Lodestone_Network' },
+  { category: 'Travel', name: 'Fairy ring network', requirement: 'A Fairy Tale II · Fairy Tale III removes staff requirement', value: 'Network travel to a large number of areas after discovering the rings you want to use.', link: 'https://runescape.wiki/w/Fairy_ring' },
+  { category: 'Travel', name: 'Spirit tree network', requirement: 'Tree Gnome Village · The Path of Glouphrie for free travel', value: 'Fast travel between spirit trees; more personal trees can be planted with Farming and quest progress.', link: 'https://runescape.wiki/w/Spirit_tree' },
+  { category: 'Travel', name: 'Ectophial', requirement: 'Complete Ghosts Ahoy', value: 'Instant, one-click teleport to the Ectofuntus near Port Phasmatys that is kept on death outside the Wilderness.', link: 'https://runescape.wiki/w/Ectophial' },
+  { category: 'Travel', name: 'Manor Farm teleport', requirement: 'Medium Ardougne achievements; Elite for unlimited use', value: 'Direct Player-owned Farm access and a useful stop for farming routes.', link: 'https://runescape.wiki/w/Ardougne_achievements' },
+  { category: 'Travel', name: 'Wicked hood', requirement: 'Claim from Tam McGrubor in Burthorpe', value: 'Daily Runecrafting altar teleports and quick access to the Rune Goldberg Machine.', link: 'https://runescape.wiki/w/Wicked_hood' },
+  { category: 'Travel', name: 'Ring of duelling', requirement: 'Enchant an emerald ring', value: 'Convenient teleports to Castle Wars, Het’s Oasis and Fist of Guthix.', link: 'https://runescape.wiki/w/Ring_of_duelling' },
+  { category: 'Travel', name: 'Games necklace', requirement: 'Enchant a sapphire necklace', value: 'Useful access to Barbarian Assault, Tears of Guthix and several combat or minigame destinations.', link: 'https://runescape.wiki/w/Games_necklace' },
+  { category: 'Travel', name: 'Amulet of glory', requirement: 'Enchant a dragonstone amulet', value: 'Teleports to Karamja, Shantay Pass and Draynor Village, with recharges available at the Fountain of Heroes.', link: 'https://runescape.wiki/w/Amulet_of_glory' },
+  { category: 'Travel', name: 'Attuned crystal teleport seed', requirement: 'Plague’s End · depleted seed · 4,000 harmonic dust', value: 'Unlimited teleports across Prifddinas districts, Lletya and the Temple of Light.', link: 'https://runescape.wiki/w/Attuned_crystal_teleport_seed' },
+  { category: 'Skilling', name: 'Invention', requirement: 'Level 80 Crafting, Divination and Smithing', value: 'Augment equipment, train with item experience, unlock machines and create powerful perks.', link: 'https://runescape.wiki/w/Invention' },
+  { category: 'Skilling', name: 'Bonecrusher', requirement: '21 Dungeoneering · 34,000 tokens', value: 'Automatically buries eligible bones for passive Prayer experience while fighting or training Slayer.', link: 'https://runescape.wiki/w/Bonecrusher' },
+  { category: 'Skilling', name: 'High Level Alchemy', requirement: 'Level 55 Magic', value: 'Converts salvage and spare drops into coins for shops, upkeep and other self-sufficient costs.', link: 'https://runescape.wiki/w/High_Level_Alchemy' },
+  { category: 'Skilling', name: 'Seren skilling spells', requirement: 'Complete The Light Within', value: 'Unlocks Chronicle Attraction, Superheat Form and Light Form through Ancient Magicks.', link: 'https://runescape.wiki/w/The_Light_Within' },
+  { category: 'Skilling', name: 'Crystal tools', requirement: 'Complete Plague’s End', value: 'Strong untradeable, augmentable tools with bonuses for the skills trained with them.', link: 'https://runescape.wiki/w/Crystal_tools' },
+  { category: 'Skilling', name: 'Elite skilling outfits', requirement: 'Skill-specific fragments or their dedicated activity', value: 'Carry the standard outfit experience boost and add useful skill-specific benefits.', link: 'https://runescape.wiki/w/Elite_skilling_outfit' },
+  { category: 'Skilling', name: 'Signs of the porter', requirement: 'Craft with Divination', value: 'Automatically send gathered items to the bank, metal bank or Archaeology material storage.', link: 'https://runescape.wiki/w/Sign_of_the_porter' },
+  { category: 'Skilling', name: 'Grace of the elves', requirement: 'Create or obtain the necklace', value: 'Stores up to 500 porter charges for long gathering sessions.', link: 'https://runescape.wiki/w/Grace_of_the_elves' },
+  { category: 'Skilling', name: 'Relic powers', requirement: 'Archaeology discoveries and monolith energy', value: 'Permanent Archaeology-powered effects that improve gathering, combat, travel and quality of life.', link: 'https://runescape.wiki/w/Relic_power' },
+  { category: 'Skilling', name: 'Scroll of cleansing', requirement: 'Buy with Dungeoneering tokens', value: 'Can save Herblore secondary ingredients while making unfinished potions.', link: 'https://runescape.wiki/w/Scroll_of_cleansing' },
+  { category: 'Skilling', name: 'Urn enhancer', requirement: 'Nomad’s Elegy · level 24 Invention', value: 'Uses divine charges to add 25% extra experience when urns teleport away.', link: 'https://runescape.wiki/w/Urn_enhancer' },
+  { category: 'Combat', name: 'War’s Retreat teleport', requirement: 'Get 10 total boss kills after accessing War’s Retreat', value: 'A no-cost, one-click spellbook teleport to the PvM hub and its core amenities.', link: 'https://runescape.wiki/w/War%27s_Retreat_Teleport' },
+  { category: 'Combat', name: 'Ancient Curses', requirement: 'Complete The Temple at Senntisten', value: 'Unlocks the ancient prayer book for higher-level combat prayers and sustain.', link: 'https://runescape.wiki/w/Ancient_Curses' },
+  { category: 'Combat', name: 'City of Senntisten spells', requirement: 'Complete City of Senntisten', value: 'Adds key Ancient Magicks such as Animate Dead, Smoke Cloud, Incite Fear and Exsanguinate.', link: 'https://runescape.wiki/w/City_of_Senntisten' },
+  { category: 'Combat', name: 'Passive Ring of Vigour', requirement: 'Complete Extinction', value: 'Makes the Ring of Vigour effect passive, freeing the ring slot for another combat option.', link: 'https://runescape.wiki/w/Extinction' },
+  { category: 'Combat', name: 'Overloads', requirement: 'Level 96 Herblore', value: 'Combines extreme potion boosts to improve every combat style at once.', link: 'https://runescape.wiki/w/Overload' },
+  { category: 'Combat', name: 'Augmented combat gear', requirement: 'Invention and augmentable equipment', value: 'Adds perk slots to higher-level armour and weapons for tailored PvM improvements.', link: 'https://runescape.wiki/w/Augmentation' },
+  { category: 'Combat', name: 'Resonance shield switch', requirement: 'A shield and the Resonance ability', value: 'A basic defensive switch used to heal from and reduce incoming boss damage.', link: 'https://runescape.wiki/w/Resonance' },
+  { category: 'Hero items', name: 'Hazelmere’s signet ring', requirement: 'Rare drop table chance', value: 'Hero item with a chance to double eligible drops; it can later be imbued and enchanted.', link: 'https://runescape.wiki/w/Hazelmere%27s_signet_ring' },
+  { category: 'Hero items', name: 'Orlando Smith’s hat', requirement: 'Master Treasure Trail reward casket chance', value: 'Hero item that can also award a casket of the tier below the completed Treasure Trail.', link: 'https://runescape.wiki/w/Orlando_Smith%27s_hat' },
+  { category: 'Hero items', name: 'Tavia’s fishing rod', requirement: 'Red uncharted-island map chance', value: 'Hero item with extra fish chance and a chance to grant Deep Sea Fishing boosts.', link: 'https://runescape.wiki/w/Tavia%27s_fishing_rod' },
+  { category: 'Hero items', name: 'Guildmaster Tony’s mattock', requirement: 'Shadowy key chance', value: 'Hero Archaeology tool with a chance to discover an artefact immediately or gain extra materials.', link: 'https://runescape.wiki/w/Guildmaster_Tony%27s_mattock' },
+  { category: 'Enchantments', name: 'Enchantment of agony', requirement: 'Imbue on enhanced gloves of passage', value: 'Permanently strengthens the gloves’ damage boost and bleed-damage effect.', link: 'https://runescape.wiki/w/Enchantment_of_agony' },
+  { category: 'Enchantments', name: 'Enchantment of heroism', requirement: 'Imbue on champion’s ring', value: 'Permanently improves critical strike chance and adds bleed-based critical damage.', link: 'https://runescape.wiki/w/Enchantment_of_heroism' },
+  { category: 'Enchantments', name: 'Enchantment of dispelling', requirement: 'Imbue on hexhunter bow', value: 'Permanently increases the bow’s damage-boosting effect.', link: 'https://runescape.wiki/w/Enchantment_of_dispelling' },
 ] as const;
 
-const ironmanPrinciples = [
-  [
-    'Quest before grinding',
-    'Quest rewards skip slow early levels and unlock efficient travel, bosses, spellbooks and supply sources.',
-  ],
-  [
-    'Protect future supplies',
-    'Bank herbs, seeds, logs, gems, secondary ingredients and useful salvage. Today’s spare item is often tomorrow’s unlock requirement.',
-  ],
-  [
-    'Spend lamps deliberately',
-    'Herblore is commonly the best default because ingredients gate training. Change course when a specific unlock needs another slow skill.',
-  ],
-  [
-    'Build recurring income',
-    'Shop stocks, kingdom resources, Player-owned Farm and distractions and diversions reduce the need for emergency gathering later.',
-  ],
-  [
-    'Share roles within the group',
-    'Group Ironmen can trade internally. Specialising early goals and sharing tools or rare drops can avoid duplicated grinds.',
-  ],
-  [
-    'Keep cash flowing',
-    'No Grand Exchange means alchemy, shops, Slayer drops and activity rewards matter more. Keep enough coins for upkeep and unlock costs.',
-  ],
-] as const;
+const unlockSectionCopy: Record<string, string> = {
+  All: 'Browse the full collection, or choose a section to focus on one kind of account upgrade.',
+  Activities: 'Repeatable activities and long-term systems that return supplies, experience or progression over time.',
+  Locations: 'Major places worth opening because they change what an account can train, gather or fight.',
+  Travel: 'Networks and portable teleports that make routes, clues and everyday movement much faster.',
+  Skilling: 'Permanent tools, perks and systems that improve the way you train and gather resources.',
+  Combat: 'Prayers, gear systems and PvM quality-of-life upgrades that improve combat progression.',
+  'Hero items': 'Extremely rare items with unique effects. They are tracked here for reference, not expected progression goals.',
+  Enchantments: 'Consumable, permanent upgrades that apply to every relevant item on the account after being imbued.',
+};
 
-function IronmanGuideView({
+function UnlocksView({
   shared,
   setShared = () => {},
 }: {
   shared?: Record<string, boolean>;
   setShared?: (value: Record<string, boolean>) => void;
 }) {
-  const [stage, setStage] = useState<'All' | 'Early' | 'Mid' | 'Late'>('All');
+  const categories = Array.from(
+    new Set(ironmanUnlocks.map((item) => item.category)),
+  );
+  const [category, setCategory] = useState(categories[0]);
   const [unlocked, setUnlocked] = useState<Record<string, boolean>>({});
   useEffect(() => {
     if (shared) setUnlocked(shared);
@@ -3136,122 +3039,101 @@ function IronmanGuideView({
       return next;
     });
   }
-  const visible = ironmanUnlocks.filter(
-    (item) => stage === 'All' || item.stage === stage,
-  );
+  const visible = ironmanUnlocks.filter((item) => item.category === category);
+  const sectionTitle = category;
   const done = ironmanUnlocks.filter((item) => unlocked[item.name]).length;
   return (
     <div className="content feature-page ironman-page">
       <section className="feature-heading">
         <div>
-          <p className="date-line">SELF-SUFFICIENT PROGRESSION</p>
-          <h2>Ironman Guide</h2>
+          <p className="date-line">USEFUL ITEMS &amp; ACCOUNT UPGRADES</p>
+          <h2>Unlocks</h2>
           <p>
-            High-value unlocks, resource habits and practical priorities for
-            RuneScape 3 Ironmen and groups.
+            A practical checklist of useful RuneScape 3 unlocks, organised by
+            what they improve for an Ironman account.
           </p>
         </div>
         <div className="status-chip">
           <Check size={15} />
-          {done} of {ironmanUnlocks.length} unlocks
+          {done} of {ironmanUnlocks.length} marked complete
         </div>
       </section>
       <section className="ironman-basics panel">
         <div>
-          <p className="eyebrow">The core rule</p>
-          <h3>Source it yourself. Share it with your group.</h3>
+          <p className="eyebrow">Build a better account</p>
+          <h3>Track the upgrades that keep paying you back.</h3>
           <p>
-            Ironmen cannot rely on the Grand Exchange or unrestricted outside
-            trading. Group Ironmen can share items within their team, making
-            coordination one of the mode’s strongest advantages.
+            These are the locations, travel methods, activities and combat
+            upgrades that make future play smoother. Mark each one when it is
+            truly available on your account.
           </p>
         </div>
         <Shield size={42} />
       </section>
       <div className="unlock-toolbar">
         <div className="period-tabs">
-          {(['All', 'Early', 'Mid', 'Late'] as const).map((value) => (
+          {categories.map((value) => (
             <button
               key={value}
-              className={stage === value ? 'active' : ''}
-              onClick={() => setStage(value)}
+              className={category === value ? 'active' : ''}
+              onClick={() => setCategory(value)}
             >
               <span>{value}</span>
               <strong>
-                {value === 'All'
-                  ? ironmanUnlocks.length
-                  : ironmanUnlocks.filter((item) => item.stage === value)
-                      .length}
+                {ironmanUnlocks.filter((item) => item.category === value).length}
               </strong>
             </button>
           ))}
         </div>
       </div>
-      <section className="unlock-grid">
-        {visible.map((item) => (
-          <article
-            className={
-              unlocked[item.name]
-                ? 'panel unlock-card done'
-                : 'panel unlock-card'
-            }
-            key={item.name}
-          >
-            <div className="unlock-card-head">
-              <button
-                className="route-check"
-                onClick={() => toggle(item.name)}
-                aria-label={`Mark ${item.name} ${unlocked[item.name] ? 'locked' : 'unlocked'}`}
-              >
-                {unlocked[item.name] && <Check size={15} />}
-              </button>
-              <span className={`stage-badge ${item.stage.toLowerCase()}`}>
-                {item.stage}
-              </span>
-              <a
-                href={item.link}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Open ${item.name} on the RuneScape Wiki`}
-              >
-                <ExternalLink size={15} />
-              </a>
-            </div>
-            <h3>{item.name}</h3>
-            <strong>{item.requirement}</strong>
-            <p>{item.value}</p>
-          </article>
-        ))}
-      </section>
-      <section className="panel principles-panel">
-        <div className="panel-heading">
+      <section className="panel unlock-section-panel">
+        <div className="unlock-section-heading">
           <div>
-            <p className="eyebrow">Mode-specific advice</p>
-            <h3>Habits that compound over time</h3>
+            <p className="eyebrow">Selected section</p>
+            <h3>{sectionTitle}</h3>
+            <p>{unlockSectionCopy[category]}</p>
           </div>
+          <span>{visible.length} items</span>
         </div>
-        <div className="principle-grid">
-          {ironmanPrinciples.map(([title, detail], index) => (
-            <article key={title}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <div>
-                <strong>{title}</strong>
-                <p>{detail}</p>
+        <div className="unlock-grid">
+          {visible.map((item) => (
+            <article
+              className={
+                unlocked[item.name]
+                  ? 'panel unlock-card done'
+                  : 'panel unlock-card'
+              }
+              key={item.name}
+            >
+              <div className="unlock-card-head">
+                <button
+                  className="route-check"
+                  onClick={() => toggle(item.name)}
+                  aria-label={`Mark ${item.name} ${unlocked[item.name] ? 'locked' : 'unlocked'}`}
+                >
+                  {unlocked[item.name] && <Check size={15} />}
+                </button>
+                <span className="stage-badge">
+                  {item.category}
+                </span>
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${item.name} on the RuneScape Wiki`}
+                >
+                  <ExternalLink size={15} />
+                </a>
               </div>
+              <h3>{item.name}</h3>
+              <strong>{item.requirement}</strong>
+              <p>{item.value}</p>
             </article>
           ))}
         </div>
       </section>
       <p className="guide-credit">
-        <BookOpen size={14} /> Guidance is summarized from the{' '}
-        <a
-          href="https://runescape.wiki/w/Ironman_Mode/Strategies"
-          target="_blank"
-          rel="noreferrer"
-        >
-          RuneScape Wiki Ironman strategies
-        </a>{' '}
-        and{' '}
+        <BookOpen size={14} /> Entries are summarized from the{' '}
         <a
           href="https://runescape.wiki/w/Guide_to_useful_items_and_unlocks"
           target="_blank"
@@ -3464,6 +3346,22 @@ function EfficientProgressView({
               Track progress across every planned roadmap step for this group.
             </p>
           </div>
+          <div className="roadmap-quest-sync">
+            <button
+              className="roadmap-quest-sync-button"
+              onClick={syncQuests}
+              disabled={!groupData || syncingQuests}
+              title={
+                groupData
+                  ? 'Mark completed roadmap quests from the selected player.'
+                  : 'Connect a group in Settings before syncing quest progress.'
+              }
+            >
+              <RefreshCw className={syncingQuests ? 'spin' : ''} size={14} />
+              {syncingQuests ? 'Syncing quests…' : 'Sync quests'}
+            </button>
+            {questSyncMessage && <small>{questSyncMessage}</small>}
+          </div>
         </section>
       )}
       {!fixedView && (
@@ -3497,26 +3395,27 @@ function EfficientProgressView({
         <div className="roadmap-layout">
           <aside className="phase-list panel">
             <p className="eyebrow">Route phases</p>
-            {progressData.progression.map((section) => {
-              const done = section.rows.filter(
-                (row) => completed[row.id],
-              ).length;
-              return (
-                <button
-                  key={section.id}
-                  className={section.id === activeSection.id ? 'active' : ''}
-                  onClick={() => setSectionId(section.id)}
-                >
-                  <span>
-                    <strong>{section.title}</strong>
-                    <small>{section.rows.length} steps</small>
-                  </span>
-                  <em>
-                    {done}/{section.rows.length}
-                  </em>
-                </button>
-              );
-            })}
+            <div className="roadmap-phase-buttons">
+              {progressData.progression.map((section) => {
+                const done = section.rows.filter(
+                  (row) => completed[row.id],
+                ).length;
+                return (
+                  <button
+                    key={section.id}
+                    className={`roadmap-phase-card${section.id === activeSection.id ? ' active' : ''}`}
+                    onClick={() => setSectionId(section.id)}
+                  >
+                    <span>
+                      <strong>{section.title}</strong>
+                      <small>
+                        {section.rows.length} steps · {done} complete
+                      </small>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </aside>
           <section className="panel route-panel">
             <div className="route-toolbar">
@@ -3532,58 +3431,6 @@ function EfficientProgressView({
                   placeholder="Filter this phase"
                 />
               </label>
-            </div>
-            <div className="quest-sync">
-              <div>
-                <p className="eyebrow">Quest sync</p>
-                <strong>Update this roadmap from RuneMetrics</strong>
-                <small>
-                  Verified completed quests are added to the checklist. Manual
-                  progress remains untouched.
-                </small>
-              </div>
-              <div className="quest-sync-actions">
-                {groupData ? (
-                  <select
-                    value={questPlayer}
-                    onChange={(event) => setQuestPlayer(event.target.value)}
-                    aria-label="Choose a group member to sync"
-                  >
-                    {groupData.players.map((player) => (
-                      <option key={player.name}>{player.name}</option>
-                    ))}
-                  </select>
-                ) : (
-                  <input
-                    value={questName}
-                    onChange={(event) => setQuestName(event.target.value)}
-                    placeholder="RuneScape character name"
-                    aria-label="RuneScape character name"
-                  />
-                )}
-                <button
-                  className="secondary-button"
-                  onClick={syncQuests}
-                  disabled={syncingQuests}
-                >
-                  <RefreshCw
-                    size={14}
-                    className={syncingQuests ? 'spin' : ''}
-                  />
-                  {syncingQuests ? 'Syncing…' : 'Sync quests'}
-                </button>
-              </div>
-              {questSyncMessage && (
-                <p
-                  className={
-                    questSyncMessage.includes('marked')
-                      ? 'quest-sync-message success'
-                      : 'quest-sync-message'
-                  }
-                >
-                  {questSyncMessage}
-                </p>
-              )}
             </div>
             <div className="route-list">
               {visibleRows.map((row, index) => (
@@ -3925,6 +3772,225 @@ function FarmRunsView({
         </a>
         .
       </p>
+    </section>
+  );
+}
+
+function FarmV2View({ player }: { player?: HiscorePlayer }) {
+  const plans = {
+    Herb: [
+      { name: 'Catherby', travel: 'Catherby lodestone', fallback: 'Catherby Teleport (Lunar spellbook)', yield: '6–8 herbs' },
+      { name: 'Ardougne', travel: 'Ardougne cloak teleport', fallback: 'Ardougne lodestone', yield: '6–8 herbs' },
+      { name: 'Player-owned Farm', travel: 'Manor Farm teleport', fallback: 'Ardougne lodestone', yield: 'Animals and produce', tasks: ['Beehives', 'Farm animals'] },
+      { name: 'Port Phasmatys', travel: 'Ectophial', fallback: 'Canifis lodestone', yield: '6–8 herbs' },
+      { name: 'Crwys', travel: 'Crystal teleport seed', fallback: 'Prifddinas lodestone', yield: '6–8 herbs' },
+      { name: 'Trollheim', travel: 'Trollheim Farm Teleport', fallback: 'Trollheim Teleport or tablet', yield: '6–8 herbs' },
+      { name: 'Wilderness', travel: 'Wilderness sword', fallback: 'Wilderness lodestone', yield: '6–8 herbs' },
+      { name: 'Kharid', travel: 'Mystical sand seed', fallback: 'Ring of duelling (Het’s Oasis)', yield: '6–8 herbs' },
+    ],
+    Tree: [
+      { name: 'Varrock Palace', travel: 'Grand Exchange spirit tree', fallback: 'Varrock lodestone', yield: 'Farming XP' },
+      { name: 'Falador Park', travel: 'Ring of wealth teleport', fallback: 'Falador lodestone', yield: 'Farming XP' },
+      { name: 'Taverley', travel: 'Redirected house teleport', fallback: 'Taverley lodestone', yield: 'Farming XP' },
+      { name: 'Tree Gnome Stronghold', travel: 'Spirit tree', fallback: 'Grand Exchange spirit tree', yield: 'Farming XP' },
+      { name: 'Prifddinas', travel: 'Crystal teleport seed', fallback: 'Prifddinas lodestone', yield: 'Farming XP' },
+    ],
+    'Fruit tree': [
+      { name: 'Tree Gnome Stronghold', travel: 'Spirit tree', fallback: 'Grand Exchange spirit tree', yield: 'Farming XP' },
+      { name: 'Catherby', travel: 'Catherby Teleport', fallback: 'Catherby lodestone', yield: 'Farming XP' },
+      { name: 'Tree Gnome Village', travel: 'Spirit tree, then Elkoy', fallback: 'Tree Gnome Stronghold spirit tree', yield: 'Farming XP' },
+      { name: 'Brimhaven', travel: 'Brimhaven house teleport', fallback: 'Karamja lodestone', yield: 'Farming XP' },
+      { name: 'Lletya', travel: 'Crystal teleport seed', fallback: 'Tyras Camp lodestone', yield: 'Farming XP' },
+      { name: 'Herblore Habitat', travel: 'Juju teleport spiritbag', fallback: 'Karamja lodestone', yield: 'Farming XP' },
+    ],
+  } as const;
+  type RouteType = keyof typeof plans;
+  const [routeType, setRouteType] = useState<RouteType>('Herb');
+  const [completed, setCompleted] = useState<Record<string, boolean>>({});
+  const [hideCompleted, setHideCompleted] = useState(false);
+  const [selectedPatch, setSelectedPatch] = useState('Catherby');
+  const [patchImages, setPatchImages] = useState<Record<string, string>>({});
+  const [farmNotes, setFarmNotes] = useState('');
+  const [farmTaskOrder, setFarmTaskOrder] = useState(['Beehives', 'Farm animals']);
+  const [draggedFarmTask, setDraggedFarmTask] = useState<string | null>(null);
+  useEffect(() => {
+    try {
+      setCompleted(JSON.parse(window.localStorage.getItem('ironpath-farm-v2') || '{}'));
+    } catch {
+      setCompleted({});
+    }
+  }, []);
+  useEffect(() => {
+    setFarmNotes(window.localStorage.getItem('ironpath-farm-v2-notes') || '');
+  }, []);
+  useEffect(() => {
+    try {
+      const savedOrder = JSON.parse(
+        window.localStorage.getItem('ironpath-farm-v2-player-owned-farm-order') || '[]',
+      ) as string[];
+      if (
+        savedOrder.length === 2 &&
+        savedOrder.includes('Beehives') &&
+        savedOrder.includes('Farm animals')
+      ) {
+        setFarmTaskOrder(savedOrder);
+      }
+    } catch {
+      /* Keep the default task order. */
+    }
+  }, []);
+  const patches = plans[routeType];
+  const visiblePatches = hideCompleted
+    ? patches.filter((patch) => !completed[`${routeType}:${patch.name}`])
+    : patches;
+  const selected = patches.find((patch) => patch.name === selectedPatch) || patches[0];
+  const farming = player?.skills.find((skill) => skill.name === 'Farming')?.level || 1;
+  const cropOptions: Record<RouteType, readonly (readonly [number, string])[]> = {
+    Herb: herbCrops,
+    Tree: treeCrops,
+    'Fruit tree': fruitCrops,
+  };
+  const recommendedCrop =
+    [...cropOptions[routeType]].reverse().find(([level]) => farming >= level) ||
+    cropOptions[routeType][0];
+  const wikiImageTitle =
+    selected.name === 'Player-owned Farm'
+      ? 'Player-owned farm'
+      : routeType === 'Herb'
+        ? `Herb patch (${selected.name})`
+        : routeType === 'Tree'
+          ? 'Tree patch'
+          : 'Fruit tree patch';
+  useEffect(() => {
+    if (patchImages[wikiImageTitle]) return;
+    fetch(`/api/archaeology-images?titles=${encodeURIComponent(wikiImageTitle)}`)
+      .then((response) => response.json())
+      .then((data: { images?: Record<string, string> }) => {
+        if (data.images?.[wikiImageTitle]) {
+          setPatchImages((current) => ({
+            ...current,
+            [wikiImageTitle]: data.images![wikiImageTitle],
+          }));
+        }
+      })
+      .catch(() => undefined);
+  }, [patchImages, wikiImageTitle]);
+  function chooseRoute(next: RouteType) {
+    setRouteType(next);
+    setSelectedPatch(plans[next][0].name);
+  }
+  function togglePatch(name: string) {
+    const key = `${routeType}:${name}`;
+    setCompleted((current) => {
+      const next = { ...current, [key]: !current[key] };
+      window.localStorage.setItem('ironpath-farm-v2', JSON.stringify(next));
+      return next;
+    });
+  }
+  function toggleFarmTask(patch: string, task: string) {
+    const key = `${routeType}:${patch}:${task}`;
+    setCompleted((current) => {
+      const next = { ...current, [key]: !current[key] };
+      window.localStorage.setItem('ironpath-farm-v2', JSON.stringify(next));
+      return next;
+    });
+  }
+  function reorderFarmTask(target: string) {
+    if (!draggedFarmTask || draggedFarmTask === target) return;
+    setFarmTaskOrder((current) => {
+      const next = [...current];
+      const from = next.indexOf(draggedFarmTask);
+      const to = next.indexOf(target);
+      next.splice(from, 1);
+      next.splice(to, 0, draggedFarmTask);
+      window.localStorage.setItem(
+        'ironpath-farm-v2-player-owned-farm-order',
+        JSON.stringify(next),
+      );
+      return next;
+    });
+    setDraggedFarmTask(null);
+  }
+  function resetRoute() {
+    setCompleted((current) => {
+      const next = Object.fromEntries(
+        Object.entries(current).filter(([key]) => !key.startsWith(`${routeType}:`)),
+      );
+      window.localStorage.setItem('ironpath-farm-v2', JSON.stringify(next));
+      return next;
+    });
+  }
+  return (
+    <section className="farm-v2-page">
+      <div className="farm-v2-shell">
+      <aside className="farm-v2-rail">
+        <div className="farm-v2-rail-title"><span className="farm-v2-icon"><Leaf size={23} /></span><div><h2>Farming</h2><p>Plan routes, track each stop, and keep useful supplies moving.</p></div></div>
+        <div className="farm-v2-rail-group"><p className="eyebrow">Patch routes</p>
+          {(Object.keys(plans) as RouteType[]).map((value) => <button className={routeType === value ? 'active' : ''} onClick={() => chooseRoute(value)} key={value}><Leaf size={16} /><span>{value === 'Fruit tree' ? 'Fruit trees' : `${value} patches`}</span></button>)}
+          <button className={selectedPatch === 'Player-owned Farm' ? 'active' : ''} onClick={() => { chooseRoute('Herb'); setSelectedPatch('Player-owned Farm'); }}><Users size={16} /><span>Player-owned Farm</span></button>
+        </div>
+        <div className="farm-v2-rail-group farm-v2-rail-actions"><p className="eyebrow">Route tools</p>
+          <button onClick={resetRoute}><RotateCcw size={16} /><span>Reset this route</span></button>
+          <button onClick={() => setHideCompleted((value) => !value)}><ListChecks size={16} /><span>{hideCompleted ? 'Show completed' : 'Hide completed'}</span></button>
+        </div>
+      </aside>
+      <div className="farm-v2-main">
+      <div className="farm-v2-heading">
+        <div className="farm-v2-title">
+          <span className="farm-v2-icon"><Leaf size={25} /></span>
+          <div>
+            <p className="eyebrow">Test features</p>
+            <h2>{routeType} Patches</h2>
+            <p>Plan a route, track each patch, and keep the fastest travel option close at hand.</p>
+          </div>
+        </div>
+        <div className="farm-v2-controls">
+          <button className="secondary-button" onClick={() => setHideCompleted((value) => !value)}>{hideCompleted ? 'Show completed' : 'Hide completed'}</button>
+        </div>
+      </div>
+      <div className="farm-v2-stats farm-v2-stats-full">
+          {(Object.keys(plans) as RouteType[]).map((value) => <button className={routeType === value ? 'farm-v2-route-card active' : 'farm-v2-route-card'} onClick={() => chooseRoute(value)} key={value}><Leaf size={21} /><div><span>{value === 'Fruit tree' ? 'Fruit tree' : value}</span><strong>{value} patches</strong><small>{value === 'Herb' ? 'Herblore supplies' : 'Farming experience'}</small></div></button>)}
+          <article><Trophy size={21} /><div><span>Selected member</span><strong>{player?.name || 'No group selected'}</strong><small>Farming level {farming}</small></div></article>
+      </div>
+      <div className="farm-v2-context-grid">
+        <section className="panel farm-v2-detail-card farm-v2-sidebar-card">
+          <div className="farm-v2-detail-image">{patchImages[wikiImageTitle] ? <img src={patchImages[wikiImageTitle]} alt={`${selected.name} RuneScape Wiki image`} /> : <Leaf size={31} />}</div>
+          <div className="farm-v2-context-copy">
+            <p className="eyebrow">Selected patch</p>
+            <h3>{selected.name}</h3>
+            <p>{selected.name === 'Player-owned Farm' ? 'Manage animals, produce and beehives through the checklist in this route.' : `A useful stop in your ${routeType.toLowerCase()} circuit.`}</p>
+            <div className="farm-v2-detail-guidance"><span>Fastest travel</span><strong>{selected.travel}</strong><small>Alternative: {selected.fallback}</small></div>
+          </div>
+        </section>
+        <section className="panel farm-v2-notes-card">
+          <p className="eyebrow">Notes</p>
+          <h3>Farming notes</h3>
+          <textarea value={farmNotes} onChange={(event) => { const next = event.target.value; setFarmNotes(next); window.localStorage.setItem('ironpath-farm-v2-notes', next); }} placeholder="Keep seeds, route reminders, crop plans, or anything your group should remember…" aria-label="Farming notes" />
+          <small>Saved on this device.</small>
+        </section>
+      </div>
+      <div className="farm-v2-layout">
+      <section className="panel farm-v2-route-panel">
+          <div className="farm-v2-panel-head"><div><p className="eyebrow">Recommended order</p><h3>{routeType} patch route</h3></div><button className="text-button clear-route-button" onClick={resetRoute}><RotateCcw size={14} /> Reset route</button></div>
+          <div className="farm-v2-recommendation"><span className="farm-v2-recommendation-icon"><Leaf size={20} /></span><div><p className="eyebrow">Recommended {routeType.toLowerCase()}</p><strong>{recommendedCrop[1]}</strong><small>Best option at level {farming} Farming · unlocks at level {recommendedCrop[0]}</small></div><span className="farm-v2-recommendation-note">Based on {player?.name || 'your selected member'}</span></div>
+          <div className="farm-v2-table-head"><span>#</span><span>Patch location</span><span>Fastest travel</span><span>Done</span></div>
+          <div className="farm-v2-table">
+            {visiblePatches.map((patch, index) => {
+              const done = Boolean(completed[`${routeType}:${patch.name}`]);
+              return <article className={done ? 'done' : ''} key={patch.name}>
+                <span className="farm-v2-index">{String(index + 1).padStart(2, '0')}</span>
+                <button className="farm-v2-name" onClick={() => setSelectedPatch(patch.name)}><Leaf size={17} /><strong>{patch.name}</strong></button>
+                <div className="farm-v2-travel"><b>1</b><span>{patch.travel}</span><b>2</b><span>{patch.fallback}</span></div>
+                <button className={`farm-v2-complete route-check${done ? ' done' : ''}`} onClick={() => togglePatch(patch.name)} aria-label={`Mark ${patch.name} ${done ? 'incomplete' : 'complete'}`}>{done && <Check size={14} />}</button>
+                {patch.tasks?.length ? <div className="farm-v2-task-list">{(patch.name === 'Player-owned Farm' ? farmTaskOrder : patch.tasks).map((task) => { const taskDone = Boolean(completed[`${routeType}:${patch.name}:${task}`]); return <div className={taskDone ? 'done' : ''} draggable={patch.name === 'Player-owned Farm'} onDragStart={() => setDraggedFarmTask(task)} onDragOver={(event) => event.preventDefault()} onDrop={() => reorderFarmTask(task)} onDragEnd={() => setDraggedFarmTask(null)} key={task}><span className="farm-v2-drag-handle" aria-hidden="true">⠿</span><button className="route-check" onClick={() => toggleFarmTask(patch.name, task)} aria-label={`Mark ${task} ${taskDone ? 'incomplete' : 'complete'}`}>{taskDone && <Check size={13} />}</button><div><strong>{task}</strong><small>{task === 'Beehives' ? 'Collect honeycomb and check breeding bonuses.' : 'Collect produce, check animals, and manage pens.'}</small></div></div>; })}</div> : null}
+              </article>;
+            })}
+            {!visiblePatches.length && <p className="farm-v2-empty">Every patch in this route is marked complete. Choose “Show completed” to review them.</p>}
+          </div>
+      </section>
+      </div>
+      </div>
+      </div>
     </section>
   );
 }
@@ -5031,6 +5097,7 @@ function RepeatablesView({
   const [manualUnlocks, setManualUnlocks] = useState<Record<string, boolean>>(
     {},
   );
+  const [hiddenActivities, setHiddenActivities] = useState<Record<string, boolean>>({});
   const player =
     groupData?.players.find((value) => value.name === preferredMember) ||
     groupData?.players[0];
@@ -5052,6 +5119,21 @@ function RepeatablesView({
     setSyncError('');
     if (!player) return;
     try {
+      const cached = JSON.parse(
+        window.localStorage.getItem(`ironpath-quest-cache:${player.name}`) || 'null',
+      ) as QuestSyncResult | null;
+      if (cached?.quests)
+        setCompletedQuests(
+          new Set(
+            cached.quests
+              .filter((quest) => quest.completed)
+              .map((quest) => normalQuestTitle(quest.title)),
+          ),
+        );
+    } catch {
+      /* A missing or stale cache simply leaves quest-gated activities visible. */
+    }
+    try {
       setManualUnlocks(
         JSON.parse(
           window.localStorage.getItem(
@@ -5061,6 +5143,14 @@ function RepeatablesView({
       );
     } catch {
       setManualUnlocks({});
+    }
+  }, [player?.name]);
+  useEffect(() => {
+    const storageKey = `ironpath-repeatable-hidden:${player?.name || 'local'}`;
+    try {
+      setHiddenActivities(JSON.parse(window.localStorage.getItem(storageKey) || '{}'));
+    } catch {
+      setHiddenActivities({});
     }
   }, [player?.name]);
   function persist(next: Record<string, boolean>) {
@@ -5109,6 +5199,14 @@ function RepeatablesView({
         `ironpath-repeatable-unlocks:${player.name}`,
         JSON.stringify(next),
       );
+  }
+  function setActivityVisibility(name: string, visible: boolean) {
+    const next = { ...hiddenActivities, [name]: !visible };
+    setHiddenActivities(next);
+    window.localStorage.setItem(
+      `ironpath-repeatable-hidden:${player?.name || 'local'}`,
+      JSON.stringify(next),
+    );
   }
   function access(name: string) {
     const rule = repeatableRequirements[name];
@@ -5163,6 +5261,7 @@ function RepeatablesView({
       : baseList;
   const visibleList = list.filter(
     ([name, description, tag]) =>
+      !hiddenActivities[name] &&
       (!showCompleted || completed[name]) &&
       [name, description, tag]
         .join(' ')
@@ -5172,7 +5271,7 @@ function RepeatablesView({
   const done = list.filter(([name]) => completed[name]).length;
 
   return (
-    <div className="content feature-page">
+    <div className="content feature-page distractions-page">
       <section className="feature-heading">
         <div>
           <p className="date-line">ROUTINE PLANNER</p>
@@ -5197,30 +5296,6 @@ function RepeatablesView({
             ? `Tracking for ${player.name}`
             : 'Connect a group to personalise activities'}
         </span>
-        {player && (
-          <div className="quest-sync-status">
-            <em
-              className={
-                syncError ? 'sync-error' : completedQuests ? 'sync-ready' : ''
-              }
-            >
-              {syncing
-                ? 'Syncing quest access…'
-                : syncError ||
-                  (completedQuests
-                    ? 'Quest access synced'
-                    : 'Quest access not synced')}
-            </em>
-            <button
-              className="quest-sync-button"
-              onClick={syncAccess}
-              disabled={syncing}
-            >
-              <RefreshCw size={16} className={syncing ? 'spin' : ''} />
-              {syncing ? 'Syncing…' : 'Sync quest access'}
-            </button>
-          </div>
-        )}
       </section>
       <section className="repeatable-overview">
         <div className="panel repeatable-progress">
@@ -5321,21 +5396,13 @@ function RepeatablesView({
             }
             onClick={() => setShowSettings((value) => !value)}
           >
-            Access settings
+            Settings
           </button>
         </div>
         {showSettings && (
           <div className="tracker-settings">
             {player ? (
               <>
-                <button
-                  className="secondary-button"
-                  onClick={syncAccess}
-                  disabled={syncing}
-                >
-                  <RefreshCw size={14} className={syncing ? 'spin' : ''} />
-                  {syncing ? 'Syncing…' : 'Sync quest access'}
-                </button>
                 <label>
                   <input
                     type="checkbox"
@@ -5363,8 +5430,35 @@ function RepeatablesView({
                 character.
               </p>
             )}
+            <div className="tracker-visibility-settings">
+              <div>
+                <p className="eyebrow">Activity visibility</p>
+                <p>Hide activities from the board, then restore them here whenever you need them.</p>
+              </div>
+              <div className="tracker-visibility-list">
+                {baseList.map(([name]) => (
+                  <label key={name}>
+                    <input
+                      type="checkbox"
+                      checked={!hiddenActivities[name]}
+                      onChange={(event) =>
+                        setActivityVisibility(name, event.target.checked)
+                      }
+                    />
+                    <span>{name}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
           </div>
         )}
+        <div className="tracker-table-head" aria-hidden="true">
+          <span />
+          <span>Activity</span>
+          <span>Details</span>
+          <span>Category</span>
+          <span>Visibility</span>
+        </div>
         <div className="repeatable-list tracker-list">
           {visibleList.map(([name, description, tag]) => {
             const requirement = access(name);
@@ -5415,11 +5509,13 @@ function RepeatablesView({
                   </aside>
                 </div>
                 <span className="repeat-tag">{tag}</span>
-                <ChevronRight
-                  className="repeat-info-chevron"
-                  size={15}
-                  aria-hidden="true"
-                />
+                <button
+                  className="repeat-hide-button"
+                  onClick={() => setActivityVisibility(name, false)}
+                  aria-label={`Hide ${name} from this board`}
+                >
+                  Hide
+                </button>
               </article>
             );
           })}
