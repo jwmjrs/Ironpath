@@ -332,6 +332,9 @@ html,body{background:#07110f}body{font-size:15px;background-image:radial-gradien
 .farm-v2-page .farm-v2-layout>.farm-v2-side{display:none!important}
 .farm-v2-page .farm-v2-route-panel{box-sizing:border-box}
 
+/* A completed D&D gets one clear status beside its title, not a second badge below. */
+.repeatable-row.done .repeat-copy::after{content:none!important;display:none!important}
+
 /* Shop Runs follows the same contained Dark card system as the rest of Utility. */
 .shop-runs-card{width:min(100%,1180px);margin-inline:auto;padding:0;overflow:hidden;background:linear-gradient(145deg,var(--t-surface),var(--t-surface2))}
 .shop-runs-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 22px;border-bottom:1px solid var(--t-border);background:linear-gradient(105deg,color-mix(in srgb,var(--t-active) 68%,var(--t-surface)),var(--t-surface2))}

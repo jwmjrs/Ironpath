@@ -68,6 +68,9 @@
 
 /* Keep the landing action within each theme's surface rather than as a bright slab. */
 [data-theme] .entry-primary{border-color:color-mix(in srgb,var(--t-accent2) 74%,var(--t-border));background:linear-gradient(145deg,color-mix(in srgb,var(--t-surface) 82%,var(--t-active)),color-mix(in srgb,var(--t-surface2) 88%,var(--t-active)));box-shadow:inset 0 1px color-mix(in srgb,var(--t-text) 10%,transparent),0 10px 25px rgb(0 0 0 / .22);color:var(--t-text)}
+
+/* Header selection is intentionally restrained: the dot is the sole active state. */
+html[data-theme="dark"] .navigation-row .nav-button.active{background:transparent;box-shadow:none}
 [data-theme] .entry-primary:hover{border-color:var(--t-accent);background:linear-gradient(145deg,color-mix(in srgb,var(--t-active) 74%,var(--t-surface)),color-mix(in srgb,var(--t-surface2) 72%,var(--t-active)));box-shadow:inset 0 1px color-mix(in srgb,var(--t-text) 13%,transparent),0 13px 29px rgb(0 0 0 / .26)}
 
 .dashboard-group-status{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;margin:14px 0}.dashboard-group-status>svg{color:var(--t-accent)}.dashboard-group-status h3{margin:2px 0;color:var(--t-text);font-size:18px}.dashboard-group-status p:not(.eyebrow){margin:4px 0 0;color:var(--t-muted);font-size:14px}.dashboard-group-status .unsync-group-button{width:auto;white-space:nowrap}@media(max-width:620px){.dashboard-group-status{grid-template-columns:auto minmax(0,1fr)}.dashboard-group-status .unsync-group-button{grid-column:1/-1;width:100%}}

@@ -1429,6 +1429,17 @@ function DungeonToolsView() {
       window.clearTimeout(settleTimer);
     };
   }, [boss, bossLoading, bossDetail]);
+  const bossKeyPoints = bossDetail
+    ? Array.from(
+        new Set(
+          bossDetail.mechanics
+            .replace(/\s+/g, ' ')
+            .match(/[^.!?]+[.!?]+/g)
+            ?.map((point) => point.trim())
+            .filter((point) => point.length > 18) || [],
+        ),
+      ).slice(0, 3)
+    : [];
   return (
     <div className="content feature-page dungeon-tools-page">
       <section className="feature-heading">
@@ -1542,8 +1553,8 @@ function DungeonToolsView() {
           </a>
         </div>
         <p className="boss-help">
-          Open a floor theme, then choose a boss to see its Wiki-backed
-          encounter card.
+          Open a floor theme, then choose a boss for a short Wiki-backed
+          mechanics reference.
         </p>
         <div className="dungeon-boss-grid">
           {Object.entries(dungeonBosses).map(([theme, bosses]) => (
@@ -1600,10 +1611,17 @@ function DungeonToolsView() {
                     <h3>{bossDetail.name}</h3>
                   </div>
                 </div>
-                <p>{bossDetail.description}</p>
-                <div className="boss-mechanics">
-                  <strong>Mechanics</strong>
-                  <p>{bossDetail.mechanics}</p>
+                <div className="boss-key-points">
+                  <strong>Key mechanics</strong>
+                  {bossKeyPoints.length ? (
+                    <ul>
+                      {bossKeyPoints.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>Open the Wiki guide for this encounter’s mechanics.</p>
+                  )}
                 </div>
                 <a
                   className="reference-link"
