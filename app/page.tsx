@@ -3,7 +3,6 @@
 import {
   Archive,
   BookOpen,
-  Boxes,
   CalendarCheck2,
   Check,
   ChevronRight,
@@ -16,10 +15,10 @@ import {
   ExternalLink,
   FlaskConical,
   Gem,
+  GripVertical,
   Leaf,
   ListChecks,
   Medal,
-  MapPin,
   RefreshCw,
   RotateCcw,
   Search,
@@ -30,7 +29,7 @@ import {
   Users,
   Wrench,
 } from 'lucide-react';
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import progressData from './data/efficient-progress.json';
 import { ironTasks, type IronTask } from './data/random-tasks';
 import {
@@ -951,7 +950,7 @@ function IronpathLanding({
               <form onSubmit={refreshGroup}>
                 <label className="field"><span>Group name</span><input value={group} onChange={event => setGroup(event.target.value)} placeholder="Exact RuneScape group name" /></label>
                 <label className="field"><span>Group size</span><select value={size} onChange={event => setSize(event.target.value)}>{[2,3,4,5].map(value => <option value={value} key={value}>{value} members</option>)}</select></label>
-                <label className="mode-toggle"><input type="checkbox" checked={competitive} onChange={event => setCompetitive(event.target.checked)} /><span><strong>Competitive</strong></span></label>
+                <label className="mode-toggle" htmlFor="entry-competitive" aria-label="Competitive"><input id="entry-competitive" type="checkbox" checked={competitive} onChange={event => setCompetitive(event.target.checked)} /><span><strong>Competitive</strong></span></label>
                 <button className="secondary-button" disabled={loading}>{loading ? 'Refreshing…' : groupData ? 'Refresh group data' : 'Connect group'}</button>
               </form>
               <div className="entry-settings-actions">
@@ -1799,7 +1798,10 @@ function HiScoresView({
       .finally(() => setActivityLoading(false));
   }, [result, activityRefresh, preferredMember]);
 
-  const visibleActivities =
+  const activityPanelRef = useRef<HTMLElement>(null);
+  const archivePanelRef = useRef<HTMLDivElement>(null);
+  const [activityCapacity, setActivityCapacity] = useState(5);
+  const baseActivities =
     activityMember === 'all'
       ? activities.reduce<GroupActivity[]>(
           (limited, activity) =>
@@ -1811,6 +1813,47 @@ function HiScoresView({
       : activities
           .filter((activity) => activity.player === activityMember)
           .slice(0, 5);
+
+  const availableActivities = activityMember === 'all'
+    ? [...baseActivities, ...activities.filter((activity) => !baseActivities.includes(activity))]
+    : activities.filter((activity) => activity.player === activityMember);
+  const visibleActivityCount = Math.max(baseActivities.length, activityCapacity);
+  useEffect(() => {
+    const panel = activityPanelRef.current;
+    const archive = archivePanelRef.current;
+    const feed = panel?.querySelector<HTMLElement>('.activity-feed');
+    if (!panel || !archive || !feed) return;
+    let frame = 0;
+    const measure = () => {
+      const panelRect = panel.getBoundingClientRect();
+      const archiveRect = archive.getBoundingClientRect();
+      const sideBySide = Math.abs(panelRect.top - archiveRect.top) < 2;
+      const style = getComputedStyle(panel);
+      const budget = sideBySide
+        ? archiveRect.height - (feed.getBoundingClientRect().top - panelRect.top)
+          - parseFloat(style.paddingBottom) - parseFloat(style.borderBottomWidth)
+        : 0;
+      const gap = parseFloat(getComputedStyle(feed).rowGap) || 0;
+      let height = 0;
+      let count = 0;
+      for (const row of feed.children) {
+        const next = row.getBoundingClientRect().height + (count ? gap : 0);
+        if (height + next > budget) break;
+        height += next;
+        count++;
+      }
+      setActivityCapacity(Math.max(baseActivities.length, count));
+    };
+    const observer = new ResizeObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(measure);
+    });
+    observer.observe(archive);
+    observer.observe(feed);
+    for (const row of feed.children) observer.observe(row);
+    measure();
+    return () => { observer.disconnect(); cancelAnimationFrame(frame); };
+  }, [activities, activityMember, activityLoading, result, baseActivities.length]);
 
   async function refresh(event?: FormEvent) {
     event?.preventDefault();
@@ -1945,11 +1988,35 @@ function HiScoresView({
   const selectedTopSkill = selectedPlayer
     ? [...selectedPlayer.skills].sort((a, b) => b.xp - a.xp)[0]
     : undefined;
+  const dashboardMockup =
+    typeof window !== 'undefined' &&
+    window.location.hostname === 'localhost' &&
+    new URLSearchParams(window.location.search).has('dashboardMockup');
+  const scrollToDashboardArea = (id: string) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   return (
-    <div className="content feature-page repeatables-tracker dashboard-page">
+    <div className={`content feature-page repeatables-tracker dashboard-page${dashboardMockup ? ' dashboard-mockup-test' : ''}`}>
+      {dashboardMockup && (
+        <aside className="dashboard-mockup-rail dashboard-mockup-left" aria-label="Group dashboard navigation">
+          <div className="dashboard-mockup-rail-title"><Users size={24}/><div><strong>Group</strong><span>Track your journey together.</span></div></div>
+          <div className="dashboard-mockup-nav">
+            <button className="active" onClick={() => scrollToDashboardArea('dashboard-overview')}>Overview</button>
+            <button onClick={() => scrollToDashboardArea('dashboard-standings')}>Member standings</button>
+            <button onClick={() => scrollToDashboardArea('dashboard-activity')}>Recent activity</button>
+            <button onClick={() => scrollToDashboardArea('dashboard-archive')}>Drop archive</button>
+          </div>
+          <div className="dashboard-mockup-actions">
+            <p className="eyebrow">Quick actions</p>
+            <button onClick={() => scrollToDashboardArea('dashboard-overview')}><RefreshCw size={15}/> Refresh group data</button>
+            <button onClick={() => scrollToDashboardArea('dashboard-personalize')}><Users size={15}/> Choose member</button>
+            <button onClick={() => scrollToDashboardArea('dashboard-archive')}><Archive size={15}/> Manage archive</button>
+          </div>
+        </aside>
+      )}
+      <div className={dashboardMockup ? 'dashboard-mockup-main' : undefined}>
       {selectedPlayer && (
-        <section className="panel member-home-selector dashboard-personalize">
+        <section id="dashboard-personalize" className="panel member-home-selector dashboard-personalize">
           <div>
             <p className="eyebrow">Your character</p>
             <h3>Personalize Ironpath</h3>
@@ -1968,7 +2035,7 @@ function HiScoresView({
           <div className="personal-stat"><span>Top skill</span><strong>{selectedTopSkill ? `${selectedTopSkill.name} ${selectedTopSkill.level}` : '—'}</strong></div>
         </section>
       )}
-      <section className="panel dashboard-connection-panel">
+      <section id="dashboard-overview" className="panel dashboard-connection-panel">
         <div>
           <p className="eyebrow">Group connection</p>
           <h3>{result ? `${result.group} · ${result.mode}` : 'Connect your Group Ironman roster'}</h3>
@@ -1998,7 +2065,7 @@ function HiScoresView({
       {result && (
         <>
           <div className="dashboard-primary-sections">
-            <section className="panel hiscore-table-panel">
+            <section id="dashboard-standings" className="panel hiscore-table-panel">
               <div className="panel-heading">
                 <div>
                   <h3>Member standings</h3>
@@ -2135,12 +2202,12 @@ function HiScoresView({
                   })}
               </div>
             </section>
-            <GroupDropLog
+            <div id="dashboard-archive" ref={archivePanelRef}><GroupDropLog
               group={result.group}
               players={result.players.map((player) => player.name)}
               workspace={workspace}
-            />
-            <section className="panel activity-panel">
+            /></div>
+            <section id="dashboard-activity" ref={activityPanelRef} className="panel activity-panel">
               <div className="panel-heading">
                 <div>
                   <p className="eyebrow">Adventurer&apos;s Log</p>
@@ -2223,11 +2290,13 @@ function HiScoresView({
                     log. Temporary failures are retried automatically.
                   </p>
                 </div>
-              ) : visibleActivities.length ? (
+              ) : availableActivities.length ? (
                 <div className="activity-feed">
-                  {visibleActivities.map((activity, index) => (
+                  {availableActivities.map((activity, index) => (
                     <article
                       key={`${activity.player}-${activity.timestamp}-${index}`}
+                      className={index >= visibleActivityCount ? 'activity-overflow-row' : undefined}
+                      aria-hidden={index >= visibleActivityCount ? true : undefined}
                     >
                       <div className="activity-avatar character-chathead">
                         <img
@@ -2268,7 +2337,17 @@ function HiScoresView({
               )}
             </section>
           </div>
-          <section className="panel dashboard-share-key">
+          {dashboardMockup && (
+            <section className="panel dashboard-mockup-goals">
+              <div>
+                <p className="eyebrow">Upcoming goals</p>
+                <h3>Plan the next steps together</h3>
+                <p>Group-wide goals are not currently supplied by the public HiScores data. Individual roadmap and checklist progress stays available in Progression.</p>
+              </div>
+              <button className="secondary-button" type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Review the roadmap</button>
+            </section>
+          )}
+          <section id="dashboard-share-key" className="panel dashboard-share-key">
             <div>
               <p className="eyebrow">Shared drop archive</p>
               <h3>
@@ -2358,6 +2437,31 @@ function HiScoresView({
           )}
         </>
       )}
+      </div>
+      {dashboardMockup && (
+        <aside className="dashboard-mockup-rail dashboard-mockup-right" aria-label="Dashboard tools">
+          <section className="dashboard-mockup-sidecard">
+            <p className="eyebrow">Group settings</p>
+            <h3>{result ? result.group : 'Group setup'}</h3>
+            <p>Connect, refresh, or update the member you are viewing without duplicating group details across the dashboard.</p>
+            <button onClick={() => scrollToDashboardArea('dashboard-overview')}>Group connection <ChevronRight size={15}/></button>
+            <button onClick={() => scrollToDashboardArea('dashboard-personalize')}>Viewing preferences <ChevronRight size={15}/></button>
+            <button onClick={() => scrollToDashboardArea('dashboard-share-key')}>Archive sharing <ChevronRight size={15}/></button>
+          </section>
+          <section className="dashboard-mockup-sidecard">
+            <p className="eyebrow">Quick links</p>
+            <button onClick={() => scrollToDashboardArea('dashboard-standings')}>Member standings <ChevronRight size={15}/></button>
+            <button onClick={() => scrollToDashboardArea('dashboard-activity')}>Adventurer&apos;s log <ChevronRight size={15}/></button>
+            <button onClick={() => scrollToDashboardArea('dashboard-archive')}>Group item history <ChevronRight size={15}/></button>
+          </section>
+          <section className="dashboard-mockup-sidecard dashboard-mockup-status">
+            <p className="eyebrow">Group status</p>
+            <strong>{result ? `${result.players.length} members loaded` : 'No group connected'}</strong>
+            <span><i/> {result ? 'HiScores roster synced' : 'Connect a group to begin'}</span>
+            <span><i/> Personal preferences stay on this device</span>
+          </section>
+        </aside>
+      )}
     </div>
   );
 }
@@ -2379,6 +2483,33 @@ function archiveEntryDate(event: LoggedDrop) {
 }
 function dropIconUrl(item: string) {
   return `https://runescape.wiki/Special:FilePath/${encodeURIComponent(item)}.png`;
+}
+function DropItemImage({ item }: { item: string }) {
+  const [failed, setFailed] = useState(false);
+  const [wikiImage, setWikiImage] = useState<string | null>(null);
+  const [wikiFailed, setWikiFailed] = useState(false);
+  useEffect(() => {
+    if (!failed) return;
+    const controller = new AbortController();
+    let retry: ReturnType<typeof setTimeout> | undefined;
+    async function lookup(attempt = 0) {
+      try {
+        const response = await fetch(`/api/item-image?item=${encodeURIComponent(item)}`, { signal: controller.signal });
+        if (!response.ok) throw new Error('Image lookup unavailable');
+        const data = await response.json() as { image?: string | null };
+        if (!controller.signal.aborted) setWikiImage(data.image || null);
+      } catch {
+        if (!controller.signal.aborted && attempt === 0) retry = setTimeout(() => void lookup(1), 3000);
+      }
+    }
+    void lookup();
+    return () => { controller.abort(); clearTimeout(retry); };
+  }, [item, failed]);
+  const src = failed ? (!wikiFailed ? wikiImage : null) : dropIconUrl(item);
+  return src ? <img src={src} alt={`${item} icon`} onError={() => {
+    if (!failed) setFailed(true);
+    else setWikiFailed(true);
+  }} /> : <span className="drop-item-placeholder" title={`${item}: image unavailable`}><Gem size={22} /></span>;
 }
 function GroupDropLog({
   group,
@@ -2670,13 +2801,7 @@ function GroupDropLog({
             return (
               <article key={row.item}>
                 <div className="drop-item">
-                  <img
-                    src={dropIconUrl(row.item)}
-                    alt={`${row.item} icon`}
-                    onError={(event) => {
-                      event.currentTarget.style.visibility = 'hidden';
-                    }}
-                  />
+                  <DropItemImage key={row.item} item={row.item} />
                   <strong>{row.item}</strong>
                 </div>
                 <strong>{row.quantity.toLocaleString()}</strong>
@@ -3189,7 +3314,6 @@ function EfficientProgressView({
   const [questPlayer, setQuestPlayer] = useState(
     groupData?.players[0]?.name || '',
   );
-  const [questName, setQuestName] = useState('');
   const [syncingQuests, setSyncingQuests] = useState(false);
   const [questSyncMessage, setQuestSyncMessage] = useState('');
   useEffect(() => {
@@ -3267,7 +3391,7 @@ function EfficientProgressView({
       .trim();
   }
   async function syncQuests() {
-    const player = (groupData ? questPlayer : questName).trim();
+    const player = (groupData ? questPlayer : '').trim();
     if (!player) {
       setQuestSyncMessage(
         'Choose a group member or enter a RuneScape name first.',
@@ -3576,235 +3700,16 @@ function EfficientProgressView({
   );
 }
 
-function FarmRunsView({
-  player,
-  shared,
-  setShared = () => {},
-}: {
-  player?: HiscorePlayer;
-  shared?: Record<string, boolean>;
-  setShared?: (value: Record<string, boolean>) => void;
-}) {
-  const [run, setRun] = useState<'Herb' | 'Tree' | 'Fruit tree'>('Herb');
-  const [completed, setCompleted] = useState<Record<string, boolean>>({});
-  useEffect(() => {
-    if (shared) setCompleted(shared);
-    else
-      try {
-        setCompleted(
-          JSON.parse(window.localStorage.getItem('ironpath-farm-runs') || '{}'),
-        );
-      } catch {
-        /* ignore */
-      }
-  }, [shared]);
-  const farming =
-    player?.skills.find((skill) => skill.name === 'Farming')?.level || 1;
-  const bestCrop = (crops: readonly (readonly [number, string])[]) =>
-    [...crops].reverse().find(([level]) => farming >= level) || crops[0];
-  const plans = {
-    Herb: {
-      crop: bestCrop(herbCrops),
-      cadence: 'Every 80 minutes',
-      note: 'Use this for a steady Ironman Herblore supply. Start with the longest or hardest-to-reach patch, then work toward free teleports.',
-      steps: [
-        ['Trollheim', 'Fastest travel: Trollheim Farm Teleport.'],
-        ['Falador', 'Fastest travel: Explorer’s ring cabbage-port.'],
-        ['Morytania', 'Fastest travel: Modified farmer’s hat teleport.'],
-        ['Catherby', 'Fastest travel: Modified botanist’s mask teleport.'],
-        ['Ardougne', 'Fastest travel: Manor Farm teleport or Ardougne cloak.'],
-        [
-          'Crwys, Prifddinas',
-          'Fastest travel: Crystal teleport seed to Crwys.',
-        ],
-        ['Wilderness', 'Fastest travel: Wilderness sword herb-patch teleport.'],
-      ],
-    },
-    Tree: {
-      crop: bestCrop(treeCrops),
-      cadence: 'Check once per growth cycle',
-      note: 'Prepare saplings before leaving the bank. Tree runs are best used for large Farming experience rather than Herblore supplies.',
-      steps: [
-        [
-          'Varrock Palace',
-          'Fastest travel: Grand Exchange spirit tree, then run south-east.',
-        ],
-        [
-          'Falador Park',
-          'Fastest travel: Ring of wealth teleport to Falador Park.',
-        ],
-        ['Taverley', 'Fastest travel: Redirected house teleport to Taverley.'],
-        [
-          'Tree Gnome Stronghold',
-          'Fastest travel: Spirit tree to the Stronghold.',
-        ],
-        ['Prifddinas', 'Fastest travel: Crystal teleport seed to the city.'],
-      ],
-    },
-    'Fruit tree': {
-      crop: bestCrop(fruitCrops),
-      cadence: 'Check once per growth cycle',
-      note: 'Fruit trees provide strong Farming experience and renewable produce. Keep the fruit instead of paying with it whenever it is useful to your group.',
-      steps: [
-        [
-          'Tree Gnome Stronghold',
-          'Fastest travel: Spirit tree to the Stronghold.',
-        ],
-        ['Catherby', 'Fastest travel: Catherby Teleport (Lunar spellbook).'],
-        [
-          'Tree Gnome Village',
-          'Fastest travel: Spirit tree, then Elkoy’s guidance.',
-        ],
-        ['Brimhaven', 'Fastest travel: Brimhaven house teleport.'],
-        ['Lletya', 'Fastest travel: Crystal teleport seed to Lletya.'],
-        ['Herblore Habitat', 'Fastest travel: Juju teleport spiritbag.'],
-        [
-          'Meilyr, Prifddinas',
-          'Fastest travel: Crystal teleport seed to Meilyr.',
-        ],
-        [
-          "Dalia's Tree Nursery",
-          'Fastest travel: Wendlewick lodestone, then run south.',
-        ],
-      ],
-    },
-  } as const;
-  const plan = plans[run];
-  function toggle(place: string) {
-    const key = `${run}:${place}`;
-    setCompleted((current) => {
-      const next = { ...current, [key]: !current[key] };
-      if (shared) setShared(next);
-      else
-        window.localStorage.setItem('ironpath-farm-runs', JSON.stringify(next));
-      return next;
-    });
-  }
-  function clearCurrentRun() {
-    setCompleted((current) => {
-      const next = Object.fromEntries(
-        Object.entries(current).filter(([key]) => !key.startsWith(`${run}:`)),
-      );
-      if (shared) setShared(next);
-      else
-        window.localStorage.setItem('ironpath-farm-runs', JSON.stringify(next));
-      return next;
-    });
-  }
-  return (
-    <section className="farm-run-layout">
-      <div className="farm-run-intro panel">
-        <div>
-          <p className="eyebrow">Farming for Herblore</p>
-          <h3>Farming Routes</h3>
-          <p>
-            Route order, transport options and the highest crop currently
-            available to {player?.name || 'your selected member'}.
-          </p>
-        </div>
-        <div className="farm-crop">
-          <span>Recommended crop</span>
-          <strong>{plan.crop[1]}</strong>
-          <small>
-            Requires {plan.crop[0]} Farming · currently {farming}
-          </small>
-        </div>
-      </div>
-      <div className="farm-tabs">
-        {(['Herb', 'Tree', 'Fruit tree'] as const).map((value) => (
-          <button
-            className={run === value ? 'active' : ''}
-            onClick={() => setRun(value)}
-            key={value}
-          >
-            <span>{value} run</span>
-            <small>
-              {value === 'Herb' ? 'Herblore supplies' : 'Farming XP'}
-            </small>
-          </button>
-        ))}
-      </div>
-      <section className="panel farm-route">
-        <div className="farm-route-head">
-          <div>
-            <p className="eyebrow">Recommended order</p>
-            <h3>{run} run</h3>
-          </div>
-          <div className="farm-route-actions">
-            <span>{plan.cadence}</span>
-            <button
-              className="text-button clear-route-button"
-              onClick={clearCurrentRun}
-            >
-              Clear {run.toLowerCase()} checks
-            </button>
-          </div>
-        </div>
-        <p className="farm-route-note">{plan.note}</p>
-        <ol>
-          {plan.steps.map(([place, travel], index) => {
-            const done = Boolean(completed[`${run}:${place}`]);
-            return (
-              <li className={done ? 'done' : ''} key={place}>
-                <button
-                  className="route-check"
-                  onClick={() => toggle(place)}
-                  aria-label={`Mark ${place} ${done ? 'incomplete' : 'complete'}`}
-                >
-                  {done && <Check size={14} />}
-                </button>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <div>
-                  <strong>{place}</strong>
-                  <p>{travel}</p>
-                </div>
-              </li>
-            );
-          })}
-        </ol>
-      </section>
-      <p className="guide-credit">
-        <Leaf size={14} /> Route details based on the RuneScape Wiki’s{' '}
-        <a
-          href="https://runescape.wiki/w/All_farming_patches"
-          target="_blank"
-          rel="noreferrer"
-        >
-          farming patch locations
-        </a>
-        ,{' '}
-        <a
-          href="https://runescape.wiki/w/Herb_patch"
-          target="_blank"
-          rel="noreferrer"
-        >
-          herb patch guide
-        </a>
-        , and{' '}
-        <a
-          href="https://runescape.wiki/w/Fruit_Tree_Patch"
-          target="_blank"
-          rel="noreferrer"
-        >
-          fruit tree patch guide
-        </a>
-        .
-      </p>
-    </section>
-  );
-}
-
 function FarmV2View({ player }: { player?: HiscorePlayer }) {
   const plans = {
     Herb: [
       { name: 'Catherby', travel: 'Catherby lodestone', fallback: 'Catherby Teleport (Lunar spellbook)', yield: '6–8 herbs' },
-      { name: 'Ardougne', travel: 'Ardougne cloak teleport', fallback: 'Ardougne lodestone', yield: '6–8 herbs' },
-      { name: 'Player-owned Farm', travel: 'Manor Farm teleport', fallback: 'Ardougne lodestone', yield: 'Animals and produce', tasks: ['Beehives', 'Farm animals'] },
       { name: 'Port Phasmatys', travel: 'Ectophial', fallback: 'Canifis lodestone', yield: '6–8 herbs' },
       { name: 'Crwys', travel: 'Crystal teleport seed', fallback: 'Prifddinas lodestone', yield: '6–8 herbs' },
       { name: 'Trollheim', travel: 'Trollheim Farm Teleport', fallback: 'Trollheim Teleport or tablet', yield: '6–8 herbs' },
       { name: 'Wilderness', travel: 'Wilderness sword', fallback: 'Wilderness lodestone', yield: '6–8 herbs' },
       { name: 'Kharid', travel: 'Mystical sand seed', fallback: 'Ring of duelling (Het’s Oasis)', yield: '6–8 herbs' },
+      { name: 'Manor Farm', travel: 'Manor Farm teleport', fallback: 'Ardougne lodestone', yield: 'Animals and produce' },
     ],
     Tree: [
       { name: 'Varrock Palace', travel: 'Grand Exchange spirit tree', fallback: 'Varrock lodestone', yield: 'Farming XP' },
@@ -3829,37 +3734,35 @@ function FarmV2View({ player }: { player?: HiscorePlayer }) {
   const [selectedPatch, setSelectedPatch] = useState('Catherby');
   const [patchImages, setPatchImages] = useState<Record<string, string>>({});
   const [farmNotes, setFarmNotes] = useState('');
-  const [farmTaskOrder, setFarmTaskOrder] = useState(['Beehives', 'Farm animals']);
-  const [draggedFarmTask, setDraggedFarmTask] = useState<string | null>(null);
+  const [taskOrders, setTaskOrders] = useState<Record<string, string[]>>({});
+  const [draggedFarmTask, setDraggedFarmTask] = useState<{ patch: string; task: string } | null>(null);
+  const defaultTasks = (patch: string) => ['Herbs', 'Allotments', patch === 'Manor Farm' ? 'Animals' : 'Flowers', 'Compost'];
+  const tasksFor = (patch: string) => {
+    const defaults = defaultTasks(patch);
+    const saved = taskOrders[patch];
+    return Array.isArray(saved) && saved.length === 4 && new Set(saved).size === 4 && saved.every((task) => defaults.includes(task)) ? saved : defaults;
+  };
   useEffect(() => {
     try {
-      setCompleted(JSON.parse(window.localStorage.getItem('ironpath-farm-v2') || '{}'));
-    } catch {
-      setCompleted({});
-    }
-  }, []);
-  useEffect(() => {
+      const saved = JSON.parse(window.localStorage.getItem('ironpath-farm-v2') || '{}');
+      // Preserve existing farm checks under the renamed location.
+      for (const [key, value] of Object.entries(saved)) {
+        if (key.startsWith('Herb:Player-owned Farm')) {
+          const renamed = key.replace('Player-owned Farm', 'Manor Farm').replace(':Farm animals', ':Animals');
+          if (!(renamed in saved)) saved[renamed] = value;
+        }
+      }
+      setCompleted(saved);
+      setTaskOrders(JSON.parse(window.localStorage.getItem('ironpath-farm-v2-task-orders') || '{}'));
+    } catch { /* Keep the default checklist if stored data is invalid. */ }
     setFarmNotes(window.localStorage.getItem('ironpath-farm-v2-notes') || '');
   }, []);
-  useEffect(() => {
-    try {
-      const savedOrder = JSON.parse(
-        window.localStorage.getItem('ironpath-farm-v2-player-owned-farm-order') || '[]',
-      ) as string[];
-      if (
-        savedOrder.length === 2 &&
-        savedOrder.includes('Beehives') &&
-        savedOrder.includes('Farm animals')
-      ) {
-        setFarmTaskOrder(savedOrder);
-      }
-    } catch {
-      /* Keep the default task order. */
-    }
-  }, []);
+  const patchDone = (patch: string) => routeType === 'Herb'
+    ? tasksFor(patch).every((task) => completed[`Herb:${patch}:${task}`])
+    : Boolean(completed[`${routeType}:${patch}`]);
   const patches = plans[routeType];
   const visiblePatches = hideCompleted
-    ? patches.filter((patch) => !completed[`${routeType}:${patch.name}`])
+    ? patches.filter((patch) => !patchDone(patch.name))
     : patches;
   const selected = patches.find((patch) => patch.name === selectedPatch) || patches[0];
   const farming = player?.skills.find((skill) => skill.name === 'Farming')?.level || 1;
@@ -3872,7 +3775,7 @@ function FarmV2View({ player }: { player?: HiscorePlayer }) {
     [...cropOptions[routeType]].reverse().find(([level]) => farming >= level) ||
     cropOptions[routeType][0];
   const wikiImageTitle =
-    selected.name === 'Player-owned Farm'
+    selected.name === 'Manor Farm'
       ? 'Player-owned farm'
       : routeType === 'Herb'
         ? `Herb patch (${selected.name})`
@@ -3883,7 +3786,8 @@ function FarmV2View({ player }: { player?: HiscorePlayer }) {
     if (patchImages[wikiImageTitle]) return;
     fetch(`/api/archaeology-images?titles=${encodeURIComponent(wikiImageTitle)}`)
       .then((response) => response.json())
-      .then((data: { images?: Record<string, string> }) => {
+      .then((result) => {
+        const data = result as { images?: Record<string, string> };
         if (data.images?.[wikiImageTitle]) {
           setPatchImages((current) => ({
             ...current,
@@ -3913,19 +3817,14 @@ function FarmV2View({ player }: { player?: HiscorePlayer }) {
       return next;
     });
   }
-  function reorderFarmTask(target: string) {
-    if (!draggedFarmTask || draggedFarmTask === target) return;
-    setFarmTaskOrder((current) => {
-      const next = [...current];
-      const from = next.indexOf(draggedFarmTask);
-      const to = next.indexOf(target);
-      next.splice(from, 1);
-      next.splice(to, 0, draggedFarmTask);
-      window.localStorage.setItem(
-        'ironpath-farm-v2-player-owned-farm-order',
-        JSON.stringify(next),
-      );
-      return next;
+  function reorderFarmTask(patch: string, task: string, target: string) {
+    const next = [...tasksFor(patch)];
+    next.splice(next.indexOf(task), 1);
+    next.splice(tasksFor(patch).indexOf(target), 0, task);
+    setTaskOrders((current) => {
+      const updated = { ...current, [patch]: next };
+      window.localStorage.setItem('ironpath-farm-v2-task-orders', JSON.stringify(updated));
+      return updated;
     });
     setDraggedFarmTask(null);
   }
@@ -3939,13 +3838,13 @@ function FarmV2View({ player }: { player?: HiscorePlayer }) {
     });
   }
   return (
-    <section className="farm-v2-page">
+    <section className={`farm-v2-page${routeType === 'Herb' ? ' farm-inline-checklist' : ''}`}>
       <div className="farm-v2-shell">
       <aside className="farm-v2-rail">
         <div className="farm-v2-rail-title"><span className="farm-v2-icon"><Leaf size={23} /></span><div><h2>Farming</h2><p>Plan routes, track each stop, and keep useful supplies moving.</p></div></div>
         <div className="farm-v2-rail-group"><p className="eyebrow">Patch routes</p>
           {(Object.keys(plans) as RouteType[]).map((value) => <button className={routeType === value ? 'active' : ''} onClick={() => chooseRoute(value)} key={value}><Leaf size={16} /><span>{value === 'Fruit tree' ? 'Fruit trees' : `${value} patches`}</span></button>)}
-          <button className={selectedPatch === 'Player-owned Farm' ? 'active' : ''} onClick={() => { chooseRoute('Herb'); setSelectedPatch('Player-owned Farm'); }}><Users size={16} /><span>Player-owned Farm</span></button>
+          <button className={selectedPatch === 'Manor Farm' ? 'active' : ''} onClick={() => { chooseRoute('Herb'); setSelectedPatch('Manor Farm'); }}><Users size={16} /><span>Manor Farm</span></button>
         </div>
         <div className="farm-v2-rail-group farm-v2-rail-actions"><p className="eyebrow">Route tools</p>
           <button onClick={resetRoute}><RotateCcw size={16} /><span>Reset this route</span></button>
@@ -3963,6 +3862,7 @@ function FarmV2View({ player }: { player?: HiscorePlayer }) {
           </div>
         </div>
         <div className="farm-v2-controls">
+          {routeType === 'Herb' && <button className="secondary-button" onClick={resetRoute}><RotateCcw size={14} /> Reset route</button>}
           <button className="secondary-button" onClick={() => setHideCompleted((value) => !value)}>{hideCompleted ? 'Show completed' : 'Hide completed'}</button>
         </div>
       </div>
@@ -3972,11 +3872,11 @@ function FarmV2View({ player }: { player?: HiscorePlayer }) {
       </div>
       <div className="farm-v2-context-grid">
         <section className="panel farm-v2-detail-card farm-v2-sidebar-card">
-          <div className="farm-v2-detail-image">{patchImages[wikiImageTitle] ? <img src={patchImages[wikiImageTitle]} alt={`${selected.name} RuneScape Wiki image`} /> : <Leaf size={31} />}</div>
+          <div className="farm-v2-detail-image">{patchImages[wikiImageTitle] ? <img src={patchImages[wikiImageTitle]} alt={`${selected.name} farming patch`} /> : <Leaf size={31} />}</div>
           <div className="farm-v2-context-copy">
             <p className="eyebrow">Selected patch</p>
             <h3>{selected.name}</h3>
-            <p>{selected.name === 'Player-owned Farm' ? 'Manage animals, produce and beehives through the checklist in this route.' : `A useful stop in your ${routeType.toLowerCase()} circuit.`}</p>
+            <p>{selected.name === 'Manor Farm' ? 'Manage animals, produce and beehives through the checklist in this route.' : `A useful stop in your ${routeType.toLowerCase()} circuit.`}</p>
             <div className="farm-v2-detail-guidance"><span>Fastest travel</span><strong>{selected.travel}</strong><small>Alternative: {selected.fallback}</small></div>
           </div>
         </section>
@@ -3991,16 +3891,27 @@ function FarmV2View({ player }: { player?: HiscorePlayer }) {
       <section className="panel farm-v2-route-panel">
           <div className="farm-v2-panel-head"><div><p className="eyebrow">Recommended order</p><h3>{routeType} patch route</h3></div><button className="text-button clear-route-button" onClick={resetRoute}><RotateCcw size={14} /> Reset route</button></div>
           <div className="farm-v2-recommendation"><span className="farm-v2-recommendation-icon"><Leaf size={20} /></span><div><p className="eyebrow">Recommended {routeType.toLowerCase()}</p><strong>{recommendedCrop[1]}</strong><small>Best option at level {farming} Farming · unlocks at level {recommendedCrop[0]}</small></div><span className="farm-v2-recommendation-note">Based on {player?.name || 'your selected member'}</span></div>
-          <div className="farm-v2-table-head"><span>#</span><span>Patch location</span><span>Fastest travel</span><span>Done</span></div>
+          <div className="farm-v2-table-head"><span>#</span><span>Patch location</span>{routeType === 'Herb' && <span aria-hidden="true" />}<span>Fastest travel</span>{routeType !== 'Herb' && <span>Done</span>}</div>
           <div className="farm-v2-table">
             {visiblePatches.map((patch, index) => {
-              const done = Boolean(completed[`${routeType}:${patch.name}`]);
+              const done = patchDone(patch.name);
               return <article className={done ? 'done' : ''} key={patch.name}>
                 <span className="farm-v2-index">{String(index + 1).padStart(2, '0')}</span>
                 <button className="farm-v2-name" onClick={() => setSelectedPatch(patch.name)}><Leaf size={17} /><strong>{patch.name}</strong></button>
+                {routeType === 'Herb' && <div className="farm-inline-tasks">{tasksFor(patch.name).map((task, taskIndex) => {
+                  const taskDone = Boolean(completed[`Herb:${patch.name}:${task}`]);
+                  return <div className={`farm-inline-task${taskDone ? ' done' : ''}`} key={task}
+                    onDragOver={(event) => { if (draggedFarmTask?.patch === patch.name) event.preventDefault(); }}
+                    onDrop={() => { if (draggedFarmTask?.patch === patch.name) reorderFarmTask(patch.name, draggedFarmTask.task, task); }}>
+                    <button className="route-check" aria-label={`${patch.name}: ${task}`} aria-pressed={taskDone} onClick={() => toggleFarmTask(patch.name, task)}>{taskDone && <Check size={14} />}</button>
+                    <button className="farm-inline-grip" draggable aria-label={`Reorder ${patch.name} ${task}; use left or right arrow keys`}
+                      onDragStart={() => setDraggedFarmTask({ patch: patch.name, task })} onDragEnd={() => setDraggedFarmTask(null)}
+                      onKeyDown={(event) => { const offset = event.key === 'ArrowLeft' ? -1 : event.key === 'ArrowRight' ? 1 : 0; const target = tasksFor(patch.name)[taskIndex + offset]; if (offset && target) { event.preventDefault(); reorderFarmTask(patch.name, task, target); } }}><GripVertical size={21} /></button>
+                    <strong>{task}</strong>
+                  </div>;
+                })}</div>}
                 <div className="farm-v2-travel"><b>1</b><span>{patch.travel}</span><b>2</b><span>{patch.fallback}</span></div>
-                <button className={`farm-v2-complete route-check${done ? ' done' : ''}`} onClick={() => togglePatch(patch.name)} aria-label={`Mark ${patch.name} ${done ? 'incomplete' : 'complete'}`}>{done && <Check size={14} />}</button>
-                {patch.tasks?.length ? <div className="farm-v2-task-list">{(patch.name === 'Player-owned Farm' ? farmTaskOrder : patch.tasks).map((task) => { const taskDone = Boolean(completed[`${routeType}:${patch.name}:${task}`]); return <div className={taskDone ? 'done' : ''} draggable={patch.name === 'Player-owned Farm'} onDragStart={() => setDraggedFarmTask(task)} onDragOver={(event) => event.preventDefault()} onDrop={() => reorderFarmTask(task)} onDragEnd={() => setDraggedFarmTask(null)} key={task}><span className="farm-v2-drag-handle" aria-hidden="true">⠿</span><button className="route-check" onClick={() => toggleFarmTask(patch.name, task)} aria-label={`Mark ${task} ${taskDone ? 'incomplete' : 'complete'}`}>{taskDone && <Check size={13} />}</button><div><strong>{task}</strong><small>{task === 'Beehives' ? 'Collect honeycomb and check breeding bonuses.' : 'Collect produce, check animals, and manage pens.'}</small></div></div>; })}</div> : null}
+                {routeType !== 'Herb' && <button className={`farm-v2-complete route-check${done ? ' done' : ''}`} onClick={() => togglePatch(patch.name)} aria-label={`Mark ${patch.name} ${done ? 'incomplete' : 'complete'}`}>{done && <Check size={14} />}</button>}
               </article>;
             })}
             {!visiblePatches.length && <p className="farm-v2-empty">Every patch in this route is marked complete. Choose “Show completed” to review them.</p>}
@@ -5106,8 +5017,6 @@ function RepeatablesView({
   const [completedQuests, setCompletedQuests] = useState<Set<string> | null>(
     null,
   );
-  const [syncing, setSyncing] = useState(false);
-  const [syncError, setSyncError] = useState('');
   const [showAvailable, setShowAvailable] = useState(true);
   const [query, setQuery] = useState('');
   const [showCompleted, setShowCompleted] = useState(false);
@@ -5134,7 +5043,6 @@ function RepeatablesView({
   }, [shared]);
   useEffect(() => {
     setCompletedQuests(null);
-    setSyncError('');
     if (!player) return;
     try {
       const cached = JSON.parse(
@@ -5179,35 +5087,6 @@ function RepeatablesView({
   }
   function toggle(name: string) {
     persist({ ...completed, [name]: !completed[name] });
-  }
-  async function syncAccess() {
-    if (!player) return;
-    setSyncing(true);
-    setSyncError('');
-    try {
-      const response = await fetch(
-        `/api/quests?player=${encodeURIComponent(player.name)}`,
-      );
-      const result = (await response.json()) as QuestSyncResult & {
-        error?: string;
-      };
-      if (!response.ok)
-        throw new Error(result.error || 'Quest sync is unavailable.');
-      setCompletedQuests(
-        new Set(
-          result.quests
-            .filter((quest) => quest.completed)
-            .map((quest) => normalQuestTitle(quest.title)),
-        ),
-      );
-    } catch (error) {
-      setCompletedQuests(null);
-      setSyncError(
-        error instanceof Error ? error.message : 'Quest sync is unavailable.',
-      );
-    } finally {
-      setSyncing(false);
-    }
   }
   function toggleManual(key: string) {
     const next = { ...manualUnlocks, [key]: !manualUnlocks[key] };

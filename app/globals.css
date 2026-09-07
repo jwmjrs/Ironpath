@@ -343,3 +343,47 @@ html,body{background:#07110f}body{font-size:15px;background-image:radial-gradien
 .shop-run-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:12px}
 .shop-run-card{display:grid;grid-template-columns:23px minmax(0,1fr);align-items:start;gap:12px;min-width:0;min-height:246px;border:1px solid var(--t-border);border-radius:11px;background:linear-gradient(145deg,var(--t-surface),var(--t-surface2));padding:16px;transition:border-color .16s ease,background .16s ease}.shop-run-card:hover{border-color:var(--t-accent2);background:color-mix(in srgb,var(--t-active) 35%,var(--t-surface2))}.shop-run-card.done{background:color-mix(in srgb,var(--t-success) 9%,var(--t-surface2))}.shop-run-card .route-check{margin-top:1px}.shop-run-copy{display:flex;min-width:0;min-height:100%;flex-direction:column}.shop-run-title{display:grid;gap:4px}.shop-run-title span{color:var(--t-muted);font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}.shop-run-title strong{overflow-wrap:anywhere;color:var(--t-text);font-size:17px;line-height:1.2}.shop-run-copy dl{display:grid;gap:8px;margin:14px 0}.shop-run-copy dl>div{display:grid;gap:3px}.shop-run-copy dt{color:var(--t-accent);font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase}.shop-run-copy dd{margin:0;overflow-wrap:anywhere;color:var(--t-muted);font-size:12px;line-height:1.42}.shop-run-copy>p{margin:auto 0 0;overflow-wrap:anywhere;border-top:1px solid var(--t-border);padding-top:11px;color:var(--t-muted);font-size:12px;line-height:1.48}
 @media(max-width:920px){.shop-run-list{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.shop-runs-heading{align-items:flex-start;flex-direction:column;padding:18px}.shop-runs-progress{justify-items:start}.shop-run-list{grid-template-columns:1fr}.shop-run-card{min-height:0}}
+
+/* Reference farming checklist: keep each patch and its four tasks on one line. */
+.farm-inline-checklist .farm-v2-layout{width:100%;max-width:none}
+.farm-inline-checklist .farm-v2-route-panel{padding:18px;overflow-x:auto}
+.farm-inline-checklist .farm-v2-panel-head{display:none}
+.farm-inline-checklist .farm-v2-recommendation{min-height:98px;margin:0 0 16px;padding:18px;gap:15px;border-radius:11px}
+.farm-inline-checklist .farm-v2-recommendation-icon{width:60px;height:58px;flex:none;border-radius:11px}
+.farm-inline-checklist .farm-v2-recommendation-icon svg{width:32px;height:32px}
+.farm-inline-checklist .farm-v2-recommendation .eyebrow{font-size:15px;letter-spacing:.14em;margin-bottom:5px}
+.farm-inline-checklist .farm-v2-recommendation strong{font-size:24px}
+.farm-inline-checklist .farm-v2-recommendation small{font-size:16px;white-space:normal}
+.farm-inline-checklist .farm-v2-recommendation-note{display:none}
+.farm-inline-checklist .farm-v2-layout .farm-v2-table-head,
+.farm-inline-checklist .farm-v2-layout .farm-v2-table article{grid-template-columns:54px 190px minmax(620px,1fr) 362px!important;gap:12px!important;padding:10px 16px;min-width:1320px}
+.farm-inline-checklist .farm-v2-layout .farm-v2-table-head{display:grid;min-height:46px;border:1px solid var(--t-border);border-bottom:0;border-radius:9px 9px 0 0;font-size:14px;letter-spacing:.07em}
+.farm-inline-checklist .farm-v2-table{min-width:1320px;border:1px solid var(--t-border);border-top:0;border-radius:0 0 9px 9px;overflow:hidden}
+.farm-inline-checklist .farm-v2-layout .farm-v2-table article{min-height:102px;box-sizing:border-box}
+.farm-inline-checklist .farm-v2-index{font-size:18px;padding-left:6px}
+.farm-inline-checklist .farm-v2-layout .farm-v2-name{gap:16px}
+.farm-inline-checklist .farm-v2-layout .farm-v2-name strong{font-size:18px;white-space:nowrap}
+.farm-inline-checklist .farm-v2-name svg{width:30px;height:30px;flex:none;stroke-width:1.7}
+.farm-inline-tasks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;min-width:0}
+.farm-inline-task{display:flex;align-items:center;gap:8px;min-height:74px;padding:10px;border:1px solid var(--t-border);border-radius:8px;background:var(--t-surface2)}
+.farm-inline-task strong{font-size:14px;font-weight:750;white-space:nowrap;margin-left:8px}
+.farm-inline-task .route-check{width:24px!important;height:24px!important;min-width:24px;flex:none;border:1px solid var(--t-accent2);border-radius:50%;background:transparent;padding:0;display:grid;place-items:center}
+.farm-inline-grip{display:grid;place-items:center;flex:none;width:21px;padding:0;border:0;background:none;color:var(--t-text);cursor:grab}
+.farm-inline-grip:active{cursor:grabbing}
+.farm-inline-task.done .route-check{background:var(--t-success);border-color:var(--t-success);color:var(--t-bg)}
+.farm-inline-task.done{border-color:var(--t-success)}
+.farm-inline-task button:focus-visible{outline:2px solid var(--t-success);outline-offset:4px}
+.farm-inline-checklist .farm-v2-layout .farm-v2-travel{grid-column:4;grid-row:auto;grid-template-columns:34px minmax(0,1fr);gap:3px 18px;font-size:18px;line-height:1.3;padding-left:8px}
+.farm-inline-checklist .farm-v2-layout .farm-v2-travel b{width:34px;height:33px;font-size:18px;border-radius:6px}
+.farm-inline-checklist .farm-v2-layout .farm-v2-travel span{white-space:normal;overflow-wrap:normal}
+@media(max-width:700px){.farm-inline-checklist .farm-v2-recommendation{min-width:0}.farm-inline-checklist .farm-v2-recommendation small{font-size:14px}.farm-inline-checklist .farm-v2-route-panel{padding:12px}}
+
+/* Hide scrollbar chrome throughout the app without disabling scrolling. */
+html, body, * {
+  scrollbar-width: none !important;
+}
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
