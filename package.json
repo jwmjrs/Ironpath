@@ -1,6 +1,6 @@
 {
   "name": "sites-project",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Ironpath — a RuneScape 3 Group Ironman companion.",
   "author": "Justjay btw",
   "private": true,
@@ -83,7 +83,7 @@
       "en-US"
     ],
     "mac": {
-      "icon": "desktop/icons/ironpath.png",
+      "icon": "desktop/icons/ironpath.icns",
       "artifactName": "Ironpath-${version}-${arch}.${ext}",
       "target": [
         "dmg"
@@ -91,8 +91,15 @@
       "category": "public.app-category.utilities"
     },
     "win": {
-      "icon": "desktop/icons/ironpath.png",
-      "target": [{ "target": "nsis", "arch": ["x64"] }]
+      "icon": "desktop/icons/ironpath.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
     },
     "nsis": {
       "artifactName": "Ironpath-${version}-setup.${ext}",
