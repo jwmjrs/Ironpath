@@ -2406,12 +2406,6 @@ function HiScoresView({
                   })}
               </div>
             </section>
-            <section className="panel dashboard-achievements-link">
-              <span className="achievements-section-icon"><Medal size={22} /></span>
-              <div><p className="eyebrow">Your group journal</p><h3>Milestones and memorable drops</h3><p>Find your adventurer&apos;s log and shared item history together in Achievements.</p></div>
-              <button className="secondary-button" onClick={() => onNavigate('Achievements')}>Open Achievements <ChevronRight size={15} /></button>
-            </section>
-
           </div>
           {dashboardMockup && (
             <section className="panel dashboard-mockup-goals">
