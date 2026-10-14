@@ -1,5 +1,7 @@
 # Ironpath
 
+![Ironpath Zaros-inspired logo](public/ironpath-zaros-wordmark.png)
+
 Ironpath is a community-built RuneScape 3 Group Ironman companion. It brings public group standings, activity, routine tracking, practical references, and focused task ideas into one place.
 
 > Ironpath is an unofficial fan project. It is not affiliated with, endorsed by, or sponsored by Jagex or RuneScape.
@@ -28,6 +30,7 @@ Helpful reports include the page you were using, what you expected to happen, wh
 
 ## More documentation
 
+- [Brand identity and future image guidance](docs/BRAND.md)
 - [Architecture](docs/architecture.md)
 - [Contributing](CONTRIBUTING.md)
 - [Security reporting](SECURITY.md)

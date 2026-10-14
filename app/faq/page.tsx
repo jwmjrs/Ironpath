@@ -14,7 +14,7 @@ export default function FaqPage() {
     <article className="faq-page-wrap">
       <header className="faq-page-hero">
         <a className="faq-back-link" href="/"><ArrowLeft size={16}/> Back to Ironpath</a>
-        <img className="faq-brand" src="/ironpath-banner-transparent-v1.png" alt="Ironpath" />
+        <img className="faq-brand" src="/ironpath-zaros-wordmark.png" alt="Ironpath" />
         <div className="faq-hero-copy">
           <span className="faq-hero-icon"><CircleHelp size={27}/></span>
           <div><p className="eyebrow">IRONPATH REFERENCE</p><h1>Questions, answered.</h1><p>A short guide to what Ironpath does, how group data is used, and where a result may be unavailable.</p></div>

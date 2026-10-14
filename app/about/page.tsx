@@ -7,7 +7,7 @@ export default function AboutPage() {
       <article className="about-page-wrap">
         <header className="about-page-hero">
           <a className="about-back-link" href="/"><ArrowLeft size={16} /> Back to Ironpath</a>
-          <img className="about-brand" src="/ironpath-banner-transparent-v1.png" alt="Ironpath" />
+          <img className="about-brand" src="/ironpath-zaros-wordmark.png" alt="Ironpath" />
           <p className="eyebrow">THE IRONPATH STORY</p>
           <h1>A project shaped by the group.</h1>
           <p>

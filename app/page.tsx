@@ -32,6 +32,7 @@ import {
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import progressData from './data/efficient-progress.json';
 import FriendsChats from './friends-chats';
+import ReferenceImage from './reference-image';
 import { ironTasks, type IronTask } from './data/random-tasks';
 import {
   archaeologyCollectors,
@@ -570,7 +571,7 @@ export default function Home() {
               onClick={() => setActive('Dashboard')}
               aria-label="Open Ironpath dashboard"
             >
-              <img className="brand-symbol" src="/ironpath-compass.png" alt="" />
+              <img className="brand-symbol" src="/ironpath-zaros-mark.png" alt="" />
               <span className="brand-wordmark">Ironpath<span>Group Ironman companion</span></span>
             </button>
             <div className="navigation-row">
@@ -591,14 +592,8 @@ export default function Home() {
                 ))}
                 <div
                   className="extras-menu"
-                  onMouseEnter={() => {
-                    setProgressionOpen(true);
-                    setTestOpen(false);
-                  }}
-                  onMouseLeave={() => setProgressionOpen(false)}
-                  onFocus={() => {
-                    setProgressionOpen(true);
-                    setTestOpen(false);
+                  onKeyDown={(event) => {
+                    if (event.key === 'Escape') setProgressionOpen(false);
                   }}
                   onBlur={(event) => {
                     if (!event.currentTarget.contains(event.relatedTarget))
@@ -616,7 +611,7 @@ export default function Home() {
                         ? 'nav-button active'
                         : 'nav-button'
                     }
-                    onClick={() => setProgressionOpen((value) => !value)}
+                    onClick={() => { setProgressionOpen((value) => !value); setTestOpen(false); }}
                     aria-label="Open progression"
                     aria-expanded={progressionOpen}
                     aria-haspopup="true"
@@ -689,14 +684,8 @@ export default function Home() {
                 </div>
                 <div
                   className="extras-menu"
-                  onMouseEnter={() => {
-                    setTestOpen(true);
-                    setProgressionOpen(false);
-                  }}
-                  onMouseLeave={() => setTestOpen(false)}
-                  onFocus={() => {
-                    setTestOpen(true);
-                    setProgressionOpen(false);
+                  onKeyDown={(event) => {
+                    if (event.key === 'Escape') setTestOpen(false);
                   }}
                   onBlur={(event) => {
                     if (!event.currentTarget.contains(event.relatedTarget))
@@ -716,7 +705,7 @@ export default function Home() {
                         ? 'nav-button active'
                         : 'nav-button'
                     }
-                    onClick={() => setTestOpen((value) => !value)}
+                    onClick={() => { setTestOpen((value) => !value); setProgressionOpen(false); }}
                     aria-label="Open utility"
                     aria-expanded={testOpen}
                     aria-haspopup="true"
@@ -921,11 +910,12 @@ function IronpathLanding({
   }
   return (
     <section className="ironpath-entry" aria-label="Ironpath introduction">
+      <div className="entry-logo-button entry-logo-static entry-brand-heading">
+        <img className="entry-brand-symbol" src="/ironpath-zaros-mark.png" alt="" />
+        <span className="entry-wordmark">Ironpath<small>RuneScape 3 · Group Ironman</small></span>
+      </div>
       <div className="entry-main">
         <div className="entry-copy">
-          <div className="entry-logo-button entry-logo-static">
-            <img className="entry-brand-symbol" src="/ironpath-compass.png" alt="" /><span className="entry-wordmark">Ironpath<small>RuneScape 3 · Group Ironman</small></span>
-          </div>
           <h1>Build the next chapter together.</h1>
           <p>
             Ironpath is a shared place for the things your Group Ironman team
@@ -1229,7 +1219,7 @@ function ArchaeologyCollectionsView() {
               <span className="arch-collector-heading">
                 <span className="arch-collector-image" aria-hidden="true">
                   {images[collector.name] ? (
-                    <img src={images[collector.name]} alt="" />
+                    <ReferenceImage src={images[collector.name]} title={collector.name} alt="" fallback={<Users size={22} />} />
                   ) : (
                     <Archive size={17} />
                   )}
@@ -1255,7 +1245,7 @@ function ArchaeologyCollectionsView() {
                 <p className="eyebrow">Selected collector</p>
                 <span className="arch-selected-collector">
                   {images[selected.name] && (
-                    <img src={images[selected.name]} alt="" />
+                    <ReferenceImage src={images[selected.name]} title={selected.name} alt="" fallback={<Users size={22} />} />
                   )}
                   <span>
                     <h3>{selected.name}</h3>
@@ -1329,7 +1319,7 @@ function ArchaeologyCollectionsView() {
                               </button>
                               <span className="arch-artefact-image" aria-hidden="true">
                                 {images[artefact] ? (
-                                  <img src={images[artefact]} alt="" />
+                                  <ReferenceImage src={images[artefact]} title={artefact} alt="" fallback={<Archive size={13} />} />
                                 ) : (
                                   <Archive size={13} />
                                 )}
@@ -1381,6 +1371,7 @@ function DungeonToolsView() {
       .then((payload) => {
         if (!cancelled) setPouches(payload.pouches || []);
       })
+      .catch(() => { if (!cancelled) setPouches([]); })
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
@@ -1405,6 +1396,7 @@ function DungeonToolsView() {
       .then((detail) => {
         if (!cancelled) setBossDetail(detail);
       })
+      .catch(() => { if (!cancelled) setBossDetail(null); })
       .finally(() => {
         if (!cancelled) setBossLoading(false);
       });
@@ -1602,11 +1594,12 @@ function DungeonToolsView() {
                 Loading {boss} from the RuneScape Wiki…
               </p>
             )}
+            {!bossLoading && !bossDetail && <p className="reference-status">Boss details are unavailable right now. <a href={wikiLink(boss || '')} target="_blank" rel="noreferrer">Open the Wiki encounter guide</a>.</p>}
             {bossDetail && (
               <>
                 <div className="boss-detail-heading">
                   {bossDetail.image && (
-                    <img src={bossDetail.image} alt={bossDetail.name} />
+                    <ReferenceImage src={bossDetail.image} title={bossDetail.name} alt={bossDetail.name} fallback={<Skull size={28} />} />
                   )}
                   <div>
                     <p className="eyebrow">Boss encounter</p>
@@ -2128,15 +2121,9 @@ function HiScoresView({
                         >
                           <div className="score-member">
                             <span className="character-chathead">
-                              <img
+                              <ReferenceImage
                                 src={characterAvatarUrl(player.name)}
-                                alt=""
-                                onError={(event) =>
-                                  event.currentTarget.parentElement?.classList.add(
-                                    'avatar-unavailable',
-                                  )
-                                }
-                              />
+                                alt="" fallback={<Users size={18} />} />
                             </span>
                             <strong>{player.name}</strong>
                           </div>
@@ -2155,13 +2142,7 @@ function HiScoresView({
                           <span className="top-skill-cell">
                             {top ? (
                               <>
-                                <img
-                                  src={skillIconUrl(top.name)}
-                                  alt=""
-                                  onError={(event) => {
-                                    event.currentTarget.style.display = 'none';
-                                  }}
-                                />
+                                <ReferenceImage src={skillIconUrl(top.name)} title={top.name} alt="" fallback={<Sparkles size={14} />} />
                                 <span>
                                   {top.name} {top.level}
                                 </span>
@@ -2194,14 +2175,7 @@ function HiScoresView({
                                   key={skill.name}
                                 >
                                   <strong className="skill-name-cell">
-                                    <img
-                                      src={skillIconUrl(skill.name)}
-                                      alt=""
-                                      onError={(event) => {
-                                        event.currentTarget.style.display =
-                                          'none';
-                                      }}
-                                    />
+                                    <ReferenceImage src={skillIconUrl(skill.name)} title={skill.name} alt="" fallback={<Sparkles size={14} />} />
                                     {skill.name}
                                   </strong>
                                   <span>{skill.level.toLocaleString()}</span>
@@ -2318,15 +2292,9 @@ function HiScoresView({
                       aria-hidden={index >= visibleActivityCount ? true : undefined}
                     >
                       <div className="activity-avatar character-chathead">
-                        <img
+                        <ReferenceImage
                           src={characterAvatarUrl(activity.player)}
-                          alt=""
-                          onError={(event) =>
-                            event.currentTarget.parentElement?.classList.add(
-                              'avatar-unavailable',
-                            )
-                          }
-                        />
+                          alt="" fallback={<Users size={18} />} />
                       </div>
                       <div className="activity-copy">
                         <div>
@@ -2500,35 +2468,8 @@ function archiveEntryDate(event: LoggedDrop) {
     ? `${match[1]}-${match[2]}-${match[3]} 00:00`
     : 'Date unavailable';
 }
-function dropIconUrl(item: string) {
-  return `https://runescape.wiki/Special:FilePath/${encodeURIComponent(item)}.png`;
-}
 function DropItemImage({ item }: { item: string }) {
-  const [failed, setFailed] = useState(false);
-  const [wikiImage, setWikiImage] = useState<string | null>(null);
-  const [wikiFailed, setWikiFailed] = useState(false);
-  useEffect(() => {
-    if (!failed) return;
-    const controller = new AbortController();
-    let retry: ReturnType<typeof setTimeout> | undefined;
-    async function lookup(attempt = 0) {
-      try {
-        const response = await fetch(`/api/item-image?item=${encodeURIComponent(item)}`, { signal: controller.signal });
-        if (!response.ok) throw new Error('Image lookup unavailable');
-        const data = await response.json() as { image?: string | null };
-        if (!controller.signal.aborted) setWikiImage(data.image || null);
-      } catch {
-        if (!controller.signal.aborted && attempt === 0) retry = setTimeout(() => void lookup(1), 3000);
-      }
-    }
-    void lookup();
-    return () => { controller.abort(); clearTimeout(retry); };
-  }, [item, failed]);
-  const src = failed ? (!wikiFailed ? wikiImage : null) : dropIconUrl(item);
-  return src ? <img src={src} alt={`${item} icon`} onError={() => {
-    if (!failed) setFailed(true);
-    else setWikiFailed(true);
-  }} /> : <span className="drop-item-placeholder" title={`${item}: image unavailable`}><Gem size={22} /></span>;
+  return <ReferenceImage title={item} alt={`${item} icon`} className="drop-item-image" fallback={<Gem size={22} />} />;
 }
 function GroupDropLog({
   group,
@@ -3815,14 +3756,12 @@ function FarmV2View({ player }: { player?: HiscorePlayer }) {
   const recommendedCrop =
     [...cropOptions[routeType]].reverse().find(([level]) => farming >= level) ||
     cropOptions[routeType][0];
-  const wikiImageTitle =
-    selected.name === 'Manor Farm'
-      ? 'Player-owned farm'
-      : routeType === 'Herb'
-        ? `Herb patch (${selected.name})`
-        : routeType === 'Tree'
-          ? 'Tree patch'
-          : 'Fruit tree patch';
+  // Patch-specific guessed article titles are often absent on the Wiki.
+  // Show a labeled location reference using a canonical place article instead.
+  const farmImageLocations: Record<string, string> = {
+    'Manor Farm': 'Player-owned farm', Crwys: 'Crwys Clan', Kharid: 'Garden of Kharid',
+  };
+  const wikiImageTitle = farmImageLocations[selected.name] || selected.name;
   useEffect(() => {
     if (patchImages[wikiImageTitle]) return;
     fetch(`/api/archaeology-images?titles=${encodeURIComponent(wikiImageTitle)}`)
@@ -3913,7 +3852,7 @@ function FarmV2View({ player }: { player?: HiscorePlayer }) {
       </div>
       <div className="farm-v2-context-grid">
         <section className="panel farm-v2-detail-card farm-v2-sidebar-card">
-          <div className="farm-v2-detail-image">{patchImages[wikiImageTitle] ? <img src={patchImages[wikiImageTitle]} alt={`${selected.name} farming patch`} /> : <Leaf size={31} />}</div>
+          <div className="farm-v2-detail-image">{patchImages[wikiImageTitle] ? <ReferenceImage src={patchImages[wikiImageTitle]} title={wikiImageTitle} alt={`${selected.name} location reference`} fallback={<Leaf size={31} />} /> : <Leaf size={31} />}</div>
           <div className="farm-v2-context-copy">
             <p className="eyebrow">Selected patch</p>
             <h3>{selected.name}</h3>
@@ -4510,11 +4449,12 @@ const armourEffects = [
 ] as const;
 
 const armourImageTitles: Record<string, string> = {
-  'Anima Core of Seren / Zaros / Sliske': 'Anima Core of Seren',
+  'Anima Core of Seren / Zaros / Sliske': 'Anima core of Seren armour',
   'Trimmed masterwork melee': 'Trimmed masterwork armour',
   'Custom-fit trimmed masterwork': 'Custom-fit trimmed masterwork armour',
   'Achto raid armour': 'Achto armour',
   'Elite tectonic': 'Elite tectonic armour',
+  'Elite Dracolich armour': 'Elite dracolich armour',
   'Deathwarden robe armour (tier 90)': 'Deathwarden robe armour',
   'Deathdealer robe armour (tier 90)': 'Deathdealer robe armour',
   'Robes of the First Necromancer': "First Necromancer's equipment",
@@ -4584,13 +4524,10 @@ function ArmourEffectsSection() {
                 {armourImageOverrides[name] ||
                 images[name] ||
                 images[armourImageTitles[name]] ? (
-                  <img
-                    src={
-                      armourImageOverrides[name] ||
-                      images[name] ||
-                      images[armourImageTitles[name]]
-                    }
-                    alt=""
+                  <ReferenceImage
+                    src={armourImageOverrides[name] || images[name] || images[armourImageTitles[name]]}
+                    title={armourImageTitles[name] || name}
+                    alt="" fallback={<Shield size={28} />}
                   />
                 ) : (
                   <Shield size={28} />
@@ -4927,14 +4864,9 @@ function ComponentCard({
   return (
     <article className="panel method-card component-card">
       <header>
-        <img
-          src={componentIcon(component, tier)}
-          alt={`${component} ${materialTerm}`}
-          loading="lazy"
-          onError={(event) => {
-            event.currentTarget.style.visibility = 'hidden';
-          }}
-        />
+        <ReferenceImage src={componentIcon(component, tier)}
+          title={`${component} ${materialTerm}`} alt={`${component} ${materialTerm}`}
+          fallback={<Gem size={24} />} />
         <div>
           <span className="level-range">
             {component} {materialTerm}

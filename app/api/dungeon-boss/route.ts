@@ -1,5 +1,5 @@
 type ParseResponse = { parse?:{ text?:{ '*':string } } };
-type ImageResponse = { query?:{ pages?:Record<string,{ thumbnail?:{ source?:string } }> } };
+type ImageResponse = { query?:{ pages?:Record<string,{ thumbnail?:{ source?:string }; original?:{ source?:string } }> } };
 
 const cache=new Map<string,{expires:number;value:BossDetail}>();
 type BossDetail={name:string;image:string|null;description:string;mechanics:string};
@@ -17,13 +17,14 @@ export async function GET(request:Request) {
   try {
     const title=encodeURIComponent(name);
     const [parsed,imageResult]=await Promise.all([
-      fetch(`https://runescape.wiki/api.php?action=parse&page=${title}&prop=text&format=json`,{headers:{'User-Agent':'Ironpath Group Ironman Companion'}}),
-      fetch(`https://runescape.wiki/api.php?action=query&titles=${title}&prop=pageimages&pithumbsize=460&format=json`,{headers:{'User-Agent':'Ironpath Group Ironman Companion'}}),
+      fetch(`https://runescape.wiki/api.php?action=parse&page=${title}&prop=text&format=json`,{headers:{'User-Agent':'Ironpath Group Ironman Companion'},signal:AbortSignal.timeout(8000)}),
+      fetch(`https://runescape.wiki/api.php?action=query&titles=${title}&prop=pageimages&piprop=thumbnail%7Coriginal&pilicense=any&redirects=1&pithumbsize=460&format=json`,{headers:{'User-Agent':'Ironpath Group Ironman Companion'},signal:AbortSignal.timeout(8000)}),
     ]);
     if (!parsed.ok) throw new Error('The RuneScape Wiki did not return this boss.');
     const html=(await parsed.json() as ParseResponse).parse?.text?.['*'] || '';
     const pages=(await imageResult.json() as ImageResponse).query?.pages || {};
-    const image=Object.values(pages)[0]?.thumbnail?.source || null;
+    const imagePage=Object.values(pages)[0];
+    const image=imagePage?.thumbnail?.source || imagePage?.original?.source || null;
     const value={name,image,description:firstParagraph(html),mechanics:mechanicsText(html)};
     cache.set(name,{expires:Date.now()+21_600_000,value});
     return Response.json(value,{headers:{'Cache-Control':'public, max-age=900'}});

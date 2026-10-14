@@ -6,9 +6,11 @@ html[data-theme="dark"] {
   --ip-panel-secondary: #0c0d10;
   --ip-border: #25272e;
   --ip-divider: #202229;
-  --ip-crimson: #ef4c5a;
-  --ip-crimson-hover: #ff6b77;
-  --ip-selected: #24151c;
+  --ip-accent: #87dce0;
+  --ip-violet: #b8a3f7;
+  --ip-crimson: var(--ip-accent);
+  --ip-crimson-hover: #b2f0f3;
+  --ip-selected: #1b172a;
   --ip-text: #f2f3f5;
   --ip-muted: #9b9faa;
   --ip-success: #75c99a;
@@ -27,7 +29,7 @@ html[data-theme="dark"] {
   --t-text: var(--ip-text);
   --t-muted: var(--ip-muted);
   --t-accent: var(--ip-crimson);
-  --t-accent2: #c43d4b;
+  --t-accent2: var(--ip-violet);
   --t-active: var(--ip-selected);
   --t-success: var(--ip-success);
   --t-button-text: #fff;
@@ -62,12 +64,12 @@ html[data-theme="dark"] .feature-heading h2 { font-size: clamp(28px,3vw,38px); }
 html[data-theme="dark"] :is(.primary-button,.entry-primary) {
   border: 1px solid var(--ip-crimson);
   border-radius: var(--ip-radius);
-  background: #ca3445;
+  background: #7556c2;
   color: #fff;
   box-shadow: inset 0 1px 0 #ffffff12,0 0 8px #e5394312;
 }
 html[data-theme="dark"] :is(.primary-button,.entry-primary):hover {
-  background: #e14455;
+  background: #8869d8;
   border-color: var(--ip-crimson-hover);
   box-shadow: 0 0 8px #e5394326;
 }
@@ -381,7 +383,7 @@ html[data-theme="dark"] { color-scheme: dark; }
 html[data-theme="dark"] body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 html[data-theme="dark"] :is(h1,h2,h3,h4) { font-family: var(--ip-heading-font); letter-spacing: -.035em; font-weight: 650; }
 html[data-theme="dark"] :is(button,input,select,textarea) { font-family: inherit; }
-html[data-theme="dark"] ::selection { background: #ef4c5a40; color: #fff; }
+html[data-theme="dark"] ::selection { background: #b8a3f740; color: #fff; }
 html[data-theme="dark"] .site-header { box-shadow: 0 1px 0 #ffffff03; }
 html[data-theme="dark"] .brand-bar {
   display: flex; flex-direction: row; justify-content: space-between;
@@ -407,7 +409,7 @@ html[data-theme="dark"] :is(.feature-heading,.panel-heading,.section-heading,.fa
 html[data-theme="dark"] :is(.welcome-heading h1,.refresh-page-heading h1) { font: 650 clamp(26px,3vw,34px)/1.15 var(--ip-heading-font); letter-spacing: -.045em; }
 html[data-theme="dark"] .panel-heading h3 { font-size: 17px; font-weight: 650; }
 html[data-theme="dark"] :is(.eyebrow,.field>span) { color: var(--ip-muted); font-weight: 600; letter-spacing: .09em; }
-html[data-theme="dark"] :is(.primary-button,.entry-primary) { border-color: #e6506040; box-shadow: 0 4px 12px #0003; font-weight: 650; min-height: 40px; transition: background .16s ease,border-color .16s ease; }
+html[data-theme="dark"] :is(.primary-button,.entry-primary) { border-color: #b8a3f740; box-shadow: 0 4px 12px #0003; font-weight: 650; min-height: 40px; transition: background .16s ease,border-color .16s ease; }
 html[data-theme="dark"] :is(.primary-button,.entry-primary):hover { box-shadow: 0 4px 12px #0003; }
 html[data-theme="dark"] :is(.secondary-button,.entry-settings-button) { min-height: 40px; border-radius: 8px; background: #ffffff04; font-weight: 550; }
 html[data-theme="dark"] :is(.secondary-button,.entry-settings-button):hover { background: #ffffff09; border-color: #444752; }
@@ -425,7 +427,7 @@ html[data-theme="dark"] .welcome-character { border-radius: 10px; }
 html[data-theme="dark"] :is(.period-tabs,.guide-tabs,.hub-tabs,.farm-tabs,.repeatable-period-tabs) { gap: 4px; }
 html[data-theme="dark"] :is(.period-tabs,.guide-tabs,.hub-tabs,.farm-tabs,.repeatable-period-tabs) button { border-radius: 8px; }
 html[data-theme="dark"] :is(.period-tabs,.guide-tabs,.hub-tabs,.farm-tabs,.repeatable-period-tabs) button.active,
-html[data-theme="dark"] :is(.roadmap-phase-card.active,.tracker-filter.active) { background: #24151c; border-color: #66323e; box-shadow: none; }
+html[data-theme="dark"] :is(.roadmap-phase-card.active,.tracker-filter.active) { background: #201a30; border-color: #514269; box-shadow: none; }
 html[data-theme="dark"] :is(.roadmap-detail,.layout-refresh .training-controls) { top: 104px; }
 html[data-theme="dark"] .roadmap-detail h3 { font-family: var(--ip-heading-font); font-weight: 650; }
 html[data-theme="dark"] .layout-refresh .method-grid { border-radius: 12px; }
@@ -435,7 +437,7 @@ html[data-theme="dark"] .farming-refresh .farm-v2-detail-banner { background: #1
 html[data-theme="dark"] .app-credit { background: rgb(9 10 13 / .94); border-color: var(--ip-border); box-shadow: none; min-height: 40px; padding-block: 10px; }
 
 /* Entry screen shares the app's quiet surfaces and typographic hierarchy. */
-html[data-theme="dark"] .ironpath-entry { background: radial-gradient(ellipse at 10% 0%,#ef4c5a09,transparent 45%),var(--ip-bg); padding: clamp(20px,4vw,54px); }
+html[data-theme="dark"] .ironpath-entry { background: radial-gradient(ellipse at 10% 0%,#b8a3f709,transparent 45%),var(--ip-bg); padding: clamp(20px,4vw,54px); }
 html[data-theme="dark"] .ironpath-entry .entry-main { gap: 24px; padding: clamp(24px,6vh,64px) 0; align-items: center; }
 html[data-theme="dark"] .ironpath-entry .entry-copy { background: none; border: 0; box-shadow: none; border-radius: 0; padding: 24px 28px 24px 0; }
 html[data-theme="dark"] .ironpath-entry .entry-logo-button { display: flex; align-items: center; gap: 14px; width: auto; margin: 0 0 42px; }
@@ -499,4 +501,60 @@ html[data-theme="dark"] .dashboard-page .drop-log-controls>span { text-align: ri
   html[data-theme="dark"] .activities-refresh .repeatable-row>.state-badge { grid-column: 3; }
   html[data-theme="dark"] .activities-refresh .repeat-hide-button { grid-column: 4; }
   html[data-theme="dark"] .activities-refresh .repeatable-row .repeat-tag { display: none; }
+}
+
+/* Zaros identity: violet actions, ice-teal references, quiet secondary copy. */
+html[data-theme="dark"] :is(.dungeon-potion b,.dungeon-potion small,.dungeon-pouch-row strong,.dungeon-boss-card small,.boss-key-points strong,.component-card .level-range,.general-use-label,.familiar-level strong,.reference-link,.source-link,.section-heading>a,.source-link-inline,.archaeology-collector small,.arch-reward span,.extras-divider) { color: var(--ip-accent) !important; }
+html[data-theme="dark"] :is(.level-range,.current-tag,.directory-section-title>svg,.entry-feature-stack svg,.navigation-row .nav-button.active>svg:first-child) { color: var(--ip-violet); }
+html[data-theme="dark"] :is(.dungeon-potion,.dungeon-pouch-family,.dungeon-boss-family,.arch-collection,.component-card,.general-info-grid article) { background: var(--ip-panel-secondary); border-color: var(--ip-border); }
+html[data-theme="dark"] :is(.reference-link,.source-link,.section-heading>a,.source-link-inline):hover { color: #b5f2f4 !important; }
+html[data-theme="dark"] .reference-image-fallback { display: inline-grid; place-items: center; flex: 0 0 auto; width: 32px; height: 32px; color: var(--ip-muted); border-radius: 6px; background: #ffffff04; vertical-align: middle; }
+html[data-theme="dark"] :is(.top-skill-cell,.skill-name-cell) .reference-image-fallback { width: 18px; height: 18px; background: none; }
+html[data-theme="dark"] .character-chathead .reference-image-fallback { width: 100%; height: 100%; border-radius: inherit; }
+html[data-theme="dark"] :is(.armour-card-image,.farm-v2-detail-image) .reference-image-fallback { width: 100%; height: 100%; background: none; }
+html[data-theme="dark"] .arch-artefact-image .reference-image-fallback { width: 20px; height: 20px; background: none; }
+html[data-theme="dark"] .component-card header>.reference-image-fallback { width: 42px; height: 42px; }
+html[data-theme="dark"] .feature-page>.feature-heading { display: flex; align-items: flex-start; gap: 16px; }
+html[data-theme="dark"] .feature-page>.feature-heading>div:first-child { display: block; }
+html[data-theme="dark"] :is(.dungeon-tools-page,.archaeology-page)>.feature-heading { display: block; }
+html[data-theme="dark"] :is(.dungeon-tools-page,.archaeology-page)>.feature-heading h2 { margin: 6px 0 10px; }
+html[data-theme="dark"] :is(.dungeon-tools-page,.archaeology-page)>.feature-heading>p:last-child { color: var(--ip-muted); line-height: 1.6; }
+html[data-theme="dark"] .feature-page>.feature-heading { display: flex !important; }
+html[data-theme="dark"] .feature-page>.feature-heading:has(>h2) { display: block !important; }
+html[data-theme="dark"] .dungeon-tools-page .dungeon-potion :is(strong,span,b,small) { white-space: normal; overflow-wrap: break-word; }
+html[data-theme="dark"] .dungeon-tools-page .dungeon-potion { gap: 8px; line-height: 1.5; }
+html[data-theme="dark"] .dungeon-tools-page .dungeon-potion-grid { grid-template-columns: repeat(auto-fit,minmax(min(100%,260px),1fr)); }
+html[data-theme="dark"] :is(.about-page-shell,.faq-page-shell,.privacy-page-shell) { background: var(--ip-bg); color: var(--ip-text); }
+html[data-theme="dark"] :is(.about-page-hero,.about-story,.about-credit-panel,.faq-page-hero,.faq-question-panel,.privacy-page-hero,.privacy-detail-panel,.privacy-control-note,.faq-quick-grid article,.privacy-promise-grid article) { background: var(--ip-panel); border-color: var(--ip-border); box-shadow: none; }
+html[data-theme="dark"] :is(.about-back-link,.faq-back-link,.privacy-back-link,.privacy-detail-list small,.about-credit-panel a,.faq-quick-grid svg,.privacy-promise-grid svg) { color: var(--ip-accent); }
+html[data-theme="dark"] :is(.about-brand,.faq-brand,.privacy-brand) { display: block; width: min(380px,100%); height: auto; margin: 24px 0 28px; object-fit: contain; filter: none; }
+html[data-theme="dark"] :is(.about-story-grid article,.about-thanks,.about-note,.faq-note,.privacy-promise-grid article) { background: var(--ip-panel); border-color: var(--ip-border); }
+@media(max-width:600px) {
+  html[data-theme="dark"] .feature-page>.feature-heading { flex-direction: column; }
+  html[data-theme="dark"] .section-heading { flex-wrap: wrap; }
+  html[data-theme="dark"] .dungeon-tools-page .boss-trigger { white-space: normal; text-align: left; }
+}
+@media(max-width:700px) {
+  html[data-theme="dark"] .site-header .brand-bar { position: relative; }
+  html[data-theme="dark"] .navigation-row,
+  html[data-theme="dark"] .navigation-row nav,
+  html[data-theme="dark"] .navigation-row .extras-menu { position: static; }
+  html[data-theme="dark"] .navigation-row .extras-popover { left: 16px; right: 16px; top: 100%; width: auto; max-width: none; transform: none; max-height: 65vh; overflow-y: auto; }
+}
+
+/* Center the complete brand lockup consistently across every destination. */
+html[data-theme="dark"] .site-header .brand-bar { flex-direction: column; align-items: center; gap: 12px; padding: 16px 24px 12px; }
+html[data-theme="dark"] .site-header .brand-home { align-self: center; justify-content: center; text-align: center; }
+html[data-theme="dark"] .brand-wordmark,
+html[data-theme="dark"] .entry-wordmark { text-align: center; }
+html[data-theme="dark"] .navigation-row { width: 100%; justify-content: center; }
+html[data-theme="dark"] .navigation-row nav { justify-content: center; flex-wrap: wrap; }
+html[data-theme="dark"] .ironpath-entry>.entry-brand-heading { width: max-content; max-width: 100%; margin: 8px auto 0; justify-content: center; text-align: center; }
+html[data-theme="dark"] :is(.about-brand,.faq-brand,.privacy-brand) { margin: 24px auto 28px; }
+html[data-theme="dark"] :is(.roadmap-detail,.layout-refresh .training-controls) { top: 156px; }
+@media(max-width:1100px) {
+  html[data-theme="dark"] :is(.roadmap-detail,.layout-refresh .training-controls) { position: static; }
+}
+@media(max-width:700px) {
+  html[data-theme="dark"] .site-header .brand-bar { padding: 14px 16px 12px; }
 }
