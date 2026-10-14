@@ -6,6 +6,7 @@ type WikiResult = {
     pageprops?: { disambiguation?: string };
     thumbnail?: { source?: string };
     original?: { source?: string };
+    imageinfo?: { url?: string }[];
   }> };
 };
 const cache = new Map<string, { image: string | null; expires: number }>();
@@ -21,8 +22,32 @@ function trustedImage(value?: string) {
 }
 
 async function resolveImage(item: string): Promise<string | null> {
+  const aliases: Record<string, string> = {
+    'pristine bagrada rex egg': 'Pristine Bagrada rex egg',
+    'pristine corbicula rex egg': 'Pristine Corbicula rex egg',
+    'pristine pavosaurus rex egg': 'Pristine Pavosaurus rex egg',
+    'crystal triskelion fragment': 'Crystal triskelion fragment 1',
+    "baby yaga's house": "Baby Yaga's House pet",
+  };
+  const title = aliases[item.toLowerCase()] || item.charAt(0).toUpperCase() + item.slice(1);
+  // Inventory files depict the actual dropped item, rather than article detail renders.
+  const fileParams = new URLSearchParams({ action: 'query', format: 'json', redirects: '1',
+    titles: `File:${title}.png`, prop: 'imageinfo', iiprop: 'url' });
+  const fileResponse = await fetch(`https://runescape.wiki/api.php?${fileParams}`, {
+    headers: { 'User-Agent': 'Ironpath/1.0 (Group Ironman companion; item image lookup)' },
+    signal: AbortSignal.timeout(8000),
+  });
+  if (!fileResponse.ok) throw new Error('Wiki unavailable');
+  const fileData = await fileResponse.json() as WikiResult;
+  const filePage = Object.values(fileData.query?.pages || {})[0];
+  const inventoryImage = trustedImage(filePage?.imageinfo?.[0]?.url);
+  if (inventoryImage) {
+    if (cache.size >= 500) cache.delete(cache.keys().next().value!);
+    cache.set(item, { image: inventoryImage, expires: Date.now() + 21_600_000 });
+    return inventoryImage;
+  }
   const params = new URLSearchParams({
-    action: 'query', format: 'json', redirects: '1', titles: item,
+    action: 'query', format: 'json', redirects: '1', titles: title,
     prop: 'pageimages|pageprops', ppprop: 'disambiguation',
     piprop: 'thumbnail|original', pithumbsize: '64', pilicense: 'any',
   });
@@ -61,7 +86,20 @@ export async function GET(request: Request) {
       }
       image = await lookup;
     }
-    return Response.json({ image }, { headers: { 'Cache-Control': `public, max-age=${image ? 21600 : 300}` } });
+    if (new URL(request.url).searchParams.get('asset') === '1') {
+      if (!image) return new Response(null, { status: 404, headers: { 'Cache-Control': 'no-store' } });
+      const asset = await fetch(image, { signal: AbortSignal.timeout(12000),
+        headers: { 'User-Agent': 'Ironpath/1.0 (Group Ironman companion; item artwork)' } });
+      const type = asset.headers.get('Content-Type')?.split(';')[0] || '';
+      if (!asset.ok || !['image/png', 'image/webp', 'image/jpeg', 'image/gif'].includes(type)) throw new Error('Image unavailable');
+      const bytes = await asset.arrayBuffer();
+      if (bytes.byteLength > 2_000_000) throw new Error('Image too large');
+      return new Response(bytes, { headers: { 'Content-Type': type, 'Cache-Control': 'public, max-age=21600',
+        'X-Content-Type-Options': 'nosniff' } });
+    }
+    // Deliver from our own origin: browsers no longer depend on third-party image access.
+    return Response.json({ image: image ? `/api/item-image?item=${encodeURIComponent(item)}&asset=1` : null },
+      { headers: { 'Cache-Control': `public, max-age=${image ? 21600 : 300}` } });
   } catch {
     return Response.json({ image: null }, { status: 503, headers: { 'Cache-Control': 'no-store' } });
   }

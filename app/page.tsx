@@ -32,6 +32,8 @@ import {
 import { FormEvent, useEffect, useState } from 'react';
 import progressData from './data/efficient-progress.json';
 import ReferenceImage from './reference-image';
+import RuneScapeNews from './runescape-news';
+import dropItemImages from './data/drop-item-images.json';
 import { ironTasks, type IronTask } from './data/random-tasks';
 import {
   archaeologyCollectors,
@@ -2238,6 +2240,7 @@ function HiScoresView({
       )}
       <div className={dashboardMockup ? 'dashboard-mockup-main' : undefined}>
       <DashboardStart onNavigate={onNavigate} playerName={selectedPlayer?.name} />
+      <RuneScapeNews />
       {selectedPlayer && (
         <section id="dashboard-personalize" className="panel member-home-selector dashboard-personalize">
           <div>
@@ -2466,7 +2469,8 @@ function archiveEntryDate(event: LoggedDrop) {
     : 'Date unavailable';
 }
 function DropItemImage({ item }: { item: string }) {
-  return <ReferenceImage title={item} alt={`${item} icon`} className="drop-item-image" fallback={<Gem size={22} />} />;
+  const artwork = (dropItemImages as Record<string, { src: string; wikiTitle: string }>)[item.toLowerCase()];
+  return <ReferenceImage src={artwork?.src} title={artwork?.wikiTitle || item} alt={`${item} icon`} className="drop-item-image" fallback={<Gem size={22} />} />;
 }
 function GroupDropLog({
   group,

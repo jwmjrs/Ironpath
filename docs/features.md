@@ -16,6 +16,7 @@ The Dashboard is the group-facing centre of Ironpath.
 | Member standings | Compares public Hiscores totals, skill leaders, and rank markers. | See who is nearest to the group’s next skill goal. |
 | View as | Sets the selected member on relevant pages. | Pick your account so Farming, Familiars, and access checks use your levels. |
 | Achievements shortcut | Opens the group's public milestone journal and drop history. | Review what happened during recent sessions. |
+| RuneScape news | Shows the latest six articles from Jagex's official RuneScape feed, refreshed every 15 minutes. | Read current updates and announcements without leaving the dashboard; open the full article on RuneScape. |
 | Drop archive key | Lets members opt in to sharing only item-history archive data. | Copy the key on one device and join the archive on another. |
 
 ## Achievements
@@ -24,6 +25,7 @@ Open **Achievements** from the header. The **Adventurer’s Log** comes first, f
 
 - Filter the adventurer's log by member or show all members; use **Retry all logs** to refresh the same public data.
 - Filter and search the drop archive by item or member. Item grouping, quantities, finders, and dates use the existing archive calculation.
+- Item artwork for the current archive is served directly by Ironpath. New item images resolve from the RuneScape Wiki through a cached same-origin endpoint with bounded requests and retries. Ambiguous names use explicit canonical item subjects. Bundled source links are recorded in `app/data/drop-item-images.json`; artwork belongs to Jagex.
 - Use **Add past drops** for the existing single-entry and bulk-history forms.
 - Create, copy, or join a private drop archive using the existing archive-key controls.
 
