@@ -10,6 +10,8 @@ The landing page explains Ironpath, shows whether a group is connected, and give
 
 The Dashboard is the group-facing centre of Ironpath.
 
+On phones, member standings and expanded statistics use labeled cards instead of a wide desktop table. Farming tasks and travel details stack within each patch, category labels wrap, and the footer remains in the page flow so its links are fully visible. Training uses the existing skill selector on narrow screens.
+
 | Feature | What it does | Example |
 | --- | --- | --- |
 | Group lookup | Searches the public Group Ironman roster and refreshes member data. | Enter the group’s exact name after a session. |

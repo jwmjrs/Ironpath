@@ -400,7 +400,7 @@ const fruitCrops = [
 export default function Home() {
   const [showLanding, setShowLanding] = useState(true);
   const [active, setActive] = useState('Dashboard');
-  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, [active]);
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, [active, showLanding]);
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window === 'undefined') return 'dark';
     const savedTheme = document.documentElement.dataset.theme || null;

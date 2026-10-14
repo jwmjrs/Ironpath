@@ -655,3 +655,72 @@ html[data-theme="dark"] .achievements-page .dashboard-share-key { margin: 0; bac
 .rs-news-status { color: #9b9faa; padding: 20px 0; }
 @media(max-width:1000px) { .rs-news-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media(max-width:640px) { .rs-news { padding: 18px; } .rs-news-grid { grid-template-columns: minmax(0,1fr); } .rs-news-heading { gap: 12px; } .rs-news-heading h2 { font-size: 21px; } .rs-news-footer { align-items: flex-start; flex-direction: column; } }
+
+/* Phone layouts: keep complete labels and reference details in the reading flow. */
+@media(max-width:700px) {
+  html[data-theme="dark"] .app-credit { position: static; inset: auto; width: 100%; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 16px; padding: 20px 16px max(20px,env(safe-area-inset-bottom)); overflow: visible; white-space: normal; line-height: 1.6; font-size: 12px; }
+  html[data-theme="dark"] .app-credit>span { flex-basis: 100%; text-align: center; }
+  html[data-theme="dark"] .app-credit i { display: none; }
+  html[data-theme="dark"] .app-credit .legal-note { display: block; width: 100%; text-align: center; font-size: 11px; }
+  html[data-theme="dark"] .footer-theme-control { border: 0; padding: 0; margin: 0; }
+  html[data-theme="dark"] .footer-theme-control select { min-height: 44px; }
+  html[data-theme="dark"] .content { padding-bottom: 28px; }
+  html[data-theme="dark"] .panel-heading { flex-wrap: wrap; gap: 12px; }
+  html[data-theme="dark"] .panel-heading .source-note { max-width: 100%; text-align: left; }
+
+  html[data-theme="dark"] .dashboard-page .hiscore-table-panel { overflow: visible; }
+  html[data-theme="dark"] .dashboard-page .hiscore-table { min-width: 0; }
+  html[data-theme="dark"] .dashboard-page .hiscore-row.table-head { display: none; }
+  html[data-theme="dark"] .dashboard-page .score-entry { border-top: 1px solid var(--ip-divider); }
+  html[data-theme="dark"] .dashboard-page .score-entry .hiscore-row { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; padding: 18px 0; }
+  html[data-theme="dark"] .dashboard-page .score-member { grid-column: 1/-1; min-width: 0; }
+  html[data-theme="dark"] .dashboard-page .score-member strong { white-space: normal; }
+  html[data-theme="dark"] .dashboard-page .hiscore-row>strong:nth-child(2),
+  html[data-theme="dark"] .dashboard-page .hiscore-row>span:nth-child(3) { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+  html[data-theme="dark"] .dashboard-page .hiscore-row>strong:nth-child(2)::before { content: 'Total level'; }
+  html[data-theme="dark"] .dashboard-page .hiscore-row>span:nth-child(3)::before { content: 'Total XP'; }
+  html[data-theme="dark"] .dashboard-page .hiscore-row>strong:nth-child(2)::before,
+  html[data-theme="dark"] .dashboard-page .hiscore-row>span:nth-child(3)::before { color: var(--ip-muted); font-size: 11px; font-weight: 500; }
+  html[data-theme="dark"] .dashboard-page .placement-badge { grid-column: 1/-1; justify-self: start; width: auto; max-width: 100%; }
+  html[data-theme="dark"] .dashboard-page .placement-badge::before { content: 'Group position'; font-size: 11px; }
+  html[data-theme="dark"] .dashboard-page .top-skill-cell { grid-column: 1/-1; display: flex; flex-wrap: wrap; min-width: 0; gap: 8px; }
+  html[data-theme="dark"] .dashboard-page .top-skill-cell>span { overflow: visible; text-overflow: clip; white-space: normal; }
+  html[data-theme="dark"] .dashboard-page .top-skill-cell::before { content: 'Top skill'; color: var(--ip-muted); font-size: 11px; }
+  html[data-theme="dark"] .dashboard-page .skill-grid-head { display: none; }
+  html[data-theme="dark"] .dashboard-page .skill-stat-row { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; padding: 12px 0; }
+  html[data-theme="dark"] .dashboard-page .skill-stat-row>strong { grid-column: 1/-1; white-space: normal; }
+  html[data-theme="dark"] .dashboard-page .skill-stat-row>span { display: flex; flex-direction: column; gap: 3px; text-align: left; }
+  html[data-theme="dark"] .dashboard-page .skill-stat-row>span:nth-child(2)::before { content: 'Level'; }
+  html[data-theme="dark"] .dashboard-page .skill-stat-row>span:nth-child(3)::before { content: 'XP'; }
+  html[data-theme="dark"] .dashboard-page .skill-stat-row>span:nth-child(4)::before { content: 'Rank'; }
+  html[data-theme="dark"] .dashboard-page .skill-stat-row>span::before { color: var(--ip-muted); font-size: 10px; }
+
+  html[data-theme="dark"] .layout-refresh .roadmap-phase-buttons { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); overflow: visible; }
+  html[data-theme="dark"] .layout-refresh .roadmap-phase-card { min-width: 0; width: auto; }
+  html[data-theme="dark"] .layout-refresh .roadmap-phase-card :is(strong,small) { white-space: normal; overflow: visible; text-overflow: clip; }
+  html[data-theme="dark"] .layout-refresh .training-skill-tabs { display: none; }
+  html[data-theme="dark"] .unlock-toolbar .period-tabs { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); overflow: visible; }
+  html[data-theme="dark"] .unlock-toolbar .period-tabs button { min-width: 0; width: auto; min-height: 44px; white-space: normal; }
+
+  html[data-theme="dark"] .farming-refresh .farm-v2-stats { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); }
+  html[data-theme="dark"] .farming-refresh .farm-v2-route-card { min-width: 0; min-height: 50px; padding: 8px; }
+  html[data-theme="dark"] .farming-refresh .farm-v2-route-card strong { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.4; }
+  html[data-theme="dark"] .farming-refresh.farm-inline-checklist .farm-v2-route-panel { overflow: visible; }
+  html[data-theme="dark"] .farming-refresh.farm-inline-checklist .farm-v2-table { min-width: 0; }
+  html[data-theme="dark"] .farming-refresh.farm-inline-checklist .farm-v2-layout .farm-v2-table-head { display: none; }
+  html[data-theme="dark"] .farming-refresh.farm-inline-checklist .farm-v2-layout .farm-v2-table article { min-width: 0; grid-template-columns: 24px minmax(0,1fr) 30px!important; gap: 12px 8px!important; padding: 16px 10px; }
+  html[data-theme="dark"] .farming-refresh.farm-inline-checklist .farm-v2-layout .farm-v2-name { grid-column: 2; grid-row: 1; min-width: 0; }
+  html[data-theme="dark"] .farming-refresh .farm-v2-index { grid-row: 1; padding: 0; font-size: 12px; }
+  html[data-theme="dark"] .farming-refresh .farm-inline-tasks { grid-column: 1/-1; grid-row: 2; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+  html[data-theme="dark"] .farming-refresh .farm-inline-task { min-height: 48px; padding: 8px; gap: 5px; }
+  html[data-theme="dark"] .farming-refresh .farm-inline-task strong { min-width: 0; margin-left: 0; font-size: 12px; white-space: normal; }
+  html[data-theme="dark"] .farming-refresh.farm-inline-checklist .farm-v2-layout .farm-v2-travel { grid-column: 1/-1; grid-row: 2; min-width: 0; line-height: 1.5; }
+  html[data-theme="dark"] .farming-refresh.farm-inline-checklist .farm-v2-layout article:has(.farm-inline-tasks) .farm-v2-travel { grid-row: 3; }
+  html[data-theme="dark"] .farming-refresh.farm-inline-checklist .farm-v2-layout .farm-v2-travel span { white-space: normal; overflow-wrap: anywhere; }
+  html[data-theme="dark"] .farming-refresh .farm-v2-complete { grid-column: 3; grid-row: 1; }
+  html[data-theme="dark"] .achievements-page .activity-copy p { display: block; overflow: visible; -webkit-line-clamp: unset; }
+  html[data-theme="dark"] .familiar-materials { flex-wrap: wrap; overflow: visible; white-space: normal; }
+  html[data-theme="dark"] .familiar-materials>span { max-width: 100%; flex: 0 1 auto; white-space: normal; overflow-wrap: anywhere; }
+  html[data-theme="dark"] .familiar-special { white-space: normal; overflow: visible; text-overflow: clip; }
+  html[data-theme="dark"] .archaeology-collector :is(strong,span,small) { white-space: normal; overflow: visible; text-overflow: clip; }
+}
