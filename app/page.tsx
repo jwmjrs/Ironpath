@@ -29,9 +29,8 @@ import {
   Users,
   Wrench,
 } from 'lucide-react';
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import progressData from './data/efficient-progress.json';
-import FriendsChats from './friends-chats';
 import ReferenceImage from './reference-image';
 import { ironTasks, type IronTask } from './data/random-tasks';
 import {
@@ -47,7 +46,7 @@ import {
 const nav = [
   [Trophy, 'Dashboard'],
   [CalendarCheck2, 'Distractions and Diversions'],
-  [Users, 'Friends Chats'],
+  [Medal, 'Achievements'],
 ] as const;
 const themes = [
   ['dark', 'Dark'],
@@ -503,7 +502,19 @@ export default function Home() {
         preferredMember={preferredMember}
       />
     ),
-    'Friends Chats': <FriendsChats />,
+    Achievements: (
+      <HiScoresView
+        view="achievements"
+        result={groupData}
+        setResult={setGroupData}
+        unsyncGroup={unsyncGroup}
+        workspace={workspace}
+        setWorkspace={setWorkspace}
+        preferredMember={preferredMember}
+        setPreferredMember={choosePreferredMember}
+        onNavigate={setActive}
+      />
+    ),
     Unlocks: <UnlocksView />,
     'Progression Roadmap': (
       <EfficientProgressView
@@ -1714,11 +1725,12 @@ function DashboardStart({ onNavigate, playerName }: { onNavigate: (page: string)
     <header className="welcome-heading"><span className="welcome-icon"><Users size={28} /></span><div><h1>Welcome Back</h1><p>Progress today. A higher tomorrow.</p></div><div className="welcome-character"><small>Selected character</small><strong>{playerName || 'Choose a character below'}</strong></div></header>
     <div className="welcome-metrics">{(['Daily', 'Weekly', 'Monthly'] as const).map(period => { const total = repeatables[period].length; const done = repeatables[period].filter(([name]) => checks[name]).length; return <button className="panel welcome-metric" key={period} onClick={() => onNavigate('Distractions and Diversions')}><CalendarCheck2 size={22}/><div><span>{period} activities</span><strong>{done} / {total}</strong></div><span className="progress-track"><i style={{width: `${done / total * 100}%`}} /></span></button>; })}</div>
     <div className="welcome-board-grid"><section className="panel welcome-board"><div className="panel-heading"><h3><Sparkles size={16}/> Daily Activity Board</h3><button className="text-button" onClick={() => onNavigate('Distractions and Diversions')}>View all →</button></div><div className="welcome-tasks">{repeatables.Daily.slice(0,8).map(([name]) => <button key={name} aria-pressed={Boolean(checks[name])} onClick={() => { const next = { ...checks, [name]: !checks[name] }; setChecks(next); localStorage.setItem('ironpath-repeatables', JSON.stringify(next)); }}><span className={checks[name] ? 'welcome-check complete' : 'welcome-check'}>{checks[name] ? <Check size={13}/> : '·'}</span>{name}</button>)}</div></section>
-    <aside className="panel welcome-links"><h3>Quick Links</h3>{[['Progression Roadmap','Progression Roadmap'],['Daily / Weekly / Monthly','Distractions and Diversions'],['Farming Routes','Routes'],['Training Lookup','Skill Training'],['Friends Chats','Friends Chats']].map(([label,page]) => <button key={page} onClick={() => onNavigate(page)}><Compass size={15}/>{label}<ChevronRight size={13}/></button>)}</aside></div>
+    <aside className="panel welcome-links"><h3>Quick Links</h3>{[['Progression Roadmap','Progression Roadmap'],['Daily / Weekly / Monthly','Distractions and Diversions'],['Farming Routes','Routes'],['Training Lookup','Skill Training'],['Achievements','Achievements']].map(([label,page]) => <button key={page} onClick={() => onNavigate(page)}><Compass size={15}/>{label}<ChevronRight size={13}/></button>)}</aside></div>
   </section>;
 }
 
 function HiScoresView({
+  view = 'dashboard',
   result,
   setResult,
   unsyncGroup,
@@ -1728,6 +1740,7 @@ function HiScoresView({
   setPreferredMember,
   onNavigate,
 }: {
+  view?: 'dashboard' | 'achievements';
   result: HiscoreResult | null;
   setResult: (value: HiscoreResult | null) => void;
   unsyncGroup: () => void;
@@ -1809,9 +1822,6 @@ function HiScoresView({
       .finally(() => setActivityLoading(false));
   }, [result, activityRefresh, preferredMember]);
 
-  const activityPanelRef = useRef<HTMLElement>(null);
-  const archivePanelRef = useRef<HTMLDivElement>(null);
-  const [activityCapacity, setActivityCapacity] = useState(5);
   const baseActivities =
     activityMember === 'all'
       ? activities.reduce<GroupActivity[]>(
@@ -1828,44 +1838,6 @@ function HiScoresView({
   const availableActivities = activityMember === 'all'
     ? [...baseActivities, ...activities.filter((activity) => !baseActivities.includes(activity))]
     : activities.filter((activity) => activity.player === activityMember);
-  const visibleActivityCount = Math.max(baseActivities.length, activityCapacity);
-  useEffect(() => {
-    const panel = activityPanelRef.current;
-    const archive = archivePanelRef.current;
-    const feed = panel?.querySelector<HTMLElement>('.activity-feed');
-    if (!panel || !archive || !feed) return;
-    let frame = 0;
-    const measure = () => {
-      const panelRect = panel.getBoundingClientRect();
-      const archiveRect = archive.getBoundingClientRect();
-      const sideBySide = Math.abs(panelRect.top - archiveRect.top) < 2;
-      const style = getComputedStyle(panel);
-      const budget = sideBySide
-        ? archiveRect.height - (feed.getBoundingClientRect().top - panelRect.top)
-          - parseFloat(style.paddingBottom) - parseFloat(style.borderBottomWidth)
-        : 0;
-      const gap = parseFloat(getComputedStyle(feed).rowGap) || 0;
-      let height = 0;
-      let count = 0;
-      for (const row of feed.children) {
-        const next = row.getBoundingClientRect().height + (count ? gap : 0);
-        if (height + next > budget) break;
-        height += next;
-        count++;
-      }
-      setActivityCapacity(Math.max(baseActivities.length, count));
-    };
-    const observer = new ResizeObserver(() => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(measure);
-    });
-    observer.observe(archive);
-    observer.observe(feed);
-    for (const row of feed.children) observer.observe(row);
-    measure();
-    return () => { observer.disconnect(); cancelAnimationFrame(frame); };
-  }, [activities, activityMember, activityLoading, result, baseActivities.length]);
-
   async function refresh(event?: FormEvent) {
     event?.preventDefault();
     if (!group.trim()) {
@@ -2001,10 +1973,249 @@ function HiScoresView({
     : undefined;
   const dashboardMockup =
     typeof window !== 'undefined' &&
-    window.location.hostname === 'localhost' &&
+    view === 'dashboard' && window.location.hostname === 'localhost' &&
     new URLSearchParams(window.location.search).has('dashboardMockup');
-  const scrollToDashboardArea = (id: string) =>
+  const scrollToDashboardArea = (id: string) => {
+    if (id === 'dashboard-activity' || id === 'dashboard-archive') {
+      onNavigate('Achievements');
+      return;
+    }
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const activityLog = (
+            <section id="achievements-activity" className="panel activity-panel">
+              <div className="panel-heading">
+                <div>
+                  <p className="eyebrow">Adventurer&apos;s Log</p>
+                  <h3>See what your group has been up to</h3>
+                </div>
+                <a
+                  className="source-note source-link-inline"
+                  href="https://runescape.wiki/w/Application_programming_interface"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  RuneMetrics API reference <ExternalLink size={12} />
+                </a>
+              </div>
+              <div className="activity-controls">
+                <div className="activity-filter">
+                  <label>
+                    <span>Showing activity for</span>
+                    <select
+                      value={activityMember}
+                      onChange={(event) =>
+                        setActivityMember(event.target.value)
+                      }
+                    >
+                      <option value="all">
+                        All members ({activities.length})
+                      </option>
+                      {activityMembers.map((member) => (
+                        <option value={member.name} key={member.name}>
+                          {member.name} (
+                          {
+                            activities.filter(
+                              (activity) => activity.player === member.name,
+                            ).length
+                          }
+                          )
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <button
+                    className="secondary-button activity-refresh"
+                    onClick={() => setActivityRefresh((value) => value + 1)}
+                    disabled={activityLoading}
+                  >
+                    <RefreshCw
+                      className={activityLoading ? 'spin' : ''}
+                      size={14}
+                    />{' '}
+                    Retry all logs
+                  </button>
+                </div>
+                <div className="activity-member-status">
+                  {activityMembers.map((member) => (
+                    <span
+                      className={
+                        member.stale
+                          ? 'stale'
+                          : member.available
+                            ? 'available'
+                            : 'unavailable'
+                      }
+                      key={member.name}
+                    >
+                      <i />
+                      {member.name}
+                      {(member.stale || !member.available) && (
+                        <small>{member.reason}</small>
+                      )}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              {activityLoading ? (
+                <div className="small-empty">
+                  <RefreshCw className="spin" size={22} />
+                  <h3>Gathering group milestones</h3>
+                  <p>
+                    Checking every member&apos;s public RuneMetrics activity
+                    log. Temporary failures are retried automatically.
+                  </p>
+                </div>
+              ) : availableActivities.length ? (
+                <div className="activity-feed" role="region" aria-label="Recent public activity" tabIndex={0}>
+                  {availableActivities.map((activity, index) => (
+                    <article
+                      key={`${activity.player}-${activity.timestamp}-${index}`}
+                    >
+                      <div className="activity-avatar character-chathead">
+                        <ReferenceImage
+                          src={characterAvatarUrl(activity.player)}
+                          alt="" fallback={<Users size={18} />} />
+                      </div>
+                      <div className="activity-copy">
+                        <div>
+                          <strong>{activity.text}</strong>
+                          <span>{activity.player}</span>
+                        </div>
+                        <p>{activity.details}</p>
+                      </div>
+                      <time
+                        dateTime={new Date(activity.timestamp).toISOString()}
+                      >
+                        {activity.date}
+                      </time>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <div className="small-empty">
+                  <Clock3 size={22} />
+                  <h3>No public milestones found</h3>
+                  <p>
+                    {activityMember === 'all'
+                      ? 'Members must set their RuneMetrics profile and online status to public for activities to appear.'
+                      : `No recent public activities were returned for ${activityMember}.`}
+                  </p>
+                </div>
+              )}
+            </section>
+  );
+  const archiveAccess = (
+    <>
+          <section id="dashboard-share-key" className="panel dashboard-share-key">
+            <div>
+              <p className="eyebrow">Shared drop archive</p>
+              <h3>
+                {workspace
+                  ? 'Share your group’s item history'
+                  : 'Create or join a private drop archive'}
+              </h3>
+              <p>
+                {workspace
+                  ? 'Copy this key for trusted group members. It only connects everyone to the shared drop archive, so item history and past drops appear together.'
+                  : 'Create a key for your group, or join one shared by a trusted group member. Checklists, routes, and personal progress remain private to each device.'}
+              </p>
+            </div>
+            <div className="dashboard-share-actions">
+              {workspace ? (
+                <button
+                  className="primary-button"
+                  onClick={copyPrivateGroupKey}
+                >
+                  Copy drop archive key
+                </button>
+              ) : (
+                <>
+                  <button
+                    className="primary-button"
+                    onClick={createPrivateGroupKey}
+                  >
+                    Create and copy archive key
+                  </button>
+                  <button
+                    className="secondary-button"
+                    onClick={() => {
+                      setArchiveKey('');
+                      setJoinArchiveOpen(true);
+                    }}
+                  >
+                    Join archive
+                  </button>
+                </>
+              )}
+              {shareMessage && <output>{shareMessage}</output>}
+            </div>
+          </section>
+          {joinArchiveOpen && (
+            <div className="archive-dialog-backdrop" role="presentation">
+              <form
+                className="archive-dialog panel"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  joinPrivateGroupKey();
+                }}
+              >
+                <button
+                  type="button"
+                  className="archive-dialog-close"
+                  onClick={() => setJoinArchiveOpen(false)}
+                  aria-label="Close join archive dialog"
+                >
+                  ×
+                </button>
+                <p className="eyebrow">Shared drop archive</p>
+                <h3>Join your group archive</h3>
+                <p>
+                  Paste the key shared by a trusted group member. It only syncs
+                  your group&apos;s item history.
+                </p>
+                <label className="field">
+                  <span>Group archive key</span>
+                  <input
+                    value={archiveKey}
+                    onChange={(event) => setArchiveKey(event.target.value)}
+                    placeholder="Paste shared archive key"
+                  />
+                </label>
+                <div className="archive-dialog-actions">
+                  <button
+                    type="button"
+                    className="secondary-button"
+                    onClick={() => setJoinArchiveOpen(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button className="primary-button">Join archive</button>
+                </div>
+              </form>
+            </div>
+          )}
+    </>
+  );
+
+  if (view === 'achievements') return (
+    <div className="content feature-page dashboard-page achievements-page">
+      <header className="achievements-heading">
+        <div><p className="eyebrow">Your group journal</p><h1>Achievements</h1><p>Every milestone. Every memorable find. Your group&apos;s journey, in one place.</p></div>
+        {result && <span className="achievements-group"><Users size={15} />{result.group}<small>{result.players.length} members</small></span>}
+      </header>
+      {result ? <>
+        <nav className="achievements-section-nav" aria-label="Achievements sections">
+          <button onClick={() => document.getElementById('achievements-activity')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}><Clock3 size={18} /><span><strong>Adventurer&apos;s log</strong><small>Levels, quests, and public RuneMetrics milestones</small></span><ChevronRight size={16} /></button>
+          <button onClick={() => document.getElementById('achievements-archive')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}><Gem size={18} /><span><strong>Drop log</strong><small>Shared item history and historical entries</small></span><ChevronRight size={16} /></button>
+        </nav>
+        {activityLog}
+        <div id="achievements-archive"><GroupDropLog group={result.group} players={result.players.map(player => player.name)} workspace={workspace} /></div>
+        {archiveAccess}
+      </> : <section className="panel achievements-empty"><Medal size={32} /><h2>Your group&apos;s story starts here</h2><p>Connect your Group Ironman roster on the Dashboard to see the adventurer&apos;s log and drop history.</p><button className="primary-button" onClick={() => onNavigate('Dashboard')}>Connect your group <ChevronRight size={15} /></button></section>}
+    </div>
+  );
 
   return (
     <div className={`content feature-page repeatables-tracker dashboard-page${dashboardMockup ? ' dashboard-mockup-test' : ''}`}>
@@ -2195,134 +2406,12 @@ function HiScoresView({
                   })}
               </div>
             </section>
-            <div id="dashboard-archive" ref={archivePanelRef}><GroupDropLog
-              group={result.group}
-              players={result.players.map((player) => player.name)}
-              workspace={workspace}
-            /></div>
-            <section id="dashboard-activity" ref={activityPanelRef} className="panel activity-panel">
-              <div className="panel-heading">
-                <div>
-                  <p className="eyebrow">Adventurer&apos;s Log</p>
-                  <h3>See what your group has been up to</h3>
-                </div>
-                <a
-                  className="source-note source-link-inline"
-                  href="https://runescape.wiki/w/Application_programming_interface"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  RuneMetrics API reference <ExternalLink size={12} />
-                </a>
-              </div>
-              <div className="activity-controls">
-                <div className="activity-filter">
-                  <label>
-                    <span>Showing activity for</span>
-                    <select
-                      value={activityMember}
-                      onChange={(event) =>
-                        setActivityMember(event.target.value)
-                      }
-                    >
-                      <option value="all">
-                        All members ({activities.length})
-                      </option>
-                      {activityMembers.map((member) => (
-                        <option value={member.name} key={member.name}>
-                          {member.name} (
-                          {
-                            activities.filter(
-                              (activity) => activity.player === member.name,
-                            ).length
-                          }
-                          )
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <button
-                    className="secondary-button activity-refresh"
-                    onClick={() => setActivityRefresh((value) => value + 1)}
-                    disabled={activityLoading}
-                  >
-                    <RefreshCw
-                      className={activityLoading ? 'spin' : ''}
-                      size={14}
-                    />{' '}
-                    Retry all logs
-                  </button>
-                </div>
-                <div className="activity-member-status">
-                  {activityMembers.map((member) => (
-                    <span
-                      className={
-                        member.stale
-                          ? 'stale'
-                          : member.available
-                            ? 'available'
-                            : 'unavailable'
-                      }
-                      key={member.name}
-                    >
-                      <i />
-                      {member.name}
-                      {(member.stale || !member.available) && (
-                        <small>{member.reason}</small>
-                      )}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              {activityLoading ? (
-                <div className="small-empty">
-                  <RefreshCw className="spin" size={22} />
-                  <h3>Gathering group milestones</h3>
-                  <p>
-                    Checking every member&apos;s public RuneMetrics activity
-                    log. Temporary failures are retried automatically.
-                  </p>
-                </div>
-              ) : availableActivities.length ? (
-                <div className="activity-feed">
-                  {availableActivities.map((activity, index) => (
-                    <article
-                      key={`${activity.player}-${activity.timestamp}-${index}`}
-                      className={index >= visibleActivityCount ? 'activity-overflow-row' : undefined}
-                      aria-hidden={index >= visibleActivityCount ? true : undefined}
-                    >
-                      <div className="activity-avatar character-chathead">
-                        <ReferenceImage
-                          src={characterAvatarUrl(activity.player)}
-                          alt="" fallback={<Users size={18} />} />
-                      </div>
-                      <div className="activity-copy">
-                        <div>
-                          <strong>{activity.text}</strong>
-                          <span>{activity.player}</span>
-                        </div>
-                        <p>{activity.details}</p>
-                      </div>
-                      <time
-                        dateTime={new Date(activity.timestamp).toISOString()}
-                      >
-                        {activity.date}
-                      </time>
-                    </article>
-                  ))}
-                </div>
-              ) : (
-                <div className="small-empty">
-                  <Clock3 size={22} />
-                  <h3>No public milestones found</h3>
-                  <p>
-                    {activityMember === 'all'
-                      ? 'Members must set their RuneMetrics profile and online status to public for activities to appear.'
-                      : `No recent public activities were returned for ${activityMember}.`}
-                  </p>
-                </div>
-              )}
+            <section className="panel dashboard-achievements-link">
+              <span className="achievements-section-icon"><Medal size={22} /></span>
+              <div><p className="eyebrow">Your group journal</p><h3>Milestones and memorable drops</h3><p>Find your adventurer&apos;s log and shared item history together in Achievements.</p></div>
+              <button className="secondary-button" onClick={() => onNavigate('Achievements')}>Open Achievements <ChevronRight size={15} /></button>
             </section>
+
           </div>
           {dashboardMockup && (
             <section className="panel dashboard-mockup-goals">
@@ -2334,94 +2423,8 @@ function HiScoresView({
               <button className="secondary-button" type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Review the roadmap</button>
             </section>
           )}
-          <section id="dashboard-share-key" className="panel dashboard-share-key">
-            <div>
-              <p className="eyebrow">Shared drop archive</p>
-              <h3>
-                {workspace
-                  ? 'Share your group’s item history'
-                  : 'Create or join a private drop archive'}
-              </h3>
-              <p>
-                {workspace
-                  ? 'Copy this key for trusted group members. It only connects everyone to the shared drop archive, so item history and past drops appear together.'
-                  : 'Create a key for your group, or join one shared by a trusted group member. Checklists, routes, and personal progress remain private to each device.'}
-              </p>
-            </div>
-            <div className="dashboard-share-actions">
-              {workspace ? (
-                <button
-                  className="primary-button"
-                  onClick={copyPrivateGroupKey}
-                >
-                  Copy drop archive key
-                </button>
-              ) : (
-                <>
-                  <button
-                    className="primary-button"
-                    onClick={createPrivateGroupKey}
-                  >
-                    Create and copy archive key
-                  </button>
-                  <button
-                    className="secondary-button"
-                    onClick={() => {
-                      setArchiveKey('');
-                      setJoinArchiveOpen(true);
-                    }}
-                  >
-                    Join archive
-                  </button>
-                </>
-              )}
-              {shareMessage && <output>{shareMessage}</output>}
-            </div>
-          </section>
-          {joinArchiveOpen && (
-            <div className="archive-dialog-backdrop" role="presentation">
-              <form
-                className="archive-dialog panel"
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  joinPrivateGroupKey();
-                }}
-              >
-                <button
-                  type="button"
-                  className="archive-dialog-close"
-                  onClick={() => setJoinArchiveOpen(false)}
-                  aria-label="Close join archive dialog"
-                >
-                  ×
-                </button>
-                <p className="eyebrow">Shared drop archive</p>
-                <h3>Join your group archive</h3>
-                <p>
-                  Paste the key shared by a trusted group member. It only syncs
-                  your group&apos;s item history.
-                </p>
-                <label className="field">
-                  <span>Group archive key</span>
-                  <input
-                    value={archiveKey}
-                    onChange={(event) => setArchiveKey(event.target.value)}
-                    placeholder="Paste shared archive key"
-                  />
-                </label>
-                <div className="archive-dialog-actions">
-                  <button
-                    type="button"
-                    className="secondary-button"
-                    onClick={() => setJoinArchiveOpen(false)}
-                  >
-                    Cancel
-                  </button>
-                  <button className="primary-button">Join archive</button>
-                </div>
-              </form>
-            </div>
-          )}
+          {archiveAccess}
+
         </>
       )}
       </div>

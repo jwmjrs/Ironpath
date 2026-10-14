@@ -558,3 +558,75 @@ html[data-theme="dark"] :is(.roadmap-detail,.layout-refresh .training-controls) 
 @media(max-width:700px) {
   html[data-theme="dark"] .site-header .brand-bar { padding: 14px 16px 12px; }
 }
+
+/* Achievements: a full-width journal above the original shared drop ledger. */
+html[data-theme="dark"] .achievements-page { max-width: 1240px; display: flex; flex-direction: column; gap: 24px; }
+.achievements-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding: 12px 0 4px; }
+.achievements-heading h1 { margin: 8px 0 12px; font-size: clamp(32px,4vw,46px); line-height: 1.1; letter-spacing: -.045em; }
+.achievements-heading p:last-child { margin: 0; color: var(--ip-muted); line-height: 1.6; font-size: 14px; }
+.achievements-group { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 16px; background: var(--ip-panel); border: 1px solid var(--ip-border); border-radius: 10px; font-size: 13px; }
+.achievements-group svg { color: var(--ip-violet); }
+.achievements-group small { color: var(--ip-muted); padding-left: 8px; border-left: 1px solid var(--ip-divider); font-size: 11px; }
+.achievements-section-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.achievements-section-nav button { display: flex; align-items: center; gap: 14px; border: 1px solid var(--ip-border); border-radius: 12px; background: var(--ip-panel); color: var(--ip-text); padding: 18px 20px; text-align: left; cursor: pointer; }
+.achievements-section-nav button:hover { border-color: #514269; background: #17141f; }
+.achievements-section-nav button>svg:first-child { color: var(--ip-violet); }
+.achievements-section-nav button>svg:last-child { margin-left: auto; color: var(--ip-muted); flex-shrink: 0; }
+.achievements-section-nav span { display: grid; gap: 5px; }
+.achievements-section-nav strong { font-size: 13px; font-weight: 600; }
+.achievements-section-nav small { font-size: 11px; color: var(--ip-muted); line-height: 1.5; }
+html[data-theme="dark"] .achievements-page :is(.activity-panel,.drop-log-panel) { margin: 0; padding: 24px; background: var(--ip-panel); border-color: var(--ip-border); }
+.achievements-page :is(#achievements-activity,#achievements-archive,#dashboard-share-key) { scroll-margin-top: 156px; }
+html[data-theme="dark"] .achievements-page .panel-heading h3 { font-size: 22px; margin-top: 6px; }
+html[data-theme="dark"] .achievements-page .activity-controls { flex-wrap: wrap; gap: 18px; padding: 16px; border: 1px solid var(--ip-divider); border-radius: 10px; background: var(--ip-panel-secondary); }
+.achievements-page .activity-member-status { justify-content: flex-start; }
+.achievements-page .activity-feed { max-height: 560px; overflow-y: auto; scrollbar-color: #41414f transparent; scrollbar-width: thin; }
+.achievements-page .activity-feed article { position: relative; grid-template-columns: 42px minmax(0,1fr) auto; padding: 20px 12px; gap: 16px; }
+.achievements-page .activity-avatar { width: 42px; height: 42px; background: #221c32; border-color: #44385f; }
+.achievements-page .activity-copy strong { color: var(--ip-text); font-size: 14px; }
+.achievements-page .activity-copy>div span { color: var(--ip-accent); font-size: 11px; }
+.achievements-page .activity-feed time { color: var(--ip-muted); font-size: 11px; padding-top: 3px; }
+.achievements-page .activity-copy p { line-height: 1.7; }
+html[data-theme="dark"] .achievements-page .drop-log-controls { grid-template-columns: minmax(150px,.7fr) minmax(180px,1fr) auto auto; align-items: end; }
+.achievements-page .drop-table { border: 1px solid var(--ip-divider); border-radius: 10px; overflow: hidden; }
+.achievements-page .drop-table article { padding-block: 18px; }
+.achievements-page .drop-table-head { background: var(--ip-panel-secondary); }
+.achievements-page .drop-finder small { color: var(--ip-muted); }
+html[data-theme="dark"] .achievements-page .dashboard-share-key { margin: 0; background: var(--ip-panel-secondary); }
+.dashboard-achievements-link { display: flex; align-items: center; gap: 18px; padding: 22px; grid-column: 1/-1; }
+.dashboard-achievements-link h3 { margin: 6px 0; }
+.dashboard-achievements-link p:last-child { margin: 0; color: var(--ip-muted); font-size: 13px; line-height: 1.6; }
+.dashboard-achievements-link>.secondary-button { margin-left: auto; flex-shrink: 0; }
+.achievements-section-icon { display: grid; place-items: center; width: 44px; height: 44px; flex-shrink: 0; border: 1px solid #44385f; background: #221c32; border-radius: 12px; color: var(--ip-violet); }
+.achievements-empty { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; padding: 56px 24px; }
+.achievements-empty>svg { color: var(--ip-violet); }
+.achievements-empty p { max-width: 480px; margin: 0 0 8px; color: var(--ip-muted); line-height: 1.6; }
+@media(max-width:900px) {
+  html[data-theme="dark"] .achievements-page .drop-log-controls { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:700px) {
+  .achievements-heading { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .achievements-section-nav { grid-template-columns: 1fr; }
+  html[data-theme="dark"] .achievements-page :is(.activity-panel,.drop-log-panel) { padding: 18px 16px; }
+  .achievements-page .activity-feed article { grid-template-columns: 32px minmax(0,1fr); gap: 12px; padding-inline: 0; }
+  .achievements-page .activity-avatar { width: 32px; height: 32px; }
+  .achievements-page .activity-feed time { grid-column: 2; padding: 0; }
+  .dashboard-achievements-link { flex-wrap: wrap; }
+  .dashboard-achievements-link>.secondary-button { width: 100%; margin-left: 0; }
+}
+@media(max-width:480px) {
+  html[data-theme="dark"] .achievements-page .drop-log-controls { grid-template-columns: 1fr; }
+}
+.achievements-page .activity-feed:focus-visible { outline: 2px solid var(--ip-accent); outline-offset: 4px; border-radius: 6px; }
+@media(max-width:600px) {
+  .achievements-page .panel-heading { flex-direction: column; gap: 12px; }
+  .achievements-page .source-note { max-width: 100%; text-align: left; }
+  .achievements-page .activity-filter { width: 100%; flex-wrap: wrap; }
+  .achievements-page .activity-filter>label { min-width: 0; width: 100%; }
+  .achievements-page .activity-filter select { width: 100%; }
+  html[data-theme="dark"] .achievements-page :is(.drop-table-head,.drop-table article) { grid-template-columns: minmax(0,1fr) 48px; min-width: 0; gap: 12px; }
+  .achievements-page .drop-table-head>span:last-child { display: none; }
+  .achievements-page .drop-finder { grid-column: 1/-1; padding-left: 44px; white-space: normal; }
+  .achievements-page .drop-finder::before { content: 'Found by · '; color: var(--ip-muted); }
+  .achievements-page .drop-item strong { white-space: normal; overflow: visible; text-overflow: clip; }
+}

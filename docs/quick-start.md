@@ -35,7 +35,7 @@ Choose the section that fits what you are doing:
 
 ## 4. Use the group item history when needed
 
-The Dashboard’s **Group item history** lets the team search known drops and item milestones. It defaults to all members so it remains a group record.
+The Achievements page’s **Group item history** lets the team search known drops and item milestones. It defaults to all members so it remains a group record.
 
 If your group wants to share this history across browsers or devices, use the **drop archive key** section. One person copies the key; other members choose **Join archive** and paste it into the in-app prompt.
 

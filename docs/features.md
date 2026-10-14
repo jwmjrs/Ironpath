@@ -15,9 +15,19 @@ The Dashboard is the group-facing centre of Ironpath.
 | Group lookup | Searches the public Group Ironman roster and refreshes member data. | Enter the group’s exact name after a session. |
 | Member standings | Compares public Hiscores totals, skill leaders, and rank markers. | See who is nearest to the group’s next skill goal. |
 | View as | Sets the selected member on relevant pages. | Pick your account so Farming, Familiars, and access checks use your levels. |
-| Adventurer’s Log | Displays compact, recent public activity by member. | Review level-ups and milestones after the group logs in. |
-| Group item history | Keeps a searchable group-wide drop and item archive. | Search for a pet to see who got it and when. |
+| Achievements shortcut | Opens the group's public milestone journal and drop history. | Review what happened during recent sessions. |
 | Drop archive key | Lets members opt in to sharing only item-history archive data. | Copy the key on one device and join the archive on another. |
+
+## Achievements
+
+Open **Achievements** from the header. The **Adventurer’s Log** comes first, followed by **Group item history**. The journal presents the existing RuneMetrics information in a full-width, scrollable feed without changing event descriptions, member names, dates, or source data.
+
+- Filter the adventurer's log by member or show all members; use **Retry all logs** to refresh the same public data.
+- Filter and search the drop archive by item or member. Item grouping, quantities, finders, and dates use the existing archive calculation.
+- Use **Add past drops** for the existing single-entry and bulk-history forms.
+- Create, copy, or join a private drop archive using the existing archive-key controls.
+
+This section replaces the former Friends Chats directory.
 
 Public activity is a useful snapshot, not a complete real-time account audit. See [Data sources and limitations](data-sources.md) for details.
 
