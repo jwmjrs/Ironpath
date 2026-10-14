@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import progressData from './data/efficient-progress.json';
+import FriendsChats from './friends-chats';
 import { ironTasks, type IronTask } from './data/random-tasks';
 import {
   archaeologyCollectors,
@@ -45,6 +46,7 @@ import {
 const nav = [
   [Trophy, 'Dashboard'],
   [CalendarCheck2, 'Distractions and Diversions'],
+  [Users, 'Friends Chats'],
 ] as const;
 const themes = [
   ['dark', 'Dark'],
@@ -396,6 +398,7 @@ const fruitCrops = [
 export default function Home() {
   const [showLanding, setShowLanding] = useState(true);
   const [active, setActive] = useState('Dashboard');
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, [active]);
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window === 'undefined') return 'dark';
     const savedTheme = document.documentElement.dataset.theme || null;
@@ -487,6 +490,7 @@ export default function Home() {
         setWorkspace={setWorkspace}
         preferredMember={preferredMember}
         setPreferredMember={choosePreferredMember}
+        onNavigate={setActive}
       />
     ),
     'Task Generator': (
@@ -498,6 +502,7 @@ export default function Home() {
         preferredMember={preferredMember}
       />
     ),
+    'Friends Chats': <FriendsChats />,
     Unlocks: <UnlocksView />,
     'Progression Roadmap': (
       <EfficientProgressView
@@ -565,11 +570,8 @@ export default function Home() {
               onClick={() => setActive('Dashboard')}
               aria-label="Open Ironpath dashboard"
             >
-              <img
-                className="brand-rune-banner"
-                src="/ironpath-banner-transparent-v1.png"
-                alt="Ironpath"
-              />
+              <img className="brand-symbol" src="/ironpath-compass.png" alt="" />
+              <span className="brand-wordmark">Ironpath<span>Group Ironman companion</span></span>
             </button>
             <div className="navigation-row">
               <nav aria-label="Primary navigation">
@@ -581,6 +583,7 @@ export default function Home() {
                     }
                     onClick={() => setActive(label)}
                     aria-label={label}
+                    aria-current={active === label ? 'page' : undefined}
                   >
                     <Icon size={17} strokeWidth={1.8} />
                     <span>{label}</span>
@@ -921,7 +924,7 @@ function IronpathLanding({
       <div className="entry-main">
         <div className="entry-copy">
           <div className="entry-logo-button entry-logo-static">
-            <img src="/ironpath-banner-transparent-v1.png" alt="Ironpath" />
+            <img className="entry-brand-symbol" src="/ironpath-compass.png" alt="" /><span className="entry-wordmark">Ironpath<small>RuneScape 3 · Group Ironman</small></span>
           </div>
           <h1>Build the next chapter together.</h1>
           <p>
@@ -1709,6 +1712,19 @@ function ShopRunsView({
   );
 }
 
+function DashboardStart({ onNavigate, playerName }: { onNavigate: (page: string) => void; playerName?: string }) {
+  const [checks, setChecks] = useState<Record<string, boolean>>({});
+  useEffect(() => {
+    try { setChecks(JSON.parse(localStorage.getItem('ironpath-repeatables') || '{}')); } catch { /* Keep an empty summary when storage is unavailable. */ }
+  }, []);
+  return <section className="dashboard-start">
+    <header className="welcome-heading"><span className="welcome-icon"><Users size={28} /></span><div><h1>Welcome Back</h1><p>Progress today. A higher tomorrow.</p></div><div className="welcome-character"><small>Selected character</small><strong>{playerName || 'Choose a character below'}</strong></div></header>
+    <div className="welcome-metrics">{(['Daily', 'Weekly', 'Monthly'] as const).map(period => { const total = repeatables[period].length; const done = repeatables[period].filter(([name]) => checks[name]).length; return <button className="panel welcome-metric" key={period} onClick={() => onNavigate('Distractions and Diversions')}><CalendarCheck2 size={22}/><div><span>{period} activities</span><strong>{done} / {total}</strong></div><span className="progress-track"><i style={{width: `${done / total * 100}%`}} /></span></button>; })}</div>
+    <div className="welcome-board-grid"><section className="panel welcome-board"><div className="panel-heading"><h3><Sparkles size={16}/> Daily Activity Board</h3><button className="text-button" onClick={() => onNavigate('Distractions and Diversions')}>View all →</button></div><div className="welcome-tasks">{repeatables.Daily.slice(0,8).map(([name]) => <button key={name} aria-pressed={Boolean(checks[name])} onClick={() => { const next = { ...checks, [name]: !checks[name] }; setChecks(next); localStorage.setItem('ironpath-repeatables', JSON.stringify(next)); }}><span className={checks[name] ? 'welcome-check complete' : 'welcome-check'}>{checks[name] ? <Check size={13}/> : '·'}</span>{name}</button>)}</div></section>
+    <aside className="panel welcome-links"><h3>Quick Links</h3>{[['Progression Roadmap','Progression Roadmap'],['Daily / Weekly / Monthly','Distractions and Diversions'],['Farming Routes','Routes'],['Training Lookup','Skill Training'],['Friends Chats','Friends Chats']].map(([label,page]) => <button key={page} onClick={() => onNavigate(page)}><Compass size={15}/>{label}<ChevronRight size={13}/></button>)}</aside></div>
+  </section>;
+}
+
 function HiScoresView({
   result,
   setResult,
@@ -1717,6 +1733,7 @@ function HiScoresView({
   setWorkspace,
   preferredMember,
   setPreferredMember,
+  onNavigate,
 }: {
   result: HiscoreResult | null;
   setResult: (value: HiscoreResult | null) => void;
@@ -1725,6 +1742,7 @@ function HiScoresView({
   setWorkspace: (value: Workspace | null) => void;
   preferredMember: string;
   setPreferredMember: (name: string) => void;
+  onNavigate: (page: string) => void;
 }) {
   const [group, setGroup] = useState('');
   const [size, setSize] = useState('4');
@@ -2015,6 +2033,7 @@ function HiScoresView({
         </aside>
       )}
       <div className={dashboardMockup ? 'dashboard-mockup-main' : undefined}>
+      <DashboardStart onNavigate={onNavigate} playerName={selectedPlayer?.name} />
       {selectedPlayer && (
         <section id="dashboard-personalize" className="panel member-home-selector dashboard-personalize">
           <div>
@@ -3307,7 +3326,11 @@ function EfficientProgressView({
     fixedView || 'Roadmap',
   );
   const [sectionId, setSectionId] = useState(progressData.progression[0].id);
+  const [selectedStepId, setSelectedStepId] = useState('');
+  const [hideFinished, setHideFinished] = useState(false);
   const [skill, setSkill] = useState('agility');
+  const [targetLevel, setTargetLevel] = useState(99);
+  const [filterMethods, setFilterMethods] = useState(false);
   const [member, setMember] = useState(groupData?.players[0]?.name || '');
   const [query, setQuery] = useState('');
   const [completed, setCompleted] = useState<Record<string, boolean>>({});
@@ -3356,7 +3379,8 @@ function EfficientProgressView({
   const activeSection =
     progressData.progression.find((section) => section.id === sectionId) ||
     progressData.progression[0];
-  const visibleRows = activeSection.rows.filter((row) =>
+  const selectedStep = activeSection.rows.find(row => row.id === selectedStepId) || activeSection.rows[0];
+  const visibleRows = activeSection.rows.filter((row) => (!hideFinished || !completed[row.id]) &&
     `${row.title} ${'notes' in row ? row.notes || '' : ''}`
       .toLowerCase()
       .includes(query.toLowerCase()),
@@ -3448,14 +3472,13 @@ function EfficientProgressView({
     }
   }
   return (
-    <div className="content feature-page efficient-page">
+    <div className={`content feature-page efficient-page layout-refresh ${view.toLowerCase()}-refresh`}>
       <section className="feature-heading">
         <div>
           <p className="date-line">IRONMAN PROGRESSION</p>
-          <h2>Efficient Progress</h2>
+          <h2>{view === 'Roadmap' ? 'Progression Roadmap' : view === 'Training' ? 'Training Lookup' : 'Familiars'}</h2>
           <p>
-            Follow the ordered Ironman pathway or find the best training method
-            for your current levels.
+            {view === 'Roadmap' ? "Plan your journey. Track your progress. Unlock what’s next." : "Find training methods, requirements, and plan your goals."}
           </p>
         </div>
         <a
@@ -3574,10 +3597,11 @@ function EfficientProgressView({
                 />
               </label>
             </div>
+            <label className="roadmap-hide"><input type="checkbox" checked={hideFinished} onChange={event => setHideFinished(event.target.checked)} /> Hide completed</label>
             <div className="route-list">
               {visibleRows.map((row, index) => (
                 <article
-                  className={completed[row.id] ? 'route-row done' : 'route-row'}
+                  className={`route-row${completed[row.id] ? ' done' : ''}${selectedStep.id === row.id ? ' selected' : ''}`}
                   key={row.id}
                 >
                   <button
@@ -3591,7 +3615,7 @@ function EfficientProgressView({
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <div>
-                    <strong>{row.title}</strong>
+                    <button className="roadmap-step-title" onClick={() => setSelectedStepId(row.id)} aria-pressed={selectedStep.id === row.id}>{row.title}</button>
                     {'notes' in row && row.notes && <p>{row.notes}</p>}
                   </div>
                   <span className="route-type">{row.type}</span>
@@ -3613,9 +3637,21 @@ function EfficientProgressView({
               ))}
             </div>
           </section>
+          <aside className="panel roadmap-detail">
+            <p className="eyebrow">{selectedStep.type === 'quest' ? 'Quest details' : 'Step details'}</p>
+            <BookOpen size={34} />
+            <h3>{selectedStep.title}</h3>
+            <dl><div><dt>Status</dt><dd className={completed[selectedStep.id] ? 'state-badge complete' : 'state-badge incomplete'}>{completed[selectedStep.id] ? 'Completed' : 'Incomplete'}</dd></div><div><dt>Phase</dt><dd>{activeSection.title}</dd></div><div><dt>Category</dt><dd>{selectedStep.type}</dd></div></dl>
+            <h4>Guidance</h4>
+            <p>{'notes' in selectedStep && selectedStep.notes ? selectedStep.notes : 'See the source guide for this step.'}</p>
+            <h4>Requirements</h4><p className="detail-muted">Requirement being verified. Review the source before starting.</p>
+            <a className="primary-button" href={selectedStep.type === 'quest' && 'questName' in selectedStep && selectedStep.questName ? `https://runescape.wiki/w/${encodeURIComponent(selectedStep.questName.replaceAll(' ', '_'))}/Quick_guide` : progressData.source.wiki} target="_blank" rel="noreferrer">View on Wiki <ExternalLink size={13} /></a>
+            <button className="secondary-button" onClick={() => toggle(selectedStep.id)}>{completed[selectedStep.id] ? 'Mark incomplete' : 'Mark complete'}</button>
+          </aside>
         </div>
       ) : view === 'Training' ? (
         <section className="training-layout">
+          <div className="training-skill-tabs guide-tabs" aria-label="Training skills">{skills.map(value => <button key={value} className={skill === value ? 'active' : ''} onClick={() => { setSkill(value); setFilterMethods(false); }}>{titleCase(value)}</button>)}</div>
           <div className="panel training-controls">
             <div>
               <p className="eyebrow">Training lookup</p>
@@ -3655,9 +3691,13 @@ function EfficientProgressView({
               <strong>{currentLevel ?? '—'}</strong>
               <small>{selectedPlayer?.name || 'Choose a member'}</small>
             </div>
+            <label className="field"><span>Target level</span><input aria-label="Target level" type="number" min="1" max="120" value={targetLevel} onChange={event => setTargetLevel(Number(event.target.value))} /></label>
+            <button className="primary-button" onClick={() => setFilterMethods(true)}>Find methods</button>
+            {filterMethods && <button className="text-button" onClick={() => setFilterMethods(false)}>Show all methods</button>}
           </div>
           <div className="method-grid">
-            {methods.map((method, index) => {
+            <h3 className="methods-heading">Recommended methods <small>XP rates: Being verified</small></h3>
+            {methods.filter(method => !filterMethods || (method.start <= targetLevel && method.end >= (currentLevel || 1))).map((method, index) => {
               const current =
                 currentLevel !== undefined &&
                 currentLevel >= method.start &&
@@ -3676,7 +3716,7 @@ function EfficientProgressView({
                     {current && <span className="current-tag">Current</span>}
                   </div>
                   <p>{method.desc}</p>
-                  {'link' in method && method.link && (
+                  {'link' in method && typeof method.link === 'string' && method.link && (
                     <a href={method.link} target="_blank" rel="noreferrer">
                       RuneScape Wiki <ExternalLink size={12} />
                     </a>
@@ -3684,6 +3724,7 @@ function EfficientProgressView({
                 </article>
               );
             })}
+            {filterMethods && !methods.some(method => method.start <= targetLevel && method.end >= (currentLevel || 1)) && <p className="directory-empty">No methods match this level range. Adjust your target or show all methods.</p>}
           </div>
         </section>
       ) : (
@@ -3838,7 +3879,7 @@ function FarmV2View({ player }: { player?: HiscorePlayer }) {
     });
   }
   return (
-    <section className={`farm-v2-page${routeType === 'Herb' ? ' farm-inline-checklist' : ''}`}>
+    <section className={`farm-v2-page farming-refresh${routeType === 'Herb' ? ' farm-inline-checklist' : ''}`}>
       <div className="farm-v2-shell">
       <aside className="farm-v2-rail">
         <div className="farm-v2-rail-title"><span className="farm-v2-icon"><Leaf size={23} /></span><div><h2>Farming</h2><p>Plan routes, track each stop, and keep useful supplies moving.</p></div></div>
@@ -3856,8 +3897,8 @@ function FarmV2View({ player }: { player?: HiscorePlayer }) {
         <div className="farm-v2-title">
           <span className="farm-v2-icon"><Leaf size={25} /></span>
           <div>
-            <p className="eyebrow">Test features</p>
-            <h2>{routeType} Patches</h2>
+            <p className="eyebrow">Activities /</p>
+            <h2>Farming Routes</h2>
             <p>Plan a route, track each patch, and keep the fastest travel option close at hand.</p>
           </div>
         </div>
@@ -5168,11 +5209,11 @@ function RepeatablesView({
   const done = list.filter(([name]) => completed[name]).length;
 
   return (
-    <div className="content feature-page distractions-page">
+    <div className="content feature-page distractions-page activities-refresh">
       <section className="feature-heading">
         <div>
           <p className="date-line">ROUTINE PLANNER</p>
-          <h2>Distractions and Diversions</h2>
+          <h2>Daily, Weekly &amp; Monthly</h2>
           <p>
             Keep your daily, weekly, and monthly Ironman activities visible
             without letting them run your game.
@@ -5406,6 +5447,7 @@ function RepeatablesView({
                   </aside>
                 </div>
                 <span className="repeat-tag">{tag}</span>
+                <span className={`state-badge ${completed[name] ? 'complete' : 'incomplete'}`}>{completed[name] ? 'Done' : 'Not done'}</span>
                 <button
                   className="repeat-hide-button"
                   onClick={() => setActivityVisibility(name, false)}

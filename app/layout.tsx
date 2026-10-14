@@ -4,6 +4,7 @@ import './header.css';
 import './themes.css';
 import './dashboard.css';
 import './distractions.css';
+import './dark-system.css';
 
 const themeBootScript = `
   try {
