@@ -1529,17 +1529,6 @@ function ShopRunsView({
   );
 }
 
-function DashboardStart({ onNavigate }: { onNavigate: (page: string) => void }) {
-  const [checks, setChecks] = useState<Record<string, boolean>>({});
-  useEffect(() => {
-    try { setChecks(JSON.parse(localStorage.getItem('ironpath-repeatables') || '{}')); } catch { /* Keep an empty summary when storage is unavailable. */ }
-  }, []);
-  return <section className="dashboard-start">
-    <div className="welcome-metrics">{(['Daily', 'Weekly', 'Monthly'] as const).map(period => { const total = repeatables[period].length; const done = repeatables[period].filter(([name]) => checks[name]).length; return <button className="panel welcome-metric" key={period} onClick={() => onNavigate('Distractions and Diversions')}><CalendarCheck2 size={22}/><div><span>{period} activities</span><strong>{done} / {total}</strong></div><span className="progress-track"><i style={{width: `${done / total * 100}%`}} /></span></button>; })}</div>
-
-  </section>;
-}
-
 function HiScoresView({
   view = 'dashboard',
   result,
@@ -2068,7 +2057,6 @@ function HiScoresView({
           <div className="personal-stat"><span>Top skill</span><strong>{selectedTopSkill ? `${selectedTopSkill.name} ${selectedTopSkill.level}` : '—'}</strong></div>
         </section>
       )}
-      <DashboardStart onNavigate={onNavigate} />
       <RuneScapeNews />
       <section id="dashboard-overview" className="panel dashboard-connection-panel">
         <div>
