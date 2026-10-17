@@ -4935,8 +4935,6 @@ function RepeatablesView({
     <div className="content feature-page distractions-page activities-refresh">
       <section className="feature-heading">
         <div>
-          <p className="date-line">ROUTINE PLANNER</p>
-          <h2>Daily, Weekly &amp; Monthly</h2>
           <p>
             Keep your daily, weekly, and monthly Ironman activities visible
             without letting them run your game.
