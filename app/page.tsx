@@ -1536,8 +1536,7 @@ function DashboardStart({ onNavigate }: { onNavigate: (page: string) => void }) 
   }, []);
   return <section className="dashboard-start">
     <div className="welcome-metrics">{(['Daily', 'Weekly', 'Monthly'] as const).map(period => { const total = repeatables[period].length; const done = repeatables[period].filter(([name]) => checks[name]).length; return <button className="panel welcome-metric" key={period} onClick={() => onNavigate('Distractions and Diversions')}><CalendarCheck2 size={22}/><div><span>{period} activities</span><strong>{done} / {total}</strong></div><span className="progress-track"><i style={{width: `${done / total * 100}%`}} /></span></button>; })}</div>
-    <div className="welcome-board-grid"><section className="panel welcome-board"><div className="panel-heading"><h3><Sparkles size={16}/> Daily Activity Board</h3><button className="text-button" onClick={() => onNavigate('Distractions and Diversions')}>View all →</button></div><div className="welcome-tasks">{repeatables.Daily.slice(0,8).map(([name]) => <button key={name} aria-pressed={Boolean(checks[name])} onClick={() => { const next = { ...checks, [name]: !checks[name] }; setChecks(next); localStorage.setItem('ironpath-repeatables', JSON.stringify(next)); }}><span className={checks[name] ? 'welcome-check complete' : 'welcome-check'}>{checks[name] ? <Check size={13}/> : '·'}</span>{name}</button>)}</div></section>
-    <aside className="panel welcome-links"><h3>Quick Links</h3>{[['Progression Roadmap','Progression Roadmap'],['Daily / Weekly / Monthly','Distractions and Diversions'],['Farming Routes','Routes'],['Training Lookup','Skill Training'],['Achievements','Achievements']].map(([label,page]) => <button key={page} onClick={() => onNavigate(page)}><Compass size={15}/>{label}<ChevronRight size={13}/></button>)}</aside></div>
+
   </section>;
 }
 
@@ -2038,13 +2037,13 @@ function HiScoresView({
             <button className="active" onClick={() => scrollToDashboardArea('dashboard-overview')}>Overview</button>
             <button onClick={() => scrollToDashboardArea('dashboard-standings')}>Member standings</button>
             <button onClick={() => scrollToDashboardArea('dashboard-activity')}>Recent activity</button>
-            <button onClick={() => scrollToDashboardArea('dashboard-archive')}>Drop archive</button>
+            <button onClick={() => onNavigate('Achievements')}>Drop archive</button>
           </div>
           <div className="dashboard-mockup-actions">
             <p className="eyebrow">Quick actions</p>
             <button onClick={() => scrollToDashboardArea('dashboard-overview')}><RefreshCw size={15}/> Refresh group data</button>
             <button onClick={() => scrollToDashboardArea('dashboard-personalize')}><Users size={15}/> Choose member</button>
-            <button onClick={() => scrollToDashboardArea('dashboard-archive')}><Archive size={15}/> Manage archive</button>
+            <button onClick={() => onNavigate('Achievements')}><Archive size={15}/> Manage archive</button>
           </div>
         </aside>
       )}
@@ -2230,7 +2229,6 @@ function HiScoresView({
               <button className="secondary-button" type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Review the roadmap</button>
             </section>
           )}
-          {archiveAccess}
 
         </>
       )}
@@ -2243,13 +2241,13 @@ function HiScoresView({
             <p>Connect, refresh, or update the member you are viewing without duplicating group details across the dashboard.</p>
             <button onClick={() => scrollToDashboardArea('dashboard-overview')}>Group connection <ChevronRight size={15}/></button>
             <button onClick={() => scrollToDashboardArea('dashboard-personalize')}>Viewing preferences <ChevronRight size={15}/></button>
-            <button onClick={() => scrollToDashboardArea('dashboard-share-key')}>Archive sharing <ChevronRight size={15}/></button>
+            <button onClick={() => onNavigate('Achievements')}>Archive sharing <ChevronRight size={15}/></button>
           </section>
           <section className="dashboard-mockup-sidecard">
             <p className="eyebrow">Quick links</p>
             <button onClick={() => scrollToDashboardArea('dashboard-standings')}>Member standings <ChevronRight size={15}/></button>
             <button onClick={() => scrollToDashboardArea('dashboard-activity')}>Adventurer&apos;s log <ChevronRight size={15}/></button>
-            <button onClick={() => scrollToDashboardArea('dashboard-archive')}>Group item history <ChevronRight size={15}/></button>
+            <button onClick={() => onNavigate('Achievements')}>Group item history <ChevronRight size={15}/></button>
           </section>
           <section className="dashboard-mockup-sidecard dashboard-mockup-status">
             <p className="eyebrow">Group status</p>
