@@ -27,7 +27,7 @@ export default function AboutPage() {
             <Compass size={20} />
             <h2>A useful place to return to</h2>
             <p>
-              The goal is a simple one-stop companion: group standings, activity, planning, reference material, and useful routes—built around the things the group actually needs while playing, rather than a generic checklist.
+              The goal is a simple one-stop companion: group standings, activity, planning, reference material, and useful routes, built around the things the group actually needs while playing, rather than a generic checklist.
             </p>
           </article>
           <article>

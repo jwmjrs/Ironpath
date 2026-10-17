@@ -22,7 +22,7 @@ const fontBootScript = `
 
 
 export const metadata: Metadata = {
-  title: "Ironpath — RuneScape 3 Group Ironman Companion",
+  title: "Ironpath | RuneScape 3 Group Ironman Companion",
   description: 'Track Group Ironman HiScores, shared progression, distractions and diversions, unlocks, supplies and milestones for RuneScape 3.',
   applicationName: "Ironpath",
   manifest: '/manifest.webmanifest',

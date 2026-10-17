@@ -16,3 +16,22 @@
 .distractions-page .tracker-table-head{display:none}.distractions-page .tracker-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:14px 19px}.distractions-page .tracker-list .repeatable-row{grid-template-columns:26px minmax(0,1fr) auto;gap:10px;min-height:76px;border:1px solid color-mix(in srgb,var(--t-border) 82%,transparent);border-radius:9px;padding:12px;background:color-mix(in srgb,var(--t-surface2) 64%,transparent)}.distractions-page .tracker-list .repeatable-row .repeat-tag{display:none}.distractions-page .repeat-task-info{align-self:center}.repeat-hide-button{align-self:start}
 @media(max-width:900px){.distractions-page .repeatable-overview{grid-template-columns:repeat(2,minmax(0,1fr))}.distractions-page .tracker-settings{grid-template-columns:1fr}.tracker-visibility-settings{grid-template-columns:1fr}.tracker-table-head{display:none}.distractions-page .tracker-list{grid-template-columns:1fr}.distractions-page .tracker-list .repeatable-row{grid-template-columns:24px minmax(0,1fr) auto}.distractions-page .repeat-task-info{grid-column:2}.distractions-page .repeat-tag{display:none}.repeat-hide-button{grid-column:3;grid-row:1}.distractions-page .repeat-task-info .repeat-task-tooltip{max-width:min(360px,calc(100vw - 40px))}}
 @media(max-width:640px){.distractions-page .feature-heading{align-items:flex-start;flex-direction:column;padding:16px}.distractions-page .reset-card{width:100%}.distractions-page .tracker-personal-strip{align-items:flex-start;flex-wrap:wrap;padding:10px 12px}.distractions-page .tracker-personal-strip .quest-sync-status{width:100%;margin-left:0}.distractions-page .repeatable-overview{grid-template-columns:1fr}.distractions-page .repeatable-progress,.distractions-page .repeatable-period-tabs button{min-height:92px}.distractions-page .tracker-toolbar{flex-wrap:wrap;padding-inline:15px}.distractions-page .tracker-toolbar .route-search{flex-basis:100%}.distractions-page .tracker-board-head{padding-inline:15px}.distractions-page .tracker-list .repeatable-row{padding-inline:15px}.tracker-visibility-list{grid-template-columns:1fr;max-height:196px}}
+
+/* Activity cycles follow the same card navigation as the achievement logs. */
+html[data-theme="dark"] .activities-refresh .activity-cycle-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+html[data-theme="dark"] .activities-refresh .activity-cycle-cards button{display:flex;align-items:center;gap:14px;min-width:0;min-height:106px;padding:18px 20px;border:1px solid var(--ip-border);border-radius:12px;background:var(--ip-panel);color:var(--ip-text);text-align:left;font:inherit;cursor:pointer;transition:background .15s ease,border-color .15s ease}
+html[data-theme="dark"] .activities-refresh .activity-cycle-cards button:hover{border-color:#514269;background:#17141f}
+html[data-theme="dark"] .activities-refresh .activity-cycle-cards button.active{border-color:#75608f;background:#1b1725;box-shadow:inset 3px 0 #b8a3f7}
+html[data-theme="dark"] .activities-refresh .activity-cycle-cards button:focus-visible{outline:2px solid #87dce0;outline-offset:3px}
+.activity-cycle-cards button>svg:first-child{color:var(--ip-violet);flex-shrink:0}
+.activity-cycle-cards button>svg:last-child{margin-left:auto;color:var(--ip-muted);flex-shrink:0}
+.activity-cycle-copy{display:grid;gap:5px;flex:1;min-width:0}
+.activity-cycle-copy strong{font-size:13px;font-weight:600;line-height:1.5}
+.activity-cycle-copy small{font-size:11px;color:var(--ip-muted);line-height:1.6;overflow-wrap:break-word}
+.activity-cycle-copy>span{font-size:10px;color:var(--ip-teal,#87dce0);line-height:1.6}
+@media(max-width:760px){html[data-theme="dark"] .activities-refresh .activity-cycle-cards{grid-template-columns:1fr;gap:10px}html[data-theme="dark"] .activities-refresh .activity-cycle-cards button{min-height:96px;padding:17px 18px}}
+
+/* Keep cycle labels centered between equal-width icon and chevron columns. */
+html[data-theme="dark"] .activities-refresh .activity-cycle-cards button{display:grid;grid-template-columns:24px minmax(0,1fr) 24px}
+.activity-cycle-cards .activity-cycle-copy{text-align:center;justify-items:center}
+.activity-cycle-cards button>svg:last-child{justify-self:end;margin-left:0}

@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, Newspaper, RefreshCw } from 'lucide-react';
+import { displayText } from './lib/display-text';
 import type { NewsItem } from './api/news/route';
 type Feed = { articles: NewsItem[]; fetchedAt: string; stale: boolean };
 export default function RuneScapeNews() {
@@ -27,8 +28,8 @@ export default function RuneScapeNews() {
       <a className="rs-news-all" href="https://secure.runescape.com/m=news" target="_blank" rel="noreferrer">All news <ArrowUpRight size={16} /></a></div>
     {loading && !feed && <p className="rs-news-status" role="status">Gathering the latest from Jagex…</p>}
     {feed && <div className="rs-news-grid">{feed.articles.map((article, index) => <a className="rs-news-card" href={article.url} key={article.url} target="_blank" rel="noreferrer">
-      <div className="rs-news-meta"><span>{index === 0 ? 'Latest · ' : ''}{article.category}</span><time dateTime={article.date}>{new Date(article.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}</time></div>
-      <h3>{article.title}</h3><p>{article.summary}</p><span className="rs-news-read">Read on RuneScape <ArrowUpRight size={14} /></span></a>)}</div>}
+      <div className="rs-news-meta"><span>{index === 0 ? 'Latest · ' : ''}{displayText(article.category)}</span><time dateTime={article.date}>{new Date(article.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}</time></div>
+      <h3>{displayText(article.title)}</h3><p>{displayText(article.summary)}</p><span className="rs-news-read">Read on RuneScape <ArrowUpRight size={14} /></span></a>)}</div>}
     <div className="rs-news-footer"><span>{failed ? 'News is temporarily unavailable.' : feed?.stale ? 'Showing the last available headlines.' : 'From the official RuneScape news feed · refreshes every 15 minutes'}</span>
       <button type="button" className="secondary-button" disabled={loading} onClick={() => void load()}><RefreshCw size={14} /> {loading ? 'Loading' : 'Refresh news'}</button></div>
   </section>;
