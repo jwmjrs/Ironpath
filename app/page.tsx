@@ -3230,25 +3230,13 @@ function EfficientProgressView({
       </section>
       {view === 'Roadmap' && (
         <section className="panel progress-card roadmap-progress-card">
-          <div
-            className="ring"
-            style={
-              {
-                '--value': `${(completedCount / allRows.length) * 360}deg`,
-              } as React.CSSProperties
-            }
-          >
-            <span>{Math.round((completedCount / allRows.length) * 100)}%</span>
+          <span className="roadmap-summary-icon"><ListChecks size={24} /></span>
+          <div className="roadmap-summary-copy">
+            <p className="eyebrow">Your roadmap</p>
+            <h3>{completedCount} <span>of {allRows.length} steps complete</span></h3>
+            <div className="roadmap-summary-meter" role="progressbar" aria-label="Overall roadmap progress" aria-valuenow={completedCount} aria-valuemin={0} aria-valuemax={allRows.length}><span style={{ width: `${completedCount / allRows.length * 100}%` }} /></div>
           </div>
-          <div>
-            <p className="eyebrow">Roadmap checklist</p>
-            <h3>
-              {completedCount} of {allRows.length} complete
-            </h3>
-            <p>
-              Track progress across every planned roadmap step for this group.
-            </p>
-          </div>
+          <span className="roadmap-summary-percent">{Math.round(completedCount / allRows.length * 100)}%</span>
           <div className="roadmap-quest-sync">
             <button
               className="roadmap-quest-sync-button"
@@ -3296,10 +3284,10 @@ function EfficientProgressView({
       )}
       {view === 'Roadmap' ? (
         <div className="roadmap-layout">
-          <aside className="phase-list panel">
-            <p className="eyebrow">Route phases</p>
+          <aside className="phase-list panel" aria-label="Roadmap phases">
+            <p className="eyebrow">Choose your phase</p>
             <div className="roadmap-phase-buttons">
-              {progressData.progression.map((section) => {
+              {progressData.progression.map((section, phaseIndex) => {
                 const done = section.rows.filter(
                   (row) => completed[row.id],
                 ).length;
@@ -3307,13 +3295,16 @@ function EfficientProgressView({
                   <button
                     key={section.id}
                     className={`roadmap-phase-card${section.id === activeSection.id ? ' active' : ''}`}
-                    onClick={() => setSectionId(section.id)}
+                    aria-pressed={section.id === activeSection.id}
+                    onClick={() => { setSectionId(section.id); setSelectedStepId(''); }}
                   >
-                    <span>
+                    <span className="roadmap-phase-index">{String(phaseIndex + 1).padStart(2, '0')}</span>
+                    <span className="roadmap-phase-copy">
                       <strong>{section.title}</strong>
                       <small>
-                        {section.rows.length} steps · {done} complete
+                        {done} / {section.rows.length} complete
                       </small>
+                      <span className="roadmap-phase-meter" aria-hidden="true"><span style={{ width: `${done / section.rows.length * 100}%` }} /></span>
                     </span>
                   </button>
                 );
@@ -3331,13 +3322,15 @@ function EfficientProgressView({
                 <input
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Filter this phase"
+                  placeholder="Search this phase"
+                  aria-label="Search roadmap phase"
                 />
               </label>
             </div>
-            <label className="roadmap-hide"><input type="checkbox" checked={hideFinished} onChange={event => setHideFinished(event.target.checked)} /> Hide completed</label>
+            <div className="roadmap-list-controls"><label className="roadmap-hide"><input type="checkbox" checked={hideFinished} onChange={event => setHideFinished(event.target.checked)} /> Hide completed</label><span>{visibleRows.length} of {activeSection.rows.length} steps shown</span></div>
+            <div className="roadmap-list-labels" aria-hidden="true"><span>Progress</span><span>Roadmap step</span><span>Status</span><span>Wiki</span></div>
             <div className="route-list">
-              {visibleRows.map((row, index) => (
+              {visibleRows.map((row) => (
                 <article
                   className={`route-row${completed[row.id] ? ' done' : ''}${selectedStep.id === row.id ? ' selected' : ''}`}
                   key={row.id}
@@ -3350,13 +3343,13 @@ function EfficientProgressView({
                     {completed[row.id] && <Check size={14} />}
                   </button>
                   <span className="route-number">
-                    {String(index + 1).padStart(2, '0')}
+                    {String(activeSection.rows.findIndex(step => step.id === row.id) + 1).padStart(2, '0')}
                   </span>
                   <div>
                     <button className="roadmap-step-title" onClick={() => setSelectedStepId(row.id)} aria-pressed={selectedStep.id === row.id}>{row.title}</button>
                     {'notes' in row && row.notes && <p>{row.notes}</p>}
                   </div>
-                  <span className="route-type">{row.type}</span>
+                  <span className={`roadmap-status${completed[row.id] ? ' is-complete' : ''}`}>{completed[row.id] ? 'Done' : 'To do'}</span>
                   {row.type === 'quest' &&
                   'questName' in row &&
                   row.questName ? (
@@ -3373,11 +3366,12 @@ function EfficientProgressView({
                   )}
                 </article>
               ))}
+              {!visibleRows.length && <div className="roadmap-empty"><Search size={24} /><h3>No steps to show</h3><p>Try another search or turn off Hide completed.</p></div>}
             </div>
           </section>
           <aside className="panel roadmap-detail">
             <p className="eyebrow">{selectedStep.type === 'quest' ? 'Quest details' : 'Step details'}</p>
-            <BookOpen size={34} />
+            <span className="roadmap-detail-icon"><BookOpen size={22} /></span>
             <h3>{selectedStep.title}</h3>
             <dl><div><dt>Status</dt><dd className={completed[selectedStep.id] ? 'state-badge complete' : 'state-badge incomplete'}>{completed[selectedStep.id] ? 'Completed' : 'Incomplete'}</dd></div><div><dt>Phase</dt><dd>{activeSection.title}</dd></div><div><dt>Category</dt><dd>{selectedStep.type}</dd></div></dl>
             <h4>Guidance</h4>

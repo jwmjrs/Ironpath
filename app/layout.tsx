@@ -8,6 +8,7 @@ import './dark-system.css';
 import './landing.css';
 import './fonts.css';
 import './brand-logo.css';
+import './progression.css';
 import FontPreferences from './font-preferences';
 
 const fontBootScript = `
