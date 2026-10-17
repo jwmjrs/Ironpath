@@ -1,0 +1,130 @@
+{
+  "K'ril Tsutsaroth": {
+    "src": "/prototype-items/k-ril-tsutsaroth.png",
+    "source": "https://runescape.wiki/images/thumb/K%27ril_Tsutsaroth.png/220px-K%27ril_Tsutsaroth.png?abf09"
+  },
+  "King Black Dragon": {
+    "src": "/prototype-items/king-black-dragon.png",
+    "source": "https://runescape.wiki/images/thumb/King_Black_Dragon.png/220px-King_Black_Dragon.png?5482f"
+  },
+  "Queen Black Dragon": {
+    "src": "/prototype-items/queen-black-dragon.png",
+    "source": "https://runescape.wiki/images/thumb/Queen_Black_Dragon.png/220px-Queen_Black_Dragon.png?b3445"
+  },
+  "Garb of subjugation": {
+    "src": "/prototype-items/garb-of-subjugation.png",
+    "source": "https://runescape.wiki/images/Garb_of_subjugation.png?2ec63"
+  },
+  "Gloves of subjugation": {
+    "src": "/prototype-items/gloves-of-subjugation.png",
+    "source": "https://runescape.wiki/images/Gloves_of_subjugation.png?6eb30"
+  },
+  "Boots of subjugation": {
+    "src": "/prototype-items/boots-of-subjugation.png",
+    "source": "https://runescape.wiki/images/Boots_of_subjugation.png?60e87"
+  },
+  "Zamorakian spear": {
+    "src": "/prototype-items/zamorakian-spear.png",
+    "source": "https://runescape.wiki/images/Zamorakian_spear.png?fd42f"
+  },
+  "Steam battlestaff": {
+    "src": "/prototype-items/steam-battlestaff.png",
+    "source": "https://runescape.wiki/images/Steam_battlestaff.png?98247"
+  },
+  "Zamorak hilt": {
+    "src": "/prototype-items/zamorak-hilt.png",
+    "source": "https://runescape.wiki/images/Zamorak_hilt.png?fa080"
+  },
+  "Severed hoof": {
+    "src": "/prototype-items/severed-hoof.png",
+    "source": "https://runescape.wiki/images/Severed_hoof.png?70498"
+  },
+  "King Black Dragon head": {
+    "src": "/prototype-items/king-black-dragon-head.png",
+    "source": "https://runescape.wiki/images/thumb/King_black_dragon_head_detail.png/220px-King_black_dragon_head_detail.png?72d97"
+  },
+  "King Black Dragon scale": {
+    "src": "/prototype-items/king-black-dragon-scale.png",
+    "source": "https://runescape.wiki/images/King_black_dragon_scale.png?5e3a1"
+  },
+  "Royal frame": {
+    "src": "/prototype-items/royal-frame.png",
+    "source": "https://runescape.wiki/images/Royal_frame.png?bc0c5"
+  },
+  "Royal sight": {
+    "src": "/prototype-items/royal-sight.png",
+    "source": "https://runescape.wiki/images/Royal_sight.png?349fd"
+  },
+  "Royal torsion spring": {
+    "src": "/prototype-items/royal-torsion-spring.png",
+    "source": "https://runescape.wiki/images/Royal_torsion_spring.png?c314e"
+  },
+  "Royal bolt stabiliser": {
+    "src": "/prototype-items/royal-bolt-stabiliser.png",
+    "source": "https://runescape.wiki/images/Royal_bolt_stabiliser.png?cbb8b"
+  },
+  "Death guard (tier 70)": {
+    "src": "/prototype-items/death-guard-tier-70.png",
+    "source": "https://runescape.wiki/images/Death_guard_%28tier_70%29.png?b3a0d"
+  },
+  "Skull lantern (tier 70)": {
+    "src": "/prototype-items/skull-lantern-tier-70.png",
+    "source": "https://runescape.wiki/images/Skull_lantern_%28tier_70%29.png?fe26b"
+  },
+  "Deathwarden robe top (tier 70)": {
+    "src": "/prototype-items/deathwarden-robe-top-tier-70.png",
+    "source": "https://runescape.wiki/images/Deathwarden_robe_top_%28tier_70%29.png?b3569"
+  },
+  "Deathwarden robe top (tier 80)": {
+    "src": "/prototype-items/deathwarden-robe-top-tier-80.png",
+    "source": "https://runescape.wiki/images/Deathwarden_robe_top_%28tier_80%29.png?cfbff"
+  },
+  "Deathdealer robe top (tier 70)": {
+    "src": "/prototype-items/deathdealer-robe-top-tier-70.png",
+    "source": "https://runescape.wiki/images/Deathdealer_robe_top_%28tier_70%29.png?c7fce"
+  },
+  "Death guard (tier 90)": {
+    "src": "/prototype-items/death-guard-tier-90.png",
+    "source": "https://runescape.wiki/images/Death_guard_%28tier_90%29.png?6fda9"
+  },
+  "Skull lantern (tier 90)": {
+    "src": "/prototype-items/skull-lantern-tier-90.png",
+    "source": "https://runescape.wiki/images/Skull_lantern_%28tier_90%29.png?87ebf"
+  },
+  "Chaotic maul": {
+    "src": "/prototype-items/chaotic-maul.png",
+    "source": "https://runescape.wiki/images/Chaotic_maul.png?80ff2"
+  },
+  "Drygore rapier": {
+    "src": "/prototype-items/drygore-rapier.png",
+    "source": "https://runescape.wiki/images/Drygore_rapier.png?eac6e"
+  },
+  "Guthix staff": {
+    "src": "/prototype-items/guthix-staff.png",
+    "source": "https://runescape.wiki/images/Guthix_staff.png?e511c"
+  },
+  "Wand of the Cywir elders": {
+    "src": "/prototype-items/wand-of-the-cywir-elders.png",
+    "source": "https://runescape.wiki/images/Wand_of_the_Cywir_elders.png?6d9f6"
+  },
+  "Crystal bow": {
+    "src": "/prototype-items/crystal-bow.png",
+    "source": "https://runescape.wiki/images/Crystal_bow.png?5a50c"
+  },
+  "Royal crossbow": {
+    "src": "/prototype-items/royal-crossbow.png",
+    "source": "https://runescape.wiki/images/Royal_crossbow.png?2d0d3"
+  },
+  "Ascension crossbow": {
+    "src": "/prototype-items/ascension-crossbow.png",
+    "source": "https://runescape.wiki/images/Ascension_crossbow.png?5054e"
+  },
+  "Bandos chestplate": {
+    "src": "/prototype-items/bandos-chestplate.png",
+    "source": "https://runescape.wiki/images/Bandos_chestplate.png?ef699"
+  },
+  "Armadyl chestplate": {
+    "src": "/prototype-items/armadyl-chestplate.png",
+    "source": "https://runescape.wiki/images/Armadyl_chestplate.png?2f16f"
+  }
+}

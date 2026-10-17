@@ -13,7 +13,7 @@ A Zaros-inspired circle and equal-armed cross with a central path motif. Lavende
 
 Center the combined Ironpath emblem and name on every page, including the entry page and About/FAQ/Privacy reference pages. Keep navigation centered beneath the shared header branding.
 
-Use the emblem with HTML text in compact navigation to keep the name crisp and accessible. Use the horizontal lockup on About/FAQ and future reference graphics. The PNGs retain transparency. Historical brand assets remain in the repository for recovery but should not be used in new work. Existing installers retain their packaged icons until rebuilt.
+Use the illustrated horizontal lockup for all page headers and landing-page branding, including compact navigation, About/FAQ, and future reference graphics. Use `app/brand-logo.tsx` for headers with a subtitle. Keep the image proportional and give it accessible Ironpath alternative text. The logo lettering stays independent of the selected interface font. The PNGs retain transparency. Historical brand assets remain in the repository for recovery but should not be used in new work. Existing installers retain their packaged icons until rebuilt.
 
 ## Palette and meaning
 

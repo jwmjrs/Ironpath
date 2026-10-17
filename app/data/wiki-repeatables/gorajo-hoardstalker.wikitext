@@ -1,0 +1,114 @@
+{{Otheruses|def=no|other uses|Gorajo (disambiguation)}}
+{{Infobox NPC
+|version1 = Gorajo Hoardstalker Dungeon
+|version2 = Daemonheim
+|version3 = Manor Farm
+|name1 = Gorajo hoardstalker
+|name2 = Gorajo hoardstalker
+|name3 = Gorajo hoardstalker (medium farm requester)
+|image = [[File:Gorajo hoardstalker.png|200px]]
+|release1 = [[5 February]] [[2013]]
+|release2 = [[5 February]] [[2013]]
+|release3 = [[25 November]] [[2019]]
+|update1 = Sinkholes
+|update2 = Sinkholes
+|update3 = Game Update: The Ranch Out of Time, Farming 120, Herblore 120 & Yak Track
+|race = Gorajo
+|members1 = Yes
+|members2 = No
+|members3 = Yes
+|quest = No
+|location1 = [[Gorajo Hoardstalker Dungeon]]
+|location2 = [[Daemonheim]]
+|location3 = [[Manor Farm]]
+|gender = Male
+|options1 = Talk to, Claim card, Examine
+|options2 = Talk to, Examine
+|options3 = Help, Hand in medium request, Examine
+|examine1 = A dealer of cards.
+|examine2 = {{Sic|A dealer of cards}}
+|examine3 = A farmer in need (medium)
+|map1 = {{NPC map|npcname=Gorajo hoardstalker|npcid=20287|mapID=674|plane=0|x=1317|y=4641|type=pins}}
+|map2 = {{NPC map|npcname=Gorajo hoardstalker|npcid=20289|x=3436|y=3699|type=pins}}
+|map3 = {{NPC map|npcid=20289|npcname=Gorajo hoardstalker|x=2651|y=3345|type=pins}}
+|leagueRegion1 = Tirannwn
+|leagueRegion2 = Wilderness
+|leagueRegion3 = Kandarin
+|id1 = 20287
+|id2 = 20289
+|id3 = 26747
+}}
+[[File:Gorajo hoardstalker chathead.png|left|120px]]
+The '''gorajo hoardstalker''' is a [[gorajo]] located within the [[Gorajo Hoardstalker Dungeon]] in the [[Meilyr district]] of [[Prifddinas]], which requires level 95 [[Dungeoneering]] to access. After unlocking access to the resource dungeon, he can also be found next to [[Thok of Daemonheim]] at [[Daemonheim]].
+
+Gorajo hoardstalker can occasionally be found at [[Manor Farm]], asking for help with a medium [[Farming request]].
+
+==Farming request reward==
+{{Main|Farming requests}}
+
+{{DropsTableHead|version=Manor Farm}}
+{{DropsLineReward|name=Dungeoneering tokens (500)|quantity=1|rarity=Always}}
+{{DropsTableBottom}}
+
+==Gallery==
+<gallery mode="packed" heights="190">
+File:Sinkholes update.jpg|Concept art
+</gallery>
+
+==Dialogue==
+{{Hasdialogue|NPC}}
+
+==Development history==
+===Claim card===
+He used to give players a special [[Gorajo cards|card]] daily. These cards are similar to the versions his [[Gorajo hoardstalker (Sinkholes)|sinkhole counterpart]] offers, the cards provide a different bonus while training Dungeoneering in Daemonheim instead. They are used by activating them while in a dungeon and have different effects depending on what card is used. Players can have only one solo card and one team card at a time. A new card of each type cannot be obtained until the previous one of that type is used or destroyed.
+
+The "Claim card" feature was disabled on the [[Dungeoneering Remastered]] update, attempting to doing so will prompt a message "Nothing interesting happens".
+
+{{DropsTableHead|version=Gorajo resource dungeon,Daemonheim|historical=yes}}
+{{DropsLineReward|name=Beguiling smoke devil card (solo)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Beguiling smoke devil card (team)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Cloning mosquito card (solo)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Cloning mosquito card (team)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Consistent yak card (solo)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Consistent yak card (team)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Preening ibis card (solo)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Preening ibis card (team)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Protecting titan card (solo)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Protecting titan card (team)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Reversing phoenix card (solo)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Reversing phoenix card (team)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Scavenging meerkats card (solo)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Scavenging meerkats card (team)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Thieving locust card (solo)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Thieving locust card (team)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Trading leech card (solo)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Trading leech card (team)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Trading mantis card (solo)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Trading mantis card (team)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Whimsical bunyip card (solo)|quantity=1|rarity=|gemw=no}}
+{{DropsLineReward|name=Whimsical bunyip card (team)|quantity=1|rarity=|gemw=no}}
+{{DropsTableBottom}}
+
+==Update history==
+{{UH|
+* {{UL|type=update|update=Dungeoneering Remastered: Dive in Today!|date=11 May 2026}}
+** Dialogue updated to reflect the removal of gorajo cards, including Dungeoneering wildcards.
+
+* {{UL|type=patch|update=Patch Notes (7 March 2016)|date=7 March 2016}}
+** Added full stop to description of the Gorajo hoardstalker in Prifddinas.
+
+* {{UL|type=patch|update=Patch Notes (8 June 2015)|date=8 June 2015}}
+** An issue that meant it was not possible to receive a Scavenging Meerkats card from the Gorajo hoardstalker has been fixed.
+
+* {{UL|type=update|update=Sinkholes|date=5 February 2013}}
+** Added to game.
+}}
+
+==Trivia==
+* The cards floating around the gorajo are {{WP|playing card}}s—6 of diamonds, 3 of hearts, 4 of spades.
+
+{{Daemonheim}}
+{{Gorajo}}
+{{Meilyr Clan}}
+{{Farming Guild}}
+[[Category:Hoardstalkers]]

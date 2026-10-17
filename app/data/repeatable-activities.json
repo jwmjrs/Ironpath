@@ -1,0 +1,323 @@
+{
+  "Daily": [
+    [
+      "Daily Challenges",
+      "Three skill challenges",
+      "High XP"
+    ],
+    [
+      "Nemi Forest",
+      "Mining, Farming, Prayer & Dungeoneering",
+      "10 min"
+    ],
+    [
+      "Sinkholes",
+      "Two Dungeoneering games",
+      "Timed"
+    ],
+    [
+      "Big Chinchompa",
+      "Two Hunter games and competence points",
+      "Hunter"
+    ],
+    [
+      "Supply run",
+      "Turn supplies in to Quercy",
+      "Skilling XP"
+    ],
+    [
+      "Wild jade vine",
+      "Slay or prune when regrown; variable growth timer",
+      "Farming"
+    ],
+    [
+      "Book of Char",
+      "Use Char’s daily Firemaking training",
+      "Firemaking"
+    ],
+    [
+      "Trinks’ Tasks",
+      "Complete Mazcab tasks for reputation",
+      "Reputation"
+    ],
+    [
+      "Soul obelisks",
+      "Claim Menaphos reputation and XP",
+      "Menaphos"
+    ],
+    [
+      "Arc contracts",
+      "Complete an Arc contract",
+      "Chimes"
+    ],
+    [
+      "Heart of Gielinor bounties",
+      "Complete Feng’s daily bounties",
+      "Reputation"
+    ],
+    [
+      "Runesphere rune dust",
+      "Hand in up to 1,000 rune dust",
+      "Runecrafting"
+    ],
+    [
+      "Player-owned ports",
+      "Use daily voyage rerolls and check visiting adventurers",
+      "Passive"
+    ],
+    [
+      "Explorer’s ring casts",
+      "Use daily alchemy, superheat and other casts",
+      "Free casts"
+    ],
+    [
+      "Lumbridge food hamper",
+      "Claim food from the castle cook",
+      "Supplies"
+    ],
+    [
+      "Desert achievement claims",
+      "Collect merchant and amulet rewards",
+      "Supplies"
+    ],
+    [
+      "Arc free supplies",
+      "Claim Rosie’s supplies and island resources",
+      "The Arc"
+    ],
+    [
+      "Fixate casts",
+      "Use three free Archaeology Fixates",
+      "Archaeology"
+    ],
+    [
+      "Kingdom collection",
+      "Resources accrue daily; collect when convenient",
+      "Resources"
+    ],
+    [
+      "Robin bone exchange",
+      "Turn bones into bonemeal and slime",
+      "Prayer"
+    ],
+    [
+      "Wythien exchange",
+      "Trade crystal motherlode shards",
+      "Prifddinas"
+    ],
+    [
+      "Razmire olive oil",
+      "Buy olive oil; stock replenishes over about 24 hours",
+      "Herblore"
+    ],
+    [
+      "Assist System",
+      "Assist other players for up to 30,000 XP per 24 hours",
+      "Skilling"
+    ]
+  ],
+  "Weekly": [
+    [
+      "Soul Reaper",
+      "Complete Reaper tasks; seven-day cycle",
+      "Bossing"
+    ],
+    [
+      "Penguin Hide and Seek",
+      "Spot the weekly penguins",
+      "Flexible XP"
+    ],
+    [
+      "Tears of Guthix",
+      "Train your lowest skill",
+      "Quest"
+    ],
+    [
+      "Meg at Player-owned Ports",
+      "Answer Meg and claim the chest",
+      "5 min"
+    ],
+    [
+      "Agoroth",
+      "Up to two encounters for a black pearl or coins",
+      "Combat"
+    ],
+    [
+      "Big Top Bonanza",
+      "Complete the travelling circus event",
+      "Skill XP"
+    ],
+    [
+      "Skeletal horror",
+      "Kill it for Slayer, Prayer and a clue",
+      "Weekly boss"
+    ],
+    [
+      "Hanky points",
+      "Claim Buyers and Cellars Thieving XP",
+      "Thieving"
+    ],
+    [
+      "Clan Citadel capping",
+      "Cap for XP and resources; resets at your clan build tick",
+      "Clan"
+    ],
+    [
+      "Familiarisation",
+      "Choose charm enhancer or ingredients",
+      "Summoning"
+    ],
+    [
+      "A Barmaid’s Tip",
+      "Thursday only: follow up on a Ports adventurer tip",
+      "Ports"
+    ],
+    [
+      "Thalmund’s Wares",
+      "Wednesday only: check Necromancy stock",
+      "Necromancy"
+    ],
+    [
+      "Broken Home replay",
+      "Replay for a large XP lamp",
+      "Quest"
+    ],
+    [
+      "Sliske’s Endgame replay",
+      "Claim weekly replay rewards",
+      "Quest"
+    ],
+    [
+      "Rush of Blood",
+      "Complete the Slayer gauntlet",
+      "Slayer"
+    ],
+    [
+      "Dimension of Disaster replay",
+      "Earn silver pennies",
+      "Quest"
+    ],
+    [
+      "Shattered Worlds challenge",
+      "Complete a weekly challenge",
+      "Combat"
+    ],
+    [
+      "Memory of Nomad",
+      "Replay the weekly Nomad encounter",
+      "Combat"
+    ],
+    [
+      "Champion refights",
+      "Refight unlocked champions",
+      "Combat"
+    ],
+    [
+      "Wisps of the Grove",
+      "Weekly Farming and Hunter event",
+      "Skilling"
+    ],
+    [
+      "Herby Werby",
+      "Burn herbs for Herblore and Firemaking XP",
+      "Herblore"
+    ],
+    [
+      "Advance Time",
+      "Use the weekly high-level Magic spell",
+      "Magic"
+    ],
+    [
+      "Water filtration system",
+      "Collect before its storage caps",
+      "Fort Forinthry"
+    ],
+    [
+      "Achievement resource claims",
+      "Collect cactus, fruit, flax, essence and sand",
+      "Supplies"
+    ],
+    [
+      "Razmire plank claim",
+      "Claim noted planks from Mort’ton",
+      "Construction"
+    ],
+    [
+      "Aquarium decorations",
+      "Collect oysters, kelp and seaweed",
+      "Weekly"
+    ],
+    [
+      "Coeden’s logs",
+      "Claim your accumulated high-tier logs",
+      "Woodcutting"
+    ],
+    [
+      "Eli Bacon",
+      "Claim raw bacon or a spirit pig",
+      "Supplies"
+    ],
+    [
+      "Lupe’s Soul Supplies",
+      "Collect free Necromancy supplies",
+      "Necromancy"
+    ],
+    [
+      "Weekly shop packs",
+      "Check yak hides, meat, seaweed, vials and runes; seven days for full stock",
+      "Shop run"
+    ],
+    [
+      "Bandit Duty Free",
+      "Check Construction, ritual and seed stock; seven days for full stock",
+      "Shop run"
+    ],
+    [
+      "Culinaromancer’s Chest",
+      "Check food and cooking ingredients; seven days for full stock",
+      "Shop run"
+    ],
+    [
+      "Black Marketeer",
+      "Buy available port resources",
+      "Ports"
+    ],
+    [
+      "Razmire building stock",
+      "Buy limestone, limestone bricks and planks; seven days for full stock",
+      "Shop run"
+    ]
+  ],
+  "Monthly": [
+    [
+      "Troll Invasion",
+      "Defend Burthorpe and claim an XP book",
+      "Combat"
+    ],
+    [
+      "God Statues",
+      "Build four statues across Gielinor",
+      "Construction"
+    ],
+    [
+      "Giant Oyster",
+      "Feed, check and open the oyster",
+      "Fishing"
+    ],
+    [
+      "Effigy Incubator",
+      "Power effigies for lamps or stars",
+      "High level"
+    ],
+    [
+      "Marketplace free items",
+      "Claim the monthly Marketplace items",
+      "Claim"
+    ],
+    [
+      "Crystal tree blossom",
+      "Harvest accumulated Prifddinas blossoms",
+      "Farming"
+    ]
+  ]
+}

@@ -1,0 +1,10 @@
+.ironpath-brand-lockup{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0}
+html[data-theme="dark"] .ironpath-brand-lockup img.ironpath-brand-art{display:block;width:210px;max-width:100%;height:auto;object-fit:contain;margin:0;filter:none;transform:none}
+.ironpath-brand-subtitle{display:block;font-size:10px;line-height:1.4;letter-spacing:.08em;color:#9b9faa;text-align:center;font-weight:400}
+html[data-theme="dark"] .site-header .brand-home{height:auto;min-height:62px;max-width:100%}
+html[data-theme="dark"] .ironpath-entry.story-entry .entry-brand-heading .ironpath-brand-art{width:340px}
+html[data-theme="dark"] .ironpath-entry.story-entry .entry-brand-heading{gap:0}
+.ip-proto .proto-brand{justify-self:center}
+.ip-proto .proto-brand .ironpath-brand-lockup{display:flex;gap:5px;text-align:center}
+.ip-proto .proto-brand .ironpath-brand-subtitle{font-size:10px;font-weight:400;letter-spacing:.08em}
+@media(max-width:540px){html[data-theme="dark"] .ironpath-brand-lockup img.ironpath-brand-art{width:180px}html[data-theme="dark"] .ironpath-entry.story-entry .entry-brand-heading .ironpath-brand-art{width:min(290px,78vw)}}

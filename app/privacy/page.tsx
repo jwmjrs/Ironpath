@@ -3,7 +3,7 @@
 import { ArrowLeft, Database, Eye, KeyRound, ShieldCheck, SlidersHorizontal, UsersRound } from 'lucide-react';
 
 const privacySections = [
-  { icon: SlidersHorizontal, title:'On this device', detail:'Your chosen theme, recent HiScores result, lookup preferences, and private workspace access key stay in your browser. Clearing this site’s data removes those local copies.', note:'You control these local preferences.' },
+  { icon: SlidersHorizontal, title:'On this device', detail:'Your chosen font, recent HiScores result, lookup preferences, and private workspace access key stay in your browser. Clearing this site’s data removes those local copies.', note:'You control these local preferences.' },
   { icon: UsersRound, title:'Shared with your group', detail:'Only your group’s drop archive and historical item entries are shared through its private archive key. Checklists, routes, and personal progress stay on each person’s device.', note:'Keep personal or sensitive information out of archive entries.' },
   { icon: Eye, title:'RuneScape lookups', detail:'Refreshing HiScores or quest access sends the group name and public RuneScape names through Ironpath to the RuneScape HiScores and RuneMetrics services. Results may be cached briefly for reliability.', note:'Only public-facing character data is requested.' },
   { icon: KeyRound, title:'Your archive key', detail:'The private drop-archive key works like a password: anyone who has it can view and add item-history entries for that archive. The server retains only a one-way hash of its secret portion.', note:'Share it only with the group members you trust.' },

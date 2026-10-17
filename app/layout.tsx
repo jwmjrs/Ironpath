@@ -5,16 +5,20 @@ import './themes.css';
 import './dashboard.css';
 import './distractions.css';
 import './dark-system.css';
+import './landing.css';
+import './fonts.css';
+import './brand-logo.css';
+import FontPreferences from './font-preferences';
 
-const themeBootScript = `
+const fontBootScript = `
   try {
-    const savedTheme = localStorage.getItem('ironpath-theme');
-    const themes = ['dark'];
-    document.documentElement.dataset.theme = themes.includes(savedTheme) ? savedTheme : 'dark';
+    const savedFont = localStorage.getItem('ironpath-font');
+    document.documentElement.dataset.font = ['original', 'comfortaa', 'quicksand', 'nunito', 'manrope', 'outfit'].includes(savedFont) ? savedFont : ['rajdhani', 'space'].includes(savedFont) ? 'comfortaa' : 'original';
   } catch {
-    document.documentElement.dataset.theme = 'dark';
+    document.documentElement.dataset.font = 'original';
   }
 `;
+
 
 export const metadata: Metadata = {
   title: "Ironpath — RuneScape 3 Group Ironman Companion",
@@ -38,9 +42,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
+        <script dangerouslySetInnerHTML={{ __html: fontBootScript }} />
       </head>
-      <body>{children}</body>
+      <body>{children}<FontPreferences /></body>
     </html>
   );
 }

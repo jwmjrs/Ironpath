@@ -1,0 +1,379 @@
+{{HasCalculator|Calculator:Other/Anachronia base camp|the optimal distribution of workers}}
+{{Infobox Location
+|name = Anachronia base camp
+|image = Anachronia base camp.png
+|release = [[8 July]] [[2019]]
+|update = Land Out of Time - The journey begins!
+|members = Yes
+|location = [[Anachronia]]
+|leagueRegion = Anachronia
+|teleport = 
+* [[Anachronia tablet]]
+* [[Anachronia lodestone]]
+* [[The Stormbreaker]]
+|music = [[On Safer Ground]]
+|banks = 1
+|shops = 7
+|map = {{Map|x=3908|y=4270|zoom=2}}
+}}
+'''Anachronia base camp''' is a location on [[Anachronia]]. After first arrival, speaking to [[Giles]] will trigger a short management tutorial making the town hall, where he will be available for future base camp management.
+
+The base camp can be built up with various structures at multiple tiers, with collected materials from workers. The skills required for the various upgrades cannot be boosted.
+
+==Workers==
+The camp starts off with 10 workers. As the sleeping quarters and [[Command Centre]] in [[Fort Forinthry]] are upgraded, more workers will become available. 
+
+{| class="wikitable align-left-10" style="text-align: center"
+! colspan="2" | Building
+! Additional workers 
+! Total
+|-
+| colspan="2" | Initial
+| {{NA}}
+| 10
+|-
+| rowspan="3" | Sleeping quarters
+| Tier 1 
+| 5 
+| 15
+|-
+| Tier 2
+| 15
+| 30
+|-
+| Tier 3
+| 30 
+| 60  
+|-
+| rowspan="2" | Command Centre
+| Tier 2 
+| 5 
+| 65
+|-
+| Tier 3 
+| 5 
+| 70  
+|}
+
+Workers can be allocated to gather the following resources:
+* {{plink|Wood (Anachronia base camp)|txt=Wood}}
+* {{plink|Vines (Anachronia base camp)|txt=Vines}}
+* {{plink|Leaves (Anachronia base camp)|txt=Leaves}}
+* {{plink|Hides (Anachronia base camp)|txt=Hides}}
+* {{plink|Stone (Anachronia base camp)|txt=Stone}}
+* {{plink|Clay (Anachronia base camp)|txt=Clay}}
+
+These resources can be gathered to build and upgrade various structures in the base camp, animal pens on the [[Anachronia Dinosaur Farm]], and skilling stations in [[Dream of Iaia]]. Before building the storehouse, the maximum amount (or cap) of each resource that can be held is 5,000. The storehouse section below details the cap for each tier; up to 150,000 for Tier 3. Workers will continue to gather resources when the player is logged out or not at the base camp. Each worker assigned to a resource will gather 60 of that resource each hour, updating at approximate 10 minute intervals, until the storehouse cap has been hit. The timing of the updates varies with respect to the game time on a world-to-world basis.
+
+[[Compacted resources]] can also be found whilst skilling or killing the local fauna. These can be sent to the base camp to gain 100, 200, or 400 resources with a tier 1, 2, or 3 town hall built respectively.
+
+==Base camp structures==
+===Town Hall===
+{{Main|Town Hall (Anachronia base camp)}}
+The first tier of the Town Hall is made during the base camp introduction in the eastern base camp. [[Mr. Mordaut]], [[Giles]], and [[general store assistant]] can be found here. Upgrading the Town Hall is required to upgrade all other base camp structures. A [[Deposit box (Anachronia base camp)|deposit box]] is located here; a [[Bank chest (Anachronia base camp)|bank chest]] is available as an upgrade. The tier 2 town hall brings with it an [[armour store assistant]] (west of [[Laniakea]]) and a [[weapon store assistant]] (in the storehouse). The tier 3 Town Hall brings with it a [[gem store assistant]] (eastern side of the base camp) and a [[rune store assistant]] (south of the spa).
+
+{{Anachronia base camp/Town Hall tiers}}
+
+<gallery mode="packed" heights="190">
+Town Hall (tier 0).png|Tier 0 Town Hall
+Town Hall (tier 1).png|Tier 1 Town Hall
+Town Hall (tier 2).png|Tier 2 Town Hall
+Town Hall (tier 3).png|Tier 3 Town Hall
+</gallery>
+
+===Storehouse===
+{{Main|Storehouse (Anachronia base camp)}}
+Upgrading the Storehouse increases the maximum amount of each individual resource that can be held at base camp. It is located just south of Town Hall. Once the Town Hall is upgraded to tier 2, the [[Weapon store assistant]] can be found here.
+
+{{Anachronia base camp/Storehouse tiers}}
+
+<gallery mode="packed" heights="190">
+Storehouse (tier 0).png|Tier 0 Storehouse
+Storehouse (tier 1).png|Tier 1 Storehouse
+Storehouse (tier 2).png|Tier 2 Storehouse
+Storehouse (tier 3).png|Tier 3 Storehouse
+</gallery>
+
+===Sleeping Quarters===
+{{Main|Sleeping Quarters}}
+Upgrading the Sleeping Quarters increases the maximum number of workers at base camp. Tier 1 Sleeping Quarters has a maximum gathering ability of 900 resources per hour, tier 2 has a maximum of gathering ability of 1,800 resources per hour, and tier 3 has a maximum of gathering ability of 3,600 resources per hour. The Sleeping Quarters is located in the north-western part of the camp, west of the Spa.
+
+{{Anachronia base camp/Sleeping Quarters tiers}}
+
+<gallery mode="packed" heights="190">
+Sleeping Quarters (tier 0).png|Tier 0 Sleeping Quarters
+Sleeping Quarters (tier 1).png|Tier 1 Sleeping Quarters
+Sleeping Quarters (tier 2).png|Tier 2 Sleeping Quarters
+Sleeping Quarters (tier 3).png|Tier 3 Sleeping Quarters
+</gallery>
+
+===Spa===
+{{Main|Spa (Anachronia base camp)}}
+The Spa is run by the [[spa owner]]. It provides the player with boosts to [[Agility]] experience across Anachronia (excluding [[silverhawk boots]]). It also contains a [[spa pool]] that grants effects identical to three of the pools at the [[Spa]] in [[Oo'glog]]. The Spa is located in the northern part of the camp, east of the Sleeping Quarters.
+
+This does not require [[As a First Resort]], but it does not have the Bandos or sulphur pools.
+
+{{Anachronia base camp/Spa tiers}}
+
+<gallery mode="packed" heights="190">
+File:Spa (tier 0).png|Tier 0 Spa
+File:Spa (tier 1).png|Tier 1 Spa
+File:Spa (tier 2).png|Tier 2 Spa
+File:Spa (Tier 3).png|Tier 3 Spa
+</gallery>
+
+===Hunter Lodge===
+{{Main|Hunter Lodge}}
+The Hunter Lodge provides bonuses to [[Big Game Hunter]]. It is located in the south-western part of the camp. [[Irwinsson]] can be found here. 
+
+{{Anachronia base camp/Hunter Lodge tiers}}
+
+<gallery mode="packed" heights="190">
+Hunter Lodge (tier 0).png|Tier 0 Hunter Lodge
+Hunter Lodge (tier 1).png|Tier 1 Hunter Lodge
+Hunter Lodge (tier 2).png|Tier 2 Hunter Lodge
+Hunter Lodge (tier 3).png|Tier 3 Hunter Lodge
+</gallery>
+
+===Slayer Lodge===
+{{Main|Slayer Lodge}}
+The Slayer Lodge provides damage boosts across Anachronia. It is located in the north-eastern part of the camp, just north of Town Hall. [[Laniakea]] can be found here.
+
+{{Anachronia base camp/Slayer Lodge tiers}}
+
+<gallery mode="packed" heights="190">
+File:Slayer Lodge (tier 0).png|Tier 0 Slayer Lodge
+File:Slayer Lodge (tier 1).png|Tier 1 Slayer Lodge
+File:Slayer Lodge (tier 2).png|Tier 2 Slayer Lodge
+File:Slayer Lodge (tier 3).png|Tier 3 Slayer Lodge
+</gallery>
+
+===Player Lodge===
+{{Main|Player Lodge}}
+The Player Lodge provides restoration for the player when stood in, in addition to various other perks. It is located directly east of the northern start of the agility course, with the [[skillcape rack]] one space east of the big ladder.
+
+{{Anachronia base camp/Player Lodge tiers}}
+
+<gallery mode="packed" heights="190">
+Player Lodge (tier 0).png|Tier 0 Player Lodge
+Player Lodge (tier 1).png|Tier 1 Player Lodge
+Player Lodge (tier 2).png|Tier 2 Player Lodge
+Player Lodge (tier 3).png|Tier 3 Player Lodge
+</gallery>
+
+===Bank chest===
+{{Main|Bank chest (Anachronia base camp)}}
+The bank chest spot in Town Hall is originally filled with a [[Deposit box (Anachronia base camp)|deposit box]].
+
+{| class="wikitable lighttable"
+! width="200px" | Requirements
+! width="180px" | Materials
+! Benefits
+|-
+| 
+Town Hall (tier 1)
+|
+{{plink amount|Wood (Anachronia base camp)|txt=Wood|500}}<br>
+{{plink amount|Stone (Anachronia base camp)|txt=Stone|500}}
+|
+Access to a bank chest at the Town Hall, which replaces the [[Deposit box (Anachronia base camp)|deposit box]]
+|}
+
+===Lodestone===
+{{Main|Anachronia lodestone}}
+A [[Anachronia lodestone|lodestone]] can be unlocked for faster travel to the island.
+
+{| class="wikitable lighttable"
+! width="200px" | Requirements
+! width="180px" | Materials
+! Benefits
+|-
+| 
+Town Hall (tier 1)
+|
+{{plink amount|Stone (Anachronia base camp)|txt=Stone|150}}<br>
+{{plink amount|Clay (Anachronia base camp)|txt=Clay|150}}
+|
+Access to a [[Anachronia lodestone|lodestone]] to allow quick travel to Anachronia
+|}
+
+===Remote totem access point===
+{{Main|Remote totem access point}}
+A [[Remote totem access point|totem]] that can be used to change any [[totem]] on [[Anachronia]] remotely.
+
+{| class="wikitable lighttable"
+! width="200px" | Requirements
+! width="180px" | Materials
+! Benefits
+|-
+| 
+Town Hall (tier 1)
+|
+{{plink amount|Stone (Anachronia base camp)|txt=Stone|150,000}}<br>
+{{plink amount|Vines (Anachronia base camp)|txt=Vines|150,000}}<br>
+{{plink amount|Wood (Anachronia base camp)|txt=Wood|150,000}}<br>
+{{plink amount|Remototem|1}}
+|
+Access to a [[Remote totem access point|totem]] in the base camp that can be used to change any [[totem]] on Anachronia remotely
+|}
+
+<gallery mode="packed" heights="190">
+Remote totem access point.png|Remote totem access point is located north-east of lodestone.
+</gallery>
+
+==Other structures==
+Other structures can be found and built across Anachronia, providing various utilities.
+===Bait box===
+{{Main|Bait box}}
+The "pile of planks" is located by the main stairs just east of the lodestone, immediately south of the [[Lectern (Anachronia)|lectern]], or at any [[Big Game Hunter]] location. Once built, all the hotspots across Anachronia turn into [[bait box]]es where bait can be deposited and withdrawn.
+
+{{Bait box tiers}}
+
+===Deposit box===
+{{Main|Deposit box (Anachronia, buildable)}}
+[[Deposit box (Anachronia, buildable)|Deposit box]]es can be found at the following locations:
+* Western: [[Bill (Zygomite)|Bill]] in [[Eggsperimentation]] activity
+* North-eastern: [[Observation outpost]]
+* South-eastern: [[Xolo City]]
+* Central: East of the [[spirit grove]]
+
+Building one at one of these locations only makes that location's deposit box available, and the rest must be built separately.
+
+{| class="wikitable lighttable"
+! Location
+! width="200px" | Requirements
+! width="180px" | Materials
+! Benefits
+|-
+| Western
+| rowspan="4" |
+* Town Hall (tier 1)
+* Storehouse (tier 2)<ref group="b">Has an actual requirement of Town Hall (tier 1) but due to the resources required to build it, the Storehouse is required in practice.</ref>
+| rowspan="4" |
+{{plink amount|Wood (Anachronia base camp)|txt=Wood|30,000}}<br>
+{{plink amount|Stone (Anachronia base camp)|txt=Stone|30,000}}
+| rowspan="4" |
+Access to a deposit box on Anachronia
+|-
+| North-eastern
+|-
+| South-eastern
+|-
+| Central
+|}
+<references group="b"/>
+
+<gallery mode="packed" heights="190">
+Deposit box (tier 0).png|Tier 0 deposit box
+Deposit box (tier 1).png|Tier 1 deposit box
+</gallery>
+
+==Strategy==
+Since the materials for the tier 1 Town Hall are provided during the tutorial, the player needs to focus on gathering resources for other buildings. It is highly recommended that a player builds the Anachronia lodestone, followed by upgrading the deposit box into a bank chest, before anything else in order to allow a central access point to every location on the island and provide the ability to bank on Anachronia.
+
+Once the lodestone and bank chest are accessible, rotate between upgrading the Storehouse, Sleeping Quarters, and Town Hall until they are all tier 3. Doing this will allow the highest amount of storage for resources and the maximum amount of workers for constructing other buildings and nodes around the island, which would otherwise impede growth of the camp. 
+
+There are a couple of strategies when devoting workers to gather resources;
+
+# Assign workers evenly to the required resources, or
+# Assign the maximum amount of workers to one resource until the required amount for a building or node has been acquired, then switch to the next resource.
+
+Option 1 is an easier way to gather resources and requires the least amount of input. However, Option 2 can be slightly faster when gathering a specific resource, though it necessitates regular visits to the camp unless you have unlocked the [[Command Centre]] in [[Fort Forinthry]], which allows for remote camp management from the Command Centre.
+
+Overall, it will require a minimum of 880 hours to get the Town Hall, Storehouse, and Sleeping Quarters buildings to tier 3 if gathering resources via workers and not making use of compacted resources. After this, it will take 468.75 hours to get the Spa, Hunter Lodge, and Slayer Lodge structures to tier 3, with an additional 197.5 hours for a tier 3 Player Lodge. As a result, it takes approximately 1,550 hours to construct all tier 3 Base Camp structures, or a minimum of 64 days and 14 hours.
+
+To create tier 3 deposit and bait boxes, the overall time will increase to approximately 1,672 hours, or a minimum of 69 days.
+
+Resource acquisition can be sped up considerably with [[Advance Time]] at level 93 Magic, adding 72 hours each real week. This is 43% faster resource gain, which results in 30% less time taken overall. Alternatively, when skilling in Anachronia, different types of [[Compacted resources]] may be obtained and the player may choose to focus the workers on the resources they may not be able to gather themselves.
+
+While players can acquire the important upgrades to Tier 3 buildings such as the [[dinosaur tooth]], [[dinosaur rib bone]] at the Anachronia Base Camp through random skilling activities, Slayer, or [[Big Game Hunter]], the [[Dream of Iaia]] is likely to drop all the upgrade materials within several days of using the dream because of the very high rate of XP drops within the Dream that allow for a roll on the table.
+
+==Achievements==
+* {{Achievement|Setting The Foundation}}
+* {{Achievement|Home Away From Home}}
+* {{Achievement|Top Town Hall}}
+* {{Achievement|Master Builder}}
+* {{Achievement|Remotely Possible}}
+
+==Transcript==
+{{Hastranscript}}
+
+==Update history==
+{{UH|
+* {{UL|type=patch|update=Dive into Sunlight Sands!|date=6 July 2026}}
+** Updated the 'Remote Totem Charging Point' to be displayed as 'Remote Totem Access Point' on the Anachronia base camp management UI.
+
+* {{UL|type=patch|update=Murder On The Border & Graphical Updates - This Week In RuneScape|date=20 March 2023}}
+** The delay when upgrading Anachronia buildings on mobile devices has been removed.
+
+* {{UL|type=ninja|update=Ninja Strike & 2.25XP for FSW! - This Week In RuneScape|date=31 October 2022}}
+** Added an option in Anachronia Base Camp management to assign 5, 10 or All workers to a resource, in addition to the existing X amount option.
+
+* {{UL|type=patch|update=Tales of Pride - This Week In RuneScape|date=13 June 2022}}
+** Player's Anachronia base camp resources now update when entering the Dream of Iaia.
+
+* {{UL|type=patch|update=New Crowns of Loyalty & DXP Continues - This Week In RuneScape|date=23 May 2022}}
+** Fixed some blocking and force-walk tiles on some stairs surrounding the Anachronia base camp.
+
+* {{UL|type=ninja|update=This Week In RuneScape: Ninja Strike 26 - Souped Up Statues|date=13 September 2021}}
+** Fixed an issue where it was possible to obtain multiple rare items for the Anachronia Base Camp.
+
+* {{UL|type=ninja|update=This Week In RuneScape: The RS20 mini-quest series continues!|date=6 April 2021}}
+** Players can now use the worker icon in the Base Camp Management interface to manually input numbers and quickly assign workers.
+
+* {{UL|type=ninja|update=This Week In RuneScape - Celebration of Minigames!#Patch Notes|date=18 January 2021}}
+** For consistency, messaging about trying to use The Ranch without completing the [[Anachronia Base Camp]] tutorial has been turned into info-boxes.
+
+* {{UL|type=patch|update=Patch Notes (15 June 2020)|date=15 June 2020}}
+** Fixed an issue where the [[reinforced dinosaur pelt]] for the [[Hunter lodge]] at the Anachronia Base Camp could not be obtained when the pelt resources were maxed.
+
+* {{UL|type=patch|update=Game Update: Ninja Strike 3 - Shattered Worlds|date=14 April 2020}}
+** The [[Archaeology master cape|Archaeology Master Skillcape]] can now be placed on the skillcape stand in the Anachronia Base Camp.
+
+* {{UL|type=patch|update=Patch Notes (20 January 2020)|date=20 January 2020}}
+** Examine text has been changed on Tier 1 Spa in [[Anachronia]].
+
+* {{UL|type=patch|update=Patch Notes (4 November 2019)|date=4 November 2019}}
+** Having a [[slayer helmet|helmet]] on the helmet stand on Anachronia now grants extra [[slayer]] experience as intended.
+
+* {{UL|type=patch|update= Patch Notes (14 October 2019)|date=14 October 2019}}
+** Fixed an issue causing the Slayer helmet stand to not work as a helmet slot.
+
+* {{UL|type=patch|update=Patch Notes (7 October 2019)|date=7 October 2019}}
+** You will no longer receive a warning when entering the [[Aberrant spectre]] area of the [[Slayer Tower|Morytania slayer tower]] whilst the Slayer helmet is on the stand in Anachronia.
+
+* {{UL|type=patch|update=Patch Notes (23 September 2019)|date=23 September 2019}}
+** An issue where base camp upgrade items were rolling on an already obtained item and then failing has been fixed - you will now more consistently get the base camp upgrades if the drop table lands on it.
+** [[Anachronia base camp#Spa|Base camp spa]] effects will now show the correct duration if it exceeds 60 minutes. Note: The buff icon will still show 1h, there will be a future update which will show specifically how many minutes this effects has remaining.
+** The [[Anachronia base camp#Player Lodge|T2 player lodge upgrade]] will now consistently restore [[prayer]] and [[summoning]] points if you are healed above your max [[lifepoints]].
+** The colour of the ring in [[Big Game Hunter]] that denotes how close you are to being caught now changes more evenly if you have the extension bonus from a [[Anachronia base camp#Hunter Lodge|Hunter Lodge]] of tier 2 or above.
+
+* {{UL|type=patch|update=Patch Notes (16 September 2019)|date=16 September 2019}}
+** The broadcast message for completing the Anachronia base camp will no longer trigger when building bait boxes, as they are not required for the achievement!
+
+* {{UL|type=patch|update=Patch Notes (9 September 2019)|date=9 September 2019}}
+** The Anachronia Slayer Lodge & Spa bonuses now work correctly once more.
+
+* {{UL|type=patch|update=Patch Notes (19 August 2019)|date=19 August 2019}}
+** A second guard has been added to the south side of the Anachronia Base Camp that can deal with all your [[agility]] needs.
+
+* {{UL|type=patch|update=Patch Notes (5 August 2019)|date=5 August 2019}}
+** Some black triangle have been removed from the firepit in the Hunter Lodge on Anachronia.
+** The flags on Anachronia buildings will now wiggle in the wind.
+
+* {{UL|type=patch|update=Patch Notes (22 July 2019)|date=22 July 2019}}
+** The tooltip for the plus and minus buttons when assigning workers has been removed as it was obscuring the value already assigned.
+** A breadcrumb trail has been added to [[Giles]] if you have not yet completed the Base Camp tutorial.
+
+* {{UL|type=patch|update=Patch Notes (15 July 2019)|date=15 July 2019}}
+** Blocking has been added to a brazier in base camp.
+** You can no longer place cannons or various other entities inside the base camp on Anachronia.
+
+* {{UL|type=update|update=Land Out of Time - The journey begins!|date=8 July 2019}}
+** Added to game.
+}}
+
+==Trivia==
+* The first person to fully upgrade their base camp on Anachronia was ''Dick0rTreat'' on [[9 September]] [[2019]].
+
+{{Anachronia}}

@@ -16,6 +16,7 @@ import {
   FlaskConical,
   Gem,
   GripVertical,
+  House,
   Leaf,
   ListChecks,
   Medal,
@@ -31,8 +32,12 @@ import {
 } from 'lucide-react';
 import { FormEvent, useEffect, useState } from 'react';
 import progressData from './data/efficient-progress.json';
+import repeatables from './data/repeatable-activities.json';
+import repeatableSources from './data/wiki-repeatables/manifest.json';
 import ReferenceImage from './reference-image';
 import RuneScapeNews from './runescape-news';
+import FontPreferences from './font-preferences';
+import BrandLogo from './brand-logo';
 import dropItemImages from './data/drop-item-images.json';
 import { ironTasks, type IronTask } from './data/random-tasks';
 import {
@@ -50,140 +55,8 @@ const nav = [
   [CalendarCheck2, 'Distractions and Diversions'],
   [Medal, 'Achievements'],
 ] as const;
-const themes = [
-  ['dark', 'Dark'],
-] as const;
-type Theme = (typeof themes)[number][0];
-function isTheme(value: string | null): value is Theme {
-  return themes.some(([id]) => id === value);
-}
 
-const repeatables = {
-  Daily: [
-    ['Daily Challenges', 'Three skill challenges', 'High XP'],
-    ['Nemi Forest', 'Mining, Farming, Prayer & Dungeoneering', '10 min'],
-    ['Jack of Trades', 'Complete the aura skill circuit', 'XP book'],
-    ['Guthixian Cache', 'Claim up to two Divination games', 'Timed'],
-    ['Sinkholes', 'Two Dungeoneering games', 'Timed'],
-    ['Big Chinchompa', 'Two Hunter games and competence points', 'Hunter'],
-    ['Supply run', 'Turn supplies in to Quercy', 'Skilling XP'],
-    ['Wild jade vine', 'Slay or prune the Karamja vine', 'Farming'],
-    ['Book of Char', 'Use Char’s daily Firemaking training', 'Firemaking'],
-    ['Trinks’ Tasks', 'Complete Mazcab tasks for reputation', 'Reputation'],
-    ['Soul obelisks', 'Claim Menaphos reputation and XP', 'Menaphos'],
-    ['Arc contracts', 'Complete an Arc contract', 'Chimes'],
-    [
-      'Heart of Gielinor bounties',
-      'Complete Feng’s daily bounties',
-      'Reputation',
-    ],
-    ['Runesphere rune dust', 'Hand in up to 1,000 rune dust', 'Runecrafting'],
-    ['Player-owned Farm', 'Check animals, produce and beans', 'Farming'],
-    ['Player-owned ports', 'Voyages, visitors and resources', 'Passive'],
-    [
-      'Anachronia base camp',
-      'Send out management and check rewards',
-      'Anachronia',
-    ],
-    [
-      'Gorajo hoardstalker',
-      'Claim a daily Dungeoneering card',
-      'Dungeoneering',
-    ],
-    [
-      'Explorer’s ring casts',
-      'Use daily alchemy, superheat and other casts',
-      'Free casts',
-    ],
-    ['Lumbridge food hamper', 'Claim food from the castle cook', 'Supplies'],
-    [
-      'Desert achievement claims',
-      'Collect merchant and amulet rewards',
-      'Supplies',
-    ],
-    [
-      'Arc free supplies',
-      'Claim Rosie’s supplies and island resources',
-      'The Arc',
-    ],
-    ['Fixate casts', 'Use three free Archaeology Fixates', 'Archaeology'],
-    [
-      'Kingdom collection',
-      'Collect and reassign Miscellania workers',
-      'Resources',
-    ],
-    ['Robin bone exchange', 'Turn bones into bonemeal and slime', 'Prayer'],
-    ['Wythien exchange', 'Trade crystal motherlode shards', 'Prifddinas'],
-    ['Razmire olive oil', 'Restock olive oil in Mort’ton', 'Herblore'],
-  ],
-  Weekly: [
-    ['Soul Reaper', 'Earn up to 300 Reaper points', 'Bossing'],
-    ['Penguin Hide and Seek', 'Spot the weekly penguins', 'Flexible XP'],
-    ['Tears of Guthix', 'Train your lowest skill', 'Quest'],
-    ['Meg at Player-owned Ports', 'Answer Meg and claim the chest', '5 min'],
-    ['Agoroth', 'Two encounters for bonus XP', 'Combat'],
-    ['Big Top Bonanza', 'Complete the travelling circus event', 'Skill XP'],
-    ['Skeletal horror', 'Kill it for Slayer, Prayer and a clue', 'Weekly boss'],
-    ['Hanky points', 'Claim Buyers and Cellars Thieving XP', 'Thieving'],
-    ['Clan Citadel capping', 'Cap for XP and clan resources', 'Clan'],
-    ['Familiarisation', 'Choose charm enhancer or ingredients', 'Summoning'],
-    ['A Barmaid’s Tip', 'Follow up on a Player-owned Port tip', 'Ports'],
-    ['Thalmund’s Wares', 'Check the weekly Necromancy stock', 'Necromancy'],
-    ['Broken Home replay', 'Replay for a large XP lamp', 'Quest'],
-    ['Sliske’s Endgame replay', 'Claim weekly replay rewards', 'Quest'],
-    ['Rush of Blood', 'Complete the Slayer gauntlet', 'Slayer'],
-    ['Dimension of Disaster replay', 'Earn silver pennies', 'Quest'],
-    ['Shattered Worlds challenge', 'Complete a weekly challenge', 'Combat'],
-    ['Memory of Nomad', 'Replay the weekly Nomad encounter', 'Combat'],
-    ['Champion refights', 'Refight unlocked champions', 'Combat'],
-    ['Wisps of the Grove', 'Weekly Farming and Hunter event', 'Skilling'],
-    ['Herby Werby', 'Trade herbs for Herblore experience', 'Herblore'],
-    ['Advance Time', 'Use the weekly high-level Magic spell', 'Magic'],
-    [
-      'Water filtration system',
-      'Collect before its storage caps',
-      'Fort Forinthry',
-    ],
-    [
-      'Achievement resource claims',
-      'Collect cactus, fruit, flax, essence and sand',
-      'Supplies',
-    ],
-    ['Razmire plank claim', 'Claim noted planks from Mort’ton', 'Construction'],
-    ['Aquarium decorations', 'Collect oysters, kelp and seaweed', 'Weekly'],
-    ['Coeden’s logs', 'Claim your accumulated high-tier logs', 'Woodcutting'],
-    ['Eli Bacon', 'Claim raw bacon or a spirit pig', 'Supplies'],
-    ['Lupe’s Soul Supplies', 'Collect free Necromancy supplies', 'Necromancy'],
-    [
-      'Weekly shop packs',
-      'Check yak hides, meat, seaweed, vials and runes',
-      'Shop run',
-    ],
-    [
-      'Bandit Duty Free',
-      'Check Construction, ritual and seed stock',
-      'Shop run',
-    ],
-    [
-      'Culinaromancer’s Chest',
-      'Check food and cooking ingredients',
-      'Shop run',
-    ],
-    ['Black Marketeer', 'Buy available port resources', 'Ports'],
-  ],
-  Monthly: [
-    ['Troll Invasion', 'Defend Burthorpe and claim an XP book', 'Combat'],
-    ['God Statues', 'Build four statues across Gielinor', 'Construction'],
-    ['Giant Oyster', 'Feed, check and open the oyster', 'Fishing'],
-    ['Effigy Incubator', 'Power effigies for lamps or stars', 'High level'],
-    ['Marketplace free items', 'Claim the monthly Marketplace items', 'Claim'],
-    [
-      'Crystal tree blossom',
-      'Harvest accumulated Prifddinas blossoms',
-      'Farming',
-    ],
-  ],
-} as const;
+
 
 type HiscoreSkill = { name: string; rank: number; level: number; xp: number };
 type HiscorePlayer = {
@@ -295,7 +168,6 @@ const repeatableRequirements: Record<
     manual: 'Player-owned Ports access',
   },
   'Anachronia base camp': { manual: 'Anachronia access' },
-  'Gorajo hoardstalker': { manual: 'Prifddinas access' },
   'Fixate casts': {
     skills: [['Archaeology', 99]],
     manual: 'Master archaeologist outfit',
@@ -401,11 +273,6 @@ export default function Home() {
   const [showLanding, setShowLanding] = useState(true);
   const [active, setActive] = useState('Dashboard');
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, [active, showLanding]);
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return 'dark';
-    const savedTheme = document.documentElement.dataset.theme || null;
-    return isTheme(savedTheme) ? savedTheme : 'dark';
-  });
   const [progressionOpen, setProgressionOpen] = useState(false);
   const [testOpen, setTestOpen] = useState(false);
   const [groupData, setGroupData] = useState<HiscoreResult | null>(null);
@@ -460,11 +327,6 @@ export default function Home() {
           : groupData.players[0].name,
     );
   }, [groupData]);
-  function changeTheme(value: Theme) {
-    setTheme(value);
-    document.documentElement.dataset.theme = value;
-    window.localStorage.setItem('ironpath-theme', value);
-  }
   function choosePreferredMember(name: string) {
     setPreferredMember(name);
     window.localStorage.setItem('ironpath-preferred-member', name);
@@ -564,8 +426,6 @@ export default function Home() {
             setActive('Dashboard');
             setShowLanding(false);
           }}
-          theme={theme}
-          changeTheme={changeTheme}
           groupData={groupData}
           setGroupData={setGroupData}
           unsyncGroup={unsyncGroup}
@@ -584,11 +444,23 @@ export default function Home() {
               onClick={() => setActive('Dashboard')}
               aria-label="Open Ironpath dashboard"
             >
-              <img className="brand-symbol" src="/ironpath-zaros-mark.png" alt="" />
-              <span className="brand-wordmark">Ironpath<span>Group Ironman companion</span></span>
+              <BrandLogo subtitle="Group Ironman companion" />
             </button>
             <div className="navigation-row">
               <nav aria-label="Primary navigation">
+                <button
+                  type="button"
+                  className="nav-button"
+                  aria-label="Back to landing page"
+                  title="Home"
+                  onClick={() => {
+                    setProgressionOpen(false);
+                    setTestOpen(false);
+                    setShowLanding(true);
+                  }}
+                >
+                  <House size={18} strokeWidth={1.8} aria-hidden="true" />
+                </button>
                 {nav.map(([Icon, label]) => (
                   <button
                     key={label}
@@ -824,20 +696,7 @@ export default function Home() {
             >
               Home
             </button>
-            <label className="theme-control footer-theme-control">
-              <span>Theme</span>
-              <select
-                value={theme}
-                onChange={(event) => changeTheme(event.target.value as Theme)}
-                aria-label="Choose color theme"
-              >
-                {themes.map(([id, label]) => (
-                  <option value={id} key={id}>
-                    {label}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <FontPreferences inline />
             <span>
               Concept created by <a className="project-origin-link" href="/about">Justjay btw</a>
             </span>
@@ -862,15 +721,11 @@ export default function Home() {
 
 function IronpathLanding({
   onEnter,
-  theme,
-  changeTheme,
   groupData,
   setGroupData,
   unsyncGroup,
 }: {
   onEnter: () => void;
-  theme: Theme;
-  changeTheme: (value: Theme) => void;
   groupData: HiscoreResult | null;
   setGroupData: (value: HiscoreResult | null) => void;
   unsyncGroup: () => void;
@@ -922,26 +777,26 @@ function IronpathLanding({
     finally { setSyncingQuests(false); }
   }
   return (
-    <section className="ironpath-entry" aria-label="Ironpath introduction">
+    <section className="ironpath-entry story-entry" aria-label="Ironpath introduction">
       <div className="entry-logo-button entry-logo-static entry-brand-heading">
-        <img className="entry-brand-symbol" src="/ironpath-zaros-mark.png" alt="" />
-        <span className="entry-wordmark">Ironpath<small>RuneScape 3 · Group Ironman</small></span>
+        <BrandLogo subtitle="RuneScape 3 · Group Ironman" />
       </div>
       <div className="entry-main">
         <div className="entry-copy">
-          <h1>Build the next chapter together.</h1>
+          <p className="eyebrow">A GROUP IRONMAN PASSION PROJECT</p>
+          <h1>A shared adventure.<br /><em>A labour of love.</em></h1>
           <p>
-            Ironpath is a shared place for the things your Group Ironman team
-            is already figuring out together. Keep an eye on the group, find
-            the next useful unlock, and stop losing good information between
-            game sessions.
+            Ironpath started with Justjay btw and his Group Ironman partners:
+            new accounts, shared goals, and a growing list of things worth keeping track of.
+            A simple idea became a companion for the game we love.
           </p>
           <p className="entry-intro-detail">
-            From public HiScores and recent activity to daily routines,
-            farming routes, reference guides, and your group&apos;s item history,
-            it is built around the little things that make a long journey feel
-            easier to manage.
+            The process is still personal. Play, spot something that could be better,
+            talk it through with the group, then build and refine it. AI helps turn
+            those ideas into code; real play gives them a purpose. Every revision
+            is another attempt to make this a place worth coming back to.
           </p>
+          <a className="story-about-link" href="/about">Meet the project behind the progress <ChevronRight size={16} /></a>
           <div className="entry-actions">
             <button className="entry-primary" onClick={onEnter}>
               Enter Ironpath <ChevronRight size={18} />
@@ -967,58 +822,27 @@ function IronpathLanding({
             </section>
           )}
         </div>
-        <div className="entry-feature-area">
-          <div className="entry-feature-heading">
-            <p className="eyebrow">YOUR GROUP, ONE PLACE</p>
-            <h2>Built for the journey ahead.</h2>
-            <p>Plan together, keep momentum, and find the next useful thing without losing the fun of the group.</p>
-          </div>
-          <div className="entry-feature-stack" aria-label="Ironpath features">
-            <article>
-              <Trophy size={17} />
-              <div>
-                <strong>Group Dashboard</strong>
-                <span>Standings, activity, and shared history</span>
-              </div>
-            </article>
-            <article>
-              <CalendarCheck2 size={17} />
-              <div>
-                <strong>Keep the rhythm</strong>
-                <span>Information and routes about all of your favorite D&amp;D&apos;s</span>
-              </div>
-            </article>
-            <article>
-              <ListChecks size={17} />
-              <div>
-                <strong>Make progress clear</strong>
-                <span>Resources shaped for Ironman accounts</span>
-              </div>
-            </article>
-            <article>
-              <Compass size={17} />
-              <div>
-                <strong>Find the next step</strong>
-                <span>Roadmaps, training ideas, unlocks, and useful account references</span>
-              </div>
-            </article>
-            <article>
-              <Archive size={17} />
-              <div>
-                <strong>Keep the memorable stuff</strong>
-                <span>Build a shared record of drops and milestones your group finds</span>
-              </div>
-            </article>
-            <article>
-              <Wrench size={17} />
-              <div>
-                <strong>Made to grow with us</strong>
-                <span>Try new features, keep what helps, and shape the companion around real play</span>
-              </div>
-            </article>
-          </div>
-        </div>
+        <aside className="story-build-note" aria-labelledby="story-build-title">
+          <span className="story-note-number">THE WORK BEHIND THE WINDOW</span>
+          <h2 id="story-build-title">One idea.<br />Thousands of little details.</h2>
+          <p>From a group lookup to the right item image, the small things deserve care too.</p>
+          <dl className="story-stats">
+            <div><dt>16,000+</dt><dd>lines of source code</dd></div>
+            <div><dt>115</dt><dd>source files shaping the project</dd></div>
+          </dl>
+          <p className="story-stat-note">Project snapshot · October 16, 2026. Includes application code, styles, scripts, and tests; excludes dependencies, generated builds, and reference data.</p>
+          <div className="story-signature"><Sparkles size={18} /><span>Human direction. AI-assisted building.<br /><strong>Made with care, still being refined.</strong></span></div>
+        </aside>
       </div>
+      <section className="story-tools" aria-labelledby="story-tools-title">
+        <div className="story-tools-heading"><p className="eyebrow">LESS KEEPING TRACK. MORE PLAYING.</p><h2 id="story-tools-title">Give the next session a little direction.</h2><p>A home for the information you reach for between the big milestones.</p></div>
+        <div className="story-tool-list">
+          <article><span className="story-tool-number">01</span><Trophy size={23} /><div><h3>See how the group is getting on.</h3><p>Bring public HiScores, recent activity, and shared item history into one place. Keep up with the progress that makes the journey yours.</p><span>Group dashboard · Activity · Item history</span></div></article>
+          <article><span className="story-tool-number">02</span><CalendarCheck2 size={23} /><div><h3>Make the everyday a little easier.</h3><p>Keep useful routines close at hand, from distractions and diversions to farming routes. Spend less of the session remembering what you meant to do.</p><span>Daily routines · D&amp;Ds · Farming</span></div></article>
+          <article><span className="story-tool-number">03</span><Compass size={23} /><div><h3>Find something worth working towards.</h3><p>Explore training ideas, unlocks, and Ironman references when you need a next step. Take the useful bits and make the path your own.</p><span>Training · Unlocks · Reference guides</span></div></article>
+        </div>
+        <div className="story-invitation"><p>Built around our group.<br /><strong>Here for your journey, too.</strong></p><button className="entry-primary" onClick={onEnter}>Find your next step <ChevronRight size={18} /></button></div>
+      </section>
       <footer className="entry-footer entry-credit">
         <div className="entry-footer-brand">
           <span>Built by players, for players.</span>
@@ -1029,20 +853,7 @@ function IronpathLanding({
           <a href="/privacy">Privacy &amp; data</a>
         </nav>
         <div className="entry-footer-utility">
-          <label className="theme-control entry-theme-control">
-            <span>Theme</span>
-            <select
-              value={theme}
-              onChange={(event) => changeTheme(event.target.value as Theme)}
-              aria-label="Choose color theme"
-            >
-              {themes.map(([id, label]) => (
-                <option value={id} key={id}>
-                  {label}
-                </option>
-              ))}
-            </select>
-          </label>
+          <FontPreferences inline />
           <span className="entry-footer-legal">Unofficial · Not affiliated with Jagex</span>
         </div>
       </footer>
@@ -5155,7 +4966,7 @@ function RepeatablesView({
         <div className="reset-card">
           <Clock3 size={16} />
           <div>
-            <span>Next {period.toLowerCase()} reset</span>
+            <span>Standard {period.toLowerCase()} reset</span>
             <strong>{resetLabel(period)}</strong>
           </div>
         </div>
@@ -5401,8 +5212,10 @@ function RepeatablesView({
         </div>
       </section>
       <p className="update-note">
-        <Sparkles size={14} /> Updated for the March 2026 DailyScape overhaul.
-        Removed and uncapped former dailies are intentionally excluded.
+        <BookOpen size={14} /> Wiki checked {repeatableSources.checkedOn} ·{' '}
+        <a href={repeatableSources.sources[0].url} target="_blank" rel="noreferrer">Repeatable events</a>.
+        {' '}Timers vary: weekly shop stock, clan ticks, and growth timers do not all reset on Wednesday.
+        Guthixian Cache is memory-triggered and excluded from timed checklists.
       </p>
     </div>
   );
