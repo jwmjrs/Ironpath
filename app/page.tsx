@@ -1529,13 +1529,12 @@ function ShopRunsView({
   );
 }
 
-function DashboardStart({ onNavigate, playerName }: { onNavigate: (page: string) => void; playerName?: string }) {
+function DashboardStart({ onNavigate }: { onNavigate: (page: string) => void }) {
   const [checks, setChecks] = useState<Record<string, boolean>>({});
   useEffect(() => {
     try { setChecks(JSON.parse(localStorage.getItem('ironpath-repeatables') || '{}')); } catch { /* Keep an empty summary when storage is unavailable. */ }
   }, []);
   return <section className="dashboard-start">
-    <header className="welcome-heading"><span className="welcome-icon"><Users size={28} /></span><div><h1>Welcome Back</h1><p>Progress today. A higher tomorrow.</p></div><div className="welcome-character"><small>Selected character</small><strong>{playerName || 'Choose a character below'}</strong></div></header>
     <div className="welcome-metrics">{(['Daily', 'Weekly', 'Monthly'] as const).map(period => { const total = repeatables[period].length; const done = repeatables[period].filter(([name]) => checks[name]).length; return <button className="panel welcome-metric" key={period} onClick={() => onNavigate('Distractions and Diversions')}><CalendarCheck2 size={22}/><div><span>{period} activities</span><strong>{done} / {total}</strong></div><span className="progress-track"><i style={{width: `${done / total * 100}%`}} /></span></button>; })}</div>
     <div className="welcome-board-grid"><section className="panel welcome-board"><div className="panel-heading"><h3><Sparkles size={16}/> Daily Activity Board</h3><button className="text-button" onClick={() => onNavigate('Distractions and Diversions')}>View all →</button></div><div className="welcome-tasks">{repeatables.Daily.slice(0,8).map(([name]) => <button key={name} aria-pressed={Boolean(checks[name])} onClick={() => { const next = { ...checks, [name]: !checks[name] }; setChecks(next); localStorage.setItem('ironpath-repeatables', JSON.stringify(next)); }}><span className={checks[name] ? 'welcome-check complete' : 'welcome-check'}>{checks[name] ? <Check size={13}/> : '·'}</span>{name}</button>)}</div></section>
     <aside className="panel welcome-links"><h3>Quick Links</h3>{[['Progression Roadmap','Progression Roadmap'],['Daily / Weekly / Monthly','Distractions and Diversions'],['Farming Routes','Routes'],['Training Lookup','Skill Training'],['Achievements','Achievements']].map(([label,page]) => <button key={page} onClick={() => onNavigate(page)}><Compass size={15}/>{label}<ChevronRight size={13}/></button>)}</aside></div>
@@ -2050,8 +2049,6 @@ function HiScoresView({
         </aside>
       )}
       <div className={dashboardMockup ? 'dashboard-mockup-main' : undefined}>
-      <DashboardStart onNavigate={onNavigate} playerName={selectedPlayer?.name} />
-      <RuneScapeNews />
       {selectedPlayer && (
         <section id="dashboard-personalize" className="panel member-home-selector dashboard-personalize">
           <div>
@@ -2072,6 +2069,8 @@ function HiScoresView({
           <div className="personal-stat"><span>Top skill</span><strong>{selectedTopSkill ? `${selectedTopSkill.name} ${selectedTopSkill.level}` : '—'}</strong></div>
         </section>
       )}
+      <DashboardStart onNavigate={onNavigate} />
+      <RuneScapeNews />
       <section id="dashboard-overview" className="panel dashboard-connection-panel">
         <div>
           <p className="eyebrow">Group connection</p>
