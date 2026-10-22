@@ -1,0 +1,74 @@
+{
+  "checkedOn": "2026-10-16",
+  "source": "RuneScape Wiki contributors",
+  "attribution": "Cached Wiki text remains subject to RuneScape Wiki licensing; see https://runescape.wiki/w/RuneScape:Copyrights",
+  "sources": [
+    {
+      "title": "Repeatable events",
+      "revisionId": 37199386,
+      "revisionTimestamp": "2026-10-06T19:00:51Z",
+      "url": "https://runescape.wiki/w/Repeatable_events",
+      "permalink": "https://runescape.wiki/w/Special:PermanentLink/37199386",
+      "file": "repeatable-events.wikitext"
+    },
+    {
+      "title": "Guthixian Cache",
+      "revisionId": 37177947,
+      "revisionTimestamp": "2026-09-15T10:00:20Z",
+      "url": "https://runescape.wiki/w/Guthixian_Cache",
+      "permalink": "https://runescape.wiki/w/Special:PermanentLink/37177947",
+      "file": "guthixian-cache.wikitext"
+    },
+    {
+      "title": "Player-owned port",
+      "revisionId": 37203306,
+      "revisionTimestamp": "2026-10-12T07:02:18Z",
+      "url": "https://runescape.wiki/w/Player-owned_port",
+      "permalink": "https://runescape.wiki/w/Special:PermanentLink/37203306",
+      "file": "player-owned-port.wikitext"
+    },
+    {
+      "title": "Gorajo hoardstalker",
+      "revisionId": 37145410,
+      "revisionTimestamp": "2026-08-06T19:34:09Z",
+      "url": "https://runescape.wiki/w/Gorajo_hoardstalker",
+      "permalink": "https://runescape.wiki/w/Special:PermanentLink/37145410",
+      "file": "gorajo-hoardstalker.wikitext"
+    },
+    {
+      "title": "Anachronia base camp",
+      "revisionId": 37174576,
+      "revisionTimestamp": "2026-09-10T05:53:12Z",
+      "url": "https://runescape.wiki/w/Anachronia_base_camp",
+      "permalink": "https://runescape.wiki/w/Special:PermanentLink/37174576",
+      "file": "anachronia-base-camp.wikitext"
+    },
+    {
+      "title": "Challenge System",
+      "revisionId": 37202417,
+      "revisionTimestamp": "2026-10-11T05:37:13Z",
+      "url": "https://runescape.wiki/w/Challenge_System",
+      "permalink": "https://runescape.wiki/w/Special:PermanentLink/37202417",
+      "file": "challenge-system.wikitext"
+    }
+  ],
+  "scope": "Curated Ironman daily/weekly checklist covering Repeatable events, with related claims/shop runs grouped. Daily Challenges and Ports verified against their own pages. Monthly entries retained from the existing app.",
+  "excluded": [
+    {
+      "name": "Guthixian Cache",
+      "reason": "Triggered by 800 memories; no timed reset."
+    },
+    {
+      "name": "Gorajo hoardstalker",
+      "reason": "Daily card claim removed in Dungeoneering Remastered."
+    },
+    {
+      "name": "Player-owned Farm",
+      "reason": "Growth/checking routine, not a daily-reset entry on Repeatable events."
+    },
+    {
+      "name": "Anachronia base camp",
+      "reason": "Passive resource routine, not a daily-reset entry on Repeatable events."
+    }
+  ]
+}

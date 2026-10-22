@@ -1,0 +1,1208 @@
+{{redirect3|Challenges|For the special assignments given by slayer masters, see [[Slayer/Challenges]]}}
+{{Redirect|Agility daily|the agility training method|serenity posts}}
+{{Otheruses|def=no|the old system|Challenge System (historical)}}
+[[File:Daily Challenge icon.png|left|Minimap icon for locating the Challenge Mistresses to hand in daily challenges]]
+The '''Challenge System''' is a system intended to suggest skill training methods to players. Daily Challenges can be accessed using the third tab in the [[Interface#Adventures|Adventures]] interface, labelled "Challenges". 
+
+==Basic challenges==
+Before players gain access to the [[#Daily challenges|daily challenges]], they must complete a set of seven basic challenges. These challenges are an introduction to the daily challenges system and grant no [[experience]] rewards. All can be completed in [[Burthorpe]].
+
+These can be skipped by speaking to the [[Challenge Mistress Fara]] in [[Burthorpe]]. Skipping these will not grant experience.
+
+Unlike daily challenges, basic challenges will auto-repopulate the Challenge systems tab until all seven are completed. At that point, basic challenges will no longer be available and daily challenges will appear.
+
+===List of basic challenges===
+{| class="wikitable sortable"
+! colspan=2 | Challenge
+! Description
+! Recommended actions / Notes
+|-
+| {{Skill clickpic|Combat}}
+| Basic Combat
+| Kill cows: 5
+| Test the combat skills against the [[cow]]s south of the Smithing and Crafting areas in [[Burthorpe]]. Remember to pick up their [[bones]] for the Prayer Basic Challenge.
+|-
+| {{Skill clickpic|Mining}}
+| Basic Mining
+| Mine copper or tin ore in the Burthorpe mine: 3
+| Players can find [[Copper rock|copper]] and [[tin rock]]s inside the [[Burthorpe mine]].
+|-
+| {{Skill clickpic|Mining}}
+| Basic Mining: Clay
+| Mine clay from clay rocks: 6
+| There are [[clay rock]]s in the south-east of [[Lumbridge Swamp]].
+|-
+| {{Skill clickpic|Mining}}
+| Basic Mining: Common Gems
+| Mine uncut opals, lapis lazuli, jade or red topaz from common gem rocks: 6
+| [[Common gem rock]]s can be found north of [[Al Kharid]].
+|-
+| {{Skill clickpic|Crafting}}
+| Basic Crafting: Gemstones
+| Cut opals or other gems mined from common gem rocks: 3
+| [[Common gem rock]]s can be found at the southern-most end of the [[Burthorpe mine]].
+|-
+| {{Skill clickpic|Crafting}}
+| Basic Crafting: Pottery
+| Wet clay, then craft the soft clay into any unfired pottery or urn at a pottery wheel: 6 
+| [[Clay]] can be mined at the Burthorpe mine. There is a well to the south-east of the mine's entrance, as well as [[potter's wheel]]s and [[pottery oven]]s just outside. Player can also find pottery wheels and a pottery oven in [[Draynor Village]].
+|-
+| {{Skill clickpic|Woodcutting}}
+| Basic Woodcutting
+| Chop trees to receive logs: 4
+| [[Tree]]s can be found all over Burthorpe.
+|-
+| {{Skill clickpic|Fishing}}
+| Basic Fishing
+| Catch any type of fish: 6
+| Directly south of the Burthorpe mine is a stream with a [[Fishing spot (crayfish)|crayfish fishing spot]].
+|-
+| {{Skill clickpic|Fletching}}
+| Basic Fletching: Shafts
+| Fletch any type of arrow shafts: 30
+| The players can use the [[logs]] they chopped from the Woodcutting basic challenge.
+|-
+| {{Skill clickpic|Firemaking}}
+| Basic Firemaking
+| Light any logs or add them to a bonfire: 2
+| The players can use the [[logs]] they chopped from the Woodcutting basic challenge.
+|-
+| {{Skill clickpic|Cooking}}
+| Basic Cooking
+| Cook raw food on a fire or range: 3
+| The players can use the [[fire]] from the [[logs]] they made from the Firemaking basic challenge.
+|-
+| {{Skill clickpic|Prayer}}
+| Basic Prayer
+| Bury bones: 5
+| Kill [[cow]]s for the basic combat challenge and pick up their [[bones]], then select them in the backpack to bury them.
+|}
+
+==Daily challenges==
+===Mechanics===
+[[File:Adventures (Challenges) interface.png|thumb|The challenge tab of the Adventures interface]]
+
+Three daily challenges are assigned to the player each day. These expire at the end of each day before being replaced by three more. The skill of the challenge can be different each day and for each player. Daily challenges are active by default, meaning that the challenge system tracks their progress without the player having to toggle anything. Completing each challenge awards the player with experience equivalent to a [[large XP lamp]] in the skill of the challenge. Free-to-play players only get 75% of the experience.
+
+{{Reset|soft}}
+The first time a player logs in each day after the daily reset at 00:00 UTC, they receive several messages, appearing in their chatbox and containing summaries of their active challenges (for example: {{RSFont|New Daily Challenge: Prayer - Daily Prayer (0 / 25)|color=#ee7600}}). These messages are not filterable but can be hidden with Sign-in Messages settings, found in the Notification section of the Gameplay settings. Players can check the details of their active daily challenges by clicking on the third tab from the left in the "Adventures" interface.
+
+Additionally, it is possible to have at most one challenge active at a time for a specific skill. An exception to this is when fewer than three challenges are toggled on. In that case duplicates of unblocked challenges will be rolled, making it possible to have multiple challenges for a given skill. One action can progress multiple challenges, meaning that if the player has for instance two Summoning challenges to infuse three pouches each, infusing six at once completes both of these challenges. Each point of progress is only counted for one of the challenges, so infusing only three pouches would only complete the first of the challenges.
+
+[[Divine location]]s will not count for daily challenges in gathering skills.
+
+===List of daily challenges===
+{| class="wikitable sortable sticky-header align-center-1"
+! colspan=2 | Challenge
+! Description
+! Notes and recommendations
+|-
+| width="30px" | {{Skill clickpic|Agility}} {{Anchor|Agility}}
+| width="200px" | Daily Agility
+| width="300px" | Complete full laps of any agility course: {{g|daily challenge qty agility}}
+| [[Burthorpe Agility Course]]. Each section of the [[Anachronia Agility Course]] counts as a lap for the challenge, so completing a full lap is not required.
+|-
+| {{Skill clickpic|Archaeology}} {{Anchor|Archaeology}}
+| Daily Archaeology 
+| Excavate or restore artefacts: {{g|daily challenge qty archaeology}}
+| Excavate [[Venator remains]] at Kharid-et. Assembling a [[Tetracompass (unpowered)|tetracompass]] at an [[archaeologist's workbench]] will count towards this challenge. [[Centurion's dress sword]] during the tutorial does not count.
+|-
+| {{Skill clickpic|Combat}} {{Anchor|Combat}}{{Anchor|Attack}}{{Anchor|Strength}}{{Anchor|Defence}}{{Anchor|Ranged}}{{Anchor|Magic}}{{Anchor|Necromancy}}
+| Daily Combat
+| Kill enemies: {{g|daily challenge qty combat}}
+| [[Rabbit (Burthorpe)|Rabbits]] in [[Burthorpe]]. Enemies killed in [[Daemonheim]] count, but certain other enemies, such as [[demon boss]]es, do not. Reward is a [[Challenge XP Lamp]] to choose which combat experience: [[Constitution]], [[Magic]], [[Ranged]], [[Attack]], [[Defence]], [[Strength]], or [[Necromancy]].
+|-
+| {{Skill clickpic|Construction}} {{Anchor|Construction}}
+| Daily Construction
+| Construction [[Construction#Furniture|normal]] or [[Flatpack|flat-packed]] furniture: {{g|daily challenge qty construction}}
+| [[Construction Contracts]] do not count.
+|-
+| {{Skill clickpic|Cooking}} {{Anchor|Cooking}}
+| Daily Cooking
+| Prepare dishes of food: {{g|daily challenge qty cooking}}
+| Cook [[fish]] or [[raw meat]] excluding the meats listed below. Cooking done in [[Daemonheim]] and cooking [[uncooked stew]] count. [[Raw potato]]es can be bought and cooked at [[Fort Forinthry]].
+
+Cooking various items doesn't work:
+* Using a [[dairy churn]]
+* Slicing a [[cheese wheel]]
+* Making [[Jug of wine|jugs of wine]]
+* Cooking [[protean protein]] or [[unstable protean protein]]
+* Cooking [[raw wobbegong]]
+* Cooking [[great maki]] or [[great gunkan]]
+* Cooking various regular food: [[raw rat meat]].
+* Making [[Gnome cooking|gnome dishes]].
+|-
+| rowspan="3" | {{Skill clickpic|Crafting}} {{Anchor|Crafting}}
+| Daily Crafting: Equipment
+| Craft pieces of equipment: {{g|daily challenge qty crafting leather}}
+| [[Spider silk gloves|Spider silk]] or [[leather gloves]]. Crafting equipment in [[Daemonheim]] counts.
+|-
+| style="text-align: left" | Daily Crafting: Jewellery
+| Craft pieces of jewellery: {{g|daily challenge qty crafting jewellery}}
+| [[Tiara]]s, or [[gold ring]]s. Firing [[Clay ring (unfired)|unfired clay rings]] at a [[pottery oven]] or stringing jewellery do not count.
+|-
+| style="text-align: left" | Daily Crafting: Urns
+| Fire any [[Urns|urn]] in a pottery oven: {{g|daily challenge qty crafting urns}}
+| Because all urns require two pieces of [[soft clay]] to make, it is better to create the highest level urns in a skill of the player's choice. Non-runed urns are tradeable, so one might not want to add runes to the produce.
+|-
+| {{Skill clickpic|Divination}} {{Anchor|Divination}}
+| Daily Divination
+| Convert any type of divination memories: {{g|daily challenge qty divination}}
+| [[Flickering wisp]]s (requires 10 Divination) are located just east of the [[Falador lodestone]].
+|-
+| {{Skill clickpic|Dungeoneering}} {{Anchor|Dungeoneering}}
+| Daily Dungeoneering
+| Complete a [[Dungeoneering floors|Daemonheim floor]], [[Shifting Tombs|shifting tomb]], or [[Elite Dungeons|elite dungeon]]: {{g|daily challenge qty dungeoneering}}
+| Small [[Dungeoneering]] floor in low complexity. Shifting Tombs do not require completing any objectives, and merely reaching the exit will count for the challenge.
+|-
+| {{Skill clickpic|Farming}} {{Anchor|Farming}}
+| Daily Farming
+| Check the health of a farming patch, or gather produce from an [[Allotment patch|allotment]], [[herb patch]], [[Hops Patch|hop patch]], or farm [[Animals|animal]]: {{g|daily challenge qty farming}}
+|
+* Plant three [[potato seed]]s in the [[potato patch]] in [[Taverley]] and harvest the [[Potato (Farming)|potato]]es after 40 minutes. The patch doesn't become diseased. Free seeds can be obtained from [[Head Farmer Jones]], next to the patch. Plant more seeds after harvesting so that the patch is ready to harvest when the next Farming challenge is received.
+* Gather produce from an elder [[Rabbit (player-owned farm)|rabbit]] in the [[player-owned farm]]. They take one hour to grow from child to elder.
+* When gathering from a patch, the patch must become empty and items must be obtained in backpack (e.g. harvesting [[Fly traps (Farming)|fly traps]] doesn't work) for the action to count.
+|-
+| {{Skill clickpic|Firemaking}} {{Anchor|Firemaking}}
+| Daily Firemaking
+| Light any [[Logs (type)|logs]] or add them to a [[bonfire]]: {{g|daily challenge qty firemaking}}.
+| Firemaking in [[Daemonheim]] counts. Lighting [[pyre logs]] on a [[Funeral pyre (Mort'ton)|Mort'ton funeral pyre]] or a [[Funeral pyre (Columbarium)|Columbarium funeral pyre]] does not.
+|-
+| {{Skill clickpic|Fishing}} {{Anchor|Fishing}}
+| Daily Fishing
+| Catch any type of fish: 14
+| Fishing in [[Daemonheim]] counts. Catching [[crystal fragment]]s while benefitting from the [[crystal armour]]'s crystal-boosting set bonus adds progress for every extra shard caught, allowing for extremely fast completion.
+|-
+| rowspan="2" | {{Skill clickpic|Fletching}} {{Anchor|Fletching}}
+| Daily Fletching: Arrows
+| Fletch any type of arrows or arrow shafts: {{g|daily challenge qty fletching arrows}}
+| Different logs yield different amounts (15–45) of [[arrow shaft]]s when fletched, yielding different amounts of progress. Obtaining [[tempered fungal shaft]]s during [['Accidental' Fletching and Firemaking#Zygomite Carestyling|Zygomite Carestyling]] count toward this challenge, but only via the "Cut" or "Cut and Dry" (only during the "Cut" action) options. Making arrows in [[Daemonheim]] does count, but not making [[Arrow shaft (Dungeoneering)|arrow shafts]] or [[Headless arrow (Dungeoneering)|headless arrow]]s in Daemonheim. Making [[bakriminel bolt shafts]] also count towards this challenge, but making the shafts into [[bakriminel bolts]] does not.
+|-
+| style="text-align: left"| Daily Fletching: Bows
+| Fletch, string or upgrade any type of bows: {{g|daily challenge qty fletching bows}}
+| Both fletching the unstrung bow and stringing it yields progress, so fully fletching one bow yields two progress. Both fletching and stringing count in [[Daemonheim]] as well.
+|-
+| rowspan="2" | {{Skill clickpic|Herblore}} {{Anchor|Herblore}}
+| Daily Herblore: Herbs
+| Clean any grimy herbs: {{g|daily challenge qty herblore clean}}
+| Harvesting herbs wearing the [[master farmer outfit]] does not count, as the herbs are harvested as clean herbs, bypassing the grimy state. Using the [[Herblore cape]]'s perk counts. Cleaning [[shadow-infused herb]]s from the [[farmer's Catalyst fragment]] works.<br>Cleaning herbs within [[Daemonheim]] counts.
+|-
+| style="text-align: left" | Daily Herblore: Potions
+| Brew any type of potions: {{g|daily challenge qty herblore brew}}
+| Complete the last step of any potion (both [[barbarian mix]] and potions within [[Daemonheim]] work).<br>Creating incomplete potions, such as unfinished potions or the various intermediate steps of a [[Sanfew serum]] do not count.
+|-
+| {{Skill clickpic|Hunter}} {{Anchor|Hunter}}
+| Daily Hunter
+| Skin a [[Big Game Hunter|big game hunter]] creature, or catch any creatures: {{g|daily challenge qty hunter catch}}
+| Catching [[whirligigs]] at [[Het's Oasis]] whilst handling a nearby crocodile can complete an extended challenge in one go. Catch [[implings]] at hotspots such as [[Falador lodestone]] or the [[Gorajo Hoardstalker Dungeon]]. Killing one Big Game Hunter creature yields three points of progress at a time for Daily Hunter challenges; skinning is not required. Catch-and-release methods, such as bare-handed [[Butterfly (Hunter)|butterfly]] catching, count for catching creatures.
+|-
+| {{Skill clickpic|Mining}} {{Anchor|Mining}}
+| Daily Mining
+| Mine any type of ore: {{g|daily challenge qty mining}}
+| [[Gem rock]]s, [[granite]], [[sandstone]], [[red sandstone]], [[crystal-flecked sandstone]], [[clay]], [[Rune essence (rock)|rune essence rocks]], [[sea salt]], [[alaea sea salt]] and [[Shooting Star]]s do not count towards this challenge. Using [[stone spirits]] to double the amount of ores does not work. Mining in [[Daemonheim]] does count.
+|-
+| {{Skill clickpic|Prayer}} {{Anchor|Prayer}}
+| Daily Prayer
+| Offer bones or ashes to the gods: {{g|daily challenge qty prayer}}
+| Offering to [[Daemonheim]] altars do not count, although burying bones in Daemonheim does. Use of a [[bonecrusher]], an [[attuned ectoplasmator]], or burning bones on a [[fire]] through [[cremation]] count. Cremating [[vyre corpse]]s or [[shade remains]] does not count.
+|-
+| rowspan="2" | {{Skill clickpic|Runecrafting}} {{Anchor|Runecrafting}}
+| Daily Runecrafting: Runes
+| Craft essence into any type of rune: {{g|daily challenge qty runecrafting craft}}
+| A [[wicked hood]] can be used to teleport to a Runecrafting altar. [[Necrotic runes]] count. Runecrafting in Daemonheim does not count.
+|-
+| style="text-align: left" | Daily Runecrafting: Runespan
+| Siphon any type of rune from the [[Runespan]]: {{g|daily challenge qty runecrafting siphon}}
+|
+|-
+| {{Skill clickpic|Slayer}} {{Anchor|Slayer}}
+| Daily Slayer
+| Kill Slayer creatures assigned to you by a Slayer master: {{g|daily challenge qty slayer}}
+| Only creatures on a [[Slayer assignment]] count. Killing creatures that grant [[Slayer]] experience in other ways, such as [[slayer contract]]s or [[Rush of Blood]] during the Iorwerth [[Voice of Seren]] do not count. 
+|-
+| {{Skill clickpic|Smithing}} {{Anchor|Smithing}}
+| Daily Smithing
+| Create or upgrade a piece of equipment using core smithing metals: {{g|daily challenge qty smithing}}
+| The number of forged products created is counted, not the bars. Therefore, it is fastest to create items that require only one bar to make, such as [[arrowheads]]. Upgrading [[havensilver weapons]] does not count.
+|-
+| {{Skill clickpic|Summoning}} {{Anchor|Summoning}}
+| Daily Summoning
+| Infuse [[summoning pouches]]: {{g|daily challenge qty summoning}}
+| [[Ancient Summoning]] doesn't count.
+|-
+| rowspan="3" | {{Skill clickpic|Thieving}} {{Anchor|Thieving}}
+| Daily Thieving: Pickpocketing
+| Pickpocket any target (or loot artefacts in [[Pyramid Plunder]]): {{g|daily challenge qty thieving loots}}
+| [[Pompous merchant]]s in [[Taverley]]. NPCs that can be [[Blackjacking|blackjacked]] cannot be pickpocketed to complete daily challenges. [[Dead legionary|Dead legionaries]] in the [[Vault of Hereditas]] will count.
+|-
+| style="text-align: left" | Daily Thieving: Safes
+| Crack a [[safe]] and loot all its contents: {{g|daily challenge qty thieving safes}}
+| Crack the safe near [[Al Kharid lodestone]]. Despite the task's description, looting is not required. For instance, if one is not carrying a [[loot bag]], the loot is forfeited, but the cracking still counts for the challenge. Safes from [[heists]] will count.
+|-
+| style="text-align: left" | Daily Thieving: Stalls
+| Steal from any market stall: {{g|daily challenge qty thieving stalls}}
+| [[Lumbridge market]].
+|-
+| {{Skill clickpic|Woodcutting}} {{Anchor|Woodcutting}}
+| Daily Woodcutting
+| Chop trees to receive logs: {{g|daily challenge qty woodcutting}}
+| Woodcutting in [[Daemonheim]] counts. Chopping [[ivy]] counts even though no logs are received. Using [[wood spirits]] to double the logs works.
+|}
+
+===Rewards===
+[[File:Completed daily challenge icon.png|left]]
+After completing a daily challenge, players can open the Challenges interface and click the "Claim Rewards" button. Members will be awarded experience equal to that of a [[large XP lamp]] in the skill related to the challenge, whereas free-to-play players will only get 75% of the experience.
+
+For combat which has multiple skills, players will be given a [[Challenge XP Lamp]] to choose which experience: Constitution, Magic, Ranged, Attack, Defence, Strength, or Necromancy.
+
+Experience to be received is determined by the level when the challenge was assigned, not when it is completed. The experience earned does not take into account the skill's virtual level. The following tables show the experience received from completing a challenge for any given skill level:
+<tabber>
+Members=
+{{LampXP|cols=3|multiplier=4}}
+|-|
+Free-to-play=
+{{LampXP|cols=3|multiplier=3}}
+</tabber>
+
+Players can also talk to [[Challenge Mistress Fara]] in [[Burthorpe]] just south of the bank chest, [[Challenge Mistress Rashida]] in the centre of the [[Menaphos]] Plaza near the [[Menaphos lodestone|lodestone]], or [[Challenge Mistress Heriau]] in the [[Max Guild]] to receive the reward.
+
+The reward experience amount is calculated at the moment when the challenge is received, not when completed or claimed. If a member's first login of the day is to a free-to-play world and they receive a challenge in a members' skill, the reward will be limited to the maximum F2P level in that skill.
+
+Players will not receive a reward for a completed challenge if it is allowed to expire before the reward is claimed.
+
+===Influencing assigned daily challenges===
+By talking to [[Challenge Mistress Fara]], [[Challenge Mistress Rashida|Rashida]], or [[Challenge Mistress Heriau|Heriau]], players may choose to block receiving new challenges in any skills that they have achieved [[skill mastery]] in. Non-members may block members' skills at level 5 (with the exception of 20 for [[Archaeology]]). Additionally, all challenges in combat skills can be completely disabled if players do not wish to gain combat experience, even if the combat skills are not maxed.
+
+Each skill has its own toggle, so players can choose to block some skills while keeping others assignable. Blocking a skill will not remove challenges for that skill that have already been assigned. Members can take advantage of the level 5 (or 20) "max" in free-to-play to block out challenges from certain members' only skills. This is done by logging into a free-to-play world before reset and blocking the undesired members' skill. After 00:00 in game time, players must log back in to a free-to-play world to receive challenges with the new restrictions. Logging back into a members' world will unblock challenges for all skills not at 99.
+
+[[File:Challenge max toggle interface.png|frame|center|The challenge toggle interface. Blockable (i.e. maxed) skills are outlined in silver, unblockable (i.e. not maxed) skills are outlined in gold. Currently blocked skills are crossed out.]]
+
+If one or two challenges are toggled on, duplicates of unblocked challenges will be rolled. If no challenges are toggled on, challenges won't be given at all.
+
+[[File:Challenge system banner.png|center]]
+
+==Returner Challenges==
+Returner challenges were added on [[20 March]] [[2023]], and are made available to players who return to the game after having been away for a time. These returner challenges are available until all 7 Returner Reward Chests have been claimed, or until 20 days have passed since the player first logged in. Returner challenges are not random, but are instead given out in a fixed order. Completed challenges are replaced by new ones every day at 00:00 in game time, while incomplete challenges are not affected.
+
+===List of Returner Challenges===
+{| class="wikitable sortable"
+|-
+! Number
+! Members
+! Challenge
+! Description
+! Notes
+|-
+| 1
+| {{Members|no}}
+| Welcome Back
+| Log into the game: 1
+| {{NA}}
+|-
+| 2
+| {{Members|no}}
+| Playtime
+| Play for a certain amount of minutes: 10
+| {{NA}}
+|-
+| 3
+| {{Members|no}}
+| Fort Forinthry
+| Visit Fort Forinthry north-east of Varrock: 1
+| {{NA}}
+|-
+| 4
+| {{Members|no}}
+| Customisation
+| Change your appearance, animations, title or pet in the 'Customisations' interface: 1
+| {{NA}}
+|-
+| rowspan="2" | 5
+| {{Members|no}}
+| Grand Exchange
+| Sell items at the Grand Exchange: 1
+| Only if not an [[Ironman Mode]] player
+|-
+| {{Members|no}}
+| Shops
+| Sell items to a store: 1
+| Only as an [[Ironman Mode]] player
+|-
+| rowspan="2" | 6
+| {{Members|no}}
+| Gathering Skills
+| Convert memories into energy, gather produce, catch fish, catch Hunter creatures, mine ore or chop trees: 50
+| 
+|-
+| {{Members|yes}}
+| Fort Construction
+| Construct buildings or fortifications in Fort Forinthry (You need to have started the quest 'New Foundations' to be able to do this.): 1
+| 
+|-
+| 7
+| {{Members|no}}
+| Playtime
+| Play for a certain amount of minutes: 20
+| 
+|-
+| rowspan="2" | 8
+| {{Members|no}}
+| rowspan="2" | Het's Oasis
+| Speak to Mubariz in Al Kharid about the history of the Duel Arena: 1
+| 
+|-
+| {{Members|yes}}
+| Catch whirligigs at Het's Oasis: 20
+| 
+|-
+| rowspan="2" | 9
+| {{Members|no}}
+| Artisan Skills
+| Construct furniture, cook food, fire urns, craft jewellery, craft equipment, burn logs, fletch arrows or bows, brew potions, craft runes or smith equipment: 30
+| 
+|-
+| {{Members|yes}}
+| Treasure Trails
+| Complete clue scroll trails and earn reward caskets: 1
+| 
+|-
+| 10
+| {{Members|no}}
+| Wilderness
+| Talk to Vala in Edgeville about the history of the Wilderness: 1
+| 
+|-
+| rowspan="2" | 11
+| {{Members|no}}
+| Combat
+| Kill enemies: 20
+| 
+|-
+| {{Members|yes}}
+| Garden of Kharid
+| Plant herb seeds at the Garden of Kharid: 1
+| 
+|-
+| 12
+| {{Members|no}}
+| Achievements
+| Complete achievements: 1
+| 
+|-
+| 13
+| {{Members|no}}
+| Playtime
+| Play for a certain amount of minutes: 30
+| 
+|-
+| 14
+| {{Members|no}}
+| Archaeology
+| Excavate or restore artefacts: 1
+| 
+|-
+| rowspan="2" | 15
+| {{Members|no}}
+| Support Skills
+| Complete Agility courses, complete Daemonheim floors, kill Slayer creatures, pickpocket targets or steal from stalls: 15
+| 
+|-
+| {{Members|yes}}
+| Anachronia
+| Assign workers to gather resources at the Anachronia base camp: 1
+| 
+|-
+| 16
+| {{Members|no}}
+| D&Ds
+| Complete Distractions & Diversions: 1
+| 
+|-
+| 17
+| {{Members|no}}
+| Artisan's Workshop
+| Gain respect at the Artisans' Workshop by smithing, repairing pipes and creating ceremonial swords: 1
+| 
+|-
+| 18
+| {{Members|no}}
+| Questing
+| Complete quests: 1
+| 
+|-
+| 19
+| {{Members|no}}
+| Playtime
+| Play for a certain amount of minutes: 40
+| 
+|-
+| rowspan="2" | 20
+| {{Members|no}}
+| Dungeons
+| Visit the Edgeville Dungeon, Karamja Dungeon, Asgarnian Ice Dungeon or Varrock Sewers: 1
+| 
+|-
+| {{Members|yes}}
+| Senntisten
+| Visit the city of Senntisten: 1
+| 
+|-
+| 21
+| {{Members|no}}
+| Bossing
+| Kill bosses: 1
+|
+|}
+
+===Rewards===
+The only reward for completing a Returner Challenge is progress towards a set of progress rewards, which work much like the weekly rewards available from daily challenges. Like weekly rewards, there are seven tiers of rewards available, each being unlocked by completing three challenges. Unlike weekly rewards, this reward track is not replaced each week, but remains until all seven rewards have been claimed or 20 days have passed.
+
+{| class=wikitable
+! colspan=2 | Account type
+! Tier 1 Returner Reward Chest
+! Tier 2 Returner Reward Chest
+! Tier 3 Returner Reward Chest
+! Tier 4 Returner Reward Chest
+! Tier 5 Returner Reward Chest
+! Tier 6 Returner Reward Chest
+! Tier 7 Returner Reward Chest
+|-
+| rowspan=2 | {{Members|yes}}
+| Regular account
+| 1 Free Death
+| rowspan=2 | 1 [[Box of clue scrolls (untradeable)]]
+| rowspan=2 | 1 [[the Breaktaker]] title
+| rowspan=2 | 1 [[Deathtouched dart]]
+| 1 [[Giant prismatic fallen star]]
+| 1 [[Challenge gift box (large)]]
+| 1 Double XP Chance
+|-
+| [[Ironman Mode]]
+| 2000 [[Oddments]]
+| 1 [[Challenge gift box (small)]]
+| 1 [[Challenge gift box (medium)]]
+| 1 [[Challenge gift box (large)]]
+|-
+| rowspan=2 | {{Members|no}}
+| Regular account
+| 5 [[Advanced Pulse Cores]]
+| rowspan=2 | 1 [[Challenge token]]
+| rowspan=2 | 1 [[Challenge token]]
+| 1 [[Medium cash bag]]
+| rowspan=2 | 1 [[Challenge token]]
+| rowspan=2 | 1 [[Challenge token]]
+| 5 [[Cinder Cores]]
+|-
+| [[Ironman Mode]]
+| 250 [[Oddments]]
+| 500 [[Oddments]]
+| 1000 [[Oddments]]
+|}
+
+==Transcript==
+{{Hastranscript}}
+
+==Development history==
+The Challenge System was [[Update:Daily Challenges & Noticeboard|released]] on [[19 September]] [[2012]] and first [[Update:Game Update: Christmas 2019 & Daily Challenge Rework|reworked]] on [[16 December]] [[2019]], subsequently being reworked again on [[15 November]] [[2021]], adding a [[Challenge System#Weekly Progress|Weekly Reward Track]].
+
+On [[4 September]] [[2023]], [[Update:Hero Pass: Underworld - This Week in RuneScape|Hero Pass update]], the challenge system was replaced with [[Hero Pass]]. The removal of challenges was [[Update:Ancient Awakening Launches - This Week in RuneScape|reversed]] a month later on [[9 October]] [[2023]].
+
+Until an [[Update:Patch Notes (17 October 2016)|update]], players could receive a "Lucky Challenge".
+
+===Lucky challenges===
+[[File:Lucky Challenge icon.png|left]]
+[[File:Completed Lucky Challenge icon.png|left]]
+[[File:Receiving a Lucky Challenge interface.png|thumb|right]]
+Lucky challenges were [[members]]-only rare daily events that could occur while completing activities in game. These challenges could be gained from a range of actions including completing a quest, sending out a voyage in [[Player-Owned Port]]s, or training a skill. It was possible to receive a lucky challenge for a skill even if it has been toggled off by speaking to [[Challenge Mistress Fara]] or [[Heriau]] after achieving level 99 in that skill. If a lucky challenge was received, the player will be notified by a pop-up interface in-game (see an example picture on the right). This interface will contain details of what the challenge requires the player to do. Additionally a message will be displayed in the player's chatbox notifying them that they have received a lucky challenge, for example:
+
+{{RSFont|You've been given a Lucky Challenge: Magic Logs 0/30<br />
+Check the Challenges interface to find out more information.|color=#ee7600}}
+
+Only one lucky challenge could be received daily (the day begins at 00:00 UTC). It could take some hours of activity to get one, so an active player can enjoy lucky challenges every day. A lucky challenge had a limited duration of 24 hours. The player could have at most one lucky challenge at once. It was possible, in the span of one day, to complete (and hand in) a lucky challenge of the previous day, and then receive a new lucky challenge.
+
+Lucky challenge would appear in the list of daily challenges in the Challenges tab of the [[Interface#Adventures|Adventures]] interface, but could be distinguished from them by the clover icon, [[File:Lucky Challenge icon.png]] or [[File:Completed Lucky Challenge icon.png]], instead of the star, by duration being measured in hours instead of days, and by the prefix "Lucky Challenge:" in the challenge name. Lucky challenges could not be rerolled nor extended. 
+
+Like daily challenges, completed lucky challenges could be handed in to the challenge mistresses. For this, the player will be rewarded with experience in the relevant skill; the same amount of experience that would be given for a completed daily challenge. Unlike daily challenges, lucky challenges did not award the player with a key for Treasure Hunter (until the removal of Treasure Hunter). It was possible to do daily challenge and lucky challenge at the same time.
+
+{| class="wikitable mw-collapsible mw-collapsed"
+|-
+! Name
+! Skill
+! Task
+|-
+| [[Bandos Agility Course|Bandos Throne Room Agility Course]]
+| [[Agility]]
+| Complete 24 laps
+|-
+| [[Barbarian Outpost#Advanced course|Barbarian Outpost Advanced Course]]
+| [[Agility]]
+| Complete 24 laps
+|-
+| [[Gnome Stronghold Agility Course#Advanced course|Advanced Gnome Agility Course]]
+| [[Agility]]
+| Complete 27 laps
+|-
+| [[Ice warrior]]s
+| [[Combat]]
+| Kill Ice warriors: 30
+|-
+| [[Kalphites]]
+| [[Combat]]
+| Kill kalphites: 30 <ref group="a">[[Exiled kalphite]]s do not count towards this challenge.</ref>
+|-
+| [[Moss giant]]s
+| [[Combat]]
+| Kill moss giants: 30
+|-
+| Barrows Brothers
+| Combat
+| Defeat the original Barrows brothers and loot the reward chest: 4
+|-
+| Teak Tables
+| [[Construction]]
+| Construct flat-pack teak tables: 100
+|-
+| [[Bacon]]
+| [[Cooking]]
+| Cook bacon: 31
+|-
+| [[Bright memories]]
+| [[Divination]]
+| Gather bright memories: 100
+|-
+| [[Gleaming memories]]
+| [[Divination]]
+| Gather gleaming memories: 100
+|-
+| Vibrant memories
+| [[Divination]]
+| Gather vibrant energies: 100
+|-
+| [[Lustrous wisp|Lustrous Memories]]
+| [[Divination]]
+| Gather Lustrous memories: 100
+|-
+| [[Sparkling memories]]
+| [[Divination]]
+| Gather sparkling memories: 100
+|-
+| [[Incandescent memories]]
+| [[Divination]]
+| Gather incandescent memories: 100
+|-
+| Nemi Forest Flora
+| [[Farming]]
+| Investigate 1 Nemi Forest flora
+|-
+| Dwarf Weed
+| [[Farming]]
+| Plant Dwarf weed seed: 1
+|-
+| [[Magic logs]]
+| [[Firemaking]]
+| Light magic logs or add them to a bonfire: 320
+|-
+| Salmon
+| [[Fishing]]
+| Catch Salmon: 61
+|-
+| Tuna
+| [[Fishing]]
+| Catch Tuna: 42
+|-
+| Cavefish
+| [[Fishing]]
+| Catch Cavefish: 46
+|-
+| Rocktail
+| [[Fishing]]
+| Catch Rocktail: 44
+|-
+| Clean Guam
+| [[Herblore]]
+| Clean grimy guam herbs: 5
+|-
+| [[Polar Kebbit]]s
+| [[Hunter]]
+| Catch polar kebbits: 7
+|-
+| Jadinkos
+| [[Hunter]]
+| Catch any type of Jadinko (Herblore Habitat): 16
+|-
+| Clay
+| [[Mining]]
+| Mine clay: 42
+|-
+| [[Coal]]
+| [[Mining]]
+| Mine Coal: 50
+|-
+| [[Gold ore]]
+| [[Mining]]
+| Mine gold ore: 45
+|-
+| Seren Stones
+| [[Mining]]
+| Mine Seren Stones: 50
+|-
+| Offer or Bury Bones
+| [[Prayer]]
+| Bury or offer at a player-owned-house altar any type of bone: 20
+|-
+| Runespan XIII
+| [[Runecrafting]]
+| Siphon [[Soul rune|soul]], [[Blood rune|blood]] or [[Death rune|death]] runes from the [[runespan]]: 145
+|-
+| Expert
+| [[Slayer]]
+| Kill monsters assigned as slayer task: 44
+|-
+| Rune Ceremonial Swords
+| [[Smithing]]
+| Smith rune ceremonial swords in the Artisan's Workshop: 6
+|-
+| Smith Items in Burthorpe
+| [[Smithing]]
+| Make items on an anvil in [[Burthorpe]]: 100
+|-
+| Smith items in Varrock
+| [[Smithing]]
+| Make items on an anvil in Varrock: 100
+|-
+| Adamant Minotaurs
+| [[Summoning]]
+| Infuse adamant minotaur pouches: 3
+|-
+| Prifddinas elves
+| [[Thieving]]
+| Pickpocket elves in Prifddinas: 100
+|-
+| [[Magic logs]]
+| [[Woodcutting]]
+| Chop magic logs: 30
+|-
+| [[Elder logs]]
+| [[Woodcutting]]
+| Chop elder logs: 30
+|-
+| [[Player-owned port|Player-Owned Ports]]
+| N/A
+| Send a ship on a voyage from your port.
+|-
+| [[Quest]]
+| N/A
+| Complete the specified quest.
+|}
+<references group="a" />
+
+===Weekly progress===
+Before the [[DailyScape Overhaul]] on [[16 March]] [[2026]], claiming rewards from a completed daily challenge earned progression for the Weekly Progress bar, which reset on Wednesday at 00:00 in game time. There were seven tiers of Weekly Reward Chests to unlock each week. It took three challenges for each unlock, but challenges extended with [[vis wax]] counted as double. The Weekly Rewards interface could be opened at any time by clicking on one of the Weekly Reward Chests in the challenges interface. From the Weekly Rewards interface all of the unlocked rewards could be collected at once.
+
+RuneScape members received the rewards from both the member and free-to-play reward pools, while non-members got only the free-to-play rewards. [[Ironman mode|Ironman players]] had the restricted rewards replaced with [[coins]].
+
+The members' rewards cycled through the following eight sets of weekly rewards in order, before starting over. Breaking your Daily Challenge streak did not affect the order of the rewards.
+
+{| class="wikitable mw-collapsible"
+! Set
+! colspan="7" | Rewards
+|-
+| 1
+| {{plink|Distraction & Diversion reset token (daily)}}
+| {{plink|Small cash bag}}
+| {{plink|Medium cash bag}}
+| 25 {{plink|Enchanted notepaper}}
+| {{plink|Aura refresh (tier 2)}}
+| 5 {{plink|Ports resource crate}}
+| {{plink|Menaphite gift offering (large)}}
+|-
+| 2
+| {{plink|Aura refresh (tier 1)}}
+| 100,000 {{plink|Shattered anima}}
+| {{plink|Slayer VIP Coupon}}
+| {{plink|Dungeoneering Wildcard}}
+| {{plink|Aura refresh (tier 3)}}
+| {{plink|Box of clue scrolls (untradeable)}}
+| {{plink|Soul Reaper Refresh}}
+|-
+| 3
+| {{plink|Small cash bag}}<ref group="a" name="ironman 50">This reward is replaced with 50 [[coins]] for [[Ironman Mode]] players.</ref>
+| {{plink|Aura refresh (tier 2)}}
+| {{plink|Distraction & Diversion reset token (monthly)}}
+| {{plink|Small cash bag}}<ref group="a" name="ironman 50" />
+| 5 {{plink|Ports resource crate}}
+| {{plink|Box of clue scrolls (untradeable)}}
+| {{plink|Slayer VIP Coupon}}
+|-
+| 4
+| {{plink|Aura refresh (tier 1)}}
+| 200,000 {{plink|Shattered anima}}
+| {{plink|Slayer VIP Coupon}}
+| 50,000 {{plink|Shattered anima}}
+| {{plink|Aura refresh (tier 3)}}
+| 5 {{plink|Ports resource crate}}
+| {{plink|Soul Reaper Refresh}}
+|-
+| 5
+| {{plink|Distraction & Diversion reset token (weekly)}}
+| {{plink|Medium cash bag}}<ref group="a" name="ironman 200">This reward is replaced with 200 [[coins]] for [[Ironman Mode]] players.</ref>
+| {{plink|Gift for the Reaper}}
+| 10 {{plink|Enchanted notepaper}}
+| {{plink|Aura refresh (tier 2)}}
+| 5 {{plink|Ports resource crate}}
+| {{plink|Menaphite gift offering (large)}}
+|-
+| 6
+| 25 {{plink|Enchanted notepaper}}<ref group="a" name="ironman 100">This reward is replaced with 100 [[coins]] for [[Ironman Mode]] players.</ref>
+| {{plink|Life refresh}}
+| {{plink|Aura refresh (tier 4)}}
+| {{plink|Dungeoneering Wildcard}}<ref group="a" name="ironman 50" />
+| {{plink|Medium cash bag}}<ref group="a" name="ironman 100" />
+| {{plink|Distraction & Diversion reset token (monthly)}}
+| {{plink|Medium cash bag}}<ref group="a" name="ironman 300">This reward is replaced with 300 [[coins]] for [[Ironman Mode]] players.</ref>
+|-
+| 7
+| {{plink|Distraction & Diversion reset token (daily)}}
+| 100,000 {{plink|Shattered anima}}
+| {{plink|Soul Reaper Refresh}}
+| {{plink|Box of clue scrolls (untradeable)}}
+| 25 {{plink|Enchanted notepaper}}
+| {{plink|Life refresh}}
+| {{plink|Gift for the Reaper}}
+|-
+| 8
+| {{plink|Aura refresh (tier 3)}}
+| {{plink|Distraction & Diversion reset token (weekly)}}
+| 200,000 {{plink|Shattered anima}}
+| {{plink|Menaphite gift offering (medium)}}
+| {{plink|Life refresh}}
+| {{plink|Medium cash bag}}
+| {{plink|Aura refresh (tier 4)}}
+|}
+<references group="a" />
+
+The free-to-play rewards were the same for each week:
+
+{| class="wikitable mw-collapsible"
+! colspan="7" | Rewards
+|-
+| {{plink|Dungeoneering Wildcard}}<ref group="a" name="ironman 50">This reward is replaced with 50 [[coins]] for [[Ironman Mode]] players.</ref>
+| {{plink|Challenge token}}
+| 25 {{plink|Tight spring}}<ref group="a" name="ironman 200">This reward is replaced with 200 [[coins]] for [[Ironman Mode]] players.</ref>
+| {{plink|Challenge token}}
+| {{plink|Small cash bag}}<ref group="a" name="ironman 50" />
+| {{plink|Challenge token}}
+| 25 {{plink|Tight spring}}<ref group="a" name="ironman 200" />
+|}
+<references group="a" />
+
+===Rerolls and extensions===
+Until the [[DailyScape Overhaul]] on [[16 March]] [[2026]], members could reroll or extend daily challenges from the Challenges tab using [[vis wax]]. A reroll cost 10 wax (worth {{NoCoins|{{GEP|vis wax|10}}|c}}) and an extension cost 25 (worth {{NoCoins|{{GEP|vis wax|25}}|c}}). 
+
+An extended challenge would be doubled in length, and the player would receive double the experience reward and Weekly Progress. A challenge could be extended after progressing on it or even after completing it as long as it had not been handed in. Two [[challenge token]]s were required to complete an extended daily challenge.
+
+When a challenge was rerolled, the player would be given a choice between the original challenge and a random new one. The original challenge could be kept, but the vis wax would not be refunded. Challenges could be rerolled as many times as you like.
+
+If an extended challenge was rerolled, the new challenge would not be extended. If the original challenge was kept it would still be extended. The random new challenge could be extended, as extending the original challenge did not count if the new challenge is chosen. If the new challenge was chosen, the vis wax for extending the original challenge would not be refunded.
+
+==Update history==
+{{UH|
+* {{UL|type=patch|update=April Patch Week|date=7 April 2026}}
+** Prevented an issue where a zero value was sent to the Fletching: Arrows daily challenge when the [[Amulet of Fletcher's Offerings]] zeroed the quantity of fletched shafts.
+
+* {{UL|type=update|update=Patch Notes: Dailyscape Overhaul|date=16 March 2026}}
+** Weekly rewards from daily challenges removed.
+** Ability to reroll or extend daily challenges with [[vis wax]] removed.
+
+* {{UL|type=patch|update=February's Month Ahead & New Quest|date=2 February 2026}}
+** Resolved an issue where the safes found in heists were not completing the thieving daily challenge for safes.
+
+* {{UL|type=update|update=RSAhead & Treasure Hunter Winding Down - This Week In RuneScape|date=12 January 2026}}
+** [[Treasure Hunter]] keys removed as rewards from daily challenges.
+
+* {{UL|type=hidden|update=RSAhead & Treasure Hunter Winding Down - This Week In RuneScape|date=12 January 2026}}
+** Rewards from weekly rewards from daily challenges reworked, including replacing [[oddments]] with cash bags, with 50 oddments being replaced with [[small cash bag]]s and 100 and 200 oddments with [[medium cash bag]]s for non-[[Ironman Mode]] players, and with [[coins]] at 1:1 rate for Ironman Mode players.
+
+* {{UL|type=patch|update=Double XP & Amascut next steps - This Week In RuneScape|date=11 August 2025}}
+** The activation of the [[Imp Souled]] perk no longer blocks the progression of the daily woodcutting challenges.
+
+* {{UL|type=hotfix|update=January Patch Week - This Week In RuneScape|date=20 January 2025}}
+** Fletching [[unstrung bow]]s once again counts toward the Fletching: Bows daily challenge.
+
+* {{UL|type=update|update=110 Woodcutting and Fletching Launching Today! - This Week In RuneScape|date=9 December 2024}}
+** The daily "Fletching: Bow" task was updated to include upgrading bows.
+
+* {{UL|type=patch|update=April Merch Update - This Week In RuneScape|date=15 April 2024}}
+** Fixed an issue that shortened the weekly challenges time window by one day for players that logged in or out of the game on the exact moment when the reset occurred.
+
+* {{UL|type=patch|update=WildyWyrm Flash Event and Valentines - This Week In RuneScape|date=5 February 2024}}
+** Added Daily Challenge streaks to the quick chat.
+
+* {{UL|type=patch|update=Update:New Marketplace Outfit & Progression Newsletter - This Week In RuneScape|date=29 January 2024}}
+** Fixed a typo within the Weekly Progress reward screen in the challenges UI.
+
+* {{UL|type=hidden|date=Unknown}}
+** Having no Daily Challenges toggled on causes no Daily Challenges to be given instead of rolling random ones.
+
+* {{UL|type=patch|update=Ancient Awakening Launches - This Week in RuneScape|date=9 October 2023}}
+** Daily and weekly challenges have been reimplemented.
+*** These challenges will function identically as they had done prior to their removal.
+*** Your challenge streak should be maintained from before the removal.
+*** They can once again be found on the Challenges tab of the Adventures interface.
+** The lamps and key rewards that were previously added to Hero Pass daily missions have been removed. These rewards now come from the daily challenges.
+** You will automatically be set to 15/21 progress on this weekly challenge track, so you can complete the weekly before the reset.
+
+* {{UL|type=update|update=Hero Pass: Underworld - This Week in RuneScape|date=4 September 2023}}
+** Replaced by [[Hero Pass]].
+
+* {{UL|type=patch|update=Pures Mini Strike & Retro Abyssal Whip - This Week In RuneScape|date=27 March 2023}}
+** Players now are no longer able to mention Returner Challenge buffs as items using quick chat.
+
+* {{UL|type=hidden|update=Murder On The Border & Graphical Updates - This Week In RuneScape|date=20 March 2023}}
+** Returner challenges have been added.
+
+* {{UL|type=hidden|update=Patch Week 2 - This Week In RuneScape|date=30 January 2023}}
+** Fixed some players having Weekly Progress rewards in a partially reversed order than normal.
+
+* {{UL|type=patch|update=Patch Week - This Week In RuneScape|date=23 January 2023}}
+** Daily challenge notifications have been enabled for all players on desktop.
+
+* {{UL|type=patch|update=Wilderness Flash Events - This Week In RuneScape|date=17 October 2022}}
+** Updates on your daily challenge progress are now displayed in the chatbox (but only for challenges which give a progress update, obviously).
+** Stacking Whirligig Scarabs will now fill Hunter Urns, provide Strange Rocks, and count towards Daily Challenge progress.
+
+* {{UL|type=ninja|update=Combat Mini Strike - This Week In RuneScape|date=20 September 2022}}
+** Fixed an issue where daily challenges were not being progressed in some scenarios when using make-x.
+** Fixed an issue that stopped rewards from the daily challenge ladder from being claimed in the Daemonheim lobby area.
+
+* {{UL|type=ninja|update=This Week In RuneScape: Scattershot Ninja Strike|date=18 July 2022}}
+** Completing [[The Zamorakian Undercity]] Elite Dungeon will now progress Daily Dungeoneering challenges. Story mode will still not count towards daily challenge progress.
+
+* {{UL|type=ninja|update=DXP LIVE & Skilling Strike - This Week In RuneScape|date=16 May 2022}}
+** The 'Fletch any type of arrows or arrow shafts' daily challenge now counts when cutting zygomites. The 'Light any logs or add them to a bonfire' does not count when drying zygomites.
+
+* {{UL|type=patch|update=This Week In RuneScape: Het's Oasis|date=4 January 2022}}
+** An issue occurred where every lap completed on the [[Hefin Agility Course]] was counted twice for Daily Challenges. This has now been fixed.
+** Fixed an issue where some players would not be able to receive Daily Challenges.
+
+* {{UL|type=hidden|update=This Week In RuneScape: Golden Party Hat Hunt & Once Upon A Time: Finale!|date=22 November 2021}}
+** The [[members]] Weekly Progress reward of 200 [[oddments]] reduced to 100.
+
+* {{UL|type=update|update=This Week In RuneScape: Premier Club & Daily Challenge Upgrades|date=15 November 2021}}
+** Daily challenges have been reworked. Three challenges are received each day that expire at the end of the day, challenges now award a Large Lamp, [[vis wax]] costs have been reduced, and many challenges have required actions changed or reduced.
+** Weekly challenges have been added. Completing daily challenges fills a weekly reward track with seven rewards per week, and different rewards for members and free to play players.
+
+* {{UL|type=update|update=This Week In RuneScape: The Croesus Front|date=27 September 2021}}
+** The XP curve for lamps and stars now scales to 120 for [[Archaeology]], [[Dungeoneering]], [[Slayer]], [[Farming]], [[Herblore]], and [[Invention]].
+*** This inherently affects daily challenge experience rewards.
+
+* {{UL|type=patch|update=This Week In RuneScape: Double XP LIVE & Improved Divination Training|date=4 May 2021}}
+** New players will no longer receive log in messages about automatic daily challenge extensions while in tutorials.
+
+* {{UL|type=patch|update=TWIR: RuneScape Advent Calendar|date=30 November 2020}}
+** Pickpocketing a [[Pickpocketing volunteer|volunteer]] will now count towards a pickpocketing Daily Challenge.
+
+* {{UL|type=patch|update=This Week In RuneScape - 27/07/20#patch-notes|date=27 July 2020}}
+** Burying [[Zogre bones]] will now count towards your daily [[Prayer]] task.
+
+* {{UL|type=patch|update=This Week In RuneScape (13/07/20)#Fixes|date=13 July 2020}}
+** Daily challenges that have been generated while on a free-to-play world will now give the correct XP if they are completed on a members' world.
+** Fixed an issue which caused the first and second Recommended Challenges to switch links.
+
+* {{UL|type=patch|update=Patch Notes (6 July 2020)|date=6 July 2020}}
+** Corrected a desyncronisation error that could occur between Daily Challenges and their titles when linked from the Featured tab.
+
+* {{UL|type=patch|update=Patch Notes (8 June 2020)|date=8 June 2020}}
+** Corrected a typo in the [[Construction]] daily challenge.
+
+* {{UL|type=patch|update=Patch Notes (18 March 2020)|date=18 March 2020}}
+** Adjusted how daily challenges interact with new players:
+*** Since basic challenges are now generated for new users, a player could progress a challenge without first completing the daily challenge interface tutorial. To fix this, progressing a daily challenge now counts as completing the daily challenge interface tutorial. The description for the [[Challenge Accepted]] achievement has been updated accordingly.
+*** Since basic challenges are now generated for new users, the daily challenge path is now immediately available, instead of being unlocked by talking to [[Fara]] or completing the [[Troll Warzone|Burthorpe tutorial]].
+*** Removed a 'You are already in the Burthorpe/Taverley area' message which appeared when tracking a basic daily challenge in this area.
+** Corrected an issue where a blank slot could be left behind in the activity tracker when handing in a tracked daily challenge.
+
+* {{UL|type=patch|update=Patch Notes (10 February 2020)|date=10 February 2020}}
+** Daily [[fishing]] challenge can now be completed when setting the [[Fury shark outfit]] to "consume fish".
+
+* {{UL|type=patch|update=Patch Notes (13 January 2020)|date=13 January 2020}}
+** [[Tortle]]s now count towards [[Hunter]] daily challenges.
+** Players can no longer complete the [[Farming]] daily challenge early by gathering from an ill animal.
+** Typo when extending a [[Hunter]] daily challenge has been corrected.
+
+* {{UL|type=patch|update=Patch Notes (6 January 2020)|date=6 January 2020}}
+** Mining with [[Sign of the porter|porters]] or [[Bottled stone spirit|stone spirits]] will now correctly count towards a [[Mining]] daily challenge. However, this will still only count as 1 towards the progress of the challenge.
+** Absorbing [[memories]] into empty [[divine charges]] via the [[divine-o-matic vacuum]] now counts towards the Daily [[Divination]] Challenge.
+** Having a [[Guthixian Cache|Divination Cache]] boost active and depositing all memories in your inventory will now count all deposited memories towards a Divination daily challenge.
+
+* {{UL|type=update|update=Game Update: Christmas 2019 & Daily Challenge Rework|date=16 December 2019}}
+** Challenge system reworked entirely. From now on daily challenges will be less intensive, more rewarding, and claimable from anywhere in the game world!
+** Items are no longer handed over at the completion of a challenge.
+** The experience for all challenges has been standardised, and each daily challenge should award the XP equivalent of a [[huge prismatic lamp]].
+** The number of tasks for each challenge has been shortened for many skills.
+
+* {{UL|type=patch|update=Patch Notes (14 October 2019)|date=14 October 2019}}
+** Daily challenge to pickpocket [[Pompous Merchant]]s can now only be completed by pickpocketing Pompous Merchants & [[Foppish Pierre]], not [[Man|Men]]/[[Woman|Women]].
+
+* {{UL|type=patch|update=Patch Notes (7 October 2019)|date=7 October 2019}}
+** Fixed an issue with various [[Jadinkos]] not contributing to challenge totals.
+
+* {{UL|type=patch|update=Patch Notes (28 May 2019)|date=28 May 2019}}
+** [[Dungeoneering]] daily challenge criteria now allows the player to complete [[Shifting Tombs]] and [[Elite Dungeons]] as options instead of completing a [[Daemonheim]] [[Dungeoneering floors|floor]] if they wish.
+
+* {{UL|type=patch|update=Patch Notes (1 April 2019)|date=1 April 2019}}
+** [[Challenge Mistress]]es will no longer take [[dragonhide boots]] when turning in daily [[Crafting]] challenges for [[dragonhide vambraces|vambraces]].
+
+* {{UL|type=patch|update=Patch Notes (11 March 2019)|date=11 March 2019}}
+** Players will no longer get [[Crafting]] daily challenges that requires a Crafting level higher than their current level.
+
+* {{UL|type=patch|update=Patch Notes (21 January 2019)|date=21 January 2019}}
+** Daily [[Mining]] and [[Smithing]] challenges no longer state that you need to hand over any items.
+
+* {{UL|type=ninja|update=Patch Notes (10 September 2018)|date=10 September 2018}}
+** Added new daily challenges for [[Fishing]] and [[Cooking]] involving [[green blubber jellyfish]], [[blue blubber jellyfish]], and [[sailfish]].
+
+* {{UL|type=patch|update=Patch Notes (9 July 2018)|date=9 July 2018}}
+** Fixed an issue that would sometimes cause players to not have their task swapped out correctly when logging in to a new day.
+
+* {{UL|type=patch|update=Patch Notes (4 June 2018)|date=4 June 2018}}
+** Crafting [[dragonhide boots]] no longer counts towards the craft [[dragonhide vambraces]] daily challenge.
+
+* {{UL|type=ninja|update=Patch Notes (12 February 2018)|date=12 February 2018}}
+** The number of [[Pyramid Plunder#Urns|urns]] looted to complete the [[Pyramid Plunder]] daily challenge (previously 50-52 in most cases) has been reduced to 30-42 to account for the time taken to reach the deeper rooms.
+
+* {{UL|type=patch|update=Patch Notes (8 January 2018)|date=8 January 2018}}
+** Crafting [[dragonhide boots]] will no longer count towards the craft [[dragonhide vambraces]] daily challenge.
+** Free players can now toggle max daily challenges in member skills at the level five skill cap.
+** Daily challenges are now only assigned to free players if they also meet the secondary requirements.
+** The [[Magic logs|magic log]] daily challenges for [[Firemaking]], [[Fletching]], and [[Woodcutting]] are no longer assigned to free players.
+** The [[Herblore]] requirement for the 'Clean [[Grimy tarromin|Tarromin]]' daily challenge has been corrected from 11 to 5.
+** Low-level Fletching challenges that explained how to fletch now tell players to select 'craft' then 'knife' instead of selecting 'fletch'.
+** [[Urns|Urn]] daily challenges are now correctly assigned to free players.
+** The 'Brown and Pointy' Fletching daily challenge will now only be assigned if the [[Smithing]] requirements are met.
+
+* {{UL|type=patch|update=Patch Notes (4 December 2017)|date=4 December 2017}}
+** The "Spin wool into balls" daily challenge now requires 14 [[balls of wool]] instead of 28.
+** The following daily challenges are now available to free players:
+*** Kill [[Giant Mole]]
+*** Cook [[apple pie]]s
+*** Spin [[bowstring]]s, Spin [[wool]], [[soft leather|Soft]]/[[hard leather|Hard]]/[[Studded leather]], [[blue dragonhide|Blue]]/[[black dragonhide|Black d'hide]], Cracked and Fragile Mining/Cooking/Fishing/Prayer/Woodcutting/Smithing/Runecrafting [[urns]].
+*** Plant [[barley]], Plant [[hammerstone hops]]
+*** Fletch [[bronze bolt]]s, regular/oak/willow/maple/yew/magic [[shortbow]]s or [[shieldbow]]s
+*** Clean [[tarromin]]
+*** Scatter [[accursed ashes]]
+*** [[Runespan]] VI, Runespan VII
+*** Smith [[bronze tracks|bronze]] and [[iron tracks]], [[iron burial armour|iron]] and [[steel burial armour]]
+*** Chop [[maple tree]]s
+** The fish and cook [[cod]] and [[mackerel]], and cook [[bacon]] daily challenges are now members only.
+
+* {{UL|type=hotfix|update=Patch Notes (30 October 2017)|date=23 October 2017}}
+** Challenges can no longer be re-rolled for free with [[vis wax]].
+
+* {{UL|type=patch|update=Patch Notes (23 October 2017)|date=23 October 2017}}
+** Re-rolling a daily challenge will now only consume [[vis wax]] after confirming the re-roll.
+** Member skill challenges up to level 5 can now be progressed by free players.
+
+* {{UL|type=ninja|update=Patch Notes (7 August 2017)|date=7 August 2017}}
+** Challenges are no longer automatically pinned for new players.
+
+* {{UL|type=patch|update=Patch Notes (10 July 2017)|date=10 July 2017}}
+** Messages for daily challenge completion have been updated to account for the 3 different challenge mistresses.
+
+* {{UL|type=patch|update=Patch Notes (22 May 2017)|date=22 May 2017}}
+** Players can no longer re-roll daily challenges for free.
+
+* {{UL|type=patch|update=Patch Notes (2 May 2017)|date=2 May 2017}}
+** Pinning [[Paths]] will now work correctly with the 'hide completed' filter toggled.
+
+* {{UL|type=patch|update=Patch Notes (30 January 2017)|date=30 January 2017}}
+** The daily challenge to create 184 [[fire rune]]s can now be completed on free worlds.
+
+* {{UL|type=patch|update=Patch Notes (31 October 2016)|date=31 October 2016}}
+** A '[[Decorated woodcutting urn|Decorated Woodcutting Urn]]' [[Crafting]] challenge has been added.
+
+* {{UL|type=patch|update=Patch Notes (17 October 2016)|date=17 October 2016}}
+** Lucky challenges have been disabled as part of ongoing initiatives to streamline the early game experience.
+
+* {{UL|type=ninja|update=Patch Notes (22 August 2016)|date=22 August 2016}}
+** Non-members will no longer receive Daily Challenges in a members' skill.
+
+* {{UL|type=patch|update=Patch Notes (18 July 2016)|date=18 July 2016}}
+** A typo in the [[marrentill]] Herblore challenge has been corrected.
+
+* {{UL|type=patch|update=Patch Notes (27 June 2016)|date=27 June 2016}}
+** Players can no longer receive the same lucky challenge.
+
+* {{UL|type=patch|update=Patch Notes (9 May 2016)|date=9 May 2016}}
+** Updated the object and challenge names for "costume boxes" to "fancy dress boxes" for consistency.
+
+* {{UL|type=ninja|update=Patch Notes (4 April 2016)|date=4 April 2016}}
+** The [[Truthful shadow core|Truthful Shadow Core]], [[Blissful shadow core|Blissful Shadow Core]] and [[Manifest shadow core|Manifest Shadow Core]] daily challenges for [[Divination]] have been removed.
+
+* {{UL|type=patch|update=Patch Notes (11 January 2016)|date=11 January 2016}}
+** [[Fletching]] challenges will now increment correctly when double stringing using a [[portable fletcher]].
+
+* {{UL|type=patch|update=Patch Notes (10 August 2015)|date=10 August 2015}}
+** [[Fight Kiln]] creatures now only count once towards combat challenges.
+
+* {{UL|type=patch|update=Patch Notes (3 August 2015)|date=3 August 2015}}
+** A typo previously displayed when extending a [[Corrupted Seren Stone]] daily challenge.
+** [[Shadow core]] challenges will no longer be issued as a [[Divination]] daily challenge.
+
+* {{UL|type=patch|update=Patch Notes (20 July 2015)|date=20 July 2015}}
+** A number of daily challenges based around [[Nemi Forest]] have been added.
+
+* {{UL|type=ninja|update=Patch Notes (6 July 2015)|date=6 July 2015}}
+** Some [[combination potion]] daily challenges' reward values have been slightly re-balanced to make them more worthwhile.
+
+* {{UL|type=ninja|update=Patch Notes (1 June 2015)|date=1 June 2015}}
+** [[Great white shark]]s will now count towards the '[[Shark]]' and '[[Barbarian shark]]' daily fishing challenges.
+
+* {{UL|type=patch|update=Patch Notes (13 April 2015)|date=13 April 2015}}
+** Coshed thieving targets now count towards pickpocket challenges correctly.
+
+* {{UL|type=patch|update=Patch Notes (30 March 2015)|date=30 March 2015}}
+** Daily [[Prayer]] challenges will now work correctly with [[cremation]].
+** An issue where basic challenges could not be completed has been fixed.
+
+* {{UL|type=patch|update=Patch Notes (16 February 2015)|date=16 February 2015}}
+** It is no longer possible to complete the [[Flash Powder Factory]] challenge when leaving early.
+** Players will no longer complete a lucky challenge when their ship requires repair after a voyage.
+
+* {{UL|type=patch|update=Patch Notes (9 February 2015)|date=9 February 2015}}
+** The hint arrow for the [[H.A.M. Member|HAM follower]] challenges will now point to the correct location.
+
+* {{UL|type=ninja|update=Patch Notes (19 January 2015)|date=19 January 2015}}
+** Daily challenges now give more useful information about what is needed to hand in on completion of the challenge.
+
+* {{UL|type=patch|update=Patch Notes (12 January 2015)|date=12 January 2015}}
+** The [[Harmonic Dust]] daily challenge no longer requires players to hand in the harmonic dust to complete the challenge. The [[Crafting]] XP reward is unchanged.
+
+* {{UL|type=patch|update=Patch Notes (5 January 2015)|date=5 January 2015}}
+** [[Ironman]] players will no longer receive [[Flash Powder Factory]] or [[Construction]]-based [[Stealing Creation]] daily challenges.
+** The message for daily challenge item hand-in now references [[Heriau]] instead of [[Fara]] if relevant.
+
+* {{UL|type=patch|update=Patch Notes (8 September 2014)|date=8 September 2014}}
+** The Challenges interface has been updated to use a more consistent interface style.
+** Support for Legacy Mode has been added to the Challenges interface.
+** Moved daily challenges to the top of the drop-down box in the Challenges interface.
+** The [[Minigames]] interface has been updated to support Legacy Mode.
+** The item name '[[adamant dagger]]s' has been corrected in the [[Smithing]] challenge.
+** The location of [[crimson swifts]] in the [[Hunter]] challenge has been corrected.
+** A missing colon has been added to the instructions for pickpocketing male [[H.A.M. Member|H.A.M. followers]].
+** The name of the [[Agility ticket]]s challenge has been updated.
+** A problem with clearing active tasks when completing some types of challenge has been fixed.
+** An issue with lucky challenge tasks that mean they may not display properly in the Active Task window has been fixed.
+
+* {{UL|type=patch|update=Patch Notes (8 December 2014)|date=8 December 2014}}
+** Players will no longer receive daily challenges for [[combination potions]] they have not unlocked.
+
+* {{UL|type=patch|update=Patch Notes (10 November 2014)|date=10 November 2014}}
+** XP from daily challenges at lower levels has been adjusted.
+** The [[Cooking range (Lumbridge Castle)|chef's range]] in [[Lumbridge]] will no longer count each item being cooked twice for [[Cooking]] daily challenges.
+
+* {{UL|type=patch|update=Patch Notes (3 November 2014)|date=1 November 2014}}
+** Extending and re-rolling of daily challenges with [[vis wax]] have had their costs re-balanced.
+
+* {{UL|type=patch|update=Patch Notes (20 October 2014)|date=20 October 2014}}
+** An issue where players could complete the first two basic challenges for [[Fara]] multiple times on the path system has been corrected.
+
+* {{UL|type=patch|update=Patch Notes (29 September 2014)|date=29 September 2014}}
+** Players no longer need 99 [[Summoning]] to be able to toggle off combat daily challenges.
+** The daily challenge for pickpocketing [[elves]] has been reworded to make it clear that [[Prifddinas elves]] do not count towards the challenge.
+** [[Dungeoneering]] challenges that have been extended no longer complete after a single floor under certain conditions.
+
+* {{UL|type=patch|update=Patch Notes (11 August 2014)|date=11 August 2014}}
+** The required combat level of NPCs to kill for the Mark II combat daily challenge has been corrected.
+
+* {{UL|type=patch|update=Patch Notes (22 July 2014)|date=22 July 2014}}
+** Players can now block combat challenges correctly at 138 combat.
+
+* {{UL|type=patch|update=Patch Notes (14 July 2014)|date=14 July 2014}}
+** Lucky challenges and Rhino daily challenges no longer overlap one another.
+** Players can once again click on basic challenges if the player disables and re-enables the path system during the basic challenge stage.
+
+* {{UL|type=patch|update=Patch Notes (22 April 2014)|date=22 April 2014}}
+** A confirmation has been added when turning on the Path system, as it will clear any current Daily Challenges.
+
+* {{UL|type=patch|update=Patch Notes (24 February 2014)|date=24 February 2014}}
+** Players with high-level combat stats will no longer receive daily challenges for players with low level-combat stats such as, kill 5 [[cow]]s.
+
+* {{UL|type=patch|update=Patch Notes (17 February 2014)|date=17 February 2014}}
+** Some quests have been removed from the Path system, and an introduction to daily challenges has been added in their place.
+** The Challenge master area in [[Burthorpe]] has been graphically updated.
+
+* {{UL|type=patch|update=Patch Notes (13 January 2014)|date=13 January 2014}}
+** You will now be warned about losing Daily Challenge progress when leaving [[Stealing Creation]].
+** The Festive Challenge display on the Challenges interface has now been removed.
+
+* {{UL|type=patch|update=Patch Notes (7 January 2014)|date=7 January 2014}}
+** The daily challenge Delve into Daemonheim hint arrow no longer points to [[Gudrik|Gudrik's]] house.
+
+* {{UL|type=patch|update=Patch Notes (11 December 2013)|date=11 December 2013}}
+** The creation of all [[studded leather armour]] now counts towards daily challenges.
+
+* {{UL|type=patch|update=Patch Notes (15 October 2013)|date=15 October 2013}}
+** The daily challenge 'Chop [[elder logs]]: 30' now correctly completes after chopping 30 logs.
+
+* {{UL|type=patch|update=Patch Notes (29 July 2013)|date=29 July 2013}} 
+** Players who have not completed [[Bringing Home the Bacon]] no longer receive daily challenges far below their skill level.
+
+* {{UL|type=patch|update=Patch Notes (9 July 2013)|date=9 July 2013}}
+** Daily Challenge reward bags no longer create two stacks of the same stackable item in a player's inventory.
+
+* {{UL|type=patch|update=Patch Notes (3 July 2013)|date=3 July 2013}}
+** Players no longer receive the [[Wine stall]]s challenge without a [[Thieving]] level of 22.
+
+* {{UL|type=hotfix|update=Patch Notes (13 May 2013)|date=17 May 2013}}
+** Low-levelled challenges are no longer given to players of a higher level.
+
+* {{UL|type=patch|update=Patch Notes (13 May 2013)|date=13 May 2013}}
+** Handing in [[hard leather boots]] and [[Hard leather gloves|gloves]] for a [[Crafting]] daily challenge now functions correctly.
+
+* {{UL|type=patch|update=Patch Notes (12 March 2013)|date=12 March 2013}}
+** [[Construction]] challenges that offer hints now direct the player to their [[POH]] location.
+** The [[Magic Potion]] daily challenge has been updated to reflect the changes made to the [[Herblore]] skill.
+
+* {{UL|type=patch|update=Patch Notes (4 March 2013)|date=4 March 2013}}
+** [[Studded chaps]] are now recognised as a valid item for the Studded Leather Armour daily challenge.
+
+* {{UL|type=patch|update=Patch Notes (21 January 2013)|date=21 January 2013}} 
+** [[Magpie implings]] now count towards the [[Challenge System (historical)/Challenges#Hunter Challenges|Impetuous Impulses VI]] daily challenge.
+
+* {{UL|type=patch|update=Patch Notes (19 December 2012)|date=19 December 2012}}
+** Reworded some of the [[Imperial Guard Quartermaster]]'s dialogue to make it clearer what he'll check when handing in a daily challenge.
+
+* {{UL|type=patch|update=Patch Notes (28 November 2012)|date=28 November 2012}}
+** The [[Hard leather]] challenge can now be completed.
+** Daily challenges to make [[weapon poison]] and [[weapon poison+]] can now be completed.
+
+* {{UL|type=patch|update=Patch Notes (22 November 2012)|date=22 November 2012}}
+** Combat daily challenges can now be blocked at combat level 200.
+
+* {{UL|type=patch|update=Patch Notes (26 September 2012)|date=26 September 2012}} 
+** [[Dorgesh-Kaan Agility Course]] now works as intended 
+** The [[Challenge System (historical)/Challenges#Runecrafting Challenges|Runecrafting challenges]] [[Runespan]] XI now works correctly.
+** The [[Challenge System (historical)/Cooking|Cooking challenges]] 'Churning [[cheese]]' now requires you to hand in your freshly made cheese wheels, rather than cheese.
+** The [[Challenge System (historical)/Herblore|Herblore challenges]] '[[Harralander tar]]' now correctly marks off all progress made.
+** The rate of [[Dungeoneering]] XP given from handing in a [[Challenge System (historical)/Dungeoneering|Dungeoneering challenges]] has been reduced to bring it more in line with the other rewards.
+** The '[[Flash powder factory]]' challenge is now only given when all requirements are met.
+** The Rampage challenge will now count kills made within the [[Fight Kiln]].
+** Handing in a challenge should no longer cause bank tabs to shuffle.
+** The double close button on pinned challenges has now been removed.
+** [[Challenge System (historical)/Smithing|Smithing challenges]] to make metal equipment have been changed to smith metal daggers.
+** [[Challenge System (historical)/Construction|Construction challenges]] above level 18 now require flatpacks to be made and handed in to complete the challenge. A reward bag is now given for this.
+** Crafting dragonhide equipment challenges have been changed to require dragonhide vambraces.
+
+* {{UL|type=update|update=Daily Challenges & Noticeboard|date=19 September 2012}}
+** Added to game.
+}}
+
+==Trivia==
+* The Challenge System was actually only partially available to free players in that they can still be assigned challenges in members' skills, which they aren't permitted to do or hand in. However, in an update on [[22 August]] [[2016]], this was changed so that free players can no longer receive Daily Challenges in members' skills. Daily Challenges in members skills were once again made available to free players in December [[2017]], but an update in January [[2018]] allowed free players to disable such challenges if they have reached the level 5 cap.
+* Previously, it was possible (and even likely) for free players to receive members-only items as rewards from challenge mystery bags. Fortunately, free players were now able to sell members items. Alternatively, free players can simply bank members' items, as they will not take up free-to-play bank space. With the removal of challenge mystery bags, this no longer occurs.
+* If a completed challenge expires before a log in, the message that you have a complete challenge to hand in will still be displayed.
+* Prior the [[Update:Leagues: CATALYST Out today! - This Week In RuneScape|Leagues update]] from [[15 September]] [[2025]], cooking several kinds of raw meat and fish counted towards the Cooking challenge that no longer do. It is unknown if this is intentional.
+* Even after the weekly rewards were removed with [[DailyScape Overhaul]] update, the login message about broken weekly progress streaks remained.
+
+{{Tutorials}}

@@ -1,6 +1,6 @@
 import { archaeologyCollectors } from '../../data/archaeology-collectors';
 
-type WikiPage = { title?: string; thumbnail?: { source?: string } };
+type WikiPage = { title?: string; thumbnail?: { source?: string }; original?: { source?: string } };
 type ImageResponse = { query?: { pages?: Record<string, WikiPage> } };
 
 const cache = new Map<string, { expires: number; image?: string }>();
@@ -13,17 +13,19 @@ async function imageForTitle(title: string) {
     format: 'json',
     redirects: '1',
     prop: 'pageimages',
-    piprop: 'thumbnail',
+    piprop: 'thumbnail|original',
+    pilicense: 'any',
     pithumbsize: '96',
     titles: title,
   });
   const response = await fetch(`https://runescape.wiki/api.php?${params}`, {
     headers: { 'user-agent': 'Ironpath/1.0 (Group Ironman companion)' },
+    signal: AbortSignal.timeout(8000),
   });
   if (!response.ok) throw new Error('RuneScape Wiki request failed');
   const data = (await response.json()) as ImageResponse;
   const page = Object.values(data.query?.pages || {})[0];
-  const image = page?.thumbnail?.source;
+  const image = page?.thumbnail?.source || page?.original?.source;
   cache.set(title, { image, expires: Date.now() + 21_600_000 });
   return image;
 }

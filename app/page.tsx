@@ -3,11 +3,11 @@
 import {
   Archive,
   BookOpen,
-  Boxes,
   CalendarCheck2,
   Check,
   ChevronRight,
   CircleDot,
+  Compass,
   Clock3,
   Coins,
   Dice5,
@@ -15,10 +15,13 @@ import {
   ExternalLink,
   FlaskConical,
   Gem,
+  GripVertical,
+  House,
   Leaf,
   ListChecks,
   Medal,
   RefreshCw,
+  RotateCcw,
   Search,
   Shield,
   Skull,
@@ -27,8 +30,16 @@ import {
   Users,
   Wrench,
 } from 'lucide-react';
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
+import QuestRewardsView from './prototypes/quest-rewards/quest-rewards-view';
 import progressData from './data/efficient-progress.json';
+import repeatables from './data/repeatable-activities.json';
+import repeatableSources from './data/wiki-repeatables/manifest.json';
+import ReferenceImage from './reference-image';
+import RuneScapeNews from './runescape-news';
+import FontPreferences from './font-preferences';
+import BrandLogo from './brand-logo';
+import dropItemImages from './data/drop-item-images.json';
 import { ironTasks, type IronTask } from './data/random-tasks';
 import {
   archaeologyCollectors,
@@ -42,144 +53,11 @@ import {
 
 const nav = [
   [Trophy, 'Dashboard'],
-  [CalendarCheck2, 'Distractions and Diversions'],
+  [CalendarCheck2, 'Distractions'],
+  [Medal, 'Achievements'],
 ] as const;
-const themes = [
-  ['classic', 'Classic'],
-  ['necromancy', 'Necromantic'],
-  ['infernal-wilderness', 'Wilderness: Infernal'],
-] as const;
-type Theme = (typeof themes)[number][0];
-function isTheme(value: string | null): value is Theme {
-  return themes.some(([id]) => id === value);
-}
 
-const repeatables = {
-  Daily: [
-    ['Daily Challenges', 'Three skill challenges', 'High XP'],
-    ['Nemi Forest', 'Mining, Farming, Prayer & Dungeoneering', '10 min'],
-    ['Jack of Trades', 'Complete the aura skill circuit', 'XP book'],
-    ['Guthixian Cache', 'Claim up to two Divination games', 'Timed'],
-    ['Sinkholes', 'Two Dungeoneering games', 'Timed'],
-    ['Big Chinchompa', 'Two Hunter games and competence points', 'Hunter'],
-    ['Supply run', 'Turn supplies in to Quercy', 'Skilling XP'],
-    ['Wild jade vine', 'Slay or prune the Karamja vine', 'Farming'],
-    ['Book of Char', 'Use Char’s daily Firemaking training', 'Firemaking'],
-    ['Trinks’ Tasks', 'Complete Mazcab tasks for reputation', 'Reputation'],
-    ['Soul obelisks', 'Claim Menaphos reputation and XP', 'Menaphos'],
-    ['Arc contracts', 'Complete an Arc contract', 'Chimes'],
-    [
-      'Heart of Gielinor bounties',
-      'Complete Feng’s daily bounties',
-      'Reputation',
-    ],
-    ['Runesphere rune dust', 'Hand in up to 1,000 rune dust', 'Runecrafting'],
-    ['Player-owned Farm', 'Check animals, produce and beans', 'Farming'],
-    ['Player-owned ports', 'Voyages, visitors and resources', 'Passive'],
-    [
-      'Anachronia base camp',
-      'Send out management and check rewards',
-      'Anachronia',
-    ],
-    [
-      'Gorajo hoardstalker',
-      'Claim a daily Dungeoneering card',
-      'Dungeoneering',
-    ],
-    [
-      'Explorer’s ring casts',
-      'Use daily alchemy, superheat and other casts',
-      'Free casts',
-    ],
-    ['Lumbridge food hamper', 'Claim food from the castle cook', 'Supplies'],
-    [
-      'Desert achievement claims',
-      'Collect merchant and amulet rewards',
-      'Supplies',
-    ],
-    [
-      'Arc free supplies',
-      'Claim Rosie’s supplies and island resources',
-      'The Arc',
-    ],
-    ['Fixate casts', 'Use three free Archaeology Fixates', 'Archaeology'],
-    [
-      'Kingdom collection',
-      'Collect and reassign Miscellania workers',
-      'Resources',
-    ],
-    ['Robin bone exchange', 'Turn bones into bonemeal and slime', 'Prayer'],
-    ['Wythien exchange', 'Trade crystal motherlode shards', 'Prifddinas'],
-    ['Razmire olive oil', 'Restock olive oil in Mort’ton', 'Herblore'],
-  ],
-  Weekly: [
-    ['Soul Reaper', 'Earn up to 300 Reaper points', 'Bossing'],
-    ['Penguin Hide and Seek', 'Spot the weekly penguins', 'Flexible XP'],
-    ['Tears of Guthix', 'Train your lowest skill', 'Quest'],
-    ['Meg at Player-owned Ports', 'Answer Meg and claim the chest', '5 min'],
-    ['Agoroth', 'Two encounters for bonus XP', 'Combat'],
-    ['Big Top Bonanza', 'Complete the travelling circus event', 'Skill XP'],
-    ['Skeletal horror', 'Kill it for Slayer, Prayer and a clue', 'Weekly boss'],
-    ['Hanky points', 'Claim Buyers and Cellars Thieving XP', 'Thieving'],
-    ['Clan Citadel capping', 'Cap for XP and clan resources', 'Clan'],
-    ['Familiarisation', 'Choose charm enhancer or ingredients', 'Summoning'],
-    ['A Barmaid’s Tip', 'Follow up on a Player-owned Port tip', 'Ports'],
-    ['Thalmund’s Wares', 'Check the weekly Necromancy stock', 'Necromancy'],
-    ['Broken Home replay', 'Replay for a large XP lamp', 'Quest'],
-    ['Sliske’s Endgame replay', 'Claim weekly replay rewards', 'Quest'],
-    ['Rush of Blood', 'Complete the Slayer gauntlet', 'Slayer'],
-    ['Dimension of Disaster replay', 'Earn silver pennies', 'Quest'],
-    ['Shattered Worlds challenge', 'Complete a weekly challenge', 'Combat'],
-    ['Memory of Nomad', 'Replay the weekly Nomad encounter', 'Combat'],
-    ['Champion refights', 'Refight unlocked champions', 'Combat'],
-    ['Wisps of the Grove', 'Weekly Farming and Hunter event', 'Skilling'],
-    ['Herby Werby', 'Trade herbs for Herblore experience', 'Herblore'],
-    ['Advance Time', 'Use the weekly high-level Magic spell', 'Magic'],
-    [
-      'Water filtration system',
-      'Collect before its storage caps',
-      'Fort Forinthry',
-    ],
-    [
-      'Achievement resource claims',
-      'Collect cactus, fruit, flax, essence and sand',
-      'Supplies',
-    ],
-    ['Razmire plank claim', 'Claim noted planks from Mort’ton', 'Construction'],
-    ['Aquarium decorations', 'Collect oysters, kelp and seaweed', 'Weekly'],
-    ['Coeden’s logs', 'Claim your accumulated high-tier logs', 'Woodcutting'],
-    ['Eli Bacon', 'Claim raw bacon or a spirit pig', 'Supplies'],
-    ['Lupe’s Soul Supplies', 'Collect free Necromancy supplies', 'Necromancy'],
-    [
-      'Weekly shop packs',
-      'Check yak hides, meat, seaweed, vials and runes',
-      'Shop run',
-    ],
-    [
-      'Bandit Duty Free',
-      'Check Construction, ritual and seed stock',
-      'Shop run',
-    ],
-    [
-      'Culinaromancer’s Chest',
-      'Check food and cooking ingredients',
-      'Shop run',
-    ],
-    ['Black Marketeer', 'Buy available port resources', 'Ports'],
-  ],
-  Monthly: [
-    ['Troll Invasion', 'Defend Burthorpe and claim an XP book', 'Combat'],
-    ['God Statues', 'Build four statues across Gielinor', 'Construction'],
-    ['Giant Oyster', 'Feed, check and open the oyster', 'Fishing'],
-    ['Effigy Incubator', 'Power effigies for lamps or stars', 'High level'],
-    ['Marketplace free items', 'Claim the monthly Marketplace items', 'Claim'],
-    [
-      'Crystal tree blossom',
-      'Harvest accumulated Prifddinas blossoms',
-      'Farming',
-    ],
-  ],
-} as const;
+
 
 type HiscoreSkill = { name: string; rank: number; level: number; xp: number };
 type HiscorePlayer = {
@@ -291,7 +169,6 @@ const repeatableRequirements: Record<
     manual: 'Player-owned Ports access',
   },
   'Anachronia base camp': { manual: 'Anachronia access' },
-  'Gorajo hoardstalker': { manual: 'Prifddinas access' },
   'Fixate casts': {
     skills: [['Archaeology', 99]],
     manual: 'Master archaeologist outfit',
@@ -396,11 +273,7 @@ const fruitCrops = [
 export default function Home() {
   const [showLanding, setShowLanding] = useState(true);
   const [active, setActive] = useState('Dashboard');
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return 'necromancy';
-    const savedTheme = document.documentElement.dataset.theme || null;
-    return isTheme(savedTheme) ? savedTheme : 'necromancy';
-  });
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, [active, showLanding]);
   const [progressionOpen, setProgressionOpen] = useState(false);
   const [testOpen, setTestOpen] = useState(false);
   const [groupData, setGroupData] = useState<HiscoreResult | null>(null);
@@ -455,11 +328,6 @@ export default function Home() {
           : groupData.players[0].name,
     );
   }, [groupData]);
-  function changeTheme(value: Theme) {
-    setTheme(value);
-    document.documentElement.dataset.theme = value;
-    window.localStorage.setItem('ironpath-theme', value);
-  }
   function choosePreferredMember(name: string) {
     setPreferredMember(name);
     window.localStorage.setItem('ironpath-preferred-member', name);
@@ -487,18 +355,28 @@ export default function Home() {
         setWorkspace={setWorkspace}
         preferredMember={preferredMember}
         setPreferredMember={choosePreferredMember}
+        onNavigate={setActive}
       />
     ),
-    'Task Generator': (
-      <TaskGenerator groupData={groupData} preferredMember={preferredMember} />
-    ),
-    'Distractions and Diversions': (
+    'Distractions': (
       <RepeatablesView
         groupData={groupData}
         preferredMember={preferredMember}
       />
     ),
-    'Ironman Guide': <IronmanGuideView />,
+    Achievements: (
+      <HiScoresView
+        view="achievements"
+        result={groupData}
+        setResult={setGroupData}
+        unsyncGroup={unsyncGroup}
+        workspace={workspace}
+        setWorkspace={setWorkspace}
+        preferredMember={preferredMember}
+        setPreferredMember={choosePreferredMember}
+        onNavigate={setActive}
+      />
+    ),
     'Progression Roadmap': (
       <EfficientProgressView
         fixedView="Roadmap"
@@ -506,6 +384,7 @@ export default function Home() {
         preferredMember={preferredMember}
       />
     ),
+    'Quest Rewards': <QuestRewardsView preferredMember={preferredMember}/>,
     'Skill Training': (
       <EfficientProgressView
         fixedView="Training"
@@ -523,9 +402,8 @@ export default function Home() {
     Invention: <InventionView />,
     'Archaeology Collections': <ArchaeologyCollectionsView />,
     'Dungeon Tools': <DungeonToolsView />,
-    'Good general information': <GeneralInformationView />,
-    'Farming Routes': (
-      <FarmRunsView
+    Routes: (
+      <FarmV2View
         player={
           groupData?.players.find(
             (member) => member.name === preferredMember,
@@ -533,7 +411,6 @@ export default function Home() {
         }
       />
     ),
-    'Shop Runs': <ShopRunsView />,
   };
   if (showLanding)
     return (
@@ -545,8 +422,9 @@ export default function Home() {
             setActive('Dashboard');
             setShowLanding(false);
           }}
-          theme={theme}
-          changeTheme={changeTheme}
+          groupData={groupData}
+          setGroupData={setGroupData}
+          unsyncGroup={unsyncGroup}
         />
       </main>
     );
@@ -562,14 +440,23 @@ export default function Home() {
               onClick={() => setActive('Dashboard')}
               aria-label="Open Ironpath dashboard"
             >
-              <img
-                className="brand-rune-banner"
-                src="/ironpath-banner-transparent-v1.png"
-                alt="Ironpath"
-              />
+              <BrandLogo subtitle="Group Ironman companion" />
             </button>
             <div className="navigation-row">
               <nav aria-label="Primary navigation">
+                <button
+                  type="button"
+                  className="nav-button"
+                  aria-label="Back to landing page"
+                  title="Home"
+                  onClick={() => {
+                    setProgressionOpen(false);
+                    setTestOpen(false);
+                    setShowLanding(true);
+                  }}
+                >
+                  <House size={18} strokeWidth={1.8} aria-hidden="true" />
+                </button>
                 {nav.map(([Icon, label]) => (
                   <button
                     key={label}
@@ -578,6 +465,7 @@ export default function Home() {
                     }
                     onClick={() => setActive(label)}
                     aria-label={label}
+                    aria-current={active === label ? 'page' : undefined}
                   >
                     <Icon size={17} strokeWidth={1.8} />
                     <span>{label}</span>
@@ -585,14 +473,8 @@ export default function Home() {
                 ))}
                 <div
                   className="extras-menu"
-                  onMouseEnter={() => {
-                    setProgressionOpen(true);
-                    setTestOpen(false);
-                  }}
-                  onMouseLeave={() => setProgressionOpen(false)}
-                  onFocus={() => {
-                    setProgressionOpen(true);
-                    setTestOpen(false);
+                  onKeyDown={(event) => {
+                    if (event.key === 'Escape') setProgressionOpen(false);
                   }}
                   onBlur={(event) => {
                     if (!event.currentTarget.contains(event.relatedTarget))
@@ -603,14 +485,13 @@ export default function Home() {
                     className={
                       [
                         'Progression Roadmap',
+                        'Quest Rewards',
                         'Skill Training',
-                        'Ironman Guide',
-                        'Good general information',
                       ].includes(active)
                         ? 'nav-button active'
                         : 'nav-button'
                     }
-                    onClick={() => setProgressionOpen((value) => !value)}
+                    onClick={() => { setProgressionOpen((value) => !value); setTestOpen(false); }}
                     aria-label="Open progression"
                     aria-expanded={progressionOpen}
                     aria-haspopup="true"
@@ -656,26 +537,14 @@ export default function Home() {
                       <p className="extras-divider">Ironman reference</p>
                       <button
                         onClick={() => {
-                          setActive('Ironman Guide');
+                          setActive('Quest Rewards');
                           setProgressionOpen(false);
                         }}
                       >
                         <BookOpen size={17} />
                         <span>
-                          <strong>Ironman Guide</strong>
-                          <small>Unlocks, habits and priorities</small>
-                        </span>
-                      </button>
-                      <button
-                        onClick={() => {
-                          setActive('Good general information');
-                          setProgressionOpen(false);
-                        }}
-                      >
-                        <Gem size={17} />
-                        <span>
-                          <strong>Good General Information</strong>
-                          <small>Consumables and armour effects</small>
+                          <strong>Quest Rewards</strong>
+                          <small>Quest rewards and synced completion</small>
                         </span>
                       </button>
                     </div>
@@ -683,14 +552,8 @@ export default function Home() {
                 </div>
                 <div
                   className="extras-menu"
-                  onMouseEnter={() => {
-                    setTestOpen(true);
-                    setProgressionOpen(false);
-                  }}
-                  onMouseLeave={() => setTestOpen(false)}
-                  onFocus={() => {
-                    setTestOpen(true);
-                    setProgressionOpen(false);
+                  onKeyDown={(event) => {
+                    if (event.key === 'Escape') setTestOpen(false);
                   }}
                   onBlur={(event) => {
                     if (!event.currentTarget.contains(event.relatedTarget))
@@ -700,18 +563,15 @@ export default function Home() {
                   <button
                     className={
                       [
-                        'Farming Routes',
-                        'Shop Runs',
+                        'Routes',
                         'Familiars',
-                        'Invention',
-                        'Task Generator',
                         'Archaeology Collections',
                         'Dungeon Tools',
                       ].includes(active)
                         ? 'nav-button active'
                         : 'nav-button'
                     }
-                    onClick={() => setTestOpen((value) => !value)}
+                    onClick={() => { setTestOpen((value) => !value); setProgressionOpen(false); }}
                     aria-label="Open utility"
                     aria-expanded={testOpen}
                     aria-haspopup="true"
@@ -730,42 +590,6 @@ export default function Home() {
                       <p className="eyebrow">Practical planning</p>
                       <button
                         onClick={() => {
-                          setActive('Farming Routes');
-                          setTestOpen(false);
-                        }}
-                      >
-                        <Leaf size={17} />
-                        <span>
-                          <strong>Farming Routes</strong>
-                          <small>Herb, tree and fruit-tree circuits</small>
-                        </span>
-                      </button>
-                      <button
-                        onClick={() => {
-                          setActive('Shop Runs');
-                          setTestOpen(false);
-                        }}
-                      >
-                        <Coins size={17} />
-                        <span>
-                          <strong>Shop Runs</strong>
-                          <small>Group stock and supply stops</small>
-                        </span>
-                      </button>
-                      <button
-                        onClick={() => {
-                          setActive('Invention');
-                          setTestOpen(false);
-                        }}
-                      >
-                        <Boxes size={17} />
-                        <span>
-                          <strong>Invention</strong>
-                          <small>Components and useful sources</small>
-                        </span>
-                      </button>
-                      <button
-                        onClick={() => {
                           setActive('Familiars');
                           setTestOpen(false);
                         }}
@@ -776,17 +600,16 @@ export default function Home() {
                           <small>Summoning companions by level</small>
                         </span>
                       </button>
-                      <p className="extras-divider">Test Features</p>
                       <button
                         onClick={() => {
-                          setActive('Task Generator');
+                          setActive('Routes');
                           setTestOpen(false);
                         }}
                       >
-                        <Dice5 size={17} />
+                        <Leaf size={17} />
                         <span>
-                          <strong>Task Generator</strong>
-                          <small>Practical Ironman objectives</small>
+                          <strong>Routes</strong>
+                          <small>Interactive patch-route planner</small>
                         </span>
                       </button>
                       <button
@@ -801,6 +624,7 @@ export default function Home() {
                           <small>Collectors, artefacts and rewards</small>
                         </span>
                       </button>
+                      <p className="extras-divider">Test Features</p>
                       <button
                         onClick={() => {
                           setActive('Dungeon Tools');
@@ -829,22 +653,9 @@ export default function Home() {
             >
               Home
             </button>
-            <label className="theme-control footer-theme-control">
-              <span>Theme</span>
-              <select
-                value={theme}
-                onChange={(event) => changeTheme(event.target.value as Theme)}
-                aria-label="Choose color theme"
-              >
-                {themes.map(([id, label]) => (
-                  <option value={id} key={id}>
-                    {label}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <FontPreferences inline />
             <span>
-              Concept created by <strong>Justjay btw</strong>
+              Concept created by <a className="project-origin-link" href="/about">Justjay btw</a>
             </span>
             <i aria-hidden="true" />
             <span>AI-assisted development</span>
@@ -867,84 +678,141 @@ export default function Home() {
 
 function IronpathLanding({
   onEnter,
-  theme,
-  changeTheme,
+  groupData,
+  setGroupData,
+  unsyncGroup,
 }: {
   onEnter: () => void;
-  theme: Theme;
-  changeTheme: (value: Theme) => void;
+  groupData: HiscoreResult | null;
+  setGroupData: (value: HiscoreResult | null) => void;
+  unsyncGroup: () => void;
 }) {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [group, setGroup] = useState('');
+  const [size, setSize] = useState('4');
+  const [competitive, setCompetitive] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [syncingQuests, setSyncingQuests] = useState(false);
+  const [message, setMessage] = useState('');
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(window.localStorage.getItem('ironpath-hiscore-group') || 'null');
+      if (!saved) return;
+      setGroup(saved.group || '');
+      setSize(saved.size || '4');
+      setCompetitive(Boolean(saved.competitive));
+    } catch { /* Keep the connection form ready for a fresh lookup. */ }
+  }, []);
+  async function refreshGroup(event?: FormEvent) {
+    event?.preventDefault();
+    if (!group.trim()) { setMessage('Enter your exact RuneScape group name first.'); return; }
+    setLoading(true); setMessage('');
+    try {
+      const response = await fetch(`/api/hiscores?group=${encodeURIComponent(group)}&size=${size}&competitive=${competitive}`);
+      const data = (await response.json()) as HiscoreResult & { error?: string };
+      if (!response.ok) throw new Error(data.error || 'Unable to retrieve this group.');
+      setGroupData(data);
+      window.localStorage.setItem('ironpath-hiscore-group', JSON.stringify({ group, size, competitive }));
+      window.localStorage.setItem('ironpath-hiscore-result', JSON.stringify(data));
+      setMessage(`${data.group} refreshed with ${data.players.length} members.`);
+    } catch (error) { setMessage(error instanceof Error ? error.message : 'Unable to refresh this group.'); }
+    finally { setLoading(false); }
+  }
+  async function syncQuestAccess() {
+    if (!groupData?.players.length) { setMessage('Connect a group before syncing quest access.'); return; }
+    setSyncingQuests(true); setMessage('');
+    try {
+      const results = await Promise.all(groupData.players.map(async player => {
+        const response = await fetch(`/api/quests?player=${encodeURIComponent(player.name)}`);
+        const payload = (await response.json()) as QuestSyncResult & { error?: string };
+        if (!response.ok) throw new Error(payload.error || `Quest access is unavailable for ${player.name}.`);
+        window.localStorage.setItem(`ironpath-quest-cache:${player.name}`, JSON.stringify(payload));
+        return player.name;
+      }));
+      setMessage(`Quest access synced for ${results.length} group member${results.length === 1 ? '' : 's'}.`);
+    } catch (error) { setMessage(error instanceof Error ? error.message : 'Quest sync could not be completed.'); }
+    finally { setSyncingQuests(false); }
+  }
   return (
-    <section className="ironpath-entry" aria-label="Ironpath introduction">
+    <section className="ironpath-entry story-entry" aria-label="Ironpath introduction">
+      <div className="entry-logo-button entry-logo-static entry-brand-heading">
+        <BrandLogo subtitle="RuneScape 3 · Group Ironman" />
+      </div>
       <div className="entry-main">
         <div className="entry-copy">
-          <div className="entry-logo-button entry-logo-static">
-            <img src="/ironpath-banner-transparent-v1.png" alt="Ironpath" />
-          </div>
-          <h1>Build the next chapter together.</h1>
+          <p className="eyebrow">A GROUP IRONMAN PASSION PROJECT</p>
+          <h1>A shared adventure.<br /><em>A labour of love.</em></h1>
           <p>
-            Live group standings, shared planning, practical references, and
-            helpful routines—made for the way Group Ironmen actually progress.
+            Ironpath started with Justjay btw and his Group Ironman partners:
+            new accounts, shared goals, and a growing list of things worth keeping track of.
+            A simple idea became a companion for the game we love.
           </p>
+          <p className="entry-intro-detail">
+            The process is still personal. Play, spot something that could be better,
+            talk it through with the group, then build and refine it. AI helps turn
+            those ideas into code; real play gives them a purpose. Every revision
+            is another attempt to make this a place worth coming back to.
+          </p>
+          <a className="story-about-link" href="/about">Meet the project behind the progress <ChevronRight size={16} /></a>
           <div className="entry-actions">
             <button className="entry-primary" onClick={onEnter}>
               Enter Ironpath <ChevronRight size={18} />
             </button>
+            <button className="entry-settings-button" onClick={() => setSettingsOpen(value => !value)} aria-expanded={settingsOpen}>
+              <Wrench size={17} /> Settings
+            </button>
           </div>
+          {settingsOpen && (
+            <section className="entry-settings-panel" aria-label="Ironpath settings">
+              <div><p className="eyebrow">GROUP CONNECTION</p><h2>Connect and refresh your group here.</h2><p>Group lookups, stat refreshes, and quest access syncing are kept in one place.</p></div>
+              <form onSubmit={refreshGroup}>
+                <label className="field"><span>Group name</span><input value={group} onChange={event => setGroup(event.target.value)} placeholder="Exact RuneScape group name" /></label>
+                <label className="field"><span>Group size</span><select value={size} onChange={event => setSize(event.target.value)}>{[2,3,4,5].map(value => <option value={value} key={value}>{value} members</option>)}</select></label>
+                <label className="mode-toggle" htmlFor="entry-competitive" aria-label="Competitive"><input id="entry-competitive" type="checkbox" checked={competitive} onChange={event => setCompetitive(event.target.checked)} /><span><strong>Competitive</strong></span></label>
+                <button className="secondary-button" disabled={loading}>{loading ? 'Refreshing…' : groupData ? 'Refresh group data' : 'Connect group'}</button>
+              </form>
+              <div className="entry-settings-actions">
+                <button className="secondary-button" onClick={syncQuestAccess} disabled={!groupData || syncingQuests}>{syncingQuests ? 'Syncing quest access…' : 'Sync quest access'}</button>
+                {groupData && <button className="text-button" onClick={unsyncGroup}>Unsync group</button>}
+              </div>
+              {message && <p className="entry-settings-message">{message}</p>}
+            </section>
+          )}
         </div>
-        <div className="entry-feature-stack" aria-label="Ironpath features">
-          <article>
-            <Trophy size={17} />
-            <div>
-              <strong>Group Dashboard</strong>
-              <span>Standings, activity, and shared history</span>
-            </div>
-          </article>
-          <article>
-            <CalendarCheck2 size={17} />
-            <div>
-              <strong>Keep the rhythm</strong>
-              <span>Distractions, diversions, runs, and practical routes</span>
-            </div>
-          </article>
-          <article>
-            <ListChecks size={17} />
-            <div>
-              <strong>Make progress clear</strong>
-              <span>Resources shaped for Ironman accounts</span>
-            </div>
-          </article>
-        </div>
+        <aside className="story-build-note" aria-labelledby="story-build-title">
+          <span className="story-note-number">THE WORK BEHIND THE WINDOW</span>
+          <h2 id="story-build-title">One idea.<br />Thousands of little details.</h2>
+          <p>From a group lookup to the right item image, the small things deserve care too.</p>
+          <dl className="story-stats">
+            <div><dt>16,000+</dt><dd>lines of source code</dd></div>
+            <div><dt>115</dt><dd>source files shaping the project</dd></div>
+          </dl>
+          <p className="story-stat-note">Project snapshot · October 16, 2026. Includes application code, styles, scripts, and tests; excludes dependencies, generated builds, and reference data.</p>
+          <div className="story-signature"><Sparkles size={18} /><span>Human direction. AI-assisted building.<br /><strong>Made with care, still being refined.</strong></span></div>
+        </aside>
       </div>
+      <section className="story-tools" aria-labelledby="story-tools-title">
+        <div className="story-tools-heading"><p className="eyebrow">LESS KEEPING TRACK. MORE PLAYING.</p><h2 id="story-tools-title">Give the next session a little direction.</h2><p>A home for the information you reach for between the big milestones.</p></div>
+        <div className="story-tool-list">
+          <article><span className="story-tool-number">01</span><Trophy size={23} /><div><h3>See how the group is getting on.</h3><p>Bring public HiScores, recent activity, and shared item history into one place. Keep up with the progress that makes the journey yours.</p><span>Group dashboard · Activity · Item history</span></div></article>
+          <article><span className="story-tool-number">02</span><CalendarCheck2 size={23} /><div><h3>Make the everyday a little easier.</h3><p>Keep useful routines close at hand, from distractions and diversions to farming routes. Spend less of the session remembering what you meant to do.</p><span>Daily routines · D&amp;Ds · Farming</span></div></article>
+          <article><span className="story-tool-number">03</span><Compass size={23} /><div><h3>Find something worth working towards.</h3><p>Explore training ideas, quest rewards, and Ironman references when you need a next step. Take the useful bits and make the path your own.</p><span>Training · Quest rewards · Reference guides</span></div></article>
+        </div>
+        <div className="story-invitation"><p>Built around our group.<br /><strong>Here for your journey, too.</strong></p><button className="entry-primary" onClick={onEnter}>Find your next step <ChevronRight size={18} /></button></div>
+      </section>
       <footer className="entry-footer entry-credit">
-        <label className="theme-control entry-theme-control">
-          <span>Theme</span>
-          <select
-            value={theme}
-            onChange={(event) => changeTheme(event.target.value as Theme)}
-            aria-label="Choose color theme"
-          >
-            {themes.map(([id, label]) => (
-              <option value={id} key={id}>
-                {label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <i aria-hidden="true" />
-        <span>
-          Concept created by <strong>Justjay btw</strong>
-        </span>
-        <i aria-hidden="true" />
-        <span>AI-assisted development</span>
-        <i aria-hidden="true" />
-        <span>For the community</span>
-        <i aria-hidden="true" />
-        <a href="/faq">FAQ</a>
-        <i aria-hidden="true" />
-        <a href="/privacy">Privacy &amp; data</a>
-        <i aria-hidden="true" />
-        <span>Unofficial · Not affiliated with Jagex</span>
+        <div className="entry-footer-brand">
+          <span>Built by players, for players.</span>
+        </div>
+        <nav className="entry-footer-links" aria-label="Footer links">
+          <a className="project-origin-link" href="/about">About the project</a>
+          <a href="/faq">FAQ</a>
+          <a href="/privacy">Privacy &amp; data</a>
+        </nav>
+        <div className="entry-footer-utility">
+          <FontPreferences inline />
+          <span className="entry-footer-legal">Unofficial · Not affiliated with Jagex</span>
+        </div>
       </footer>
     </section>
   );
@@ -978,12 +846,22 @@ function wikiLink(title: string) {
 }
 
 function ArchaeologyCollectionsView() {
+  const detailRef = useRef<HTMLElement | null>(null);
   const [selected, setSelected] = useState<ArchaeologyCollector | null>(null);
   const [result, setResult] = useState<CollectorResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [images, setImages] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (!selected) return;
+    const frame = window.requestAnimationFrame(() => {
+      detailRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
+      detailRef.current?.focus({ preventScroll: true });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [selected, result]);
 
   useEffect(() => {
     fetch('/api/archaeology-images?kind=collectors', { cache: 'no-store' })
@@ -1035,6 +913,7 @@ function ArchaeologyCollectionsView() {
       return;
     }
     let cancelled = false;
+    setResult(null);
     setLoading(true);
     setError('');
     fetch(
@@ -1132,7 +1011,7 @@ function ArchaeologyCollectionsView() {
               <span className="arch-collector-heading">
                 <span className="arch-collector-image" aria-hidden="true">
                   {images[collector.name] ? (
-                    <img src={images[collector.name]} alt="" />
+                    <ReferenceImage src={images[collector.name]} title={collector.name} alt="" fallback={<Users size={22} />} />
                   ) : (
                     <Archive size={17} />
                   )}
@@ -1152,16 +1031,16 @@ function ArchaeologyCollectionsView() {
         </div>
       </section>
       {selected && (
-        <section className="panel archaeology-detail">
+        <section className="panel archaeology-detail" ref={detailRef} tabIndex={-1} aria-labelledby="arch-selected-collector-title" style={{ scrollMarginTop: 160 }}>
             <div className="section-heading">
               <div>
                 <p className="eyebrow">Selected collector</p>
                 <span className="arch-selected-collector">
                   {images[selected.name] && (
-                    <img src={images[selected.name]} alt="" />
+                    <ReferenceImage src={images[selected.name]} title={selected.name} alt="" fallback={<Users size={22} />} />
                   )}
                   <span>
-                    <h3>{selected.name}</h3>
+                    <h3 id="arch-selected-collector-title">{selected.name}</h3>
                     <span>{selected.location}</span>
                   </span>
                 </span>
@@ -1232,7 +1111,7 @@ function ArchaeologyCollectionsView() {
                               </button>
                               <span className="arch-artefact-image" aria-hidden="true">
                                 {images[artefact] ? (
-                                  <img src={images[artefact]} alt="" />
+                                  <ReferenceImage src={images[artefact]} title={artefact} alt="" fallback={<Archive size={13} />} />
                                 ) : (
                                   <Archive size={13} />
                                 )}
@@ -1284,6 +1163,7 @@ function DungeonToolsView() {
       .then((payload) => {
         if (!cancelled) setPouches(payload.pouches || []);
       })
+      .catch(() => { if (!cancelled) setPouches([]); })
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
@@ -1308,6 +1188,7 @@ function DungeonToolsView() {
       .then((detail) => {
         if (!cancelled) setBossDetail(detail);
       })
+      .catch(() => { if (!cancelled) setBossDetail(null); })
       .finally(() => {
         if (!cancelled) setBossLoading(false);
       });
@@ -1334,6 +1215,17 @@ function DungeonToolsView() {
       window.clearTimeout(settleTimer);
     };
   }, [boss, bossLoading, bossDetail]);
+  const bossKeyPoints = bossDetail
+    ? Array.from(
+        new Set(
+          bossDetail.mechanics
+            .replace(/\s+/g, ' ')
+            .match(/[^.!?]+[.!?]+/g)
+            ?.map((point) => point.trim())
+            .filter((point) => point.length > 18) || [],
+        ),
+      ).slice(0, 3)
+    : [];
   return (
     <div className="content feature-page dungeon-tools-page">
       <section className="feature-heading">
@@ -1447,8 +1339,8 @@ function DungeonToolsView() {
           </a>
         </div>
         <p className="boss-help">
-          Open a floor theme, then choose a boss to see its Wiki-backed
-          encounter card.
+          Open a floor theme, then choose a boss for a short Wiki-backed
+          mechanics reference.
         </p>
         <div className="dungeon-boss-grid">
           {Object.entries(dungeonBosses).map(([theme, bosses]) => (
@@ -1494,21 +1386,29 @@ function DungeonToolsView() {
                 Loading {boss} from the RuneScape Wiki…
               </p>
             )}
+            {!bossLoading && !bossDetail && <p className="reference-status">Boss details are unavailable right now. <a href={wikiLink(boss || '')} target="_blank" rel="noreferrer">Open the Wiki encounter guide</a>.</p>}
             {bossDetail && (
               <>
                 <div className="boss-detail-heading">
                   {bossDetail.image && (
-                    <img src={bossDetail.image} alt={bossDetail.name} />
+                    <ReferenceImage src={bossDetail.image} title={bossDetail.name} alt={bossDetail.name} fallback={<Skull size={28} />} />
                   )}
                   <div>
                     <p className="eyebrow">Boss encounter</p>
                     <h3>{bossDetail.name}</h3>
                   </div>
                 </div>
-                <p>{bossDetail.description}</p>
-                <div className="boss-mechanics">
-                  <strong>Mechanics</strong>
-                  <p>{bossDetail.mechanics}</p>
+                <div className="boss-key-points">
+                  <strong>Key mechanics</strong>
+                  {bossKeyPoints.length ? (
+                    <ul>
+                      {bossKeyPoints.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>Open the Wiki guide for this encounter’s mechanics.</p>
+                  )}
                 </div>
                 <a
                   className="reference-link"
@@ -1558,23 +1458,21 @@ function ShopRunsView({
   const done = shopRuns.filter(([name]) => completed[name]).length;
   return (
     <section className="panel shop-runs-card">
-      <div className="panel-heading">
+      <div className="shop-runs-heading">
         <div>
           <p className="eyebrow">Ironman stock planner</p>
           <h3>Shop Runs</h3>
           <p>
-            Mark a stop when it has been checked. Your group can use this as a
-            simple shared circuit.
+            Keep a compact circuit of the shops that matter most to an
+            Ironman account.
           </p>
         </div>
-        <span className="route-progress">
-          {done}/{shopRuns.length}
-        </span>
+        <div className="shop-runs-progress"><span>Checked</span><strong>{done}/{shopRuns.length}</strong></div>
       </div>
       <div className="shop-run-list">
         {shopRuns.map(([name, locations, stock, advice]) => (
           <article
-            className={completed[name] ? 'hub-check-row done' : 'hub-check-row'}
+            className={completed[name] ? 'shop-run-card done' : 'shop-run-card'}
             key={name}
           >
             <button
@@ -1584,14 +1482,12 @@ function ShopRunsView({
             >
               {completed[name] && <Check size={14} />}
             </button>
-            <div>
-              <strong>{name}</strong>
-              <p>
-                <strong>Where:</strong> {locations}
-              </p>
-              <p>
-                <strong>Key stock:</strong> {stock}
-              </p>
+            <div className="shop-run-copy">
+              <div className="shop-run-title"><span>Shop category</span><strong>{name}</strong></div>
+              <dl>
+                <div><dt>Where</dt><dd>{locations}</dd></div>
+                <div><dt>Keep in stock</dt><dd>{stock}</dd></div>
+              </dl>
               <p>{advice}</p>
             </div>
           </article>
@@ -1602,6 +1498,7 @@ function ShopRunsView({
 }
 
 function HiScoresView({
+  view = 'dashboard',
   result,
   setResult,
   unsyncGroup,
@@ -1609,7 +1506,9 @@ function HiScoresView({
   setWorkspace,
   preferredMember,
   setPreferredMember,
+  onNavigate,
 }: {
+  view?: 'dashboard' | 'achievements';
   result: HiscoreResult | null;
   setResult: (value: HiscoreResult | null) => void;
   unsyncGroup: () => void;
@@ -1617,6 +1516,7 @@ function HiScoresView({
   setWorkspace: (value: Workspace | null) => void;
   preferredMember: string;
   setPreferredMember: (name: string) => void;
+  onNavigate: (page: string) => void;
 }) {
   const [group, setGroup] = useState('');
   const [size, setSize] = useState('4');
@@ -1690,7 +1590,7 @@ function HiScoresView({
       .finally(() => setActivityLoading(false));
   }, [result, activityRefresh, preferredMember]);
 
-  const visibleActivities =
+  const baseActivities =
     activityMember === 'all'
       ? activities.reduce<GroupActivity[]>(
           (limited, activity) =>
@@ -1703,6 +1603,9 @@ function HiScoresView({
           .filter((activity) => activity.player === activityMember)
           .slice(0, 5);
 
+  const availableActivities = activityMember === 'all'
+    ? [...baseActivities, ...activities.filter((activity) => !baseActivities.includes(activity))]
+    : activities.filter((activity) => activity.player === activityMember);
   async function refresh(event?: FormEvent) {
     event?.preventDefault();
     if (!group.trim()) {
@@ -1830,318 +1733,26 @@ function HiScoresView({
     }
   }
 
-  return (
-    <div className="content feature-page repeatables-tracker">
-      <section className="feature-heading">
-        <div>
-          <p className="date-line">LIVE FROM RUNESCAPE</p>
-          <h2>Group HiScores</h2>
-          <p>
-            Look up your team, refresh every member, and compare progress in one
-            place.
-          </p>
-        </div>
-        {result && (
-          <div className="status-chip">
-            <CircleDot size={14} /> Refreshed{' '}
-            {new Date(result.refreshedAt).toLocaleTimeString([], {
-              hour: 'numeric',
-              minute: '2-digit',
-            })}
-          </div>
-        )}
-      </section>
-      <form className="lookup-panel panel" onSubmit={refresh}>
-        <label className="field group-field">
-          <span>Group name</span>
-          <input
-            value={group}
-            onChange={(event) => setGroup(event.target.value)}
-            placeholder="Enter exact group name"
-          />
-        </label>
-        <label className="field">
-          <span>Group size</span>
-          <select
-            value={size}
-            onChange={(event) => setSize(event.target.value)}
-          >
-            <option value="2">2 members</option>
-            <option value="3">3 members</option>
-            <option value="4">4 members</option>
-            <option value="5">5 members</option>
-          </select>
-        </label>
-        <label className="mode-toggle">
-          <input
-            type="checkbox"
-            aria-label="Competitive mode"
-            checked={competitive}
-            onChange={(event) => setCompetitive(event.target.checked)}
-          />
-          <span>
-            <strong>Competitive mode</strong>
-          </span>
-        </label>
-        <button className="primary-button lookup-button" disabled={loading}>
-          {loading ? (
-            <RefreshCw className="spin" size={16} />
-          ) : (
-            <Search size={16} />
-          )}
-          {loading ? 'Refreshing…' : 'Look up group'}
-        </button>
-      </form>
-      {error && <div className="error-banner">{error}</div>}
-      {result?.warning && (
-        <div className="warning-banner">{result.warning}</div>
-      )}
-      <section className="panel dashboard-group-status">
-        <CircleDot size={19} />
-        <div>
-          <p className="eyebrow">
-            {result ? 'Connected group' : 'Ready when you are'}
-          </p>
-          <h3>{result ? result.group : 'Connect your Group Ironman roster'}</h3>
-          <p>
-            {result
-              ? `${result.mode} · ${result.players.length} members`
-              : 'Enter your exact group name above to connect its official HiScores roster.'}
-          </p>
-        </div>
-        {result && (
-          <button className="unsync-group-button" onClick={unsyncGroup}>
-            Unsync group
-          </button>
-        )}
-      </section>
-      {!result && !error && (
-        <section className="empty-state">
-          <Trophy size={32} />
-          <h3>Your group ledger starts here</h3>
-          <p>
-            Enter the exact group name, current size, and mode used on the
-            official HiScores.
-          </p>
-        </section>
-      )}
-      {result && (
-        <>
-          <section className="hiscore-summary">
-            <div className="panel summary-main">
-              <p className="eyebrow">
-                {result.mode} group · {result.size} members
-              </p>
-              <h3>{result.group}</h3>
-              <a href={result.sourceUrl} target="_blank" rel="noreferrer">
-                Official HiScores <ExternalLink size={12} />
-              </a>
-            </div>
-            <div className="panel summary-stat">
-              <span>Combined level</span>
-              <strong>{result.totalLevel.toLocaleString()}</strong>
-            </div>
-            <div className="panel summary-stat">
-              <span>Combined XP</span>
-              <strong>{compactNumber(result.totalXp)}</strong>
-            </div>
-            <button
-              className="panel refresh-card"
-              onClick={() => refresh()}
-              disabled={loading}
-            >
-              <RefreshCw className={loading ? 'spin' : ''} size={20} />
-              <span>Refresh stats</span>
-            </button>
-          </section>
-          {(() => {
-            const selected =
-              result.players.find(
-                (player) => player.name === preferredMember,
-              ) || result.players[0];
-            const top = selected
-              ? [...selected.skills].sort((a, b) => b.xp - a.xp)[0]
-              : undefined;
-            return selected ? (
-              <section className="panel member-home-selector">
-                <div>
-                  <p className="eyebrow">Your character</p>
-                  <h3>Personalize Ironpath</h3>
-                  <p>
-                    Choose your group member to tailor suggestions, training
-                    levels and available familiars to you.
-                  </p>
-                </div>
-                <label className="field">
-                  <span>Viewing as</span>
-                  <select
-                    value={selected.name}
-                    onChange={(event) => setPreferredMember(event.target.value)}
-                  >
-                    {result.players.map((player) => (
-                      <option value={player.name} key={player.name}>
-                        {player.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <div className="personal-stat">
-                  <span>Total level</span>
-                  <strong>
-                    {selected.overall?.level.toLocaleString() || '—'}
-                  </strong>
-                </div>
-                <div className="personal-stat">
-                  <span>Top skill</span>
-                  <strong>{top ? `${top.name} ${top.level}` : '—'}</strong>
-                </div>
-              </section>
-            ) : null;
-          })()}
-          <div className="dashboard-primary-sections">
-            <section className="panel hiscore-table-panel">
-              <div className="panel-heading">
-                <div>
-                  <h3>Member standings</h3>
-                </div>
-                <span className="source-note">
-                  Position ranks members by total XP within this group
-                </span>
-              </div>
-              <div className="hiscore-table">
-                <div className="hiscore-row table-head">
-                  <span>Member</span>
-                  <span>Total level</span>
-                  <span>Total XP</span>
-                  <span>Group position</span>
-                  <span>Top skill</span>
-                </div>
-                {[...result.players]
-                  .sort((a, b) => (b.overall?.xp || 0) - (a.overall?.xp || 0))
-                  .map((player, position) => {
-                    const top = [...player.skills].sort(
-                      (a, b) => b.xp - a.xp,
-                    )[0];
-                    const placement = position + 1;
-                    const expanded = expandedMember === player.name;
-                    const statistics = player.overall
-                      ? [player.overall, ...player.skills]
-                      : player.skills;
-                    return (
-                      <section
-                        className={
-                          expanded ? 'score-entry expanded' : 'score-entry'
-                        }
-                        key={player.name}
-                      >
-                        <button
-                          className="hiscore-row clickable"
-                          onClick={() =>
-                            setExpandedMember(expanded ? null : player.name)
-                          }
-                          aria-expanded={expanded}
-                        >
-                          <div className="score-member">
-                            <span className="character-chathead">
-                              <img
-                                src={characterAvatarUrl(player.name)}
-                                alt=""
-                                onError={(event) =>
-                                  event.currentTarget.parentElement?.classList.add(
-                                    'avatar-unavailable',
-                                  )
-                                }
-                              />
-                            </span>
-                            <strong>{player.name}</strong>
-                          </div>
-                          <strong>
-                            {player.overall?.level.toLocaleString() || '—'}
-                          </strong>
-                          <span>{compactNumber(player.overall?.xp || 0)}</span>
-                          <span
-                            className={`placement-badge placement-${Math.min(placement, 4)}`}
-                            aria-label={`Group placement ${placement} of ${result.players.length}`}
-                          >
-                            <Medal size={18} />
-                            <b>{placement}</b>
-                            <small>of {result.players.length}</small>
-                          </span>
-                          <span className="top-skill-cell">
-                            {top ? (
-                              <>
-                                <img
-                                  src={skillIconUrl(top.name)}
-                                  alt=""
-                                  onError={(event) => {
-                                    event.currentTarget.style.display = 'none';
-                                  }}
-                                />
-                                <span>
-                                  {top.name} {top.level}
-                                </span>
-                              </>
-                            ) : (
-                              'Stats unavailable'
-                            )}
-                            <ChevronRight size={14} />
-                          </span>
-                        </button>
-                        {expanded && (
-                          <div className="skill-drawer">
-                            <div className="skill-drawer-head">
-                              <div>
-                                <p className="eyebrow">Individual statistics</p>
-                                <h3>{player.name}</h3>
-                              </div>
-                              <span>{statistics.length} ranked skills</span>
-                            </div>
-                            <div className="skill-grid">
-                              <div className="skill-grid-head">
-                                <span>Skill</span>
-                                <span>Level</span>
-                                <span>XP</span>
-                                <span>Rank</span>
-                              </div>
-                              {statistics.map((skill) => (
-                                <div
-                                  className="skill-stat-row"
-                                  key={skill.name}
-                                >
-                                  <strong className="skill-name-cell">
-                                    <img
-                                      src={skillIconUrl(skill.name)}
-                                      alt=""
-                                      onError={(event) => {
-                                        event.currentTarget.style.display =
-                                          'none';
-                                      }}
-                                    />
-                                    {skill.name}
-                                  </strong>
-                                  <span>{skill.level.toLocaleString()}</span>
-                                  <span>{skill.xp.toLocaleString()}</span>
-                                  <span>
-                                    {skill.rank > 0
-                                      ? `#${skill.rank.toLocaleString()}`
-                                      : '—'}
-                                  </span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </section>
-                    );
-                  })}
-              </div>
-            </section>
-            <GroupDropLog
-              group={result.group}
-              players={result.players.map((player) => player.name)}
-              workspace={workspace}
-            />
-            <section className="panel activity-panel">
+  const selectedPlayer =
+    result?.players.find((player) => player.name === preferredMember) ||
+    result?.players[0];
+  const selectedTopSkill = selectedPlayer
+    ? [...selectedPlayer.skills].sort((a, b) => b.xp - a.xp)[0]
+    : undefined;
+  const dashboardMockup =
+    typeof window !== 'undefined' &&
+    view === 'dashboard' && window.location.hostname === 'localhost' &&
+    new URLSearchParams(window.location.search).has('dashboardMockup');
+  const scrollToDashboardArea = (id: string) => {
+    if (id === 'dashboard-activity' || id === 'dashboard-archive') {
+      onNavigate('Achievements');
+      return;
+    }
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const activityLog = (
+            <section id="achievements-activity" className="panel activity-panel">
               <div className="panel-heading">
                 <div>
                   <p className="eyebrow">Adventurer&apos;s Log</p>
@@ -2224,22 +1835,16 @@ function HiScoresView({
                     log. Temporary failures are retried automatically.
                   </p>
                 </div>
-              ) : visibleActivities.length ? (
-                <div className="activity-feed">
-                  {visibleActivities.map((activity, index) => (
+              ) : availableActivities.length ? (
+                <div className="activity-feed" role="region" aria-label="Recent public activity" tabIndex={0}>
+                  {availableActivities.map((activity, index) => (
                     <article
                       key={`${activity.player}-${activity.timestamp}-${index}`}
                     >
                       <div className="activity-avatar character-chathead">
-                        <img
+                        <ReferenceImage
                           src={characterAvatarUrl(activity.player)}
-                          alt=""
-                          onError={(event) =>
-                            event.currentTarget.parentElement?.classList.add(
-                              'avatar-unavailable',
-                            )
-                          }
-                        />
+                          alt="" fallback={<Users size={18} />} />
                       </div>
                       <div className="activity-copy">
                         <div>
@@ -2268,8 +1873,10 @@ function HiScoresView({
                 </div>
               )}
             </section>
-          </div>
-          <section className="panel dashboard-share-key">
+  );
+  const archiveAccess = (
+    <>
+          <section id="dashboard-share-key" className="panel dashboard-share-key">
             <div>
               <p className="eyebrow">Shared drop archive</p>
               <h3>
@@ -2357,7 +1964,250 @@ function HiScoresView({
               </form>
             </div>
           )}
+    </>
+  );
+
+  if (view === 'achievements') return (
+    <div className="content feature-page dashboard-page achievements-page" role="region" aria-label="Achievements">
+      {result ? <>
+        <nav className="achievements-section-nav" aria-label="Achievements sections">
+          <button onClick={() => document.getElementById('achievements-activity')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}><Clock3 size={18} /><span><strong>Adventurer&apos;s log</strong><small>Levels, quests, and public RuneMetrics milestones</small></span><ChevronRight size={16} /></button>
+          <button onClick={() => document.getElementById('achievements-archive')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}><Gem size={18} /><span><strong>Drop log</strong><small>Shared item history and historical entries</small></span><ChevronRight size={16} /></button>
+        </nav>
+        {activityLog}
+        <div id="achievements-archive"><GroupDropLog group={result.group} players={result.players.map(player => player.name)} workspace={workspace} /></div>
+        {archiveAccess}
+      </> : <section className="panel achievements-empty"><Medal size={32} /><h2>Your group&apos;s story starts here</h2><p>Connect your Group Ironman roster on the Dashboard to see the adventurer&apos;s log and drop history.</p><button className="primary-button" onClick={() => onNavigate('Dashboard')}>Connect your group <ChevronRight size={15} /></button></section>}
+    </div>
+  );
+
+  return (
+    <div className={`content feature-page repeatables-tracker dashboard-page${dashboardMockup ? ' dashboard-mockup-test' : ''}`}>
+      {dashboardMockup && (
+        <aside className="dashboard-mockup-rail dashboard-mockup-left" aria-label="Group dashboard navigation">
+          <div className="dashboard-mockup-rail-title"><Users size={24}/><div><strong>Group</strong><span>Track your journey together.</span></div></div>
+          <div className="dashboard-mockup-nav">
+            <button className="active" onClick={() => scrollToDashboardArea('dashboard-overview')}>Overview</button>
+            <button onClick={() => scrollToDashboardArea('dashboard-standings')}>Member standings</button>
+            <button onClick={() => scrollToDashboardArea('dashboard-activity')}>Recent activity</button>
+            <button onClick={() => onNavigate('Achievements')}>Drop archive</button>
+          </div>
+          <div className="dashboard-mockup-actions">
+            <p className="eyebrow">Quick actions</p>
+            <button onClick={() => scrollToDashboardArea('dashboard-overview')}><RefreshCw size={15}/> Refresh group data</button>
+            <button onClick={() => scrollToDashboardArea('dashboard-personalize')}><Users size={15}/> Choose member</button>
+            <button onClick={() => onNavigate('Achievements')}><Archive size={15}/> Manage archive</button>
+          </div>
+        </aside>
+      )}
+      <div className={dashboardMockup ? 'dashboard-mockup-main' : undefined}>
+      {selectedPlayer && (
+        <section id="dashboard-personalize" className="panel member-home-selector dashboard-personalize">
+          <div>
+            <p className="eyebrow">Your character</p>
+            <h3>Personalize Ironpath</h3>
+            <p>
+              Choose who you are in the group. Ironpath will use this member’s
+              levels and unlocks across the rest of the app.
+            </p>
+          </div>
+          <label className="field">
+            <span>Viewing as</span>
+            <select value={selectedPlayer.name} onChange={(event) => setPreferredMember(event.target.value)}>
+              {result?.players.map((player) => <option value={player.name} key={player.name}>{player.name}</option>)}
+            </select>
+          </label>
+          <div className="personal-stat"><span>Total level</span><strong>{selectedPlayer.overall?.level.toLocaleString() || 'N/A'}</strong></div>
+          <div className="personal-stat"><span>Top skill</span><strong>{selectedTopSkill ? `${selectedTopSkill.name} ${selectedTopSkill.level}` : 'N/A'}</strong></div>
+        </section>
+      )}
+      <RuneScapeNews />
+      <section id="dashboard-overview" className="panel dashboard-connection-panel">
+        <div>
+          <p className="eyebrow">Group connection</p>
+          <h3>{result ? `${result.group} · ${result.mode}` : 'Connect your Group Ironman roster'}</h3>
+          <p>{result ? `Last refreshed ${new Date(result.refreshedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}.` : 'Look up your group here to load its official HiScores roster.'}</p>
+        </div>
+        <form onSubmit={refresh}>
+          <label className="field group-field"><span>Group name</span><input value={group} onChange={(event) => setGroup(event.target.value)} placeholder="Exact group name" /></label>
+          <label className="field"><span>Size</span><select value={size} onChange={(event) => setSize(event.target.value)}>{[2,3,4,5].map(value => <option value={value} key={value}>{value} members</option>)}</select></label>
+          <button className="secondary-button" disabled={loading}>{loading ? 'Refreshing…' : result ? 'Refresh group' : 'Connect group'}</button>
+          {result && <button className="text-button unsync-group-button" type="button" onClick={unsyncGroup}>Unsync</button>}
+        </form>
+      </section>
+      {error && <div className="error-banner">{error}</div>}
+      {result?.warning && (
+        <div className="warning-banner">{result.warning}</div>
+      )}
+      {!result && !error && (
+        <section className="empty-state">
+          <Trophy size={32} />
+          <h3>Your group ledger starts here</h3>
+          <p>
+            Enter the exact group name, current size, and mode used on the
+            official HiScores.
+          </p>
+        </section>
+      )}
+      {result && (
+        <>
+          <div className="dashboard-primary-sections">
+            <section id="dashboard-standings" className="panel hiscore-table-panel">
+              <div className="panel-heading">
+                <div>
+                  <h3>Member standings</h3>
+                </div>
+                <span className="source-note">
+                  Position ranks members by total XP within this group
+                </span>
+              </div>
+              <div className="hiscore-table">
+                <div className="hiscore-row table-head">
+                  <span>Member</span>
+                  <span>Total level</span>
+                  <span>Total XP</span>
+                  <span>Group position</span>
+                  <span>Top skill</span>
+                </div>
+                {[...result.players]
+                  .sort((a, b) => (b.overall?.xp || 0) - (a.overall?.xp || 0))
+                  .map((player, position) => {
+                    const top = [...player.skills].sort(
+                      (a, b) => b.xp - a.xp,
+                    )[0];
+                    const placement = position + 1;
+                    const expanded = expandedMember === player.name;
+                    const statistics = player.overall
+                      ? [player.overall, ...player.skills]
+                      : player.skills;
+                    return (
+                      <section
+                        className={
+                          expanded ? 'score-entry expanded' : 'score-entry'
+                        }
+                        key={player.name}
+                      >
+                        <button
+                          className="hiscore-row clickable"
+                          onClick={() =>
+                            setExpandedMember(expanded ? null : player.name)
+                          }
+                          aria-expanded={expanded}
+                        >
+                          <div className="score-member">
+                            <span className="character-chathead">
+                              <ReferenceImage
+                                src={characterAvatarUrl(player.name)}
+                                alt="" fallback={<Users size={18} />} />
+                            </span>
+                            <strong>{player.name}</strong>
+                          </div>
+                          <strong>
+                            {player.overall?.level.toLocaleString() || 'N/A'}
+                          </strong>
+                          <span>{compactNumber(player.overall?.xp || 0)}</span>
+                          <span
+                            className={`placement-badge placement-${Math.min(placement, 4)}`}
+                            aria-label={`Group placement ${placement} of ${result.players.length}`}
+                          >
+                            <Medal size={18} />
+                            <b>{placement}</b>
+                            <small>of {result.players.length}</small>
+                          </span>
+                          <span className="top-skill-cell">
+                            {top ? (
+                              <>
+                                <ReferenceImage src={skillIconUrl(top.name)} title={top.name} alt="" fallback={<Sparkles size={14} />} />
+                                <span>
+                                  {top.name} {top.level}
+                                </span>
+                              </>
+                            ) : (
+                              'Stats unavailable'
+                            )}
+                            <ChevronRight size={14} />
+                          </span>
+                        </button>
+                        {expanded && (
+                          <div className="skill-drawer">
+                            <div className="skill-drawer-head">
+                              <div>
+                                <p className="eyebrow">Individual statistics</p>
+                                <h3>{player.name}</h3>
+                              </div>
+                              <span>{statistics.length} ranked skills</span>
+                            </div>
+                            <div className="skill-grid">
+                              <div className="skill-grid-head">
+                                <span>Skill</span>
+                                <span>Level</span>
+                                <span>XP</span>
+                                <span>Rank</span>
+                              </div>
+                              {statistics.map((skill) => (
+                                <div
+                                  className="skill-stat-row"
+                                  key={skill.name}
+                                >
+                                  <strong className="skill-name-cell">
+                                    <ReferenceImage src={skillIconUrl(skill.name)} title={skill.name} alt="" fallback={<Sparkles size={14} />} />
+                                    {skill.name}
+                                  </strong>
+                                  <span>{skill.level.toLocaleString()}</span>
+                                  <span>{skill.xp.toLocaleString()}</span>
+                                  <span>
+                                    {skill.rank > 0
+                                      ? `#${skill.rank.toLocaleString()}`
+                                      : 'N/A'}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </section>
+                    );
+                  })}
+              </div>
+            </section>
+          </div>
+          {dashboardMockup && (
+            <section className="panel dashboard-mockup-goals">
+              <div>
+                <p className="eyebrow">Upcoming goals</p>
+                <h3>Plan the next steps together</h3>
+                <p>Group-wide goals are not currently supplied by the public HiScores data. Individual roadmap and checklist progress stays available in Progression.</p>
+              </div>
+              <button className="secondary-button" type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Review the roadmap</button>
+            </section>
+          )}
+
         </>
+      )}
+      </div>
+      {dashboardMockup && (
+        <aside className="dashboard-mockup-rail dashboard-mockup-right" aria-label="Dashboard tools">
+          <section className="dashboard-mockup-sidecard">
+            <p className="eyebrow">Group settings</p>
+            <h3>{result ? result.group : 'Group setup'}</h3>
+            <p>Connect, refresh, or update the member you are viewing without duplicating group details across the dashboard.</p>
+            <button onClick={() => scrollToDashboardArea('dashboard-overview')}>Group connection <ChevronRight size={15}/></button>
+            <button onClick={() => scrollToDashboardArea('dashboard-personalize')}>Viewing preferences <ChevronRight size={15}/></button>
+            <button onClick={() => onNavigate('Achievements')}>Archive sharing <ChevronRight size={15}/></button>
+          </section>
+          <section className="dashboard-mockup-sidecard">
+            <p className="eyebrow">Quick links</p>
+            <button onClick={() => scrollToDashboardArea('dashboard-standings')}>Member standings <ChevronRight size={15}/></button>
+            <button onClick={() => scrollToDashboardArea('dashboard-activity')}>Adventurer&apos;s log <ChevronRight size={15}/></button>
+            <button onClick={() => onNavigate('Achievements')}>Group item history <ChevronRight size={15}/></button>
+          </section>
+          <section className="dashboard-mockup-sidecard dashboard-mockup-status">
+            <p className="eyebrow">Group status</p>
+            <strong>{result ? `${result.players.length} members loaded` : 'No group connected'}</strong>
+            <span><i/> {result ? 'HiScores roster synced' : 'Connect a group to begin'}</span>
+            <span><i/> Personal preferences stay on this device</span>
+          </section>
+        </aside>
       )}
     </div>
   );
@@ -2378,8 +2228,9 @@ function archiveEntryDate(event: LoggedDrop) {
     ? `${match[1]}-${match[2]}-${match[3]} 00:00`
     : 'Date unavailable';
 }
-function dropIconUrl(item: string) {
-  return `https://runescape.wiki/Special:FilePath/${encodeURIComponent(item)}.png`;
+function DropItemImage({ item }: { item: string }) {
+  const artwork = (dropItemImages as Record<string, { src: string; wikiTitle: string }>)[item.toLowerCase()];
+  return <ReferenceImage src={artwork?.src} title={artwork?.wikiTitle || item} alt={`${item} icon`} className="drop-item-image" fallback={<Gem size={22} />} />;
 }
 function GroupDropLog({
   group,
@@ -2541,7 +2392,7 @@ function GroupDropLog({
       <div className="panel-heading">
         <div>
           <p className="eyebrow">Group drop archive</p>
-          <h3>{group} item history</h3>
+          <h3>Group item history</h3>
         </div>
         <span className="source-note">
           New public RuneMetrics drop events are retained for this group.
@@ -2591,7 +2442,7 @@ function GroupDropLog({
             </strong>
             <small>
               Bulk format:{' '}
-              <code>YYYY-MM-DD, Player name, Item name, Quantity</code> — one
+              <code>YYYY-MM-DD, Player name, Item name, Quantity</code>; one
               entry per line.
             </small>
           </div>
@@ -2651,7 +2502,7 @@ function GroupDropLog({
       )}
       {showingPreview && (
         <p className="drop-preview-note">
-          Example items only — these are shown to preview the layout and are
+          Example items only. These are shown to preview the layout and are
           replaced automatically by real RuneMetrics drop events or historical
           entries you add.
         </p>
@@ -2662,7 +2513,6 @@ function GroupDropLog({
             <span>Item</span>
             <span>Quantity</span>
             <span>Found by</span>
-            <span>Latest entry</span>
           </div>
           {displayRows.map((row) => {
             const newest = [...row.events].sort(
@@ -2672,13 +2522,7 @@ function GroupDropLog({
             return (
               <article key={row.item}>
                 <div className="drop-item">
-                  <img
-                    src={dropIconUrl(row.item)}
-                    alt={`${row.item} icon`}
-                    onError={(event) => {
-                      event.currentTarget.style.visibility = 'hidden';
-                    }}
-                  />
+                  <DropItemImage key={row.item} item={row.item} />
                   <strong>{row.item}</strong>
                 </div>
                 <strong>{row.quantity.toLocaleString()}</strong>
@@ -2688,15 +2532,6 @@ function GroupDropLog({
                   )}
                   <small>{entryDate}</small>
                 </span>
-                <time
-                  dateTime={
-                    newest.date.startsWith('Example')
-                      ? undefined
-                      : new Date(newest.timestamp).toISOString()
-                  }
-                >
-                  {entryDate}
-                </time>
               </article>
             );
           })}
@@ -2981,139 +2816,72 @@ function TaskGenerator({
 }
 
 const ironmanUnlocks = [
-  {
-    stage: 'Early',
-    name: 'High Level Alchemy',
-    requirement: '55 Magic · 44 Runecrafting recommended',
-    value:
-      'Turns salvage and spare drops into the coins needed for shops, instances, Summoning and kingdom upkeep.',
-    link: 'https://runescape.wiki/w/High_Level_Alchemy',
-  },
-  {
-    stage: 'Early',
-    name: 'Bonecrusher',
-    requirement: '21 Dungeoneering · 34,000 tokens',
-    value:
-      'Automatically buries eligible bones, adding passive Prayer experience to combat and Slayer.',
-    link: 'https://runescape.wiki/w/Bonecrusher',
-  },
-  {
-    stage: 'Early',
-    name: 'War’s Retreat teleport',
-    requirement: '10 total boss kills',
-    value:
-      'Provides a free, fast teleport to a bank, altar and boss portals—one of the best account-wide travel upgrades.',
-    link: 'https://runescape.wiki/w/War%27s_Retreat',
-  },
-  {
-    stage: 'Early',
-    name: 'Giant Oyster',
-    requirement: 'Beneath Cursed Tides',
-    value:
-      'Unlocks a useful monthly source of Fishing and Farming experience with a reward chest.',
-    link: 'https://runescape.wiki/w/Giant_Oyster',
-  },
-  {
-    stage: 'Mid',
-    name: 'Managing Miscellania',
-    requirement: 'Throne of Miscellania · Royal Trouble',
-    value:
-      'Converts daily coins into steady logs, herbs, seeds or fish—valuable supplies that are otherwise slow to gather.',
-    link: 'https://runescape.wiki/w/Managing_Miscellania',
-  },
-  {
-    stage: 'Mid',
-    name: 'Invention',
-    requirement: '80 Crafting · Divination · Smithing',
-    value:
-      'Unlocks augmentation, equipment experience, useful machines and perks that transform both skilling and combat.',
-    link: 'https://runescape.wiki/w/Invention',
-  },
-  {
-    stage: 'Mid',
-    name: 'Ancient Curses',
-    requirement: 'The Temple at Senntisten',
-    value:
-      'Unlocks the Curse prayer book and establishes the foundation for higher-level combat and sustain.',
-    link: 'https://runescape.wiki/w/Ancient_Curses',
-  },
-  {
-    stage: 'Mid',
-    name: 'Prifddinas',
-    requirement: 'Plague’s End · level 75 requirements',
-    value:
-      'Opens the elf city’s training methods, shops, crystal equipment, convenient teleports and skilling services.',
-    link: 'https://runescape.wiki/w/Prifddinas',
-  },
-  {
-    stage: 'Mid',
-    name: 'Augmentable Sunspear',
-    requirement: 'River of Blood',
-    value:
-      'A reusable all-style weapon that works especially well for Vyres and early Invention equipment training.',
-    link: 'https://runescape.wiki/w/Sunspear_(melee)',
-  },
-  {
-    stage: 'Late',
-    name: 'City of Senntisten spells',
-    requirement: 'City of Senntisten',
-    value:
-      'Adds powerful Ancient Magicks options including Animate Dead, Smoke Cloud, Incite Fear and Exsanguinate.',
-    link: 'https://runescape.wiki/w/City_of_Senntisten',
-  },
-  {
-    stage: 'Late',
-    name: 'Extinction rewards',
-    requirement: 'Extinction',
-    value:
-      'Unlocks Dream of Iaia and major passive utility, including the passive Ring of Vigour effect.',
-    link: 'https://runescape.wiki/w/Extinction',
-  },
-  {
-    stage: 'Late',
-    name: 'Player-owned Ports',
-    requirement: '90 in a supporting skill',
-    value:
-      'Provides long-term voyages for trade goods used in high-level armour, scrimshaws and other account upgrades.',
-    link: 'https://runescape.wiki/w/Player-owned_port',
-  },
+  { category: 'Activities', name: 'Giant Oyster', requirement: 'Complete Beneath Cursed Tides', value: 'A monthly Distraction and Diversion with Farming and Fishing experience plus a reward chest.', link: 'https://runescape.wiki/w/Giant_Oyster' },
+  { category: 'Activities', name: 'Managing Miscellania', requirement: 'Throne of Miscellania · Royal Trouble improves it', value: 'Assign workers for passive resources such as logs, herbs, seeds, fish and coal.', link: 'https://runescape.wiki/w/Managing_Miscellania' },
+  { category: 'Activities', name: 'Player-owned Ports', requirement: 'Level 90 in one eligible skill', value: 'Long-term voyages provide trade goods for scrimshaws, rocktail soup, tier-85 gear and more.', link: 'https://runescape.wiki/w/Player-owned_port' },
+  { category: 'Locations', name: 'War’s Retreat', requirement: 'Combat level 60 or total level 1,000', value: 'PvM hub with a bank, altar, adrenaline crystals and boss portals unlocked through boss kills and Marks of War.', link: 'https://runescape.wiki/w/War%27s_Retreat' },
+  { category: 'Locations', name: 'Menaphos', requirement: 'Complete The Jack of Spades', value: 'Mid-level city with skilling, Soul obelisks, Shifting Tombs, marketeers and desert activities.', link: 'https://runescape.wiki/w/Menaphos' },
+  { category: 'Locations', name: 'Prifddinas', requirement: 'Complete Plague’s End', value: 'Elf city districts, high-level skilling, shops, crystal services and convenient teleports.', link: 'https://runescape.wiki/w/Prifddinas' },
+  { category: 'Locations', name: 'The Arc', requirement: 'Complete Impressing the Locals', value: 'High-level island skilling, an Elite Dungeon and access to uncharted-island content.', link: 'https://runescape.wiki/w/The_Arc' },
+  { category: 'Travel', name: 'Lodestone Network', requirement: 'Visit and activate each lodestone', value: 'Free home-teleport access to major cities and locations; quick charges make the teleport instant.', link: 'https://runescape.wiki/w/Lodestone_Network' },
+  { category: 'Travel', name: 'Fairy ring network', requirement: 'A Fairy Tale II · Fairy Tale III removes staff requirement', value: 'Network travel to a large number of areas after discovering the rings you want to use.', link: 'https://runescape.wiki/w/Fairy_ring' },
+  { category: 'Travel', name: 'Spirit tree network', requirement: 'Tree Gnome Village · The Path of Glouphrie for free travel', value: 'Fast travel between spirit trees; more personal trees can be planted with Farming and quest progress.', link: 'https://runescape.wiki/w/Spirit_tree' },
+  { category: 'Travel', name: 'Ectophial', requirement: 'Complete Ghosts Ahoy', value: 'Instant, one-click teleport to the Ectofuntus near Port Phasmatys that is kept on death outside the Wilderness.', link: 'https://runescape.wiki/w/Ectophial' },
+  { category: 'Travel', name: 'Manor Farm teleport', requirement: 'Medium Ardougne achievements; Elite for unlimited use', value: 'Direct Player-owned Farm access and a useful stop for farming routes.', link: 'https://runescape.wiki/w/Ardougne_achievements' },
+  { category: 'Travel', name: 'Wicked hood', requirement: 'Claim from Tam McGrubor in Burthorpe', value: 'Daily Runecrafting altar teleports and quick access to the Rune Goldberg Machine.', link: 'https://runescape.wiki/w/Wicked_hood' },
+  { category: 'Travel', name: 'Ring of duelling', requirement: 'Enchant an emerald ring', value: 'Convenient teleports to Castle Wars, Het’s Oasis and Fist of Guthix.', link: 'https://runescape.wiki/w/Ring_of_duelling' },
+  { category: 'Travel', name: 'Games necklace', requirement: 'Enchant a sapphire necklace', value: 'Useful access to Barbarian Assault, Tears of Guthix and several combat or minigame destinations.', link: 'https://runescape.wiki/w/Games_necklace' },
+  { category: 'Travel', name: 'Amulet of glory', requirement: 'Enchant a dragonstone amulet', value: 'Teleports to Karamja, Shantay Pass and Draynor Village, with recharges available at the Fountain of Heroes.', link: 'https://runescape.wiki/w/Amulet_of_glory' },
+  { category: 'Travel', name: 'Attuned crystal teleport seed', requirement: 'Plague’s End · depleted seed · 4,000 harmonic dust', value: 'Unlimited teleports across Prifddinas districts, Lletya and the Temple of Light.', link: 'https://runescape.wiki/w/Attuned_crystal_teleport_seed' },
+  { category: 'Skilling', name: 'Invention', requirement: 'Level 80 Crafting, Divination and Smithing', value: 'Augment equipment, train with item experience, unlock machines and create powerful perks.', link: 'https://runescape.wiki/w/Invention' },
+  { category: 'Skilling', name: 'Bonecrusher', requirement: '21 Dungeoneering · 34,000 tokens', value: 'Automatically buries eligible bones for passive Prayer experience while fighting or training Slayer.', link: 'https://runescape.wiki/w/Bonecrusher' },
+  { category: 'Skilling', name: 'High Level Alchemy', requirement: 'Level 55 Magic', value: 'Converts salvage and spare drops into coins for shops, upkeep and other self-sufficient costs.', link: 'https://runescape.wiki/w/High_Level_Alchemy' },
+  { category: 'Skilling', name: 'Seren skilling spells', requirement: 'Complete The Light Within', value: 'Unlocks Chronicle Attraction, Superheat Form and Light Form through Ancient Magicks.', link: 'https://runescape.wiki/w/The_Light_Within' },
+  { category: 'Skilling', name: 'Crystal tools', requirement: 'Complete Plague’s End', value: 'Strong untradeable, augmentable tools with bonuses for the skills trained with them.', link: 'https://runescape.wiki/w/Crystal_tools' },
+  { category: 'Skilling', name: 'Elite skilling outfits', requirement: 'Skill-specific fragments or their dedicated activity', value: 'Carry the standard outfit experience boost and add useful skill-specific benefits.', link: 'https://runescape.wiki/w/Elite_skilling_outfit' },
+  { category: 'Skilling', name: 'Signs of the porter', requirement: 'Craft with Divination', value: 'Automatically send gathered items to the bank, metal bank or Archaeology material storage.', link: 'https://runescape.wiki/w/Sign_of_the_porter' },
+  { category: 'Skilling', name: 'Grace of the elves', requirement: 'Create or obtain the necklace', value: 'Stores up to 500 porter charges for long gathering sessions.', link: 'https://runescape.wiki/w/Grace_of_the_elves' },
+  { category: 'Skilling', name: 'Relic powers', requirement: 'Archaeology discoveries and monolith energy', value: 'Permanent Archaeology-powered effects that improve gathering, combat, travel and quality of life.', link: 'https://runescape.wiki/w/Relic_power' },
+  { category: 'Skilling', name: 'Scroll of cleansing', requirement: 'Buy with Dungeoneering tokens', value: 'Can save Herblore secondary ingredients while making unfinished potions.', link: 'https://runescape.wiki/w/Scroll_of_cleansing' },
+  { category: 'Skilling', name: 'Urn enhancer', requirement: 'Nomad’s Elegy · level 24 Invention', value: 'Uses divine charges to add 25% extra experience when urns teleport away.', link: 'https://runescape.wiki/w/Urn_enhancer' },
+  { category: 'Combat', name: 'War’s Retreat teleport', requirement: 'Get 10 total boss kills after accessing War’s Retreat', value: 'A no-cost, one-click spellbook teleport to the PvM hub and its core amenities.', link: 'https://runescape.wiki/w/War%27s_Retreat_Teleport' },
+  { category: 'Combat', name: 'Ancient Curses', requirement: 'Complete The Temple at Senntisten', value: 'Unlocks the ancient prayer book for higher-level combat prayers and sustain.', link: 'https://runescape.wiki/w/Ancient_Curses' },
+  { category: 'Combat', name: 'City of Senntisten spells', requirement: 'Complete City of Senntisten', value: 'Adds key Ancient Magicks such as Animate Dead, Smoke Cloud, Incite Fear and Exsanguinate.', link: 'https://runescape.wiki/w/City_of_Senntisten' },
+  { category: 'Combat', name: 'Passive Ring of Vigour', requirement: 'Complete Extinction', value: 'Makes the Ring of Vigour effect passive, freeing the ring slot for another combat option.', link: 'https://runescape.wiki/w/Extinction' },
+  { category: 'Combat', name: 'Overloads', requirement: 'Level 96 Herblore', value: 'Combines extreme potion boosts to improve every combat style at once.', link: 'https://runescape.wiki/w/Overload' },
+  { category: 'Combat', name: 'Augmented combat gear', requirement: 'Invention and augmentable equipment', value: 'Adds perk slots to higher-level armour and weapons for tailored PvM improvements.', link: 'https://runescape.wiki/w/Augmentation' },
+  { category: 'Combat', name: 'Resonance shield switch', requirement: 'A shield and the Resonance ability', value: 'A basic defensive switch used to heal from and reduce incoming boss damage.', link: 'https://runescape.wiki/w/Resonance' },
+  { category: 'Hero items', name: 'Hazelmere’s signet ring', requirement: 'Rare drop table chance', value: 'Hero item with a chance to double eligible drops; it can later be imbued and enchanted.', link: 'https://runescape.wiki/w/Hazelmere%27s_signet_ring' },
+  { category: 'Hero items', name: 'Orlando Smith’s hat', requirement: 'Master Treasure Trail reward casket chance', value: 'Hero item that can also award a casket of the tier below the completed Treasure Trail.', link: 'https://runescape.wiki/w/Orlando_Smith%27s_hat' },
+  { category: 'Hero items', name: 'Tavia’s fishing rod', requirement: 'Red uncharted-island map chance', value: 'Hero item with extra fish chance and a chance to grant Deep Sea Fishing boosts.', link: 'https://runescape.wiki/w/Tavia%27s_fishing_rod' },
+  { category: 'Hero items', name: 'Guildmaster Tony’s mattock', requirement: 'Shadowy key chance', value: 'Hero Archaeology tool with a chance to discover an artefact immediately or gain extra materials.', link: 'https://runescape.wiki/w/Guildmaster_Tony%27s_mattock' },
+  { category: 'Enchantments', name: 'Enchantment of agony', requirement: 'Imbue on enhanced gloves of passage', value: 'Permanently strengthens the gloves’ damage boost and bleed-damage effect.', link: 'https://runescape.wiki/w/Enchantment_of_agony' },
+  { category: 'Enchantments', name: 'Enchantment of heroism', requirement: 'Imbue on champion’s ring', value: 'Permanently improves critical strike chance and adds bleed-based critical damage.', link: 'https://runescape.wiki/w/Enchantment_of_heroism' },
+  { category: 'Enchantments', name: 'Enchantment of dispelling', requirement: 'Imbue on hexhunter bow', value: 'Permanently increases the bow’s damage-boosting effect.', link: 'https://runescape.wiki/w/Enchantment_of_dispelling' },
 ] as const;
 
-const ironmanPrinciples = [
-  [
-    'Quest before grinding',
-    'Quest rewards skip slow early levels and unlock efficient travel, bosses, spellbooks and supply sources.',
-  ],
-  [
-    'Protect future supplies',
-    'Bank herbs, seeds, logs, gems, secondary ingredients and useful salvage. Today’s spare item is often tomorrow’s unlock requirement.',
-  ],
-  [
-    'Spend lamps deliberately',
-    'Herblore is commonly the best default because ingredients gate training. Change course when a specific unlock needs another slow skill.',
-  ],
-  [
-    'Build recurring income',
-    'Shop stocks, kingdom resources, Player-owned Farm and distractions and diversions reduce the need for emergency gathering later.',
-  ],
-  [
-    'Share roles within the group',
-    'Group Ironmen can trade internally. Specialising early goals and sharing tools or rare drops can avoid duplicated grinds.',
-  ],
-  [
-    'Keep cash flowing',
-    'No Grand Exchange means alchemy, shops, Slayer drops and activity rewards matter more. Keep enough coins for upkeep and unlock costs.',
-  ],
-] as const;
+const unlockSectionCopy: Record<string, string> = {
+  All: 'Browse the full collection, or choose a section to focus on one kind of account upgrade.',
+  Activities: 'Repeatable activities and long-term systems that return supplies, experience or progression over time.',
+  Locations: 'Major places worth opening because they change what an account can train, gather or fight.',
+  Travel: 'Networks and portable teleports that make routes, clues and everyday movement much faster.',
+  Skilling: 'Permanent tools, perks and systems that improve the way you train and gather resources.',
+  Combat: 'Prayers, gear systems and PvM quality-of-life upgrades that improve combat progression.',
+  'Hero items': 'Extremely rare items with unique effects. They are tracked here for reference, not expected progression goals.',
+  Enchantments: 'Consumable, permanent upgrades that apply to every relevant item on the account after being imbued.',
+};
 
-function IronmanGuideView({
+function UnlocksView({
   shared,
   setShared = () => {},
 }: {
   shared?: Record<string, boolean>;
   setShared?: (value: Record<string, boolean>) => void;
 }) {
-  const [stage, setStage] = useState<'All' | 'Early' | 'Mid' | 'Late'>('All');
+  const categories = Array.from(
+    new Set(ironmanUnlocks.map((item) => item.category)),
+  );
+  const [category, setCategory] = useState(categories[0]);
   const [unlocked, setUnlocked] = useState<Record<string, boolean>>({});
   useEffect(() => {
     if (shared) setUnlocked(shared);
@@ -3135,122 +2903,101 @@ function IronmanGuideView({
       return next;
     });
   }
-  const visible = ironmanUnlocks.filter(
-    (item) => stage === 'All' || item.stage === stage,
-  );
+  const visible = ironmanUnlocks.filter((item) => item.category === category);
+  const sectionTitle = category;
   const done = ironmanUnlocks.filter((item) => unlocked[item.name]).length;
   return (
     <div className="content feature-page ironman-page">
       <section className="feature-heading">
         <div>
-          <p className="date-line">SELF-SUFFICIENT PROGRESSION</p>
-          <h2>Ironman Guide</h2>
+          <p className="date-line">USEFUL ITEMS &amp; ACCOUNT UPGRADES</p>
+          <h2>Unlocks</h2>
           <p>
-            High-value unlocks, resource habits and practical priorities for
-            RuneScape 3 Ironmen and groups.
+            A practical checklist of useful RuneScape 3 unlocks, organised by
+            what they improve for an Ironman account.
           </p>
         </div>
         <div className="status-chip">
           <Check size={15} />
-          {done} of {ironmanUnlocks.length} unlocks
+          {done} of {ironmanUnlocks.length} marked complete
         </div>
       </section>
       <section className="ironman-basics panel">
         <div>
-          <p className="eyebrow">The core rule</p>
-          <h3>Source it yourself. Share it with your group.</h3>
+          <p className="eyebrow">Build a better account</p>
+          <h3>Track the upgrades that keep paying you back.</h3>
           <p>
-            Ironmen cannot rely on the Grand Exchange or unrestricted outside
-            trading. Group Ironmen can share items within their team, making
-            coordination one of the mode’s strongest advantages.
+            These are the locations, travel methods, activities and combat
+            upgrades that make future play smoother. Mark each one when it is
+            truly available on your account.
           </p>
         </div>
         <Shield size={42} />
       </section>
       <div className="unlock-toolbar">
         <div className="period-tabs">
-          {(['All', 'Early', 'Mid', 'Late'] as const).map((value) => (
+          {categories.map((value) => (
             <button
               key={value}
-              className={stage === value ? 'active' : ''}
-              onClick={() => setStage(value)}
+              className={category === value ? 'active' : ''}
+              onClick={() => setCategory(value)}
             >
               <span>{value}</span>
               <strong>
-                {value === 'All'
-                  ? ironmanUnlocks.length
-                  : ironmanUnlocks.filter((item) => item.stage === value)
-                      .length}
+                {ironmanUnlocks.filter((item) => item.category === value).length}
               </strong>
             </button>
           ))}
         </div>
       </div>
-      <section className="unlock-grid">
-        {visible.map((item) => (
-          <article
-            className={
-              unlocked[item.name]
-                ? 'panel unlock-card done'
-                : 'panel unlock-card'
-            }
-            key={item.name}
-          >
-            <div className="unlock-card-head">
-              <button
-                className="route-check"
-                onClick={() => toggle(item.name)}
-                aria-label={`Mark ${item.name} ${unlocked[item.name] ? 'locked' : 'unlocked'}`}
-              >
-                {unlocked[item.name] && <Check size={15} />}
-              </button>
-              <span className={`stage-badge ${item.stage.toLowerCase()}`}>
-                {item.stage}
-              </span>
-              <a
-                href={item.link}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Open ${item.name} on the RuneScape Wiki`}
-              >
-                <ExternalLink size={15} />
-              </a>
-            </div>
-            <h3>{item.name}</h3>
-            <strong>{item.requirement}</strong>
-            <p>{item.value}</p>
-          </article>
-        ))}
-      </section>
-      <section className="panel principles-panel">
-        <div className="panel-heading">
+      <section className="panel unlock-section-panel">
+        <div className="unlock-section-heading">
           <div>
-            <p className="eyebrow">Mode-specific advice</p>
-            <h3>Habits that compound over time</h3>
+            <p className="eyebrow">Selected section</p>
+            <h3>{sectionTitle}</h3>
+            <p>{unlockSectionCopy[category]}</p>
           </div>
+          <span>{visible.length} items</span>
         </div>
-        <div className="principle-grid">
-          {ironmanPrinciples.map(([title, detail], index) => (
-            <article key={title}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <div>
-                <strong>{title}</strong>
-                <p>{detail}</p>
+        <div className="unlock-grid">
+          {visible.map((item) => (
+            <article
+              className={
+                unlocked[item.name]
+                  ? 'panel unlock-card done'
+                  : 'panel unlock-card'
+              }
+              key={item.name}
+            >
+              <div className="unlock-card-head">
+                <button
+                  className="route-check"
+                  onClick={() => toggle(item.name)}
+                  aria-label={`Mark ${item.name} ${unlocked[item.name] ? 'locked' : 'unlocked'}`}
+                >
+                  {unlocked[item.name] && <Check size={15} />}
+                </button>
+                <span className="stage-badge">
+                  {item.category}
+                </span>
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${item.name} on the RuneScape Wiki`}
+                >
+                  <ExternalLink size={15} />
+                </a>
               </div>
+              <h3>{item.name}</h3>
+              <strong>{item.requirement}</strong>
+              <p>{item.value}</p>
             </article>
           ))}
         </div>
       </section>
       <p className="guide-credit">
-        <BookOpen size={14} /> Guidance is summarized from the{' '}
-        <a
-          href="https://runescape.wiki/w/Ironman_Mode/Strategies"
-          target="_blank"
-          rel="noreferrer"
-        >
-          RuneScape Wiki Ironman strategies
-        </a>{' '}
-        and{' '}
+        <BookOpen size={14} /> Entries are summarized from the{' '}
         <a
           href="https://runescape.wiki/w/Guide_to_useful_items_and_unlocks"
           target="_blank"
@@ -3281,14 +3028,17 @@ function EfficientProgressView({
     fixedView || 'Roadmap',
   );
   const [sectionId, setSectionId] = useState(progressData.progression[0].id);
+  const [selectedStepId, setSelectedStepId] = useState('');
+  const [hideFinished, setHideFinished] = useState(false);
   const [skill, setSkill] = useState('agility');
+  const [targetLevel, setTargetLevel] = useState(99);
+  const [filterMethods, setFilterMethods] = useState(false);
   const [member, setMember] = useState(groupData?.players[0]?.name || '');
   const [query, setQuery] = useState('');
   const [completed, setCompleted] = useState<Record<string, boolean>>({});
   const [questPlayer, setQuestPlayer] = useState(
     groupData?.players[0]?.name || '',
   );
-  const [questName, setQuestName] = useState('');
   const [syncingQuests, setSyncingQuests] = useState(false);
   const [questSyncMessage, setQuestSyncMessage] = useState('');
   useEffect(() => {
@@ -3331,7 +3081,8 @@ function EfficientProgressView({
   const activeSection =
     progressData.progression.find((section) => section.id === sectionId) ||
     progressData.progression[0];
-  const visibleRows = activeSection.rows.filter((row) =>
+  const selectedStep = activeSection.rows.find(row => row.id === selectedStepId) || activeSection.rows[0];
+  const visibleRows = activeSection.rows.filter((row) => (!hideFinished || !completed[row.id]) &&
     `${row.title} ${'notes' in row ? row.notes || '' : ''}`
       .toLowerCase()
       .includes(query.toLowerCase()),
@@ -3366,7 +3117,7 @@ function EfficientProgressView({
       .trim();
   }
   async function syncQuests() {
-    const player = (groupData ? questPlayer : questName).trim();
+    const player = (groupData ? questPlayer : '').trim();
     if (!player) {
       setQuestSyncMessage(
         'Choose a group member or enter a RuneScape name first.',
@@ -3423,14 +3174,13 @@ function EfficientProgressView({
     }
   }
   return (
-    <div className="content feature-page efficient-page">
+    <div className={`content feature-page efficient-page layout-refresh ${view.toLowerCase()}-refresh`}>
       <section className="feature-heading">
         <div>
           <p className="date-line">IRONMAN PROGRESSION</p>
-          <h2>Efficient Progress</h2>
+          <h2>{view === 'Roadmap' ? 'Progression Roadmap' : view === 'Training' ? 'Training Lookup' : 'Familiars'}</h2>
           <p>
-            Follow the ordered Ironman pathway or find the best training method
-            for your current levels.
+            {view === 'Roadmap' ? "Plan your journey. Track your progress. Unlock what’s next." : "Find training methods, requirements, and plan your goals."}
           </p>
         </div>
         <a
@@ -3444,24 +3194,28 @@ function EfficientProgressView({
       </section>
       {view === 'Roadmap' && (
         <section className="panel progress-card roadmap-progress-card">
-          <div
-            className="ring"
-            style={
-              {
-                '--value': `${(completedCount / allRows.length) * 360}deg`,
-              } as React.CSSProperties
-            }
-          >
-            <span>{Math.round((completedCount / allRows.length) * 100)}%</span>
+          <span className="roadmap-summary-icon"><ListChecks size={24} /></span>
+          <div className="roadmap-summary-copy">
+            <p className="eyebrow">Your roadmap</p>
+            <h3>{completedCount} <span>of {allRows.length} steps complete</span></h3>
+            <div className="roadmap-summary-meter" role="progressbar" aria-label="Overall roadmap progress" aria-valuenow={completedCount} aria-valuemin={0} aria-valuemax={allRows.length}><span style={{ width: `${completedCount / allRows.length * 100}%` }} /></div>
           </div>
-          <div>
-            <p className="eyebrow">Roadmap checklist</p>
-            <h3>
-              {completedCount} of {allRows.length} complete
-            </h3>
-            <p>
-              Track progress across every planned roadmap step for this group.
-            </p>
+          <span className="roadmap-summary-percent">{Math.round(completedCount / allRows.length * 100)}%</span>
+          <div className="roadmap-quest-sync">
+            <button
+              className="roadmap-quest-sync-button"
+              onClick={syncQuests}
+              disabled={!groupData || syncingQuests}
+              title={
+                groupData
+                  ? 'Mark completed roadmap quests from the selected player.'
+                  : 'Connect a group in Settings before syncing quest progress.'
+              }
+            >
+              <RefreshCw className={syncingQuests ? 'spin' : ''} size={14} />
+              {syncingQuests ? 'Syncing quests…' : 'Sync quests'}
+            </button>
+            {questSyncMessage && <small>{questSyncMessage}</small>}
           </div>
         </section>
       )}
@@ -3494,28 +3248,32 @@ function EfficientProgressView({
       )}
       {view === 'Roadmap' ? (
         <div className="roadmap-layout">
-          <aside className="phase-list panel">
-            <p className="eyebrow">Route phases</p>
-            {progressData.progression.map((section) => {
-              const done = section.rows.filter(
-                (row) => completed[row.id],
-              ).length;
-              return (
-                <button
-                  key={section.id}
-                  className={section.id === activeSection.id ? 'active' : ''}
-                  onClick={() => setSectionId(section.id)}
-                >
-                  <span>
-                    <strong>{section.title}</strong>
-                    <small>{section.rows.length} steps</small>
-                  </span>
-                  <em>
-                    {done}/{section.rows.length}
-                  </em>
-                </button>
-              );
-            })}
+          <aside className="phase-list panel" aria-label="Roadmap phases">
+            <p className="eyebrow">Choose your phase</p>
+            <div className="roadmap-phase-buttons">
+              {progressData.progression.map((section, phaseIndex) => {
+                const done = section.rows.filter(
+                  (row) => completed[row.id],
+                ).length;
+                return (
+                  <button
+                    key={section.id}
+                    className={`roadmap-phase-card${section.id === activeSection.id ? ' active' : ''}`}
+                    aria-pressed={section.id === activeSection.id}
+                    onClick={() => { setSectionId(section.id); setSelectedStepId(''); }}
+                  >
+                    <span className="roadmap-phase-index">{String(phaseIndex + 1).padStart(2, '0')}</span>
+                    <span className="roadmap-phase-copy">
+                      <strong>{section.title}</strong>
+                      <small>
+                        {done} / {section.rows.length} complete
+                      </small>
+                      <span className="roadmap-phase-meter" aria-hidden="true"><span style={{ width: `${done / section.rows.length * 100}%` }} /></span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </aside>
           <section className="panel route-panel">
             <div className="route-toolbar">
@@ -3528,66 +3286,17 @@ function EfficientProgressView({
                 <input
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Filter this phase"
+                  placeholder="Search this phase"
+                  aria-label="Search roadmap phase"
                 />
               </label>
             </div>
-            <div className="quest-sync">
-              <div>
-                <p className="eyebrow">Quest sync</p>
-                <strong>Update this roadmap from RuneMetrics</strong>
-                <small>
-                  Verified completed quests are added to the checklist. Manual
-                  progress remains untouched.
-                </small>
-              </div>
-              <div className="quest-sync-actions">
-                {groupData ? (
-                  <select
-                    value={questPlayer}
-                    onChange={(event) => setQuestPlayer(event.target.value)}
-                    aria-label="Choose a group member to sync"
-                  >
-                    {groupData.players.map((player) => (
-                      <option key={player.name}>{player.name}</option>
-                    ))}
-                  </select>
-                ) : (
-                  <input
-                    value={questName}
-                    onChange={(event) => setQuestName(event.target.value)}
-                    placeholder="RuneScape character name"
-                    aria-label="RuneScape character name"
-                  />
-                )}
-                <button
-                  className="secondary-button"
-                  onClick={syncQuests}
-                  disabled={syncingQuests}
-                >
-                  <RefreshCw
-                    size={14}
-                    className={syncingQuests ? 'spin' : ''}
-                  />
-                  {syncingQuests ? 'Syncing…' : 'Sync quests'}
-                </button>
-              </div>
-              {questSyncMessage && (
-                <p
-                  className={
-                    questSyncMessage.includes('marked')
-                      ? 'quest-sync-message success'
-                      : 'quest-sync-message'
-                  }
-                >
-                  {questSyncMessage}
-                </p>
-              )}
-            </div>
+            <div className="roadmap-list-controls"><label className="roadmap-hide"><input type="checkbox" checked={hideFinished} onChange={event => setHideFinished(event.target.checked)} /> Hide completed</label><span>{visibleRows.length} of {activeSection.rows.length} steps shown</span></div>
+            <div className="roadmap-list-labels" aria-hidden="true"><span>Progress</span><span>Roadmap step</span><span>Status</span><span>Wiki</span></div>
             <div className="route-list">
-              {visibleRows.map((row, index) => (
+              {visibleRows.map((row) => (
                 <article
-                  className={completed[row.id] ? 'route-row done' : 'route-row'}
+                  className={`route-row${completed[row.id] ? ' done' : ''}${selectedStep.id === row.id ? ' selected' : ''}`}
                   key={row.id}
                 >
                   <button
@@ -3598,13 +3307,13 @@ function EfficientProgressView({
                     {completed[row.id] && <Check size={14} />}
                   </button>
                   <span className="route-number">
-                    {String(index + 1).padStart(2, '0')}
+                    {String(activeSection.rows.findIndex(step => step.id === row.id) + 1).padStart(2, '0')}
                   </span>
                   <div>
-                    <strong>{row.title}</strong>
+                    <button className="roadmap-step-title" onClick={() => setSelectedStepId(row.id)} aria-pressed={selectedStep.id === row.id}>{row.title}</button>
                     {'notes' in row && row.notes && <p>{row.notes}</p>}
                   </div>
-                  <span className="route-type">{row.type}</span>
+                  <span className={`roadmap-status${completed[row.id] ? ' is-complete' : ''}`}>{completed[row.id] ? 'Done' : 'To do'}</span>
                   {row.type === 'quest' &&
                   'questName' in row &&
                   row.questName ? (
@@ -3621,8 +3330,20 @@ function EfficientProgressView({
                   )}
                 </article>
               ))}
+              {!visibleRows.length && <div className="roadmap-empty"><Search size={24} /><h3>No steps to show</h3><p>Try another search or turn off Hide completed.</p></div>}
             </div>
           </section>
+          <aside className="panel roadmap-detail">
+            <p className="eyebrow">{selectedStep.type === 'quest' ? 'Quest details' : 'Step details'}</p>
+            <span className="roadmap-detail-icon"><BookOpen size={22} /></span>
+            <h3>{selectedStep.title}</h3>
+            <dl><div><dt>Status</dt><dd className={completed[selectedStep.id] ? 'state-badge complete' : 'state-badge incomplete'}>{completed[selectedStep.id] ? 'Completed' : 'Incomplete'}</dd></div><div><dt>Phase</dt><dd>{activeSection.title}</dd></div><div><dt>Category</dt><dd>{selectedStep.type}</dd></div></dl>
+            <h4>Guidance</h4>
+            <p>{'notes' in selectedStep && selectedStep.notes ? selectedStep.notes : 'See the source guide for this step.'}</p>
+            <h4>Requirements</h4><p className="detail-muted">Requirement being verified. Review the source before starting.</p>
+            <a className="primary-button" href={selectedStep.type === 'quest' && 'questName' in selectedStep && selectedStep.questName ? `https://runescape.wiki/w/${encodeURIComponent(selectedStep.questName.replaceAll(' ', '_'))}/Quick_guide` : progressData.source.wiki} target="_blank" rel="noreferrer">View on Wiki <ExternalLink size={13} /></a>
+            <button className="secondary-button" onClick={() => toggle(selectedStep.id)}>{completed[selectedStep.id] ? 'Mark incomplete' : 'Mark complete'}</button>
+          </aside>
         </div>
       ) : view === 'Training' ? (
         <section className="training-layout">
@@ -3635,7 +3356,7 @@ function EfficientProgressView({
               <span>Skill</span>
               <select
                 value={skill}
-                onChange={(event) => setSkill(event.target.value)}
+                onChange={(event) => { setSkill(event.target.value); setFilterMethods(false); }}
               >
                 {skills.map((value) => (
                   <option value={value} key={value}>
@@ -3662,12 +3383,16 @@ function EfficientProgressView({
               aria-label={`Current ${titleCase(skill)} level`}
             >
               <span>Current level</span>
-              <strong>{currentLevel ?? '—'}</strong>
+              <strong>{currentLevel ?? 'N/A'}</strong>
               <small>{selectedPlayer?.name || 'Choose a member'}</small>
             </div>
+            <label className="field"><span>Target level</span><input aria-label="Target level" type="number" min="1" max="120" value={targetLevel} onChange={event => setTargetLevel(Number(event.target.value))} /></label>
+            <button className="primary-button" onClick={() => setFilterMethods(true)}>Find methods</button>
+            {filterMethods && <button className="text-button" onClick={() => setFilterMethods(false)}>Show all methods</button>}
           </div>
           <div className="method-grid">
-            {methods.map((method, index) => {
+            <h3 className="methods-heading">Recommended methods <small>XP rates: Being verified</small></h3>
+            {methods.filter(method => !filterMethods || (method.start <= targetLevel && method.end >= (currentLevel || 1))).map((method, index) => {
               const current =
                 currentLevel !== undefined &&
                 currentLevel >= method.start &&
@@ -3686,7 +3411,7 @@ function EfficientProgressView({
                     {current && <span className="current-tag">Current</span>}
                   </div>
                   <p>{method.desc}</p>
-                  {'link' in method && method.link && (
+                  {'link' in method && typeof method.link === 'string' && method.link && (
                     <a href={method.link} target="_blank" rel="noreferrer">
                       RuneScape Wiki <ExternalLink size={12} />
                     </a>
@@ -3694,6 +3419,7 @@ function EfficientProgressView({
                 </article>
               );
             })}
+            {filterMethods && !methods.some(method => method.start <= targetLevel && method.end >= (currentLevel || 1)) && <p className="directory-empty">No methods match this level range. Adjust your target or show all methods.</p>}
           </div>
         </section>
       ) : (
@@ -3710,220 +3436,224 @@ function EfficientProgressView({
   );
 }
 
-function FarmRunsView({
-  player,
-  shared,
-  setShared = () => {},
-}: {
-  player?: HiscorePlayer;
-  shared?: Record<string, boolean>;
-  setShared?: (value: Record<string, boolean>) => void;
-}) {
-  const [run, setRun] = useState<'Herb' | 'Tree' | 'Fruit tree'>('Herb');
-  const [completed, setCompleted] = useState<Record<string, boolean>>({});
-  useEffect(() => {
-    if (shared) setCompleted(shared);
-    else
-      try {
-        setCompleted(
-          JSON.parse(window.localStorage.getItem('ironpath-farm-runs') || '{}'),
-        );
-      } catch {
-        /* ignore */
-      }
-  }, [shared]);
-  const farming =
-    player?.skills.find((skill) => skill.name === 'Farming')?.level || 1;
-  const bestCrop = (crops: readonly (readonly [number, string])[]) =>
-    [...crops].reverse().find(([level]) => farming >= level) || crops[0];
+function FarmV2View({ player }: { player?: HiscorePlayer }) {
   const plans = {
-    Herb: {
-      crop: bestCrop(herbCrops),
-      cadence: 'Every 80 minutes',
-      note: 'Use this for a steady Ironman Herblore supply. Start with the longest or hardest-to-reach patch, then work toward free teleports.',
-      steps: [
-        ['Trollheim', 'Fastest travel: Trollheim Farm Teleport.'],
-        ['Falador', 'Fastest travel: Explorer’s ring cabbage-port.'],
-        ['Morytania', 'Fastest travel: Modified farmer’s hat teleport.'],
-        ['Catherby', 'Fastest travel: Modified botanist’s mask teleport.'],
-        ['Ardougne', 'Fastest travel: Manor Farm teleport or Ardougne cloak.'],
-        [
-          'Crwys, Prifddinas',
-          'Fastest travel: Crystal teleport seed to Crwys.',
-        ],
-        ['Wilderness', 'Fastest travel: Wilderness sword herb-patch teleport.'],
-      ],
-    },
-    Tree: {
-      crop: bestCrop(treeCrops),
-      cadence: 'Check once per growth cycle',
-      note: 'Prepare saplings before leaving the bank. Tree runs are best used for large Farming experience rather than Herblore supplies.',
-      steps: [
-        [
-          'Varrock Palace',
-          'Fastest travel: Grand Exchange spirit tree, then run south-east.',
-        ],
-        [
-          'Falador Park',
-          'Fastest travel: Ring of wealth teleport to Falador Park.',
-        ],
-        ['Taverley', 'Fastest travel: Redirected house teleport to Taverley.'],
-        [
-          'Tree Gnome Stronghold',
-          'Fastest travel: Spirit tree to the Stronghold.',
-        ],
-        ['Prifddinas', 'Fastest travel: Crystal teleport seed to the city.'],
-      ],
-    },
-    'Fruit tree': {
-      crop: bestCrop(fruitCrops),
-      cadence: 'Check once per growth cycle',
-      note: 'Fruit trees provide strong Farming experience and renewable produce. Keep the fruit instead of paying with it whenever it is useful to your group.',
-      steps: [
-        [
-          'Tree Gnome Stronghold',
-          'Fastest travel: Spirit tree to the Stronghold.',
-        ],
-        ['Catherby', 'Fastest travel: Catherby Teleport (Lunar spellbook).'],
-        [
-          'Tree Gnome Village',
-          'Fastest travel: Spirit tree, then Elkoy’s guidance.',
-        ],
-        ['Brimhaven', 'Fastest travel: Brimhaven house teleport.'],
-        ['Lletya', 'Fastest travel: Crystal teleport seed to Lletya.'],
-        ['Herblore Habitat', 'Fastest travel: Juju teleport spiritbag.'],
-        [
-          'Meilyr, Prifddinas',
-          'Fastest travel: Crystal teleport seed to Meilyr.',
-        ],
-        [
-          "Dalia's Tree Nursery",
-          'Fastest travel: Wendlewick lodestone, then run south.',
-        ],
-      ],
-    },
+    Herb: [
+      { name: 'Catherby', travel: 'Catherby lodestone', fallback: 'Catherby Teleport (Lunar spellbook)', yield: '6–8 herbs' },
+      { name: 'Port Phasmatys', travel: 'Ectophial', fallback: 'Canifis lodestone', yield: '6–8 herbs' },
+      { name: 'Crwys', travel: 'Crystal teleport seed', fallback: 'Prifddinas lodestone', yield: '6–8 herbs' },
+      { name: 'Trollheim', travel: 'Trollheim Farm Teleport', fallback: 'Trollheim Teleport or tablet', yield: '6–8 herbs' },
+      { name: 'Wilderness', travel: 'Wilderness sword', fallback: 'Wilderness lodestone', yield: '6–8 herbs' },
+      { name: 'Kharid', travel: 'Mystical sand seed', fallback: 'Ring of duelling (Het’s Oasis)', yield: '6–8 herbs' },
+      { name: 'Manor Farm', travel: 'Manor Farm teleport', fallback: 'Ardougne lodestone', yield: 'Animals and produce' },
+    ],
+    Tree: [
+      { name: 'Varrock Palace', travel: 'Grand Exchange spirit tree', fallback: 'Varrock lodestone', yield: 'Farming XP' },
+      { name: 'Falador Park', travel: 'Ring of wealth teleport', fallback: 'Falador lodestone', yield: 'Farming XP' },
+      { name: 'Taverley', travel: 'Redirected house teleport', fallback: 'Taverley lodestone', yield: 'Farming XP' },
+      { name: 'Tree Gnome Stronghold', travel: 'Spirit tree', fallback: 'Grand Exchange spirit tree', yield: 'Farming XP' },
+      { name: 'Prifddinas', travel: 'Crystal teleport seed', fallback: 'Prifddinas lodestone', yield: 'Farming XP' },
+    ],
+    'Fruit tree': [
+      { name: 'Tree Gnome Stronghold', travel: 'Spirit tree', fallback: 'Grand Exchange spirit tree', yield: 'Farming XP' },
+      { name: 'Catherby', travel: 'Catherby Teleport', fallback: 'Catherby lodestone', yield: 'Farming XP' },
+      { name: 'Tree Gnome Village', travel: 'Spirit tree, then Elkoy', fallback: 'Tree Gnome Stronghold spirit tree', yield: 'Farming XP' },
+      { name: 'Brimhaven', travel: 'Brimhaven house teleport', fallback: 'Karamja lodestone', yield: 'Farming XP' },
+      { name: 'Lletya', travel: 'Crystal teleport seed', fallback: 'Tyras Camp lodestone', yield: 'Farming XP' },
+      { name: 'Herblore Habitat', travel: 'Juju teleport spiritbag', fallback: 'Karamja lodestone', yield: 'Farming XP' },
+    ],
   } as const;
-  const plan = plans[run];
-  function toggle(place: string) {
-    const key = `${run}:${place}`;
+  type RouteType = keyof typeof plans;
+  const [routeType, setRouteType] = useState<RouteType>('Herb');
+  const [completed, setCompleted] = useState<Record<string, boolean>>({});
+  const [hideCompleted, setHideCompleted] = useState(false);
+  const [selectedPatch, setSelectedPatch] = useState('Catherby');
+  const [patchImages, setPatchImages] = useState<Record<string, string>>({});
+  const [farmNotes, setFarmNotes] = useState('');
+  const [taskOrders, setTaskOrders] = useState<Record<string, string[]>>({});
+  const [draggedFarmTask, setDraggedFarmTask] = useState<{ patch: string; task: string } | null>(null);
+  const defaultTasks = (patch: string) => ['Herbs', 'Allotments', patch === 'Manor Farm' ? 'Animals' : 'Flowers', 'Compost'];
+  const tasksFor = (patch: string) => {
+    const defaults = defaultTasks(patch);
+    const saved = taskOrders[patch];
+    return Array.isArray(saved) && saved.length === 4 && new Set(saved).size === 4 && saved.every((task) => defaults.includes(task)) ? saved : defaults;
+  };
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(window.localStorage.getItem('ironpath-farm-v2') || '{}');
+      // Preserve existing farm checks under the renamed location.
+      for (const [key, value] of Object.entries(saved)) {
+        if (key.startsWith('Herb:Player-owned Farm')) {
+          const renamed = key.replace('Player-owned Farm', 'Manor Farm').replace(':Farm animals', ':Animals');
+          if (!(renamed in saved)) saved[renamed] = value;
+        }
+      }
+      setCompleted(saved);
+      setTaskOrders(JSON.parse(window.localStorage.getItem('ironpath-farm-v2-task-orders') || '{}'));
+    } catch { /* Keep the default checklist if stored data is invalid. */ }
+    setFarmNotes(window.localStorage.getItem('ironpath-farm-v2-notes') || '');
+  }, []);
+  const patchDone = (patch: string) => routeType === 'Herb'
+    ? tasksFor(patch).every((task) => completed[`Herb:${patch}:${task}`])
+    : Boolean(completed[`${routeType}:${patch}`]);
+  const patches = plans[routeType];
+  const visiblePatches = hideCompleted
+    ? patches.filter((patch) => !patchDone(patch.name))
+    : patches;
+  const selected = patches.find((patch) => patch.name === selectedPatch) || patches[0];
+  const farming = player?.skills.find((skill) => skill.name === 'Farming')?.level || 1;
+  const cropOptions: Record<RouteType, readonly (readonly [number, string])[]> = {
+    Herb: herbCrops,
+    Tree: treeCrops,
+    'Fruit tree': fruitCrops,
+  };
+  const recommendedCrop =
+    [...cropOptions[routeType]].reverse().find(([level]) => farming >= level) ||
+    cropOptions[routeType][0];
+  // Patch-specific guessed article titles are often absent on the Wiki.
+  // Show a labeled location reference using a canonical place article instead.
+  const farmImageLocations: Record<string, string> = {
+    'Manor Farm': 'Player-owned farm', Crwys: 'Crwys Clan', Kharid: 'Garden of Kharid',
+  };
+  const wikiImageTitle = farmImageLocations[selected.name] || selected.name;
+  useEffect(() => {
+    if (patchImages[wikiImageTitle]) return;
+    fetch(`/api/archaeology-images?titles=${encodeURIComponent(wikiImageTitle)}`)
+      .then((response) => response.json())
+      .then((result) => {
+        const data = result as { images?: Record<string, string> };
+        if (data.images?.[wikiImageTitle]) {
+          setPatchImages((current) => ({
+            ...current,
+            [wikiImageTitle]: data.images![wikiImageTitle],
+          }));
+        }
+      })
+      .catch(() => undefined);
+  }, [patchImages, wikiImageTitle]);
+  function chooseRoute(next: RouteType) {
+    setRouteType(next);
+    setSelectedPatch(plans[next][0].name);
+  }
+  function togglePatch(name: string) {
+    const key = `${routeType}:${name}`;
     setCompleted((current) => {
       const next = { ...current, [key]: !current[key] };
-      if (shared) setShared(next);
-      else
-        window.localStorage.setItem('ironpath-farm-runs', JSON.stringify(next));
+      window.localStorage.setItem('ironpath-farm-v2', JSON.stringify(next));
       return next;
     });
   }
-  function clearCurrentRun() {
+  function toggleFarmTask(patch: string, task: string) {
+    const key = `${routeType}:${patch}:${task}`;
+    setCompleted((current) => {
+      const next = { ...current, [key]: !current[key] };
+      window.localStorage.setItem('ironpath-farm-v2', JSON.stringify(next));
+      return next;
+    });
+  }
+  function reorderFarmTask(patch: string, task: string, target: string) {
+    const next = [...tasksFor(patch)];
+    next.splice(next.indexOf(task), 1);
+    next.splice(tasksFor(patch).indexOf(target), 0, task);
+    setTaskOrders((current) => {
+      const updated = { ...current, [patch]: next };
+      window.localStorage.setItem('ironpath-farm-v2-task-orders', JSON.stringify(updated));
+      return updated;
+    });
+    setDraggedFarmTask(null);
+  }
+  function resetRoute() {
     setCompleted((current) => {
       const next = Object.fromEntries(
-        Object.entries(current).filter(([key]) => !key.startsWith(`${run}:`)),
+        Object.entries(current).filter(([key]) => !key.startsWith(`${routeType}:`)),
       );
-      if (shared) setShared(next);
-      else
-        window.localStorage.setItem('ironpath-farm-runs', JSON.stringify(next));
+      window.localStorage.setItem('ironpath-farm-v2', JSON.stringify(next));
       return next;
     });
   }
   return (
-    <section className="farm-run-layout">
-      <div className="farm-run-intro panel">
-        <div>
-          <p className="eyebrow">Farming for Herblore</p>
-          <h3>Farming Routes</h3>
-          <p>
-            Route order, transport options and the highest crop currently
-            available to {player?.name || 'your selected member'}.
-          </p>
+    <section className={`farm-v2-page farming-refresh${routeType === 'Herb' ? ' farm-inline-checklist' : ''}`}>
+      <div className="farm-v2-shell">
+      <aside className="farm-v2-rail">
+        <div className="farm-v2-rail-title"><span className="farm-v2-icon"><Leaf size={23} /></span><div><h2>Farming</h2><p>Plan routes, track each stop, and keep useful supplies moving.</p></div></div>
+        <div className="farm-v2-rail-group"><p className="eyebrow">Patch routes</p>
+          {(Object.keys(plans) as RouteType[]).map((value) => <button className={routeType === value ? 'active' : ''} onClick={() => chooseRoute(value)} key={value}><Leaf size={16} /><span>{value === 'Fruit tree' ? 'Fruit trees' : `${value} patches`}</span></button>)}
+          <button className={selectedPatch === 'Manor Farm' ? 'active' : ''} onClick={() => { chooseRoute('Herb'); setSelectedPatch('Manor Farm'); }}><Users size={16} /><span>Manor Farm</span></button>
         </div>
-        <div className="farm-crop">
-          <span>Recommended crop</span>
-          <strong>{plan.crop[1]}</strong>
-          <small>
-            Requires {plan.crop[0]} Farming · currently {farming}
-          </small>
+        <div className="farm-v2-rail-group farm-v2-rail-actions"><p className="eyebrow">Route tools</p>
+          <button onClick={resetRoute}><RotateCcw size={16} /><span>Reset this route</span></button>
+          <button onClick={() => setHideCompleted((value) => !value)}><ListChecks size={16} /><span>{hideCompleted ? 'Show completed' : 'Hide completed'}</span></button>
         </div>
-      </div>
-      <div className="farm-tabs">
-        {(['Herb', 'Tree', 'Fruit tree'] as const).map((value) => (
-          <button
-            className={run === value ? 'active' : ''}
-            onClick={() => setRun(value)}
-            key={value}
-          >
-            <span>{value} run</span>
-            <small>
-              {value === 'Herb' ? 'Herblore supplies' : 'Farming XP'}
-            </small>
-          </button>
-        ))}
-      </div>
-      <section className="panel farm-route">
-        <div className="farm-route-head">
+      </aside>
+      <div className="farm-v2-main">
+      <div className="farm-v2-heading">
+        <div className="farm-v2-title">
+          <span className="farm-v2-icon"><Leaf size={25} /></span>
           <div>
-            <p className="eyebrow">Recommended order</p>
-            <h3>{run} run</h3>
-          </div>
-          <div className="farm-route-actions">
-            <span>{plan.cadence}</span>
-            <button
-              className="text-button clear-route-button"
-              onClick={clearCurrentRun}
-            >
-              Clear {run.toLowerCase()} checks
-            </button>
+            <p className="eyebrow">Activities /</p>
+            <h2>Farming Routes</h2>
+            <p>Plan a route, track each patch, and keep the fastest travel option close at hand.</p>
           </div>
         </div>
-        <p className="farm-route-note">{plan.note}</p>
-        <ol>
-          {plan.steps.map(([place, travel], index) => {
-            const done = Boolean(completed[`${run}:${place}`]);
-            return (
-              <li className={done ? 'done' : ''} key={place}>
-                <button
-                  className="route-check"
-                  onClick={() => toggle(place)}
-                  aria-label={`Mark ${place} ${done ? 'incomplete' : 'complete'}`}
-                >
-                  {done && <Check size={14} />}
-                </button>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <div>
-                  <strong>{place}</strong>
-                  <p>{travel}</p>
-                </div>
-              </li>
-            );
-          })}
-        </ol>
+        <div className="farm-v2-controls">
+          {routeType === 'Herb' && <button className="secondary-button" onClick={resetRoute}><RotateCcw size={14} /> Reset route</button>}
+          <button className="secondary-button" onClick={() => setHideCompleted((value) => !value)}>{hideCompleted ? 'Show completed' : 'Hide completed'}</button>
+        </div>
+      </div>
+      <div className="farm-v2-stats farm-v2-stats-full">
+          {(Object.keys(plans) as RouteType[]).map((value) => <button className={routeType === value ? 'farm-v2-route-card active' : 'farm-v2-route-card'} onClick={() => chooseRoute(value)} key={value}><Leaf size={21} /><div><span>{value === 'Fruit tree' ? 'Fruit tree' : value}</span><strong>{value} patches</strong><small>{value === 'Herb' ? 'Herblore supplies' : 'Farming experience'}</small></div></button>)}
+          <article><Trophy size={21} /><div><span>Selected member</span><strong>{player?.name || 'No group selected'}</strong><small>Farming level {farming}</small></div></article>
+      </div>
+      <div className="farm-v2-context-grid">
+        <section className="panel farm-v2-detail-card farm-v2-sidebar-card">
+          <div className="farm-v2-detail-image">{patchImages[wikiImageTitle] ? <ReferenceImage src={patchImages[wikiImageTitle]} title={wikiImageTitle} alt={`${selected.name} location reference`} fallback={<Leaf size={31} />} /> : <Leaf size={31} />}</div>
+          <div className="farm-v2-context-copy">
+            <p className="eyebrow">Selected patch</p>
+            <h3>{selected.name}</h3>
+            <p>{selected.name === 'Manor Farm' ? 'Manage animals, produce and beehives through the checklist in this route.' : `A useful stop in your ${routeType.toLowerCase()} circuit.`}</p>
+            <div className="farm-v2-detail-guidance"><span>Fastest travel</span><strong>{selected.travel}</strong><small>Alternative: {selected.fallback}</small></div>
+          </div>
+        </section>
+        <section className="panel farm-v2-notes-card">
+          <p className="eyebrow">Notes</p>
+          <h3>Farming notes</h3>
+          <textarea value={farmNotes} onChange={(event) => { const next = event.target.value; setFarmNotes(next); window.localStorage.setItem('ironpath-farm-v2-notes', next); }} placeholder="Keep seeds, route reminders, crop plans, or anything your group should remember…" aria-label="Farming notes" />
+          <small>Saved on this device.</small>
+        </section>
+      </div>
+      <div className="farm-v2-layout">
+      <section className="panel farm-v2-route-panel">
+          <div className="farm-v2-panel-head"><div><p className="eyebrow">Recommended order</p><h3>{routeType} patch route</h3></div><button className="text-button clear-route-button" onClick={resetRoute}><RotateCcw size={14} /> Reset route</button></div>
+          <div className="farm-v2-recommendation"><span className="farm-v2-recommendation-icon"><Leaf size={20} /></span><div><p className="eyebrow">Recommended {routeType.toLowerCase()}</p><strong>{recommendedCrop[1]}</strong><small>Best option at level {farming} Farming · unlocks at level {recommendedCrop[0]}</small></div><span className="farm-v2-recommendation-note">Based on {player?.name || 'your selected member'}</span></div>
+          <div className="farm-v2-table-head"><span>#</span><span>Patch location</span>{routeType === 'Herb' && <span aria-hidden="true" />}<span>Fastest travel</span>{routeType !== 'Herb' && <span>Done</span>}</div>
+          <div className="farm-v2-table">
+            {visiblePatches.map((patch, index) => {
+              const done = patchDone(patch.name);
+              return <article className={done ? 'done' : ''} key={patch.name}>
+                <span className="farm-v2-index">{String(index + 1).padStart(2, '0')}</span>
+                <button className="farm-v2-name" onClick={() => setSelectedPatch(patch.name)}><Leaf size={17} /><strong>{patch.name}</strong></button>
+                {routeType === 'Herb' && <div className="farm-inline-tasks">{tasksFor(patch.name).map((task, taskIndex) => {
+                  const taskDone = Boolean(completed[`Herb:${patch.name}:${task}`]);
+                  return <div className={`farm-inline-task${taskDone ? ' done' : ''}`} key={task}
+                    onDragOver={(event) => { if (draggedFarmTask?.patch === patch.name) event.preventDefault(); }}
+                    onDrop={() => { if (draggedFarmTask?.patch === patch.name) reorderFarmTask(patch.name, draggedFarmTask.task, task); }}>
+                    <button className="route-check" aria-label={`${patch.name}: ${task}`} aria-pressed={taskDone} onClick={() => toggleFarmTask(patch.name, task)}>{taskDone && <Check size={14} />}</button>
+                    <button className="farm-inline-grip" draggable aria-label={`Reorder ${patch.name} ${task}; use left or right arrow keys`}
+                      onDragStart={() => setDraggedFarmTask({ patch: patch.name, task })} onDragEnd={() => setDraggedFarmTask(null)}
+                      onKeyDown={(event) => { const offset = event.key === 'ArrowLeft' ? -1 : event.key === 'ArrowRight' ? 1 : 0; const target = tasksFor(patch.name)[taskIndex + offset]; if (offset && target) { event.preventDefault(); reorderFarmTask(patch.name, task, target); } }}><GripVertical size={21} /></button>
+                    <strong>{task}</strong>
+                  </div>;
+                })}</div>}
+                <div className="farm-v2-travel"><b>1</b><span>{patch.travel}</span><b>2</b><span>{patch.fallback}</span></div>
+                {routeType !== 'Herb' && <button className={`farm-v2-complete route-check${done ? ' done' : ''}`} onClick={() => togglePatch(patch.name)} aria-label={`Mark ${patch.name} ${done ? 'incomplete' : 'complete'}`}>{done && <Check size={14} />}</button>}
+              </article>;
+            })}
+            {!visiblePatches.length && <p className="farm-v2-empty">Every patch in this route is marked complete. Choose “Show completed” to review them.</p>}
+          </div>
       </section>
-      <p className="guide-credit">
-        <Leaf size={14} /> Route details based on the RuneScape Wiki’s{' '}
-        <a
-          href="https://runescape.wiki/w/All_farming_patches"
-          target="_blank"
-          rel="noreferrer"
-        >
-          farming patch locations
-        </a>
-        ,{' '}
-        <a
-          href="https://runescape.wiki/w/Herb_patch"
-          target="_blank"
-          rel="noreferrer"
-        >
-          herb patch guide
-        </a>
-        , and{' '}
-        <a
-          href="https://runescape.wiki/w/Fruit_Tree_Patch"
-          target="_blank"
-          rel="noreferrer"
-        >
-          fruit tree patch guide
-        </a>
-        .
-      </p>
+      </div>
+      </div>
+      </div>
     </section>
   );
 }
@@ -4091,7 +3821,7 @@ function EfficientFamiliarsView({ player }: { player?: HiscorePlayer }) {
                 </span>
                 {familiar.charm && (
                   <>
-                    <span>{familiar.shards || '—'} shards</span>
+                    <span>{familiar.shards || 'N/A'} shards</span>
                     <span>
                       {familiar.tertiary || 'Tertiary item unavailable'}
                     </span>
@@ -4473,11 +4203,12 @@ const armourEffects = [
 ] as const;
 
 const armourImageTitles: Record<string, string> = {
-  'Anima Core of Seren / Zaros / Sliske': 'Anima Core of Seren',
+  'Anima Core of Seren / Zaros / Sliske': 'Anima core of Seren armour',
   'Trimmed masterwork melee': 'Trimmed masterwork armour',
   'Custom-fit trimmed masterwork': 'Custom-fit trimmed masterwork armour',
   'Achto raid armour': 'Achto armour',
   'Elite tectonic': 'Elite tectonic armour',
+  'Elite Dracolich armour': 'Elite dracolich armour',
   'Deathwarden robe armour (tier 90)': 'Deathwarden robe armour',
   'Deathdealer robe armour (tier 90)': 'Deathdealer robe armour',
   'Robes of the First Necromancer': "First Necromancer's equipment",
@@ -4547,13 +4278,10 @@ function ArmourEffectsSection() {
                 {armourImageOverrides[name] ||
                 images[name] ||
                 images[armourImageTitles[name]] ? (
-                  <img
-                    src={
-                      armourImageOverrides[name] ||
-                      images[name] ||
-                      images[armourImageTitles[name]]
-                    }
-                    alt=""
+                  <ReferenceImage
+                    src={armourImageOverrides[name] || images[name] || images[armourImageTitles[name]]}
+                    title={armourImageTitles[name] || name}
+                    alt="" fallback={<Shield size={28} />}
                   />
                 ) : (
                   <Shield size={28} />
@@ -4890,14 +4618,9 @@ function ComponentCard({
   return (
     <article className="panel method-card component-card">
       <header>
-        <img
-          src={componentIcon(component, tier)}
-          alt={`${component} ${materialTerm}`}
-          loading="lazy"
-          onError={(event) => {
-            event.currentTarget.style.visibility = 'hidden';
-          }}
-        />
+        <ReferenceImage src={componentIcon(component, tier)}
+          title={`${component} ${materialTerm}`} alt={`${component} ${materialTerm}`}
+          fallback={<Gem size={24} />} />
         <div>
           <span className="level-range">
             {component} {materialTerm}
@@ -4991,7 +4714,7 @@ function GroupHubView({ groupData, workspace, setWorkspace, updateWorkspace, pre
   const highest=(skill:string)=>Math.max(0,...(groupData?.players.flatMap(player=>player.skills.filter(value=>value.name.toLowerCase()===skill.toLowerCase()).map(value=>value.level))||[]));
   const nextUnlocks=[['Invention',Math.min(highest('Crafting'),highest('Divination'),highest('Smithing')),80],['Overloads',highest('Herblore'),96],['Player-owned Ports',Math.max(...['Agility','Construction','Cooking','Divination','Dungeoneering','Fishing','Herblore','Hunter','Prayer','Runecrafting','Slayer','Thieving'].map(highest)),90]].sort((a,b)=>(a[2] as number-a[1] as number)-(b[2] as number-b[1] as number));
   function toggleRecord(key:'journey'|'shops'|'pvm'|'farming',id:string){updateWorkspace(key,{...data[key],[id]:!data[key][id]});}
-  function addSupply(event:FormEvent){event.preventDefault();if(!supplyName.trim())return;updateWorkspace('supplies',[...data.supplies,{id:crypto.randomUUID(),name:supplyName.trim(),detail:purpose.trim(),owner:owner.trim()||'Unassigned',quantity:quantity.trim()||'—',done:false}]);setSupplyName('');setQuantity('');setOwner('');setPurpose('');}
+  function addSupply(event:FormEvent){event.preventDefault();if(!supplyName.trim())return;updateWorkspace('supplies',[...data.supplies,{id:crypto.randomUUID(),name:supplyName.trim(),detail:purpose.trim(),owner:owner.trim()||'Unassigned',quantity:quantity.trim()||'N/A',done:false}]);setSupplyName('');setQuantity('');setOwner('');setPurpose('');}
   const shareCode=`${workspace.id}.${workspace.token}`;
   return <div className="content feature-page group-hub"><section className="feature-heading"><div><p className="date-line">SHARED TEAM DATA</p><h2>{workspace.name}</h2><p>One synchronized operations board for your Group Ironman team.</p></div><div className="hub-share"><button className="secondary-button" onClick={()=>navigator.clipboard.writeText(shareCode)}>Copy workspace key</button><button className="text-button" onClick={()=>{localStorage.removeItem('ironpath-workspace');setWorkspace(null)}}>Leave</button></div></section><div className="hub-tabs">{(['Invention','Requests'] as const).map(value=><button key={value} className={tab===value?'active':''} onClick={()=>setTab(value)}>{value}</button>)}</div>
     {tab==='Overview'&&<><section className="hub-stat-grid"><article className="panel"><span>Journey tiers</span><strong>{journeyDone}/{journeyTiers.length}</strong></article><article className="panel"><span>Supply requests</span><strong>{data.supplies.filter(item=>!item.done).length}</strong></article><article className="panel"><span>Shop run</span><strong>{shopDone}/{shopRuns.length}</strong></article><article className="panel"><span>PvM milestones</span><strong>{pvmDone}/{pvmMilestones.length}</strong></article></section><section className="panel next-unlocks"><div className="panel-heading"><div><p className="eyebrow">Based on group HiScores</p><h3>Closest major unlocks</h3></div></div>{groupData?nextUnlocks.map(([unlock,current,target])=><article key={String(unlock)}><div><strong>{unlock}</strong><span>Best qualifying level {current} / {target}</span></div><div className="progress-track"><span style={{width:`${Math.min(100,(Number(current)/Number(target))*100)}%`}}/></div></article>):<p className="hub-note">Look up your group in HiScores to calculate level-based recommendations.</p>}</section></>}
@@ -5021,8 +4744,6 @@ function RepeatablesView({
   const [completedQuests, setCompletedQuests] = useState<Set<string> | null>(
     null,
   );
-  const [syncing, setSyncing] = useState(false);
-  const [syncError, setSyncError] = useState('');
   const [showAvailable, setShowAvailable] = useState(true);
   const [query, setQuery] = useState('');
   const [showCompleted, setShowCompleted] = useState(false);
@@ -5030,6 +4751,7 @@ function RepeatablesView({
   const [manualUnlocks, setManualUnlocks] = useState<Record<string, boolean>>(
     {},
   );
+  const [hiddenActivities, setHiddenActivities] = useState<Record<string, boolean>>({});
   const player =
     groupData?.players.find((value) => value.name === preferredMember) ||
     groupData?.players[0];
@@ -5048,8 +4770,22 @@ function RepeatablesView({
   }, [shared]);
   useEffect(() => {
     setCompletedQuests(null);
-    setSyncError('');
     if (!player) return;
+    try {
+      const cached = JSON.parse(
+        window.localStorage.getItem(`ironpath-quest-cache:${player.name}`) || 'null',
+      ) as QuestSyncResult | null;
+      if (cached?.quests)
+        setCompletedQuests(
+          new Set(
+            cached.quests
+              .filter((quest) => quest.completed)
+              .map((quest) => normalQuestTitle(quest.title)),
+          ),
+        );
+    } catch {
+      /* A missing or stale cache simply leaves quest-gated activities visible. */
+    }
     try {
       setManualUnlocks(
         JSON.parse(
@@ -5062,6 +4798,14 @@ function RepeatablesView({
       setManualUnlocks({});
     }
   }, [player?.name]);
+  useEffect(() => {
+    const storageKey = `ironpath-repeatable-hidden:${player?.name || 'local'}`;
+    try {
+      setHiddenActivities(JSON.parse(window.localStorage.getItem(storageKey) || '{}'));
+    } catch {
+      setHiddenActivities({});
+    }
+  }, [player?.name]);
   function persist(next: Record<string, boolean>) {
     setCompleted(next);
     if (shared) setShared(next);
@@ -5071,35 +4815,6 @@ function RepeatablesView({
   function toggle(name: string) {
     persist({ ...completed, [name]: !completed[name] });
   }
-  async function syncAccess() {
-    if (!player) return;
-    setSyncing(true);
-    setSyncError('');
-    try {
-      const response = await fetch(
-        `/api/quests?player=${encodeURIComponent(player.name)}`,
-      );
-      const result = (await response.json()) as QuestSyncResult & {
-        error?: string;
-      };
-      if (!response.ok)
-        throw new Error(result.error || 'Quest sync is unavailable.');
-      setCompletedQuests(
-        new Set(
-          result.quests
-            .filter((quest) => quest.completed)
-            .map((quest) => normalQuestTitle(quest.title)),
-        ),
-      );
-    } catch (error) {
-      setCompletedQuests(null);
-      setSyncError(
-        error instanceof Error ? error.message : 'Quest sync is unavailable.',
-      );
-    } finally {
-      setSyncing(false);
-    }
-  }
   function toggleManual(key: string) {
     const next = { ...manualUnlocks, [key]: !manualUnlocks[key] };
     setManualUnlocks(next);
@@ -5108,6 +4823,14 @@ function RepeatablesView({
         `ironpath-repeatable-unlocks:${player.name}`,
         JSON.stringify(next),
       );
+  }
+  function setActivityVisibility(name: string, visible: boolean) {
+    const next = { ...hiddenActivities, [name]: !visible };
+    setHiddenActivities(next);
+    window.localStorage.setItem(
+      `ironpath-repeatable-hidden:${player?.name || 'local'}`,
+      JSON.stringify(next),
+    );
   }
   function access(name: string) {
     const rule = repeatableRequirements[name];
@@ -5162,6 +4885,7 @@ function RepeatablesView({
       : baseList;
   const visibleList = list.filter(
     ([name, description, tag]) =>
+      !hiddenActivities[name] &&
       (!showCompleted || completed[name]) &&
       [name, description, tag]
         .join(' ')
@@ -5171,56 +4895,7 @@ function RepeatablesView({
   const done = list.filter(([name]) => completed[name]).length;
 
   return (
-    <div className="content feature-page">
-      <section className="feature-heading">
-        <div>
-          <p className="date-line">ROUTINE PLANNER</p>
-          <h2>Distractions and Diversions</h2>
-          <p>
-            Keep your daily, weekly, and monthly Ironman activities visible
-            without letting them run your game.
-          </p>
-        </div>
-        <div className="reset-card">
-          <Clock3 size={16} />
-          <div>
-            <span>Next {period.toLowerCase()} reset</span>
-            <strong>{resetLabel(period)}</strong>
-          </div>
-        </div>
-      </section>
-      <section className="tracker-personal-strip">
-        <Users size={16} />
-        <span>
-          {player
-            ? `Tracking for ${player.name}`
-            : 'Connect a group to personalise activities'}
-        </span>
-        {player && (
-          <div className="quest-sync-status">
-            <em
-              className={
-                syncError ? 'sync-error' : completedQuests ? 'sync-ready' : ''
-              }
-            >
-              {syncing
-                ? 'Syncing quest access…'
-                : syncError ||
-                  (completedQuests
-                    ? 'Quest access synced'
-                    : 'Quest access not synced')}
-            </em>
-            <button
-              className="quest-sync-button"
-              onClick={syncAccess}
-              disabled={syncing}
-            >
-              <RefreshCw size={16} className={syncing ? 'spin' : ''} />
-              {syncing ? 'Syncing…' : 'Sync quest access'}
-            </button>
-          </div>
-        )}
-      </section>
+    <div className="content feature-page distractions-page activities-refresh">
       <section className="repeatable-overview">
         <div className="panel repeatable-progress">
           <div
@@ -5241,41 +4916,21 @@ function RepeatablesView({
             <p>{list.length - done} activities remaining</p>
           </div>
         </div>
-        <div
-          className="repeatable-period-tabs"
-          aria-label="Distraction and diversion period"
-        >
+        <nav className="activity-cycle-cards" aria-label="Distraction and diversion period">
           {(['Daily', 'Weekly', 'Monthly'] as const).map((tab) => {
-            const complete = repeatables[tab].filter(
-              ([name]) => completed[name],
-            ).length;
+            const complete = repeatables[tab].filter(([name]) => completed[name]).length;
             const total = repeatables[tab].length;
+            const Icon = tab === 'Daily' ? Clock3 : tab === 'Weekly' ? CalendarCheck2 : RotateCcw;
+            const description = tab === 'Daily' ? 'Everyday activities and routines' : tab === 'Weekly' ? 'Your weekly activities and rewards' : 'Monthly challenges and activities';
             return (
-              <button
-                key={tab}
-                onClick={() => setPeriod(tab)}
-                className={period === tab ? 'active' : ''}
-                aria-pressed={period === tab}
-              >
-                <span className="period-copy">
-                  <strong>{tab}</strong>
-                  <small>
-                    {complete === total
-                      ? 'Complete'
-                      : `${total - complete} remaining`}
-                  </small>
-                </span>
-                <span className="period-count">
-                  <strong>{complete}</strong>
-                  <em>/ {total}</em>
-                </span>
-                <span className="period-meter" aria-hidden="true">
-                  <i style={{ width: `${(complete / total) * 100}%` }} />
-                </span>
+              <button key={tab} onClick={() => setPeriod(tab)} className={period === tab ? 'active' : ''} aria-pressed={period === tab}>
+                <Icon size={21} aria-hidden="true"/>
+                <span className="activity-cycle-copy"><strong>{tab}</strong><small>{description}</small><span>{complete} of {total} completed{complete === total ? ' · Complete' : ` · ${total - complete} remaining`}</span></span>
+                <ChevronRight size={16} aria-hidden="true"/>
               </button>
             );
           })}
-        </div>
+        </nav>
       </section>
       <section className="panel repeatable-list-panel tracker-board">
         <div className="tracker-board-head">
@@ -5320,21 +4975,13 @@ function RepeatablesView({
             }
             onClick={() => setShowSettings((value) => !value)}
           >
-            Access settings
+            Settings
           </button>
         </div>
         {showSettings && (
           <div className="tracker-settings">
             {player ? (
               <>
-                <button
-                  className="secondary-button"
-                  onClick={syncAccess}
-                  disabled={syncing}
-                >
-                  <RefreshCw size={14} className={syncing ? 'spin' : ''} />
-                  {syncing ? 'Syncing…' : 'Sync quest access'}
-                </button>
                 <label>
                   <input
                     type="checkbox"
@@ -5362,8 +5009,35 @@ function RepeatablesView({
                 character.
               </p>
             )}
+            <div className="tracker-visibility-settings">
+              <div>
+                <p className="eyebrow">Activity visibility</p>
+                <p>Hide activities from the board, then restore them here whenever you need them.</p>
+              </div>
+              <div className="tracker-visibility-list">
+                {baseList.map(([name]) => (
+                  <label key={name}>
+                    <input
+                      type="checkbox"
+                      checked={!hiddenActivities[name]}
+                      onChange={(event) =>
+                        setActivityVisibility(name, event.target.checked)
+                      }
+                    />
+                    <span>{name}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
           </div>
         )}
+        <div className="tracker-table-head" aria-hidden="true">
+          <span />
+          <span>Activity</span>
+          <span>Details</span>
+          <span>Category</span>
+          <span>Visibility</span>
+        </div>
         <div className="repeatable-list tracker-list">
           {visibleList.map(([name, description, tag]) => {
             const requirement = access(name);
@@ -5414,11 +5088,14 @@ function RepeatablesView({
                   </aside>
                 </div>
                 <span className="repeat-tag">{tag}</span>
-                <ChevronRight
-                  className="repeat-info-chevron"
-                  size={15}
-                  aria-hidden="true"
-                />
+                <span className={`state-badge ${completed[name] ? 'complete' : 'incomplete'}`}>{completed[name] ? 'Done' : 'Not done'}</span>
+                <button
+                  className="repeat-hide-button"
+                  onClick={() => setActivityVisibility(name, false)}
+                  aria-label={`Hide ${name} from this board`}
+                >
+                  Hide
+                </button>
               </article>
             );
           })}
@@ -5432,8 +5109,10 @@ function RepeatablesView({
         </div>
       </section>
       <p className="update-note">
-        <Sparkles size={14} /> Updated for the March 2026 DailyScape overhaul.
-        Removed and uncapped former dailies are intentionally excluded.
+        <BookOpen size={14} /> Wiki checked {repeatableSources.checkedOn} ·{' '}
+        <a href={repeatableSources.sources[0].url} target="_blank" rel="noreferrer">Repeatable events</a>.
+        {' '}Timers vary: weekly shop stock, clan ticks, and growth timers do not all reset on Wednesday.
+        Guthixian Cache is memory-triggered and excluded from timed checklists.
       </p>
     </div>
   );

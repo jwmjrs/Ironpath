@@ -39,3 +39,7 @@ next-env.d.ts
 /outputs/
 /work/
 /.tools/
+
+# local Vite and TypeScript caches
+/.vite/
+*.tsbuildinfo

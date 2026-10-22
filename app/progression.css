@@ -1,0 +1,69 @@
+/* Progression follows the same panels, controls and spacing as the dashboard. */
+html[data-theme="dark"] .roadmap-refresh{max-width:1440px;margin:0 auto;padding:32px clamp(18px,3vw,40px) 100px}
+html[data-theme="dark"] .roadmap-refresh>.feature-heading{display:flex;align-items:center;gap:24px;margin-bottom:24px}
+html[data-theme="dark"] .roadmap-refresh .feature-heading h2{font-size:32px;line-height:1.25}
+html[data-theme="dark"] .roadmap-refresh .feature-heading .date-line{color:#87dce0;font-size:11px;letter-spacing:.12em}
+html[data-theme="dark"] .roadmap-refresh .source-link{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;background:#0c0d10;border:1px solid #25272e;border-radius:8px;color:#87dce0;font-size:12px;white-space:nowrap}
+html[data-theme="dark"] .roadmap-refresh .roadmap-progress-card{display:flex;align-items:center;gap:18px;padding:24px;margin:0 0 24px;border:1px solid #25272e;border-radius:12px;background:#111216;min-height:0}
+.roadmap-summary-icon,.roadmap-detail-icon{display:grid;place-items:center;flex:0 0 auto;width:48px;height:48px;border:1px solid #514269;border-radius:10px;background:#1b172a;color:#b8a3f7}
+.roadmap-summary-copy{flex:1;max-width:520px;min-width:0}
+html[data-theme="dark"] .roadmap-refresh .roadmap-summary-copy .eyebrow{margin:0 0 6px;font-size:10px;color:#9b9faa;letter-spacing:.1em}
+html[data-theme="dark"] .roadmap-refresh .roadmap-summary-copy h3{font-size:24px;margin:0;line-height:1.4}
+.roadmap-summary-copy h3 span{font-size:14px;color:#9b9faa;font-weight:400}
+.roadmap-summary-meter,.roadmap-phase-meter{display:block;overflow:hidden;height:5px;background:#25272e;border-radius:99px;margin-top:12px}
+.roadmap-summary-meter>span,.roadmap-phase-meter>span{display:block;height:100%;background:#b8a3f7;border-radius:inherit}
+.roadmap-summary-percent{font-size:24px;color:#b8a3f7;font-variant-numeric:tabular-nums}
+html[data-theme="dark"] .roadmap-refresh .roadmap-quest-sync{margin-left:auto;max-width:260px}
+html[data-theme="dark"] .roadmap-refresh .roadmap-quest-sync-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:10px 14px;border:1px solid #35323f;border-radius:8px;background:#0c0d10;color:#f2f3f5;font-size:12px;cursor:pointer}
+html[data-theme="dark"] .roadmap-refresh .roadmap-quest-sync-button:disabled{opacity:.5;cursor:not-allowed}
+html[data-theme="dark"] .roadmap-refresh .roadmap-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,1fr);gap:20px;align-items:start}
+html[data-theme="dark"] .roadmap-refresh .phase-list{grid-column:1/-1;padding:0;border:0;background:none;box-shadow:none}
+html[data-theme="dark"] .roadmap-refresh .phase-list>.eyebrow{display:block;margin:0 0 12px;color:#9b9faa;font-size:10px;letter-spacing:.12em}
+html[data-theme="dark"] .roadmap-refresh .roadmap-phase-buttons{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+html[data-theme="dark"] .roadmap-refresh .roadmap-phase-card{display:flex;align-items:flex-start;gap:10px;min-height:108px;padding:16px 12px;border:1px solid #25272e;border-radius:10px;background:#111216;box-shadow:none;text-align:left;color:#f2f3f5}
+html[data-theme="dark"] .roadmap-refresh .roadmap-phase-card.active{background:#1b172a;border-color:#514269;box-shadow:inset 0 2px #b8a3f7}
+html[data-theme="dark"] .roadmap-refresh .roadmap-phase-card:hover{border-color:#71628f}
+.roadmap-phase-index{font-size:10px;color:#9b9faa;margin-top:2px}.roadmap-phase-copy{display:block;flex:1;min-width:0}
+html[data-theme="dark"] .roadmap-refresh .roadmap-phase-card strong{display:block;font-size:12px;line-height:1.5;font-weight:600}
+html[data-theme="dark"] .roadmap-refresh .roadmap-phase-card small{display:block;margin:7px 0 0;font-size:10px;color:#9b9faa}
+.roadmap-phase-meter{height:3px;margin-top:12px}
+html[data-theme="dark"] .roadmap-refresh .route-panel{padding:0;border-radius:12px;overflow:hidden;background:#111216;border:1px solid #25272e}
+html[data-theme="dark"] .roadmap-refresh .route-toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 22px 16px;margin:0;border:0;background:none}
+html[data-theme="dark"] .roadmap-refresh .route-toolbar h3{font-size:21px;margin:5px 0 0}
+html[data-theme="dark"] .roadmap-refresh .route-toolbar .eyebrow{font-size:10px;color:#9b9faa;letter-spacing:.1em;margin:0}
+html[data-theme="dark"] .roadmap-refresh .route-search{width:220px;max-width:100%;height:42px;border:1px solid #35323f;border-radius:8px;background:#0c0d10}
+.roadmap-list-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 22px 18px;color:#9b9faa;font-size:11px}
+html[data-theme="dark"] .roadmap-refresh .roadmap-hide{margin:0;font-size:12px;display:flex;align-items:center;gap:8px}.roadmap-hide input{accent-color:#7556c2;width:15px;height:15px}
+.roadmap-list-labels{display:grid;grid-template-columns:65px minmax(0,1fr) 52px 20px;gap:12px;padding:12px 22px;background:#0c0d10;border-block:1px solid #25272e;color:#9b9faa;font-size:9px;text-transform:uppercase;letter-spacing:.08em}
+html[data-theme="dark"] .roadmap-refresh .route-list{display:block;max-height:620px;overflow:auto;scrollbar-width:thin;scrollbar-color:#514269 #111216;padding:0 12px}
+html[data-theme="dark"] .roadmap-refresh .route-row{display:grid;grid-template-columns:24px 29px minmax(0,1fr) 52px 20px;gap:12px;min-height:66px;padding:14px 10px;border:0;border-bottom:1px solid #25272e;border-radius:0;background:none;box-shadow:none}
+html[data-theme="dark"] .roadmap-refresh .route-row.selected{background:#1b172a;box-shadow:inset 2px 0 #b8a3f7}
+html[data-theme="dark"] .roadmap-refresh .route-row:hover{background:#17171f}
+html[data-theme="dark"] .roadmap-refresh .route-row.done{background:#75c99a08}
+html[data-theme="dark"] .roadmap-refresh .route-row.done.selected{background:#1b172a}
+html[data-theme="dark"] .roadmap-refresh .route-row.done>div:after,html[data-theme="dark"] .roadmap-refresh .route-row.done strong:after{display:none!important;content:none!important}
+html[data-theme="dark"] .roadmap-refresh .route-row>div{display:block;min-width:0}
+html[data-theme="dark"] .roadmap-refresh .roadmap-step-title{font-size:13px;line-height:1.65;text-align:left;color:#f2f3f5}
+html[data-theme="dark"] .roadmap-refresh .route-number{font-size:10px;color:#9b9faa}
+html[data-theme="dark"] .roadmap-refresh .route-check{width:23px;height:23px;border:1px solid #45414f;border-radius:6px;background:#0c0d10;box-shadow:none}
+.roadmap-status{font-size:10px;white-space:nowrap;color:#9b9faa}.roadmap-status.is-complete{color:#75c99a}
+html[data-theme="dark"] .roadmap-refresh .roadmap-detail{position:sticky;top:190px;display:flex;gap:16px;min-height:0;padding:24px;border:1px solid #25272e;border-radius:12px;background:#111216}
+html[data-theme="dark"] .roadmap-refresh .roadmap-detail>.eyebrow{font-size:10px;letter-spacing:.1em;color:#9b9faa;margin:0}
+html[data-theme="dark"] .roadmap-refresh .roadmap-detail h3{font-size:23px;line-height:1.45;overflow-wrap:anywhere}
+html[data-theme="dark"] .roadmap-refresh .roadmap-detail h4{font-size:13px;margin:8px 0 0}
+html[data-theme="dark"] .roadmap-refresh .roadmap-detail p{font-size:13px;line-height:1.8}
+html[data-theme="dark"] .roadmap-refresh .roadmap-detail dl{padding:16px 0;border-block:1px solid #25272e;gap:14px;font-size:12px}
+html[data-theme="dark"] .roadmap-refresh .roadmap-detail dd.incomplete{color:#9b9faa;background:#1b1c22;border-color:#35323f}
+html[data-theme="dark"] .roadmap-refresh .roadmap-detail :is(.primary-button,.secondary-button){min-height:42px;font-size:12px}
+.roadmap-empty{padding:45px 22px;text-align:center;color:#9b9faa}.roadmap-empty h3{font-size:16px;color:#f2f3f5}.roadmap-empty p{font-size:12px}
+@media(max-width:1100px){html[data-theme="dark"] .roadmap-refresh .roadmap-layout{grid-template-columns:minmax(0,1.4fr) minmax(280px,1fr)}html[data-theme="dark"] .roadmap-refresh .roadmap-phase-buttons{grid-template-columns:repeat(3,minmax(0,1fr))}html[data-theme="dark"] .roadmap-refresh .roadmap-detail{position:static}}
+@media(max-width:760px){html[data-theme="dark"] .roadmap-refresh .roadmap-layout{grid-template-columns:1fr}html[data-theme="dark"] .roadmap-refresh .roadmap-phase-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-theme="dark"] .roadmap-refresh>.feature-heading{align-items:flex-start;flex-direction:column;gap:14px}html[data-theme="dark"] .roadmap-refresh .roadmap-progress-card{flex-wrap:wrap;padding:18px;gap:14px}.roadmap-summary-copy{flex:1;max-width:none}.roadmap-summary-icon{width:40px;height:40px}.roadmap-summary-percent{font-size:18px}html[data-theme="dark"] .roadmap-refresh .roadmap-quest-sync{margin:0;width:100%;max-width:none}html[data-theme="dark"] .roadmap-refresh .route-toolbar{align-items:stretch;flex-direction:column;padding:18px}html[data-theme="dark"] .roadmap-refresh .route-search{width:100%}.roadmap-list-controls{padding-inline:18px}.roadmap-list-labels{grid-template-columns:48px minmax(0,1fr) 40px 16px;gap:8px;padding-inline:18px}html[data-theme="dark"] .roadmap-refresh .route-row{grid-template-columns:22px 18px minmax(0,1fr) 40px 16px;gap:8px;padding-inline:6px}html[data-theme="dark"] .roadmap-refresh .route-list{max-height:520px;padding-inline:10px}html[data-theme="dark"] .roadmap-refresh .roadmap-detail{padding:20px}}
+/* Reset the legacy phase-grid and full-width span rules inside this layout. */
+html[data-theme="dark"] .roadmap-refresh .phase-list{display:block;position:static}
+html[data-theme="dark"] .roadmap-refresh .phase-list .roadmap-phase-card{justify-content:flex-start}
+html[data-theme="dark"] .roadmap-refresh .phase-list .roadmap-phase-index{display:block;flex:0 0 20px;width:20px;text-align:left;align-items:flex-start}
+html[data-theme="dark"] .roadmap-refresh .phase-list .roadmap-phase-copy{display:block;flex:1 1 0;width:auto;min-width:0;text-align:left;align-items:flex-start}
+html[data-theme="dark"] .roadmap-refresh .phase-list .roadmap-phase-meter,html[data-theme="dark"] .roadmap-refresh .phase-list .roadmap-phase-meter>span{display:block}
+html[data-theme="dark"] .roadmap-refresh .route-row>.roadmap-status{grid-column:4;grid-row:1;display:block}
+html[data-theme="dark"] .roadmap-refresh .route-row>a,html[data-theme="dark"] .roadmap-refresh .route-row>span:last-child:not(.roadmap-status){grid-column:5;grid-row:1;color:#87dce0}
+.roadmap-list-labels>span{white-space:nowrap}

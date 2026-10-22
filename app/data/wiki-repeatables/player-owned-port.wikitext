@@ -1,0 +1,1225 @@
+{{Redirect|Ports|other uses|Port}}
+{{Safe|minigame}}
+{{HasGuide}}
+{{HasCalculator|Calculator:Other/Trade goods|calculating the profit between trade goods and products}}
+{{Infobox Minigame
+|image = Player-owned port.png
+|release = [[11 December]] [[2012]]
+|update = Player-Owned Ports
+|members = Yes
+|ironmen = yes
+|location = [[Port Sarim]]
+|leagueRegion = Desert,Asgarnia,Tirannwn
+|players = 1
+|skills = See [[#Level requirements|level requirements]]
+|currency = [[Port resources]]
+|thaler = No
+|hiscores = No
+|tutorial = Yes
+|custodian = [[The Partner]], [[The Navigator]]
+|music = See [[#Music unlocked|music unlocked]]
+}}
+[[File:Ships button.png|left]]
+The '''player-owned port''' is a high-level [[members]]-only [[minigames|minigame]] that was released on [[11 December]] [[2012]] and expanded on [[7 January]] [[2014]] and again on [[26 January]] [[2015]]. This minigame involves players building their own port to manage a fleet of ships staffed by recruited [[Player-owned port/Captains and crew|crew members]]. These ships explore the [[Wushanko Isles]] on the player's behalf and return with exotic items and supplies that are otherwise unavailable.
+
+Players can start the minigame by entering one of three [[Portal (Player-owned port)|portals]] or the [[ports table]]. The portals are located south-west of [[the Rusty Anchor]] pub in [[Port Sarim]], north-east of [[Prifddinas lodestone]], or in the southern part of the [[Menaphos Port district]]. The ports table is located in [[Fort Forinthry]] in the [[Command Centre]] (once the Command Centre has been built).
+
+While participating in player-owned ports is members only, free-to-play players can enter the port via the portal in [[Port Sarim]]. [[Meg]], [[The Partner]], [[Seasinger Umi]], and [[port staff]] are present, but attempting to interact with any NPC in the area will prompt a message stating "You must be a member to use this feature".
+
+==Getting there==
+* The [[port portal]] to access the player-owned port can be found between [[Brian's Battleaxe Bazaar]] and [[the Rusty Anchor]], in the northern part of [[Port Sarim]]
+* Another port portal is set on the southern side of the [[Menaphos Port district]]
+* The [[Port portal (Prifddinas)|port portal in Prifddinas]] can be access from the [[Tower of Voices]]
+* After completing the [[#Tutorial|tutorial]], the [[Captain's Log]] teleports players to the port
+
+==Level requirements==
+There is no requirement to enter the player-owned port. Answering [[Meg#Meg's questions|Meg's questions]] weekly also has no level requirement and thus is available to all members. But to make progress in the minigame and to send ships on journeys, the player is required to have level 90 in at least one of the following skills (boosts do ''not'' work):
+
+{| class="wikitable lighttable"
+|-
+!Skill (level 90) !! Adventurer unlocked
+|-
+|{{skill clickpic|Agility}} [[Agility]] || Sojobo and Shanao [[the Tengu]]
+|-
+|{{skill clickpic|Construction}} [[Construction]] || Lidylla [[the Architect]]
+|-
+|{{skill clickpic|Cooking}} [[Cooking]] || Carlos Napp [[the Chef]]
+|-
+|{{skill clickpic|Divination}} [[Divination]] || Aagi [[the Memory]]
+|-
+|{{skill clickpic|Dungeoneering}} [[Dungeoneering]] || Honovi [[the Exile]]
+|-
+|{{skill clickpic|Fishing}} [[Fishing]] || Hubbub [[the Whaler]]
+|-
+|{{skill clickpic|Herblore}} [[Herblore]] || Bethan [[the Biologist]]
+|-
+|{{skill clickpic|Hunter}} [[Hunter]] || Reginald Wellington-Smythe [[the Trapper]]
+|-
+|{{skill clickpic|Prayer}} [[Prayer]] || Tomlin [[the Missionary]]
+|-
+|{{skill clickpic|Runecrafting}} [[Runecrafting]] || Zu Zu [[the Occultist]]
+|-
+|{{skill clickpic|Slayer}} [[Slayer]] || Ling [[the Assassin]]
+|-
+|{{skill clickpic|Thieving}} [[Thieving]] || Marcus Fine [[the Convict]] (aka Horatio Waxenwing)
+|}
+
+More content is unlocked for each of the requirements met. In addition to the skill requirements to play the minigame, several other requirements have to be met to fully be able to use the minigame. See the table below for more information.
+
+{| class="wikitable lighttable"
+|-
+! Additional requirements !! Requirement for
+|-
+| 93-99 {{skill clickpic|Cooking}} [[Cooking]] || Making [[rocktail soup]] (93) and [[sailfish soup]] (99)
+|-
+| 90-92 {{skill clickpic|Runecrafting}} [[Runecrafting]] || Making [[Seasinger's robes]] (90), [[Seasinger kiba]] and [[Seasinger makigai|makigai]] (92)
+|-
+| 90-92 {{skill clickpic|Smithing}} [[Smithing]] || Making [[Tetsu armour]] (90), [[Tetsu katana]] and [[Tetsu wakizashi|wakizashi]] (92)
+|-
+| 85-95 {{skill clickpic|Fletching}} [[Fletching]] || Making various [[scrimshaw]]s (85-95), [[Death Lotus dart]]s (92)
+|-
+| 90 {{skill clickpic|Crafting}} [[Crafting]] || Making [[Death Lotus equipment]], [[Reefwalker's cape]], [[Leviathan ring]]
+|-
+| 88 {{skill clickpic|Invention}} [[Invention]] || Making [[Demon Slayer ability codex|Demon Slayer]], [[Dragon Slayer ability codex|Dragon Slayer]], or [[Undead Slayer ability codex|Undead Slayer ability codices]] using [[Silent components|silent]], [[Resilient components|resilient]], or [[oceanic components]]
+|-
+| 85-88 {{skill clickpic|Attack}} [[Attack]] || Wielding Tetsu katana and wakizashi (88 for Elite versions)
+|-
+| 85-88 {{skill clickpic|Magic}} [[Magic]] || Wielding Seasinger kiba and makigai (88 for Elite versions)
+|-
+| 85-88 {{skill clickpic|Ranged}} [[Ranged]] || Wielding [[Death Lotus dart]]s (88 for Elite versions)
+|-
+| 85 {{skill clickpic|Defence}} [[Defence]] || Wearing Tetsu, Death Lotus or Seasinger armour
+|-
+| 80 {{skill clickpic|Strength}} [[Strength]] || Using [[scrimshaw of vampyrism]]
+|-
+| 70-80 {{skill clickpic|Mining}} [[Mining]] || Using [[rock-crushing scrimshaw]] (70) and [[gem-finding scrimshaw]] (80)
+|-
+| 70-80 {{skill clickpic|Woodcutting}} [[Woodcutting]] || Using [[log-splitting scrimshaw]] (70) and [[tree-shaking scrimshaw]] (80)
+|-
+| 70-80 {{skill clickpic|Fishing}} [[Fishing]] || Using [[whopper-baiting scrimshaw]] (70) and [[casket-salvaging scrimshaw]] (80)
+|-
+| 70-80 {{skill clickpic|Divination}} [[Divination]] || Using [[memory-crushing scrimshaw]] (70) and [[energy-gathering scrimshaw]] (80)
+|}
+
+To efficiently create reward items, a combination of skills is usually required. For example, making [[rocktail soup]] requires level 93 Cooking; in order to quickly gather the [[spices]] needed, level 90 Slayer is required to attract [[the Assassin]] to the port. See the [[Player-owned port#Rewards|Rewards]] section for more details.
+
+==Tutorial==
+If the player meets the level requirements to play the minigame, upon entering the port, they will see a cutscene followed by a brief, interactive tutorial, where they meet their first adventurer and [[John Strum]] and [[Duncan]] teach the basics. Playing through the tutorial is recommended because it teaches the mechanics of hiring crew, equipping ships, sending them out on voyages, upgrading the port, and collecting rewards. At the end of the tutorial, the player receives a [[Captain's log]], which the player can use to check progress and status of many aspects of the minigame when they are not in the port or teleport to the port. They are then free to begin playing the minigame itself.
+
+<gallery mode="packed" heights="200">
+Welcome to my port.png|John Strum welcomes the player to Player-owned ports.
+Marcus on the run.png|An adventurer, [[Marcus Fine]], escapes from some mercenaries.
+Fighting off the mercenaries.png|The player, John, and Marcus fight them off.
+Exploding barrel.png|The player kicks a barrel at the mercenaries, and the barrel explodes.
+</gallery>
+
+==Gameplay==
+Player-owned port is a management-based minigame in which the player manages a port, sending out ships to complete voyages to the [[Wushanko Isles]], commonly known in the West as the Eastern Lands. Each voyage will have adversity in one or more of the following stats: Morale, Combat, and Seafaring. Next to each adversity affecting the success of the chosen voyage, a green indicator bar shows the percentage of that adversity that the player has overcome. Players choose a captain, at most five crew members, and [[Player-owned port/Ship parts|ship parts]] for each voyage that will provide stats to overcome the voyage's adversity. Those stats may be boosted by [[Player-owned port/Buildings|buildings]] that have been upgraded. Effects earned from the port's [[Player-owned port/Random events|random events]] may be used to provide an additional one-time boost.
+
+The green indicator bars on the voyage and shipyard interfaces indicate the chance of a successful outcome. The chance of a successful voyage is equal to the ''least'' filled indicator. Thus, if two indicators show 100% and one shows 56%, the chance of success is only 56%. If a mission is not successful, the ship may be damaged, the crew may be lost at sea, and resources will not be gained. If the chance of success is low, the game will display a warning that harsher penalties will be incurred if the voyage fails. When the chance of success is high, it is possible to have a partial success and gain some resources even if the voyage fails.
+
+The fourth stat, Speed, is different from the other three. Speed does not affect the success of a voyage but affects the amount of time that it takes to complete a voyage.
+
+Resources gained from voyages may be used to unlock ship parts, upgrade the port buildings, or hire more crew. Ship parts and a varied crew roster allow for more varied and more difficult voyages to be successfully completed. Building upgrades allow players to have more ships operating at a time, boost resources gained from successful voyages, boost ship stats, or improve their chances to attract special adventurers and higher quality captains or crew.
+
+===Rerolls and reset===
+Standard voyages and crew members available for hire can be rerolled. Rerolling a voyage or crew member for hire immediately replaces it with a new randomly generated one, and the replaced voyage or crew member cannot be recovered. The player has a limited number of rerolls available each day. Unused voyage and crew rerolls are not carried over from one day to the next.
+
+The port's random events can award additional voyage or crew rerolls. Each of these rewards will grant an additional five rerolls. Rewards do not expire at reset, but if they have been redeemed, any unused rerolls will be lost at reset. Random event rewards can also grant the ability to reroll visiting adventurers and captains for hire. As with the voyage and crew rerolls, the player will not be able to recover adventurers or captains that are replaced by rerolling. Only adventurers in the port will be replaced, however. If adventurers are currently under way on voyages, a new set of adventurers will be generated in the port, and those on voyages will be able to complete them.
+
+Reset occurs at 00:00 UTC, but the effects will not be triggered until the first time the player logs in after reset. One of the exceptions is the gossip from the barmaid, which vanishes upon reaching 00:00 UTC, regardless of log outs, although if the gossip voyage is taken, it will remain. Reset has the following effects:
+* New visiting adventurers are generated, replacing any special voyages that have not yet begun
+* A new captain for hire is generated
+* [[The Trader]] receive new stock
+* [[The Black Marketeer]] receive new stock if it is on Wednesday
+* Receive new stock of voyage and crew rerolls
+* Voyage and crew rerolls are immediately consumed to fill any open slots. Standard voyages not yet started and crew members not yet hired will not be replaced and will remain in their positions indefinitely.
+* The player is paid a daily salary:
+** 20 chimes if the port has a refitted office
+** 50 chimes if the port has a renovated office
+** 150 chimes if the port has a refurbished office
+* Soft [[#Maximum caps|resource caps]] applied
+
+==The port==
+===Map===
+{{Map|mapID=-1|x=4448|y=7520|width=400|height=400}}
+
+===Interfaces===
+{{Main|Player-owned port/Interfaces}}
+The port interfaces can be seen at the top of the screen while at the port. The resources drop-down menu shows the player's stock of resources and trade goods. Using the central interface, players can view their voyages, view and hire crew, set up their ships, upgrade buildings, and see how far they've advanced with the map. Once the Skull region has been unlocked, the player may also set the port's focus for obtaining scroll pieces and influencing the destination of standard voyages. The Visitors drop-down menu is a quick reference to the visitors in the port.
+
+===Buildings===
+{{Main|Player-owned port/Buildings}}
+[[File:Standard portal.png|thumb|The default portal used to enter and exit the port.]]
+Buildings and decorations can be built or upgraded to offer bonuses to different areas of the port's operations. The view will change while scrolling through each building or decoration.
+
+* [[Bar (player-owned port)|Bar]]: Upgrading the Bar increases the chances of attracting adventurers and attracting better captains.
+* [[Office (player-owned port)|Office]]: Upgrading the Office unlocks additional ship slots.
+* [[Workshop (player-owned port)|Workshop]]: Upgrading the Workshop unlocks the ability to make reward items. [[The Hook]] must be unlocked before the Workshop can be upgraded. Upgrading the Workshop provides a bank chest in the port.
+* [[Lodgings (player-owned port)|Lodgings]]: Upgrading the Lodgings increases the chances of attracting higher quality crew.
+* [[Shipwright (player-owned port)|Shipwright]]: Upgrading the Shipwright boosts the stats of ships.
+* [[Warehouse (player-owned port)|Warehouse]]: Upgrading the warehouse increases the rewards from voyages.
+* [[Totem (player-owned port)|Totem]]s (total 4 hotspots): Building a totem allows the player to choose a bonus (with diminishing returns for each successive totem built), depending on which totem is built:
+** 4-10% extra chance of scroll missions (Telescope)
+** 4-10% extra chance of experience missions (Parrot)
+** 4-10% increased rewards from voyages (Cherry Tree)
+** 4-10% extra chance of a port random event (Pandora's Box)
+** 4-10% extra chance to receive trade goods voyages (Jade Statue)
+** 4-10% extra chance of receiving clue voyages (Map Table)
+* [[Icon (player-owned port)|Icon]]s (total 3 hotspots): Building an icon increases the chances that a specific adventurer will appear, depending on which icon is built:
+** Whale skull trophy - Whaler
+** Mammoth head - Biologist
+** Occult artefact - Occultist
+** Human skull - Assassin
+** Stocks - Convict
+** Saradominist symbol - Missionary
+** Trap - Trapper
+** Cooking pot - Chef
+** Ornate arch - Architect
+** Torn bag - Exile
+** Butterfly - Memory
+** Tengu mask - Tengu
+* [[Portal (Player-owned port)|Portal]]: Upgrading the portal is simply a cosmetic change.
+
+===Main characters===
+* John Strum [[the Partner]], is the former portmaster
+* Duncan [[the Navigator]], helps with the management of the port
+* Surula [[the Barmaid]], sells [[beer]] and "gossips" (gives a high level bonus voyage) every Thursday
+* Felix [[the Black Marketeer]], sells [[port resources]] to the player for [[coins]]
+* [[Meg]], The Adventurer, seeks the player's advice
+* [[Seasinger Umi]], a siren training to become a seasinger
+* [[The Trader]], trades port resources for [[trade goods]].
+* The adventurers - 12 people who stand a chance of being attracted into the port and offering special voyages if the player has at least level 90 in the adventurer's associated skill:
+**The original 6 adventurers:
+***[[The Whaler]] (90 Fishing)
+***[[The Biologist]] (90 Herblore)
+***[[The Missionary]] (90 Prayer)
+***[[The Occultist]] (90 Runecrafting)
+***[[The Assassin]] (90 Slayer)
+***[[The Convict]] (90 Thieving)
+**The 3 additional adventurers added in the [[Update:Player-Owned Ports - The Next Journey|update]] on [[7 January]] [[2014]].
+***[[The Architect]] (90 Construction)
+***[[The Chef]] (90 Cooking)
+***[[The Trapper]] (90 Hunter)
+** The 3 additional adventurers added in the [[Update:Ports - Guardians of the World|update]] on [[26 January]] [[2015]].
+***[[The Tengu]] (90 Agility)
+***[[The Memory]] (90 Divination)
+***[[The Exile]] (90 Dungeoneering)
+
+==The ship==
+===Ship name===
+{{main|Player-owned port/Ship names}}
+[[File:Ship name creator interface.png|thumb|300px|Ship Name Creator Interface]]
+The player may customise each ship's name by bringing up the [[Player-owned port/Interfaces#Ship Name Creator|Ship Name Creator]] interface by clicking on the pencil icon next to that ship's icon. This can be done whether the ship is in port or at sea, and can be done for each ship slot regardless of whether it has been unlocked (viewable in Captain's Log). Each name has three parts that can be changed individually, either manually or randomly. The list of available names and the interface by which changes are made and applied are shown on their respective pages above.
+
+===Ship parts===
+{{main|Player-owned port/Ship parts}}
+
+[[File:Shipyard interface.png|thumb|right|The five hotspots.]]
+
+Once unlocked, ships are already built for the player. Using resources, players can upgrade their ships using five customisable hotspots:
+* Rams/figureheads (bonus to Combat or Morale)
+* Deck items 1 (bonus to Combat, Morale, or Seafaring)
+* Deck items 2 (bonus to Combat, Morale, or Seafaring)
+* Rudders (bonus to Speed)
+* Hulls (bonuses to Combat, Morale, Seafaring, and Speed)
+Clicking on a hotspot shows the player a list of possible upgrades for that spot. The currently equipped upgrade is indicated by a green check mark.
+
+Upgrades marked with a padlock have not yet been unlocked. A gold padlock indicates that the player has the resources to unlock the upgrade. Upgrades need only be unlocked once, after which the player can use them on any ship. Unlocked upgrades can be used on as many ships as the player chooses at no additional cost.
+
+Selecting a locked upgrade shows the selected upgrade's stats and the cost to unlock it. The stats of the selected upgrade are colour coded in comparison to the currently equipped upgrade: green stats are higher than the currently equipped upgrade, white are the same, and red stats are lower than the currently equipped upgrade. Selecting an unlocked upgrade allows the player to compare the stats of the selected and equipped upgrades using the same colour coding.
+
+The upgrade options for the two deck item hotspots are identical, and upgrades purchased in either hotspot are automatically available in both.
+
+==Captains and crew==
+{{Main|Player-owned port/Captains and crew}}
+A player recruits captains and crew through the [[Player-owned port/Interfaces#Crew Roster|Crew Roster]] interface. This is also where the player may get the most detail about individual captains or crew members. A player may have a maximum of 5 captains and 25 crew members at any given time.
+
+Captains and crew members are assigned to ships through the [[Player-owned port/Interfaces#Shipyard|Shipyard]] interface by clicking on the plus sign under the ship stats at the top of the window. At any given time, a ship may have only 1 captain, but may have up to 5 crew members assigned to it. Captains and crew members add their stats (Morale, Combat, Seafaring, and Speed) to those of the ship to determine a voyage's chance of success. They may also possess other traits that affect the rewards for success or penalties for failure.
+
+Captains and crew members become better through experience gained by successfully completing voyages. The farther the player progresses into the Wushanko Isles, the better the captains and crew available for hire will be. Although there are free captains and crew members available, replacing them with better crew members hired using chimes and port resources will be critical to advancing through the game.
+
+==Voyages==
+[[File:Successful Voyage.png|thumb|354px|A successful voyage, showing rewards earned.]] {{Listen|filename=POP_Ship_Returns.ogg|title=Your ship has returned.}} After equipping and crewing a ship, players send it out into the Eastern seas to attempt to complete a voyage. The length of a voyage varies depending on the distance travelled, the combined speed statistics of the voyage, ship parts, and crew, and the effect of the [[Totem of Navigation]]. The estimated time of arrival (ETA) for each ship on a voyage can be seen by clicking on the vessel while inside the port. Some voyages only take 15 minutes while others take many hours.
+
+Once a ship has returned, a ship's bell tolls and players receive a notification in their chatbox. Players can return to their port to check on the success of the voyage, however players can also use the [[captain's log]] to check their voyages, with the exception of story voyages. Some successful voyages bring back resources such as [[Chimes (Player-owned port)|chimes]], [[Bamboo (Player-owned port)|bamboo]], [[black slate]], [[cherrywood]], and [[Jade (Player-owned port)|jade]]. Other voyages may bring back trade goods such as [[ancient bones]], [[spices]], [[chi]], [[plate]], [[lacquer]], [[koi scales]], and [[pearls]]. Other successful voyages bring adventurers to the port, unlock new islands, or bring back parts of elusive scrolls for high level armour, food, or [[scrimshaw]].
+
+The difficulty displayed on the interface is calculated by the difference between the average of the morale, combat, and seafaring statistics of the voyage and the statistics that players' ships can achieve. This is just an estimate and will not affect the actual voyage.
+
+===Failed voyages===
+Failed voyages may result in damage to the ship, death of a captain or crew member on that voyage, or both. Failed voyage results are skewed so that generally the worse you fail, the worse result you get, i.e. failing with a 5% chance of success vs 95% chance will punish you more. There is also a large random element to this. A failed voyage may be a partial success, earning a partial reward, including any bonuses applied to that voyage. However, partially successful missions do not show the resources or trade goods awarded in the results window.
+
+There are 10 possible penalties for a failed voyage:
+
+{| class="wikitable"
+|-
+! Outcome !! In-game message !! Notes
+|-
+| Partial completion: 20% of rewards received. || ''Your crew managed to struggle home with their mission partly complete.'' || With a crew member with the opportunist [[Player-owned port/Captains and crew#Traits|trait]] there is 50% chance to receive 35% rewards.
+(''Your crew returned safe; an opportunist crewmember reveals a small stash they concealed en route.'')
+
+With a crew member with the pilferer trait there is a 10% chance to receive 0% rewards.
+
+(''Your crew managed to struggle home, but what little they found has been pilfered en route.'')
+|-
+| Mild damage: repairs || ''Your ship was mildly damaged. X [resource type] was taken for basic repairs.'' || The amount of resources will be 40 [[Bamboo (player-owned port)|bamboo]] or [[black slate]]; 50 [[Gunpowder (player-owned port)|gunpowder]] or [[cherrywood]]; or 60 [[Jade (player-owned port)|jade]], [[stainless steel]], [[terracotta]], or [[azure]].
+
+Repair cost is increased by 10% if the [[fortune of the sea]] effect is active
+|-
+| Mild damage: dry docks || ''Your ship was damaged and requires one hour in dry dock for repair.'' || Occurs if the player cannot pay the repair costs
+|-
+| Damage: repairs || ''Your ship was damaged. X [resource type] was taken for basic repairs.'' || The amount of resources will be 0-399 (likely between 300-399).
+
+Repair cost is increased by 10% if the fortune of
+the sea effect is active.
+|-
+| Damage: dry docks || ''Your ship was damaged and requires two hours in dry dock for repair.'' || Occurs if the player cannot pay the repair costs
+|-
+| Crew member death: a member of the crew is chosen at random. There is a 5% chance that the crew member will survive || ''A crew member was lost overboard and has drowned.''
+
+''A crew member was lost overboard, but was rescued by the valiant efforts of the rest of your crew.''
+|| A crew member with the feeble trait will die 100% of the time.
+
+(''A crew member was lost overboard, was too weak to swim and sank without trace.'')
+
+A crew member with the tough as nails trait will have a 10% chance to survive.
+
+(''A crew member was lost overboard, but - showing remarkable endurance - has swum back to port alone.'')
+
+With [[Oxhead and Horseface]] in your crew there is a chance that a crew member who dies will be resurrected as an [[indentured zombie]].
+
+(''A crewman was killed, but has been raised by Ox Head and Horse Face to continue working.'')
+
+With a [[sea witch]] in your crew there is a chance that a crew member who dies will be resurrected as a [[drowned ghost]].
+
+(''The sea witch has bound the soul of a dying crew member to your service.'')
+
+With a golem in your crew the crew member who dies will instead be saved; the golem will be lost instead. The last golem in the ship's crew is killed if there are multiple.
+
+(''A crew member was lost overboard, but was saved by your faithful golem at the cost of its life.'')
+
+With a [[lifeboat]] active the crew member will always be saved; this is a permanent effect that must be applied to each ship individually.
+
+(''Your crew recovered a missing crewman, found drifting in one of your lifeboats.'')
+|-
+| Heavy damage: repairs || ''Your ship was heavily damaged. X [resource type] was taken for basic repairs.'' || The amount of resources will be 150 for bamboo; 200 for black slate; 300 for gunpowder; 450 for cherrywood; or 600 for jade, stainless steel, terracotta, or azure.
+
+Repair cost is increased by 10% if the fortune of
+the sea effect is active.
+|-
+| Heavy damage: dry docks || ''Your ship was heavily damaged and requires five hours in dry dock for repair.'' || Occurs if the player cannot pay the repair costs.
+
+If a crew member has the mutinous trait there is a 50% chance to cause the captain's death outcome instead. Crew members with the loyal trait negate this by 20%.
+|-
+| Captain death. There is a 5% chance that the captain will survive. || ''Your captain has been killed in action!''
+
+''Your captain has been wounded in action, but managed to survive through determination and good fortune.''
+||
+A crew member with the loyal trait will give a 20% chance for the captain to survive, negating the effects of any crew members with the mutinous trait.
+
+(''With the help of loyal crew members, your captain has quelled a serious mutiny.'')
+
+With a golem in your crew the captain will be saved; the golem will be lost instead. The last golem in the ship's crew is killed if there are multiple.
+
+(''Your captain was lost overboard, but was saved by your faithful golem at the cost of its life.'')
+
+With a [[lifeboat]] active the captain will always be saved; this is a permanent effect that must be applied to each ship individually.
+
+(''Your captain narrowly escaped death, boarding a lifeboat in the nick of time.'')
+|}
+
+===Standard voyages===
+{{main|Player-owned port/Standard voyages}}
+Players are given 15 standard voyage rerolls each day. Only 3 voyages are displayed at any one time. When a player sends a ship on a voyage it is removed from the list. If the player has rerolls remaining then one is consumed and a new voyage is generated. Otherwise the slot will empty and remain blank until new rerolls are received at 0:00 UTC. If a player does not want to attempt a voyage then they may click the yellow reroll button in the upper right corner of the voyage slot to immediately forfeit it and receive a new voyage. Any standard voyages left in the three voyage slots are carried over to the next day, but any unused rerolls are not. This means a player can access up to 18 standard voyages on a given day (15 rerolls + 3 voyage slots).
+
+As the voyage return times increase, it will become increasingly difficult to complete all of the available voyages in a single day. If many unused rerolls are consistently forfeited at each reset, then consider going back to some of the easier regions by changing focus in the port management interface, to collect resources for upgrades such as additional ship slots and better rudders for additional speed.
+
+====A Barmaid's Tip====
+Once each Thursday, players may visit the port's bar and speak with [[Surula]] the barmaid to hear some gossip about a voyage with increased rewards. This voyage, A Barmaid's Tip, will be placed in the third slot in the standard voyage interface. If there was a voyage already in that slot, it will be replaced, so it may be wise to free up the third slot before speaking to Surula. (If all voyages are finished before asking for the Barmaid's Tip, the player will also receive a voyage reroll, meaning they get two voyages. It is currently unknown if this is a bug.) The tip must be obtained before reset or it will be too late, but once the voyage is in the slot it can be carried over like any other standard voyage. The mission received can be influenced by using the port management interface to select the desired region before speaking to Surula; however, it is still possible to receive voyages from different, previously unlocked regions (e.g. you can receive a Skull voyage even if the focus is the Bowl).
+
+===Special voyages===
+{{main|Player-owned port/Special voyages}}
+Special Voyages require the assistance of one of twelve potential Visiting Adventurers that may appear each day in the port's bar. Adventurers are only available if the player's skill is at least 90 in the corresponding skill: the Assassin requires Slayer, the Biologist requires Herblore; the Convict requires Thieving; the Missionary requires Prayer; the Occultist requires Runecrafting; the Whaler requires Fishing; the Trapper requires Hunter; The Chef requires Cooking; and the Architect requires Construction. Special joint voyages are available when specific pairs of adventurers are in the port: the Assassin and the Convict, the Biologist and the Whaler, or the Missionary and the Occultist. Special voyages may not be rerolled, but a new list is generated after reset or when an Adventurer reroll is used.
+
+If an adventurer is sent on a special voyage, they will disappear from the bar and not return to it when the voyage is complete. Consequently, if an adventurer offers more than one special voyage at a time, starting one of them will automatically remove all other special voyages for that adventurer that are on the list. Choosing a joint voyage removes all other special voyages for both adventurers.
+
+The list of special voyages is refreshed daily at the first login after reset. If a special voyage is under way when reset occurs, the voyage may still be completed and any rewards earned even if that adventurer is not chosen to be in the port after reset. Although there is normally a limit of two adventurers in port at a time, it is possible to have two adventurers in port in addition to any adventurers in voyages that are under way; however, the Visitors drop-down menu will only show two adventurers at a time.
+
+Depending on the special voyage chosen, success will advance the adventurer's story or reward the player with chimes and resources, experience in the corresponding skill, or part of an Eastern Scroll that, when complete, will allow the player to build a new high-level item that can only be built within the port.
+
+The cut scenes that play during the adventurers' story voyages can be replayed by talking to the adventurers while they are visiting in the bar. Players will be unable to see the "Meet the..." voyage for the first adventurer they meet, as the meeting occurs in the tutorial rather than their first voyage.
+
+It is possible to not receive any special voyages.
+
+====Clue voyages====
+Six adventurers (Whaler, Trapper, Chef, Exile, Memory, Tengu) have a series of clue voyages available to them, which can appear randomly as a special voyage after the relevant region for that clue is unlocked. Clue voyages differ from regular voyages in one main way—the destination within the region is not set and can be changed by talking to the adventurer in the bar prior to sending the voyage. The player's task is to find the correct destination for the voyage (and then successfully send the ship there) in order to progress to the next clue voyage.
+
+Clue voyages, like story voyages, are a series of individual voyages that require previous ones to be completed to do the next ones. They're also subject to the normal conditions of a voyage—morale, combat and seafaring. If the voyage fails this, as normal, no progress is made. However, if it passes this check, there is a second level of success that depends on the destination. If the clue voyage is sent to the wrong destination, the voyage is overall a failure and no progress is made on the clue. Successfully completing all three clue voyages for an adventurer (sending to the right location) unlocks that adventurer's hidden voyage. Completing clue voyages also contributes to port score.
+
+When an adventurer is sent to the incorrect location, they will remember and will not attempt to go there again. Thus, with enough voyages, the correct location is guaranteed to eventually be found. The only way to find the correct location quickly and with certainty is to build one or more [[/Upgrades#Map table|map table]]s in the totem hotspots. Click on the map table to select the 'Investigate' option to see a hint every few days (every 4 days with 1 table, to every day with 4 tables) and increase the chance that adventurers will offer their clue voyages. The hint outright states the correct location to send an adventurer; however, a hint is only given if an adventurer is currently in port (not on a ship) and has uncompleted clue voyages on the day the hint is given. If both adventurers in port have uncompleted clue voyages on the day the table gives a hint, the table will provide a hint for each of them (though it does not specify which hint corresponds to which adventurer).
+
+=====List=====
+* [[An Outside Resource]]
+* [[Bring it Tome]]
+* [[Charcoal Charade]]
+* [[Fish out of Water (voyage)|Fish out of Water]]
+* [[Free Bird]]
+* [[Hook, Line and Sinker]]
+* [[Jogging Her Memory]]
+* [[Local Knowledge]]
+* [[Marker Research]]
+* [[Recipe for Success]]
+* [[Reeling Them In]]
+* [[Saltpetre Blues]]
+* [[So Sous Me]]
+* [[Something on Her Mind]]
+* [[Sulphurous Silliness]]
+* [[The Key Ingredient]]
+* [[Touch of Death (voyage)|Touch of Death]]
+
+=====Hidden voyages=====
+Each of the six adventurers with clue voyages also have hidden voyages which have lucrative rewards. These voyages are permanently unlocked after successfully completing all 3 of that adventurer's clue voyages (they are repeatable without having to re-do the clue voyages). The rewards include seasinger's bottled cries, ration packs, gunpowder kegs, a [[Gift of Gu]] (in exchange for chimes; speak to the Tengu before sending), a [[Worldbearer ring (1)]], and captain trait removal.
+
+=====Clue summary=====
+The voyage requirements are roughly equivalent to the harder voyages from that region.
+{| class="wikitable"
+! rowspan="2" | Adventurer
+! colspan="3" | Regions
+! rowspan="2" | Reward
+|-
+! First clue
+! Second clue
+! Third clue
+|-
+| The Whaler
+| The Arc
+| The Skull
+| The Hook
+| {{plink|Seasinger's Bottled Cry}}
+|-
+| The Trapper
+| The Skull
+| The Skull
+| The Hook
+| {{plink|Powder Keg}}
+|-
+| The Chef
+| The Arc
+| The Skull
+| The Hook
+| {{plink|Ration Pack}}
+|-
+| The Exile
+| The Loop
+| The Pincers
+| The Shield
+| {{plink|Worldbearer ring}}
+|-
+| The Tengu
+| The Loop
+| The Loop
+| The Loop
+| {{plink|Gift of Gu}}
+|-
+| The Memory
+| The Arc
+| The Hook
+| The Bowl
+| Captain trait removal
+|}
+
+===Time required===
+In order to determine the (approximate) time the voyage will take the effective speed first needs to be calculated. The effective speed can be taken based on the maximum speed, the minimum speed and the ship's speed. The speed of the voyage is the average speed of the minimum effective speed and maximum effective speed of the voyage.
+
+<math>
+\begin{array}{lcl}
+\text{speed}_{\text{max}} & = & \lfloor 1.25 \times \text{speed}_{\text{voyage}} \rfloor \\
+\text{speed}_{\text{min}} & = & \lfloor 0.75 \times \text{speed}_{\text{voyage}} \rfloor \\
+\text{speed}_{\text{effective}} & = & \text{max}(\text{min}(\text{speed}_{\text{max}},\text{speed}_{\text{ship}}),\text{speed}_{\text{min}}) \\
+\end{array}
+</math>
+
+With the effective speed known it becomes possible to calculate the time in minutes using the following formula:
+
+<math>
+\text{time}_{\text{minutes}} = \text{max}\left (15, \left \lfloor \frac{1}{10} \times \left \lfloor \frac{\text{speed}_{\text{voyage}} \times \text{distance}}{\text{speed}_{\text{effective}}}\right \rfloor \right \rfloor \right )
+</math>
+
+This formula will give the exact time displayed in the game client. The actual times in-game might vary slightly. Also this means that the minimum time for a voyage will be 15 minutes, regardless of region, voyage or stats, with the exception of the tutorial mission.
+
+In addition to this formula, activating the [[Totem of Navigation]] on Anachronia will provide a 15% reduction in the voyage time, although this still cannot reduce the time below the 15 minute minimum.
+
+===Difficulty===
+The difficulty level displayed on the interface is calculated based on the average of morale, combat, and seafaring statistics of the voyage. This is just a rough estimate for players and will not affect the actual voyage.
+
+<math>
+\begin{array}{lcl}
+\overline{a}_{\text{v}} & = & (\text{morale}_{\text{voyage}} + \text{combat}_{\text{voyage}} + \text{seafaring}_{\text{voyage}}) \div 3 \\
+\overline{d} & = & ((\text{morale}_{\text{voyage}} - \text{morale}_{\text{player}}) + (\text{combat}_{\text{voyage}} - \text{combat}_{\text{player}}) + (\text{seafaring}_{\text{voyage}} - \text{seafaring}_{\text{player}})) \div 3 \\
+
+\text{difficulty} & = & 
+\begin{cases}
+0, & \text{if}\ \overline{a}_{\text{v}} = 0 \\
+5, & \text{if}\ \overline{d} > \overline{a}_{\text{v}} \times \frac{3}{4} \\
+4, & \text{if}\ \overline{d} > \overline{a}_{\text{v}} \times \frac{1}{4} \\
+3, & \text{if}\ \overline{d} > 0 - \overline{a}_{\text{v}} \times \frac{1}{4} \\
+2, & \text{if}\ \overline{d} > 0 - \overline{a}_{\text{v}} \times \frac{3}{4} \\
+1, & \text{if}\ \overline{d} > \text{otherwise}
+\end{cases}
+\end{array}
+</math>
+
+===Port updates===
+{{Main|Player-owned port/Ports updates}}
+Whilst on a voyage, the player may occasionally receive random updates about their ship. These do not impact on their ship's voyage in any way. These include random observations, notices, etc., which are mostly humorous.
+
+==Regions==
+[[File:Wushanko Isles map detail.png|thumb|center|600px|link=Map:Wushanko Isles|A map of the Wushanko Isles]]
+Players begin with only [[the Arc]] unlocked. Progress toward unlocking additional regions ([[the Skull]], [[the Hook]], [[the Scythe]], [[the Bowl]], [[the Pincers]], [[the Loop]], and [[the Shield]]) is made as their ships undertake voyages, logging more distance travelled. Distance is travelled and progress is made regardless of the success or failure of a voyage. The [[Captain's Log]], given by Duncan [[the Navigator]], shows the player's total distance travelled on the Port statistics page.
+
+Each region unlocked is progressively farther away than the last. For example, to unlock the Skull region, a distance of 5,000 must be travelled; however, to unlock the Hook region, a distance of 40,000 must be travelled. As each additional region unlocked is farther from the port, their voyages take longer and add greater distance; they also have higher adversity and give better rewards for success. Unlocking a region also unlocks new crew members from that region, with better base stats to help overcome the higher adversity.
+
+{{Clear|left}}
+{| class="wikitable" style="text-align:right;"
+|-
+! rowspan="2" | Region
+! rowspan="2" | Total distance to region
+! rowspan="2" | Distance to next
+! rowspan="2" | Standard distance per voyage{{Refn|group=n|Story missions give 0 distance.}}
+! rowspan="2" | Standard voyages to unlock next region
+! colspan="4" | Voyage speed and time{{Refn|group=n|For voyages with speed below the Min speed, the voyage time at min speed is used. For speed above the max speed, the voyage time at max speed is used. For speeds in between, the time varies smoothly; e.g. if the speed is half-way between the min and max speeds, the time will be roughly halfway between the time at min speed and the time at max speed. Scroll, trade goods, and unlock item missions take 50% more time and the min and max speed limits are 25% higher.}}{{Refn|group=n|These are base times only (the predicted times shown while planning the mission). Actual times may vary (by ± 7 minutes in The Arc, to ± 14 minutes in The Shield).}}
+|-
+! Min speed
+! Time at min speed
+! Max speed
+! Time at max speed
+|-
+| The Arc
+| -
+| 5,000
+| 250
+| 20
+| 300
+| 33 min (00:33)
+| 500
+| 20 min (00:20)
+|-
+| The Skull
+| 5,000
+| 35,000
+| 600
+| 59
+| 600
+| 80 min (01:20)
+| 1,000
+| 48 min (00:48)
+|-
+| The Hook
+| 40,000
+| 100,000
+| 1,200
+| 84
+| 900
+| 160 min (02:40)
+| 1,500
+| 96 min (01:36)
+|-
+| The Scythe
+| 140,000
+| 310,000
+| 2,400
+| 130
+| 1,200
+| 320 min (05:20)
+| 2,000
+| 192 min (03:12)
+|-
+| The Bowl
+| 450,000
+| 750,000
+| 4,800
+| 157
+| 1,500
+| 640 min (10:40)
+| 2,500
+| 384 min (06:24)
+|-
+| The Pincers
+| 1,200,000
+| 1,100,000
+| 6,000
+| 184
+| 1,875
+| 800 min (13:20)
+| 3,125
+| 480 min (08:00)
+|-
+| The Loop
+| 2,300,000
+| 1,800,000
+| 6,800
+| 265
+| 2,325
+| 906 min (15:06)
+| 3,875
+| 544 min (09:04)
+|-
+| The Shield{{Refn|group=n|The ''A Place for Everything'' voyage (awards a [[worldbearer ring]]) has a speed range of 4,750 to 6,250.}}
+| 4,100,000
+| 1,900,000{{Refn|group=n|Reaching 6,000,000 total is required for some additional voyages.}}
+| 8,000
+| 238
+| 2,625
+| 1066 min (17:46)
+| 4,375
+| 640 min (10:40)
+|}
+{{Reflist|group=n}}
+
+It is possible to speed up voyages if the player has an active [[Totem of Navigation]] at the time of sending the voyages. This reduces the time needed to complete the voyages by 15%.
+
+===Distance travelled===
+{| class="wikitable" style="text-align:right;"
+|-
+! rowspan="3" | Region
+! colspan="10" | Voyage length
+|-
+! colspan="2" | Shortest {{Refn|group=n|About 40% of standard voyage distance, 70% of standard in Loop/Shield regions}}
+! colspan="2" | Very short {{Refn|group=n|About 60% of standard voyage distance, 80% of standard in Loop/Shield regions}}
+! colspan="2" | Short {{Refn|group=n|About 80% of standard voyage distance, 100% of standard in Loop/Shield regions}}
+! colspan="2" | Standard
+! colspan="2" | Long {{Refn|group=n|About 150% of standard voyage distance and time, 129% of standard in Shield region}}
+|-
+! Resources
+! Distance
+! Resources
+! Distance
+! Resources
+! Distance
+! Resources
+! Distance
+! Resources
+! Distance
+|-
+| The Arc
+| 40/50
+| 175
+| 80
+| 200
+| 120
+| 250
+| 150/160
+| 375
+| ''None''
+| ''None''
+|-
+| The Skull
+| 60/80
+| 240
+| 100/120
+| 360
+| 150
+| 480
+| 175/250
+| 600
+| Scroll
+| 900
+|-
+| The Hook
+| 80
+| 480
+| 100
+| 720
+| 125
+| 960
+| 180/300
+| 1,200
+| Scroll/trade good
+| 1,800
+|-
+| The Scythe
+| 125
+| 960
+| 150
+| 1,440
+| 200
+| 1,920
+| 300/500
+| 2,400
+| Scroll/trade good
+| 3,600
+|-
+| The Bowl
+| 120
+| 1,920
+| 180
+| 2,880
+| 250
+| 3,840
+| 360/600
+| 4,800
+| Scroll/trade good
+| 7,200
+|-
+| The Pincers
+| 140
+| 2,400
+| 200
+| 3,600
+| 300
+| 4,800
+| 450/700
+| 6,000
+| Scroll/trade good
+| 9,000
+|-
+| The Loop
+| 50
+| 4,760
+| 75
+| 5,440
+| 125
+| 6,800
+| 175/275
+| 6,800
+| Scroll/trade good
+| 9,900
+|-
+| The Shield
+| 120
+| 5,600
+| 160
+| 6,400
+| 240
+| 8,000
+| 360/560
+| 8,000
+| Scroll/trade good
+| 10,300
+|}
+{{Reflist|group=n}}
+
+Only voyages to the most recently unlocked region add the full distance travelled to the total, voyages to any other region add only half the standard voyage distance.
+
+The distance of the voyage attempted is unknown until the ship returns but will certainly fall under one of these base formulas. The distance travelled does not affect the time required to complete the voyage.
+
+If the port's focus is set on a region, all four voyage lengths for that region can be received. Standard-length voyages from other regions can also be received. Special voyages ignore the port focus. The destination of a story voyage is determined by which part of the story it tells. All other special voyages have the most recently unlocked region as their destination.
+
+All trait and experience voyages will give the same distance as a standard voyage.
+
+==Random events==
+{{main|Player-owned port/Random events}}
+[[File:Death Lotus assassin event.png|right|thumb|227px|A Death Lotus member assassinating their target.]]
+Whenever a ship returns from a voyage, there is a chance that the player will receive a random event. A pop-up message in the chat box will alert the player, who will then be able to play a short minigame to earn rewards which can be used in the port. Rewards include special effects that can be applied to voyages, extra voyage or crew rerolls, and the ability to reroll adventurers or visiting captains for hire.
+
+A [[player-owned ports enhancer]] can be used to obtain additional random event rewards, including Adventurer Re-rolls.
+
+Depending on which event is received, the player can trigger the minigame by talking to [[The Black Marketeer|Felix the Black Marketeer]] to play [[Player-owned port/Random events#Felix The Black Marketeer: A Simple Favour|A Simple Favour]], [[The Barmaid|Surula the Barmaid]] to play [[Player-owned port/Random events#Surula.27s Bar: Last Orders|Last Orders]], or [[Seasinger Umi]] to play [[Player-owned port/Random events#Seasinger Umi: Helping Hand|Helping Hand]]. The player will be reminded that they have a minigame available by a yellow minigame icon appearing above the appropriate person's head and on the minimap.
+
+Each voyage can trigger a random event, but whenever a minigame is completed, all others are lost. Therefore, to maximise random event rewards, it is important to exit back into the Port after checking each voyage, and to play any minigame earned '''before''' checking another voyage. However, only one random event is available per day.
+
+==Rewards==
+{{Main|Player-owned port/Rewards}}
+Rewards from the player-owned port are available to players with high levels in the appropriate skills. Rewards include experience in Fishing, Herblore, Prayer, Runecrafting, Slayer, and Thieving, provided the player has at least level 90. Players with level 90 in Crafting, Runecrafting, or Smithing can earn the ability to make the second best non-dungeoneering tank armour for ranging, magic, or melee, respectively, requiring level 85 Defence to wear. Players with level 85 to 95 Fletching can earn the ability to make [[scrimshaw]], which are placed in the pocket slot. Players with 99 Cooking can earn the ability to make one of the highest healing tradeable foods in the game, [[Sailfish soup]]. Boosts will '''not''' work for '''any''' of these items.
+
+In addition to the relevant skill levels needed, each reward item requires a quantity of trade goods and 4 related scrolls for each item. The trade goods can be earned infrequently from Standard Voyages, but are most commonly earned from Special Voyages with one of the six adventurers who frequent the port. Thus in order to efficiently make any of the reward items it's essential to have both the skill level required to make the reward item, and the skill level required to attract the appropriate adventurer. The skills associated with each reward item are as follows:
+* [[Tetsu armour]] (melee armour): 90 Smithing to craft the armour; 90 Fishing to attract The Whaler or 90 Divination to attract The Memory, who gather [[Plate]] in their resource missions. In addition, 90 Herblore will attract The Biologist, allowing joint missions with The Whaler to gather more Plate.
+* [[Tetsu katana]] and [[Tetsu wakizashi|wakizashi]] (melee weapon): 92 Smithing to make; 85 Attack to wield.
+* [[Death Lotus armour]] (ranged armour): 90 Crafting to make the armour; 90 Thieving to attract The Convict or 90 Dungeoneering to attract The Exile, who gather [[Lacquer]] in their resource missions. In addition, 90 Slayer will attract The Assassin, allowing joint missions with the convict to gather more lacquer.
+* [[Death Lotus darts]] (ranged weapon): 92 Fletching to make; 85 Ranged to wield.
+* [[Seasinger's equipment|Seasinger's robes]] (magic armour): 90 Runecrafting is required both to make the armour and to attract The Occultist, who gathers [[Chi|Chi globes]] in her resource missions. In addition, 90 Prayer will attract The Missionary, allowing joint missions with the occultist to gather more chi globes.
+* [[Seasinger kiba]] and [[Seasinger makigai|makigai]] (magic weapon): 92 Runecrafting to make; 85 Magic to wield.
+* [[Reefwalker's Cape]]: 90 Crafting to make, requires 85 Defence to wear; 90 Construction to attract the Architect and/or 90 Hunter to attract the Trapper who offer [[Koi scales]] in their special voyages. A defensive cape with great armour and life point bonuses.
+* [[Leviathan ring]]: 90 Crafting to make, requires 85 Defence to wear; made from [[Pearls]]. A defensive ring that has a small chance to halve damage taken.
+* [[Rocktail soup]]: 93 Cooking to make the soup; 90 Slayer to attract The Assassin, who gathers [[Spices]] in her resource missions.
+* [[Sailfish soup]]: 99 Cooking to make the soup; 90 Slayer to attract The Assassin, who gathers [[Spices]] in her resource missions.
+* [[Scrimshaw]]: 85-95 Fletching to make the scrimshaw, 90 Prayer to attract The Missionary or 90 Herblore to attract The Biologist. Both the missionary and the biologist gather [[ancient bones]] in their resource missions.
+
+If an adventurer from the previous day is on a voyage during the 00:00 reset, they will not visit again for the day after the reset. However, those that visited the previous day but completed their missions before reset still have a chance of visiting the port again for the second day. This can be somewhat useful in selecting which adventurers the player want to come more frequently. For example, if someone is after Seasinger armour, and receives the Biologist and Occultist for a particular day, they can complete and claim the occultist voyage immediately (before the next reset), while leaving the Biologist mission unclaimed through the reset. The Occultist will have a chance of visiting again on the second day, but the Biologist will not. However, leaving ships like this for extended periods of time for the sole purpose of not attracting certain adventurers will significantly reduce a port's efficiency.
+
+==Maximum caps==
+* Chimes have a daily [[soft cap]] of 200,000, resetting back to 200,000 at each reset if the player has excess.
+* Other resources have a hard cap of 999,999.
+* Trade goods each have a hard cap of 250.
+
+==Achievements==
+* {{Achievement|Port Life}}
+* {{Achievement|Very Important I}}
+* {{Achievement|Very Important II}}
+* {{Achievement|Very Important III}}
+* {{Achievement|Very Important IV}}
+* {{Achievement|Very Important V}}
+* {{Achievement|Very Important VI}}
+* {{Achievement|Very Important VII}}
+* {{Achievement|Very Important VIII}}
+* {{Achievement|Trip to the East}}
+* {{Achievement|Walking the Reef}}
+* {{Achievement|Tetsu Warrior}}
+* {{Achievement|Death Lotus Assassin (achievement)}}
+* {{Achievement|Seasinger}}
+* {{Achievement|Portnight}}
+* {{Achievement|Eastern Explorer}}
+* {{Achievement|Eastern Adventurer: Quin}}
+* {{Achievement|Eastern Adventurer: Hyu-Ji}}
+* {{Achievement|Eastern Adventurer: Eastern Curiosities}}
+* {{Achievement|Eastern Adventurer: Guardians of the World}}
+* {{Achievement|Scrolling in the Deep}}
+
+==Music unlocked==
+* [[Sea Folk]] - When entering the port for the first time.
+* [[Sea Hear]] - When entering the port for the first time.
+* [[Sea You Late Oar]] - When entering the port for the first time.
+* [[Shanty Instrumental]] - When entering the port for the first time.
+* [[Stick Your Oar In]] - When entering the port for the first time.
+* [[Stick Your Ale In]] - Walk north from the portal entrance and go near the bar.
+
+==Transcript==
+{{Hasdialogue|article}}
+
+==Gallery==
+<gallery mode="packed" heights="200">
+Player owned port concept.png|Concept art impression of the port.
+Player-owned ports bird-eye view.png|Bird-eye view of the port.
+Archipelago Map interface.png|The eastern lands, partially discovered.
+Voyage List interface.png|Available voyages to sail.
+Crew Roster interface.png|Hire crew.
+Upgrade Buildings interface.png|Upgrading Port buildings.
+Player-Owned Ports banner.jpg|The ports are here.
+Port v2 concept.png|Ports expansion for 2014.
+</gallery>
+
+==Update history==
+{{UH|
+* {{UL|type=patch|update=110 Crafting Patch Week- This Week In RuneScape|date=23 June 2025}}
+** Cogs and planks from the Helping Hand distraction in player-owned ports no longer appear as green skirts.
+
+* {{UL|type=patch|update=Birthday Bonanza & Vorkath Updates- This Week In RuneScape|date=8 January 2024}}
+** An option to reset the player-owned port tutorial has been added.
+
+* {{UL|type=patch|update=Mobile Lobby Updates & Raptor's Rampage Continues - This Week In RuneScape|date=16 January 2023}}
+** Fixed a typo in the Death Lotus story in player-owned ports.
+
+* {{UL|type=patch|update=This Week In RuneScape: Elder God Wars Dungeon - The Nodon Front|date=26 July 2021}}
+** The [[Double XP Live|Double XP]] banner will no longer overlap the Ports interface on [[Runescape Mobile|mobile]].
+
+* {{UL|type=hidden|date=25 February 2021}}
+** Lifeboats were returned to player-owned port ships that had lost them due to a bug in a previous update.
+
+* {{UL|type=patch|update=This Week In RuneScape: Azzanadra's Quest#Patch Notes|date=22 February 2021}}
+** Lifeboats are now no longer removed when ships are sent out in player-owned ports.
+
+* {{UL|type=hotfix|update=This Week In RuneScape: Azzanadra's Quest#Patch Notes|date=17 February 2021}}
+** Lifeboats are no longer consumed after a player-owned ports voyage.{{CiteReddit|author=Mod Hooli|url=https://www.reddit.com/r/runescape/comments/llyxyg/hotfix_player_owned_ports_lifeboats_update_on/|title=Hotfix: Player Owned Ports Lifeboats & Update On Returning Lifeboats / Crew|quote=We have just released a hotfix to prevent the issue from occurring further and it should be safe to set sail on lifeboat-equipped voyages once more... [but] unfortunately, we don’t believe it’s going to be possible to restore any lost crew members from voyages impacted by this bug. The team has found a way to return your missing lifeboats to your ships|date=17 February 2021|archiveurl=https://reldo.runescape.wiki/i/101627|archivedate=17 February 2021|notes=|name=}}
+
+* {{UL|type=patch|update=This Week In RuneScape - Double XP LIVE|date=15 February 2021}}
+** Fixed an issue with effects being active on ships that returned from a failed voyage.
+*** ''Note:'' this caused a bug with lifeboats being lost.
+
+* {{UL|type=patch|update=This Week In RuneScape - 07/09/20#Patch Notes|date=7 September 2020}}
+** The Minigames tab will now appear when teleporting directly to a player-owned port via the [[Captain's Log]] in the [[Circus]].
+
+* {{UL|type=patch|update=This Week In RuneScape - 27/07/20#patch-notes|date=27 July 2020}}
+** The player model will no longer stretch while clicking the [[Goebie Mask]] in the Shipyard interface in player-owned ports.
+
+* {{UL|type=patch|update=Patch Notes (6 July 2020)|date=6 July 2020}}
+** Added a fade transition to hide the player model when upgrading buildings in a player-owned port.
+
+* {{UL|type=patch|update=Patch Notes (26 May 2020)|date=26 May 2020}}
+** Fixed some scrolling issues on player-owned port interfaces.
+
+* {{UL|type=hotfix|update=Patch Notes (6 April 2020)|date=6 April 2020}}
+** Fixed an issue where player-owned port voyages were being set to a negative duration while claiming [[research]] rewards.
+
+* {{UL|type=patch|update=Patch Notes (13 January 2020)|date=13 January 2020}}
+** An information popup now appears when attempting to get the results of a player-owned port story voyage via the [[Captain's Log]], to point players back to their port to claim it.
+
+* {{UL|update=Patch Notes (28 October 2019)|date=28 October 2019}}
+** We've added the ability for your phone to receive a notification when your port ship returns, to get these notifications send your ships out on your phone!
+
+* {{UL|type=patch|update=Patch Notes (28 May 2019)|date=28 May 2019}}
+** An issue where new port voyages were not appearing after game reset has been fixed.
+
+* {{UL|type=patch|update=Patch Notes (7 May 2019)|date=7 May 2019}}
+** A number of port achievement will no longer recomplete on login.
+
+* {{UL|type=patch|update=Patch Notes (18 March 2019)|date=18 March 2019}}
+** Removed duplicate buying options from PoP traders.
+
+* {{UL|type=patch|update=Patch Notes (18 February 2019)|date=18 February 2019}}
+** Various UI improvements and bugs fixed found after launch of POP interface reskin on [[RuneScape Mobile]]:
+*** The icons for Gunpowder and Black Slate have been corrected, previously they had swapped.
+*** The Captain's Log once again defaults to Ship Status when opened.
+*** Moved some text on Ship interface (In the voyage information at the bottom).
+*** Moved the crew information to the right hand side so you can still see resources.
+*** The crew drop-down is now taller so the information fits better inside the frame.
+*** Made text boxes bigger on ship parts to improve visibility.
+*** Moved 3D captains head down 10 pixels on the Crew Roster interface.
+*** Added a divider line in the voyage frame to separate the name of the voyage from the information.
+*** Resized the voyage interface down slightly.
+
+* {{UL|type=update|update=Chef's Assistant & Quest Improvements|date=11 February 2019}}
+** Made some improvements to the interaction for the Archipelago Map in the player-owned port.
+** Interfaces in player-owned ports have been updated to use the modern interface style.
+
+* {{UL|type=patch|update=Patch Notes (21 January 2019)|date=21 January 2019}}
+** The damage modifiers from damage enhancing scrimshaws, [[Berserker aura]]s and the [[Metamorphosis]] ability are now calculated earlier. This means that bosses phase correctly when they reach their HP threshold and mechanics that rely on damage to progress (such as [[Telos]]' tendrils or [[Vorago]]'s pushback phases (Phase 5 - Normal Mode, Phase 10/11 - Hard Mode)) will now take the additional damage from the modifiers into the equation.
+
+* {{UL|type=ninja|update=Weekly update 26th of November|date=26 November 2018}}
+** Resource information in now shown on the each of the Wushanko regions on the Ports Management interface.
+
+* {{UL|type=patch|update=Patch Notes (17 September 2018)|date=17 September 2018}}
+** Fixed a typo in the player-owned port [[Player-owned port/Random events#Seasinger Umi: Helping Hand|Helping Hand]] event.
+
+* {{UL|type=patch|update=Patch Notes (10 September 2018)|date=10 September 2018}}
+** Player-owned port special voyages now display the correct scroll graphic icon for the scrolls the player has focused on.
+
+* {{UL|type=patch|update=Patch Notes (9 July 2018)|date=9 July 2018}}
+** Corrected the model view for superior scrimshaws of aggression, corruption, and sacrifice on the Scrimshaw Crafter's Make-X interface.
+
+* {{UL|type=patch|update=Patch Notes (25 June 2018)|date=25 June 2018}}
+** Reduced cost of XP scrimshaws from 10 ancient bones to 4.
+** Reduced cost of gathering scrimshaws from 10 ancient bones to 2.
+** Added superior scrimshaws of sacrifice, aggression and corruption to the ports Scrimshaw Crafter.
+
+* {{UL|type=patch|update=Patch Notes (8 May 2018)|date=8 May 2018}}
+** Additional carpets have been updated in player-owned ports to fix some Z-fighting
+
+* {{UL|type=patch|update=Patch Notes (16 April 2018)|date=16 April 2018}}
+** Fixed an issue that stopped you viewing returned ships from the voyages tab inside player-owned ports.
+
+* {{UL|type=patch|update=Patch Notes (3 April 2018)|date=3 April 2018}}
+** Port armour now displays correct degrade tooltip.
+
+* {{UL|type=patch|update=Patch Notes (19 March 2018)|date=19 March 2018}}
+** The examines for the telescopes in player-owned ports have been updated as part of the hidden achievement [[A Brief History of Telescopes]]. Patch note: "Updated some telescope examines."
+
+* {{UL|type=patch|update=Patch Notes (22 January 2018)|date=22 January 2018}}
+** The cherry tree hotspot in a player-owned port now uses a cherry tree model instead of a maple tree.
+** Carpets in the player-owned port office no longer face clipping issues.
+
+* {{UL|type=patch|update=Patch Notes (18 December 2017)|date=18 December 2017}}
+** A second line of text has been added for Ship components within the Ship Overview screen to allow for longer named items.
+
+* {{UL|type=ninja|update=Patch Notes (4 December 2017)|date=4 December 2017}}
+** The equipped part name of each ship will now display within the Shipyards interface inside a player-owned port instead of the section name. For example, the ship will display "Tengu Rudder" instead of "Rudders".
+** The ports interface will now automatically highlight the first available empty slot for Crew within the Ship edit screen when creating new Voyages. This will continue for each empty slot until all slots are filled in which the default Captain slot will be highlighted when entering/leaving the interface.
+
+* {{UL|type=ninja|update=Patch Notes (11 September 2017)|date=11 September 2017}}
+** Scrimshaws of lower charge can now be combined to fully restore charge. For example, combining two 3 hour superior scrimshaws will create one fully charged scrimshaw (4 hours) and one 2 hour scrimshaw.
+
+* {{UL|type=patch|update=Patch Notes (19 June 2017)|date=19 June 2017}}
+** Exiting a player-owned port will now consistently place the player at the point at which they entered.
+
+* {{UL|type=patch|update=Patch Notes (12 June 2017)|date=12 June 2017}}
+** The player-owned port ship name creator had 'Hunter' listed twice in the People/Professions category. One of them has been changed to 'Hunger' and moved to Properties/Attributes category. There's a possibility that some players that had the name 'Hunter' as the second name on the ship will now have the ship named 'Hunger'. You will need to manually change the name to 'Hunter'.
+
+* {{UL|type=patch|update=Patch Notes (24 April 2017)|date=24 April 2017}}
+** Ports adventurer unlocks have been added to the relevant skill guides.
+
+* {{UL|type=coldfix|update=Patch Notes (24 April 2017)|date=18 April 2017}}
+** The [[completionist cape]] now only requires a single ports storyline to be completed, instead of all.
+
+* {{UL|type=patch|update=Patch Notes (16 January 2017)|date=16 January 2017}}
+** [[Seasinger Umi]]'s [[chathead]] has been updated on a player-owned port interface.
+** Examining degraded gear from player-owned ports now shows the correct [[High Alchemy]] value.
+
+* {{UL|type=hotfix|update=|date=18 October 2016}}
+** Players who have yet to reroll the Cyclosis mission will now have a 50% chance of doing so.{{CiteReddit|author=Mod Shauny|url=https://old.reddit.com/r/runescape/comments/57ybre/hotfix_tomorrow_ports_cyclosis/|title=Hotfix tomorrow - Ports - Cyclosis|quote=The Hotfix when it launches tomorrow will provide a 50% chance to reroll the [Cyclosis] mission in Ports|date=17 October 2016|archiveurl=http://archive.is/Asmr6|archivedate=17 April 2019}}
+
+* {{UL|type=hotfix|update=Patch Notes (17 October 2016)|date=10 October 2016}}
+** The drop rate of Ports resource crates has been corrected.
+
+* {{UL|type=patch|update=Patch Notes (6 June 2016)|date=6 June 2016}}
+** Players will no longer disconnect when talking to The Partner in a player-owned port on a non-member world.
+
+* {{UL|type=patch|update=Patch Notes (9 May 2016)|date=9 May 2016}}
+** Made changes to the Shipyard view in player-owned ports to improve framerates, and improved camera movements when jumping between ships.
+
+* {{UL|type=patch|update=Patch Notes (25 April 2016)|date=25 April 2016}}
+** The breadcrumb trail now correctly directs the players with only level 90 Dungeoneering, Divination or Agility through the player-owned port tutorial.
+
+* {{UL|type=patch|update=Patch Notes (29 March 2016)|date=29 March 2016}}
+** Reclaiming a fully charged non-superior scrimshaw from a [[gravestone]] will no longer cause it to vanish.
+
+* {{UL|type=ninja|update=Patch Notes (18 January 2016)|date=18 January 2016}}
+** [[The Trader]] now appears on the player-owned port interface with the resources he wants and is providing.
+
+* {{UL|type=patch|update=Patch Notes (9 November 2015)|date=9 November 2015}}
+** Opening the Dungeoneering party interface during a Guthixian Cache, player-owned port, or other minigames will no longer remove the Minigame interface.
+
+* {{UL|type=patch|update=Patch Notes (2 November 2015)|date=2 November 2015}}
+** Captains' voice overs will now play correctly.
+
+* {{UL|type=ninja|update=Patch Notes (6 July 2015)|date=6 July 2015}}
+** Ship speeds in player-owned ports have been tweaked. The Speed stat is now more important and the minimum voyage times have been lowered.
+** An issue where the player-owned port voyage duration was not updating correctly until the 'Edit Ship' interface was opened has been fixed.
+
+* {{UL|type=patch|update=Patch Notes (15 June 2015)|date=15 June 2015}}
+** A naming error in Seasinger Umi's dialogue has been fixed.
+** Spam-clicking to re-roll a captain in player-owned ports no longer uses up multiple re-rolls.
+
+* {{UL|type=patch|update=Patch Notes (8 June 2015)|date=8 June 2015}}
+** Voyage duration now updates correctly when switching between ships on the Voyage List interface for player-owned ports.
+** Player-owned port magic and melee weapons can now be repaired by using the relevant crafting components on them.
+** Tetsu, Seasinger's, Death Lotus armour, Reefwalker's cape, and Leviathan ring no longer show Constitution as a requirement in the skill guide.
+
+* {{UL|type=patch|update=Patch Notes (5 May 2015)|date=5 May 2015}}
+** The previously selected crew member will now be unselected when rerolling crew for hire in player-owned ports.
+
+* {{UL|type=patch|update=Patch Notes (20 April 2015)|date=20 April 2015}}
+** A full-stop has been added at the end of the player-owned ports [[mystic portal]] examine.
+
+* {{UL|type=patch|update=Patch Notes (30 March 2015)|date=30 March 2015}}
+** A clipping issue in the Ostentatious Bar in player-owned ports has been fixed.
+** Several typos in one of the player-owned port voyages have been fixed.
+
+* {{UL|type=ninja|update=Patch Notes (16 March 2015)|date=16 March 2015}}
+** Tooltips on Player-Owned Port captain traits now give more information.
+
+* {{UL|type=patch|update=Patch Notes (16 March 2015)|date=16 March 2015}}
+** A patron in the Player-Owned Ports bar will now hold their glass correctly.
+** A typo in a Player-Owned Ports trio cutscene.
+** A typo in the Convict's 8-lacquer voyage has been corrected.
+** Fixed an issue that displayed incorrect voyage statistics in the captain's log.
+
+* {{UL|type=ninja|update=Patch Notes (9 March 2015)|date=9 March 2015}}
+** Clicking on the ship icons on the Captain's Log interface will now load the relevant ship interface.
+
+* {{UL|type=patch|update=Patch Notes (9 March 2015)|date=9 March 2015}}
+** The chances of receiving gemstone kaseki and tengu tsuba voyages have been improved.
+** Some information on the 'Ports Statistics' section in the captain's log has been moved around.
+
+* {{UL|type=patch|update=Patch Notes (2 March 2015)|date=2 March 2015}}
+** It is now possible for Player-Owned Ports random events to trigger outside of an instanced area by using a Captain's Log.
+** A typo on one of The Exile's voyage descriptions has been corrected.
+
+* {{UL|type=patch|update=Patch Notes (23 February 2015)|date=23 February 2015}}
+** Players who donate a large amount of chimes to the Gu will now receive an additional reward alongside a piece of the Gu cosmetic outfit when opening a Gift of Gu.
+** An issue where the Ports overlay interface would not display when teleporting from the Duel Arena directly to a Player-Owned Port via the captain's log has been resolved.
+** The hint arrow pointing towards an adventurer in the Player-Owned Ports tutorial will now correctly point towards adventurers who are located upstairs in the bar.
+** The breakdown of voyages in the captain's log has been made more detailed. Players can now see which adventurers they've met and how many story and clue voyages they have completed for each adventurer.
+
+* {{UL|type=patch|update=Patch Notes (16 February 2015)|date=16 February 2015}}
+** New adventurers spawned using an adventurer's re-roll ability will now spawn inside a Player-Owned Port without needing to leave and re-enter.
+** A patron will no longer get stuck in a wine rack during the Last Orders random event in a Player-Owned Port.
+
+* {{UL|type=ninja|update=Patch Notes (9 February 2015)|date=9 February 2015}}
+** Players can now close the Player-Owned Ports ship customisation windows with the 'Esc' key.
+
+* {{UL|type=patch|update=Patch Notes (9 February 2015)|date=9 February 2015}}
+** A one-way window has been removed from older versions of the Player-Owned Ports bar.
+** Players may now claim a second captain's log from Duncan.
+** The captain's log can now be added to the pocket slot, so users can perform all the functions of the captain's log and save an inventory slot!
+** An assassin will no longer spawn on a terracotta pot within the terracotta warehouse during the 'Simple Favour' Player-Owned Ports random event.
+** A typo on the Player-Owned Ports upgrade buildings interface for bars and lodgings has been fixed.
+** A typo in a Player-Owned Ports voyage has been fixed.
+
+* {{UL|type=patch|update=Patch Notes (2 February 2015)|date=2 February 2015}}
+** A one-way window has been removed from the terracotta and azure versions of the Player-Owned Ports bar.
+** Some flickering issues in the fireplaces in Player-Owned Ports bars have been fixed.
+** Arrow keys will no longer move the camera when switching between Ports ships via the captain's log.
+
+* {{UL|type=ninja|update=Ports - Guardians of the World|date=26 January 2015}}
+** Exiting your port via the portal can be done with just one click.
+** The current ship selection is kept when moving between the voyages and ship interfaces.
+** Meg's lamps can give XP in Agility, Divination and Dungeoneering.
+** Extra lifeboats are no longer offered once you have reached the maximum of four.
+** You can remove tutorials from random events.
+** The Effects interface closes when a ship is sent out.
+** You can re-roll your captain in the Crew interface.
+** You can re-roll your special voyages in the Voyages interface.
+** Using the captain's log's teleport function inside your port teleports you outside.
+** Current XP is displayed on crew and captains.
+** The exit portal is no longer active during random events.
+** The Black Marketeer's random event has been tweaked, making it quicker to complete.
+
+* {{UL|type=update|update=Ports - Guardians of the World|date=26 January 2015}}
+** Manage voyages anywhere in game, meet three new adventurers, embark on a whole new voyage type and enjoy some exotic rewards, including a level-85 katana and wakizashi, and seasinger wand and orb.
+** You can now manage your voyages from anywhere in game with the captain's log.
+*** This allows you to send your ships out on new voyages and find out the outcome of existing ones without interrupting your other activities. The only exceptions are story voyages, and the few voyages that require you to receive an item in your inventory upon completion. You do - of course - need to visit your port to do anything else.
+** New adventurers added: The Tengu (Requires 90 Agility), The Memory (Requires 90 Divination), The Exile (Requires 90 Dungeoneering)
+** New clue voyage type added to game.
+** New gear/equipment added
+*** Tetsu katana/wakizashi
+*** Seasinger kiba/Mmakigai
+*** Whopper-baiting scrimshaw
+*** Casket-salvaging scrimshaws
+
+* {{UL|type=patch|update=Patch Notes (1 December 2014)|date=1 December 2014}}
+** A one-sided window has been removed from Player-Owned Ports' workshop.
+
+* {{UL|type=ninja|update=Patch Notes (10 November 2014)|date=10 November 2014}}
+** Ships in Player-Owned Ports can now be repaired via the Ship interface.
+
+* {{UL|type=patch|update=Patch Notes (3 November 2014)|date=1 November 2014}}
+** Trying to dismiss a crew member on a voyage will now produce a message stating that they cannot be dismissed.
+
+* {{UL|type=patch|update=Patch Notes (29 September 2014)|date=29 September 2014}}
+** Cannons on idle ships in Player-Owned Ports have had their 'Interact' option removed.
+
+* {{UL|type=patch|update=Patch Notes (15 September 2014)|date=15 September 2014}}
+** A display issue when filtering the list of ship parts in your port with earlier items that have not been purchased has been fixed.
+
+* {{UL|type=patch|update=Patch Notes (11 August 2014)|date=11 August 2014}}
+** The Ship Setup screen in Player-Owned Ports now has tick box to hide ship parts that are no longer relevant.
+** The background of the Voyage interface in Player-Owned Ports has been corrected.
+** The Trader and Black Marketeer now deal in the new trade goods and resources.
+** A text alignment issue in the description of a Smuggling Job in Player-Owned Ports has been corrected.
+
+* {{UL|type=patch|update=Patch Notes (4 August 2014)|date=4 August 2014}}
+** An issue where two bar patrons could share the same stool in the [[Random events#Surula's Bar: Last Orders|Last Orders]] random event in Player-Owned Ports has been fixed.
+** Some misplaced tool-tips have been removed for lost crew members in Player-Owned Ports.
+
+* {{UL|type=patch|update=Patch Notes (14 July 2014)|date=14 July 2014}}
+** A calculation error with repairing multiple Player-Owned Port armours has been fixed.
+
+* {{UL|type=ninja|update=Patch Notes (9 June 2014)|date=9 June 2014}}
+** The click area on the entrance to Player-Owned Ports has been reduced.
+
+* {{UL|type=patch|update=Patch Notes (6 May 2014)|date=6 May 2014}}
+**Cutscene skipping functionality has been added to some cutscenes used in Rune Mysteries, Rune Memories, One Piercing Note, Stolen Hearts, Diamond in the Rough, What's Mine is Yours, Ritual of the Mahjarrat, The World Wakes, Song From the Depths, The Brink of Extinction, and Player-Owned Ports.
+
+* {{UL|type=patch|update=Patch Notes (7 April 2014)|date=7 April 2014}}
+** Players will no longer receive scroll ports missions if they already own all scrolls in a Player-Owned Port.
+
+* {{UL|type=ninja|update=Patch Notes (24 March 2014)|date=24 March 2014}}
+** There is now a warning message before sending scroll missions in a Player-Owned Port when a player already owns all four pieces.
+
+* {{UL|type=patch|update=Patch Notes (17 February 2014)|date=17 February 2014}}
+** Tooltips on the Player-Owned Ports crew roster interface will now report the correct amount of resources.
+
+* {{UL|type=patch|update=Patch Notes (21 January 2014)|date=21 January 2014}}
+** The spelling of "[[cherrywood]]" has been made consistent across Player-Owned Ports.
+** The [[Minigames]] Tracker has been added to include list skills recently added for starting Player-Owned Ports.
+
+* {{UL|type=patch|update=Patch Notes (13 January 2014)|date=13 January 2014}}
+** The Remove Roof setting now removes the furniture in Player-Owned Ports.
+
+* {{UL|type=patch|update=Patch Notes (7 January 2014)|date=7 January 2014}}
+** Ensured that the trader inside a port initialises correctly if a player has already had their daily reset pre-update.
+
+* {{UL|type=update|update=Player-Owned Ports - The Next Journey|date=7 January 2014}}
+** Experienced Portmasters will find plenty of adventures in the Loop and Shield regions of the Wushanko Isles - over 300 new voyages in total.
+** On these voyages, you'll be able to pick up new resources - azure and terracotta - to upgrade your buildings and further augment your ships.
+** There are also new trade goods - pearls and koi scales - to put together the amazing new high-level gear. You'll find these in the Hook region and beyond.
+** There are also three fully-voiced adventurers to attract to the port: the Architect, the Chef, the Trapper.
+** Trader added.
+** Added an all-new random event, where you'll help Seasinger Umi to locate some lost items, in exchange for a helping of port resources.
+
+* {{UL|type=patch|update=Patch Notes (13 August 2013)|date=13 August 2013}}
+** Interface tabs and their respective interfaces are no longer mismatched when exiting Player-Owned Ports.
+** Tooltips in Player-Owned Ports no longer get stuck and remain on screen.
+
+* {{UL|type=patch|update=Patch Notes (29 July 2013)|date=29 July 2013}}
+** Completing the Player Owned Ports introduction cutscene now generates the port area correctly.
+
+* {{UL|type=patch|update=Patch Notes (17 June 2013)|date=17 June 2013}}
+** The Make-x interface now defaults to making 1 piece of Player-Owned Ports armour, and defaults to the superior versions.
+** Players logging into a different world than they logged out from will no longer have their Player-Owned Ports voyages delayed by an extra minute if their ship was due back before the player logged in.
+
+* {{UL|type=patch|update=Patch Notes (11 June 2013)|date=11 June 2013}}
+** A hole that formed near the Player Owned Ports portal has been filled in.
+
+* {{UL|type=hotfix|update=Patch Notes (13 May 2013)|date=17 May 2013}}
+** Armour from Player Owned Ports no longer drop so many coins in dangerous [[Player killing|PvP]] situations.
+
+* {{UL|type=patch|update=Patch Notes (13 May 2013)|date=13 May 2013}}
+** Armour from Player Owned Ports now has a higher value when calculating which items are kept on death.
+
+* {{UL|type=patch|update=Patch Notes (16 April 2013)|date=16 April 2013}}
+** Using a bag of winds will now instantly update a voyage's estimated duration.
+
+* {{UL|type=patch|update=Patch Notes (9 April 2013)|date=9 April 2013}}
+** An issue with the rewards screen for the Occultist and Missionary's XP mission in the Pincers Region of Player-Owned Ports has been fixed.
+
+* {{UL|type=patch|update=Patch Notes (2 April 2013)|date=2 April 2013}}
+** A typo in the barmaid’s description of a special voyage in Player Owned Ports has been corrected.
+
+* {{UL|type=patch|update=Patch Notes (25 March 2013)|date=25 March 2013}}
+** Players will no longer get Ports adventurers locked when they switch onto a free world.
+** Entering a Player-owned Port with a playlist active will now unlock all of the Ports music tracks.
+
+* {{UL|type=patch|update=Patch Notes (12 March 2013)|date=12 March 2013}}
+** In Player-Owned Ports, the percentage based traits should now work correctly.
+** An issue with navigating the world and captain's log simultaneously in Player-Owned Ports has been fixed.
+** Players are no longer rewarded more captain re-rolls than they can store in Player-Owned Ports.
+** Players are once again able to get visiting adventurer re-rolls once in Player-Owned Ports.
+
+* {{UL|type=patch|update=Patch Notes (4 March 2013)|date=4 March 2013}}
+** Closing the shipyard interface no longer causes the minimap to display the top floor of the buildings in the port.
+** The [[Black Marketeer]] event map icon will no longer appear twice after using the stairs in the bar.
+** Added a collect option to the Player Owned Port bank.
+** Corrected a voice acted line of dialogue for [[the Partner]] during a Player Owned Ports cutscene.
+** Some typos in Player Owned Ports upgrade interface have been fixed.
+** The voyages interface in Player Owned Ports will no longer incorrectly show mouse hover tooltips when on the wrong tab.
+** A minor display issue on the Ports Voyages interface has been fixed.
+
+* {{UL|type=patch|update=Patch Notes (18 February 2013)|date=18 February 2013}}
+** The information pane on the Player Owned Ports armour crafting stations has been updated to display the correct armour value of items that the player will see.
+
+* {{UL|type=patch|update=Patch Notes (12 February 2013)|date=12 February 2013}}
+** The message about dropping items when a player enters a Player Owned Port has been removed.
+** The traits 'Fast Learner' and 'Slow Witted' now work correctly in Player-Owned Ports.
+
+* {{UL|type=patch|update=Patch Notes (5 February 2013)|date=5 February 2013}}
+** Music now fades out when a story cutscene happens in Player Owned Ports.
+** A couple of errors with 'trait' stats for crew members have been fixed in Player Owned Ports.
+** Followers will not be visible when viewing your ship with the customisation interface hidden in Player Owned Ports.
+** We've updated the adversity bar in Player Owned Ports for players with more than 3 special voyages.
+
+* {{UL|type=patch|update=Patch Notes (28 January 2013)|date=28 January 2013}}
+** Players feet no longer clip into the stairs found in Player Owned Ports.
+** Players are no longer guaranteed a Player Owned Ports random event reward if they have the maximum amount of a certain type of reward.
+** The Judge of Dice now appears in the correct interface with the correct island in Player Owned Ports.
+** The Crescent Island has been changed to the Crescent Isle for consistency in Player Owned Ports.
+** The Crescent Isle has been added to the Archipelago Map in Player Owned Ports.
+
+* {{UL|type=patch|update=Patch Notes (14 January 2013)|date=14 January 2013}}
+** Corrected several minor typos in Player Owned Ports.
+** Ships no longer complete the "No Voyage Selected" mission.
+** The warning that appears when sending a 4-trait captain on a trait finding mission has been updated to explain why this is a bad idea, rather than defaulting to a message about sending out a mission with a low chance of success.
+** The 'mission successful' Voyage Completion interface now shows the correct NPC crewman unlock.
+** Having a full crew, right clicking a crew for hire and selecting 'recruit' will no longer use up a reroll.
+** The Ports Shipyard interface will now return player to the correct floor if they were not on ground level.
+
+* {{UL|type=patch|update=Patch Notes (3 January 2013)|date=3 January 2013}}
+** Slate and gunpowder will no longer be confused in a Player-Owned Port voyage.
+** Completing a special voyage overnight no longer removes the adventurer from the list of special voyages given.
+
+* {{UL|type=patch|update=Patch Notes (19 December 2012)|date=19 December 2012}}
+** Failing a mission after passing a mission no longer claims to have succeeded.
+** The [[D&D]] [[minimap]] [[icon]] no longer appears in a Player owned Port when [[Meg]] is adventuring.
+** Empty voyages now repopulate correctly on entering a new day.
+
+* {{UL|type=update|update=Player-Owned Ports|date=11 December 2012}}
+** Added to game.
+}}
+
+==Trivia==
+Trivia for the ship update messages is shown with the respective messages on the [[Player-owned port/Ship Updates|ship updates page]]. Other port-related trivia: [[Player-owned port/Captains and Crew#Trivia|Captains and Crew]] - [[Captain's log#Trivia|Captain's Log]] - [[Meg#Trivia|Meg]] - [[Player-owned port/Random events#Trivia|Random events (minigames)]] - [[Player-owned port/Standard voyages#Trivia|Standard voyages]] - [[The Whaler#Trivia|The Whaler]].
+* The Chinese word in the top left of the Archipelago map is "端口" (duānkǒu) which is the wrong translation of port. Duānkǒu refers to a computer port or interface. The correct translation should be "港口" (gǎngkǒu), though Jagex could have intended to use the word as a pun.
+* The Chinese word in the bottom left of the Archipelago map is "指南針" (zhǐnánzhēn), meaning compass.
+* When attempting to [[drop]] an item at the port, players receive an in-game message saying, "The Port Sarim Private Docks Authority thanks you for not littering." However, if a [[BoB]] is dismissed when in the port, the items it is carrying will drop to the floor.
+* When attempting to burn logs at the port, players receive an in-game message saying: "Port Sarim safety regulations forbid the dumping, abandoning or burning of flammable materials on the dockside."
+* If the player attempts to setup a cannon in the port, they will receive the message: "Cannons belong on ships, not the dockside."
+* Each region has one island referencing the name of a character from the popular children's television show "My Little Pony: Friendship is Magic." A number of possible ship names can be made which reference characters from the show as well.
+* Opening a casket or solving a clue is prevented in the Port area and a message comes up saying "You cannot open a casket or solve a clue in this area".
+* According to the Runefest 2013 Quiz, the original release of Player-Owned Port was 4.13 megabytes of code.
+* The following requirements in Player-owned port are needed to unlock the [[Master quest cape]], [[Completionist cape]] and its [[Completionist cape (t)|trimmed]] version.
+** For the master quest cape:
+*** Complete all of the final story missions.
+** For the completionist cape:
+*** Complete one of the final story missions.
+*** Obtain all scroll pieces for the reefwalker's cape.
+** For the trimmed completionist cape:
+*** Find every scroll piece in Player Owned Ports.
+*** Visit the Shield.
+
+==References==
+{{Reflist}}
+
+{{Player-owned port}}
+{{Minigames}}
+{{Ports packs}}
+[[Category:Port Sarim]]
+[[pt:Projeto de Obra Portuária]]

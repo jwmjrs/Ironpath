@@ -1,0 +1,236 @@
+{{Infobox D&D
+|image = Guthixian cache.png
+|release = [[27 October]] [[2014]]
+|update = Broken Home & Guthixian Caches
+|areas = [[Energy rift]]s
+|members = Yes
+|ironmen = yes
+|frequency = Every 800 divine memories deposited
+|reset = N/A
+|skills = [[Divination]]
+|currency = None
+|leagueRegion = Global
+}}
+[[File:Guthixian Cache map.png|thumb|An overview of the Guthixian Cache.]]
+
+'''Guthixian Cache''' is a [[Divination]]-themed activity that can be accessed through any [[energy rift]] other than the one at the [[pale wisp]] colony. Entering a Guthixian Cache requires level 35 [[Divination]], and more points can be acquired at certain level thresholds.
+
+Once a player converts a total of 800 memories at an [[energy rift]], the rift opens and allows entry into the cache. The rift will remain open until players enter and subsequently exit it.
+
+==Overview==
+[[File:Energy Rift (Cache).png|thumb|200px|An energy rift showing a cache is active]]
+When the cache is ready, all capable colonies will have their rifts widen and transform into glowing portals. At that point it is possible to jump inside the crater to reach the Cache.
+
+Upon arrival, players will find themselves in a large ancient room with root covered walls hiding some kind of old-fashioned machinery. Roots and debris block a large doorway. At the centre of the room a raging and turbulent vortex swirls with the green energy of the [[Anima Mundi]]. Bottles of various different sizes fill the shelves throughout the room, containing the precious memories of Guthix. The same way Divination is practised around Gielinor, those memories must be thrown into the rifts to ease the damage the soul of the world has suffered after the [[assassination of Guthix]] and its following events.
+
+Around the room, [[Automatons]] scan the area in order to protect the memories of the Lord of Balance and to prevent any intruders from taking them away. The automatons do not understand that the memories are needed to heal the wounds of the world and tackle the player if carrying the bottles, considering them invaders. To subdue them and freely offer the memories into the [[Unstable rift (Guthixian Cache)|unstable rift]], players must assume the form of [[Cres]], the deceased overseer of automatons, one of the [[Guardians of Guthix]] and the only one capable of disarming his former subordinates.
+
+Players can collect memories and weave them into unstable memory devices. These devices can be thrown to distract nearby automatons, allowing you to carry your memory jar safely through the cache without being hit.
+
+==Subduing==
+[[File:Player automaton.png|thumb|200px|A player as Cres]]
+To subdue automatons, players can select the "Transform" option available by clicking one of the four [[Statue of Cres|Statues of Cres]] located in the four corners of the room. Players will then assume the Power of Cres which transforms the player into Cres and grants the ability to temporarily subdue NPC automatons. There are three types of automatons that can be subdued. (The required levels can be boosted.)
+
+The cache always contains eight ancient automatons <!--might be off--> and two confused and enraged automatons.
+
+{| class="wikitable"
+! Automaton
+! Points
+! {{Skillclickpic|Divination}}
+|-
+| [[Ancient automaton]]
+| 1
+| 1
+|-
+| [[Confused automaton]]
+| 2
+| 45
+|-
+| [[Enraged automaton]]
+| 3
+| 85
+|}
+
+Players can only stay transformed for 60 seconds until the Power of Cres fades or if they click on the statue again. Once players return to their normal state, they must wait another 60 seconds before assuming power from a Statue of Cres again.
+
+If players log out or hop worlds, and reenter before the cache ends, they will remain in the arena but Cres cooldown will reset and will be forced to wait another 60 seconds. Accumulated points will be kept, but the automaton and converted memory count will reset, possibly lengthening the time before power ups can be used.{{R2R/daily|logging out/hopping no longer kicks you out of the cache}}
+
+===Distracting===
+A similar tactic to subduing automatons that can be employed is distracting them by throwing an [[unstable memory device]] on the ground. These devices will create a 9×9 area for a short period of time that attracts nearby automatons to its centre and distracts them from pursuing players while the area of effect is present. They can be created by harvesting [[unstable energy]] and [[unstable memory|memories]] from the [[unstable wisp]]s located at the for cardinal directions on the perimeter of the cache.
+
+Throwing a device and distracting an automaton will not count towards 'automatons subdued' and thus will not earn any points; however, it allows a player to be self-sufficient in being able to distract the automatons without relying on another player transforming and subduing them. The devices can be added to an [[action bar]] for faster throwing, and they can be thrown even whilst a player has their hands occupied carrying a memory.
+
+==Converting==
+[[File:Confused automaton.png|thumb|200px|An automaton found in the cache]]
+To earn points for converting memories, players must first grab a memory from any of the deposits on the walls. The player must have both hands free to be able to carry memories, and may only carry one memory at a time. Once the player has a memory, they must run to the centre of the cache and deposit the memory into the [[Unstable rift (Guthixian Cache)|unstable rift]] without being attacked by an active automaton. If a player runs into an active automaton during their journey to the centre of the room, the automaton will swipe the memory out of the player's hands, causing the jar to smash to the ground.
+
+If the player deposits the memory just as an automaton is about to swipe the memory from them, the memory will not be lost and points will be gained. Players should not attempt to [[Surge]] next to an automaton, since the jar is likely to be smashed in the process.
+
+There are four types of memories that can be converted. The required levels can be boosted.
+
+{| class="wikitable"
+! Memory
+! Points
+! {{Skillclickpic|Divination}}
+! Other requirements
+|-
+| [[Tiny memory]]
+| 2
+| 1
+|
+|-
+| [[Raw memory]]
+| 3
+| 45
+|
+|-
+| [[Large memory]]
+| 5
+| 85
+|
+|-
+|[[Ancient memory]]
+|6
+|92
+| [[Children of Mah]]
+|}
+
+Once a memory has been picked up, the player '''cannot''' drop or un-equip it; it can only be lost from either being attacked by an automaton, converting it, changing into Cres, or if that cache ends.
+
+==Abilities==
+There are two abilities for each form. Double points charges are not shared between forms. Memory converted/autumaton subdued counts reset on world hop.
+* Human
+** '''Double points''': All points acquired by depositing memories are doubled for 24 seconds. 1 charge is gained for every 5 memories converted.
+** '''Immunity''': The player is protected from automatons destroying their memory for 12 seconds. 1 charge is gained for every 10 memories converted.
+* Cres
+** '''Double points''': All points acquired by subduing automatons are doubled for 12 seconds. 1 charge is gained for every 10 automatons subdued. If double points was activated right as the Cres form expires, the timer will pause and resume after becoming Cres again, but all automatons subdued will not reward double points until the next time a charge is used. This does not double points from the second ability.
+** '''Subdue all automatons''': All current active automatons are subdued at once. 1 charge is gained for every 20 automatons subdued. Automatons you do not have the Divination level for can still be subdued, but no points will be gained for them.
+
+{| class="wikitable text-align-center"
+| Human interface
+| Cres interface
+|-
+| [[File:Guthixian Cache interface.png]]
+| [[File:Guthixian Cache interface as Cres.png]]
+|}
+
+==Strategies==
+If you wish to convert, use the Community Divination Training server (world 79). If you wish to subdue, use any low-population world.
+
+For players who prefer to convert, it is possible to use the [[Surge]] ability to move faster between the [[Unstable rift (Guthixian Cache)|unstable rift]] and memory deposits. If the player has access to the [[Invention]] skill, consider augmenting a piece of body or leg armour (weapons are not suitable due to needing empty hands for the minigame) and add the [[Mobile]] [[perk]] to it. It costs no energy to use, and cuts Surge / Escape's cooldown by half. [[Dive]] can be used in conjunction with [[Surge]], allowing players to quickly move to and from the memory and rift at breakneck speeds.
+
+Being in a stream of other players helps evade active automatons as they can only target one player at a time, reducing the chances of being attacked compared to running alone.
+
+If there are not many other players during a cache, it is usually faster points to subdue as many automatons as possible rather than converting memories. This is especially true for players lacking Divination levels for high-tier memories (for subduing, most Automatons are Ancient and can be subdued with 1 Divination). This could also be considered if there is an abundance of active automatons. Try to change forms in turns with other players to maximise the points of subduing automatons.
+
+The double points ability is best utilised in human form by carrying a memory to the rift, activating the ability immediately before depositing, then running back, allowing players to get 2 memories per ability activation (with the [[Mobile]] [[perk]], 3 memories per activation are possible). In Cres' form, it is best used when an Enraged automaton is about to reactivate and there are no other players nearby.
+
+Just before transforming from Cres' form back to human form, if the "subdue all automatons" ability is available, use it so that you can quickly deposit memories in human form without automatons' interference. 
+
+==Rewards==
+Rewards include [[Divination]] experience, three temporary passive benefits, and an outfit.
+
+===Experience===
+The [[experience]] reward is given according to level and the amount of points obtained during the cache. The game can be played as many times as desired. However, the points in one cache is capped at 100. Players can determine how much experience they will earn by hovering the cursor over the points. Exiting the cache early will still award experience relative to the points you've earned.
+
+The experience rewarded is not boostable.
+
+{{Chart data|Chart data/guthixian cache|width=40vw|height=40vh}}
+
+===Benefits===
+[[File:Converting all memories.gif|160px|thumb|One of the temporary rewards for completing a cache]]
+* 10% chance for double loot from [[divine location]]s, at no extra cost to the player's gathering limit. Upon occurring, the player gets the message: {{RSFont|color=#36a51b|You received double loot, as you recently completed a Guthix cache!}}
+** Does not activate for [[divine simulacrum]]s.
+**If players have the "Shared Knowledge" perk from [[Memorial to Guthix]] active, they will instead receive 25% extra experience for each double loot activation instead of items.
+* 10% chance to save a charge from a [[sign of the porter]]. Upon occurring, the player gets the message: {{RSFont|color=#36a51b|As you completed a Guthixian cache recently, your sign of the porter did not lose a charge.}}
+*10% chance to convert all memories at once while training Divination, this can happen with all the options (energy, enhanced experience and normal experience), and still consumes the normal amount of energy for enhanced experience. Upon occurring, you get a unique animation.
+These last for <math>\frac{points}{20}</math> minutes, up to a maximum of 5 minutes. The timer for these will continue to deplete when logged out and will appear as this icon: [[File:Guthix cache boosts (self status).png]]
+
+Players with the Stored Power perk from [[Memorial to Guthix]] will instead receive a [[Guthixian cache boost (small)]] when completing a Guthixian cache with 100 points. This allows the player to use the boost later at their convenience, rather than immediately upon exiting the cache. 
+
+If players lack inventory space, you will not get bonus loot: {{RSFont|color=#fe8b37|You would have received double loot due to recently completing a Guthixian Cache. However, you did not have enough space.}}
+
+===Diviner's outfit===
+If the player doesn't own the full [[diviner's outfit]] [[Skilling outfits|skilling outfit]] set, there is a chance they will receive a part they don't own upon completing a cache (including [[Ironman Mode|ironmen]]). The chance of receiving a piece is 0.5% per point that the player scores within the cache (50% at 100 points, 40% at 80 points, etc.). You have to score at least one point to have a chance at earning an outfit piece. Pieces can only be obtained if the player receives experience from the cache.{{CiteForum|url=http://services.runescape.com/m=forum/forums.ws?74,75,52,65949497,goto,21#205|author=Mod Timbo|postdate=17 November 2017|archiveurl=https://reldo.runescape.wiki/i/11779832|archivedate=18 November 2017|title=Dev Blog: Revealing Drop Rates|forum=Existing Game Content}}
+When an outfit piece is received, you get the message: {{RSFont|color=#00db00|As a reward for your dedication, the Guthixian guardians award you with a piece of the Diviner's outfit.}}
+
+{{DropsTableHead}}
+{{DropsLineRW|name=Diviner's headwear|quantity=1|gemw=no|rarity=1/200|altrarity=100/200|altraritydash=yes|raritynotes={{DropNote|name=piecechance|Only if not already owned. The chance is your score (minimum: 1) divided by 200. Only one piece per game is awarded at most.}}}}
+{{DropsLineRW|name=Diviner's robe|quantity=1|gemw=no|rarity=1/200|altrarity=100/200|altraritydash=yes|raritynotes={{DropNote|name=piecechance}}}}
+{{DropsLineRW|name=Diviner's legwear|quantity=1|gemw=no|rarity=1/200|altrarity=100/200|altraritydash=yes|raritynotes={{DropNote|name=piecechance}}}}
+{{DropsLineRW|name=Diviner's handwear|quantity=1|gemw=no|rarity=1/200|altrarity=100/200|altraritydash=yes|raritynotes={{DropNote|name=piecechance}}}}
+{{DropsLineRW|name=Diviner's footwear|quantity=1|gemw=no|rarity=1/200|altrarity=100/200|altraritydash=yes|raritynotes={{DropNote|name=piecechance}}}}
+{{DropsLineRW|name=Diviner's headwear add-on|quantity=1|gemw=no|rarity=1/200|altrarity=100/200|altraritydash=yes|raritynotes={{DropNote|name=piecechance}}}}
+{{DropsTableBottom}}
+
+==Update history==
+{{UH|
+* {{UL|type=update|update=Patch Notes: Dailyscape Overhaul|date=16 March 2026}}
+** Now requires level 35 Divination.
+** Entry into a Guthixian Cache is now entirely player-driven. 
+** Rifts no longer open on an hourly timer. Instead, once a player deposits a total of 800 memories into a rift, it opens and allows entry to the cache. The rift will remain open until you enter and subsequently exit it, so there's no need to rush in immediately, and there's no time limit while inside.
+** You can leave whenever you like or stay until you reach 100 points.
+** You can now collect memories and weave them into unstable memory devices. These devices can be thrown to distract nearby automatons, allowing you to carry your memory jar safely through the cache without being hit.
+** Boost granted with every third Guthixian Cache is now permanent, This can be calculated as Points ÷ 20, with a maximum boost time of 5 minutes per completed cache.
+
+* {{UL|type=patch|update=Tales of Pride - This Week In RuneScape|date=13 June 2022}}
+** The green wisp will now spawn as expected during Twilight of the Gods if a Guthixian Cache is active.
+
+* {{UL|type=update|update=Game Update: Patch Notes Week|date=1 June 2020}}
+** Fixed an issue in the [[Divination]] Cache D&D that was preventing the boost timer from counting down.
+
+* {{UL|type=patch|update=Patch Notes (6 January 2020)|date=6 January 2020}}
+** Having a Divination Cache Boost active and depositing all memories in your inventory will now count all deposited memories towards a Divination Daily Challenge.
+
+* {{UL|type=patch|update=Patch Notes (10 September 2018)|date=10 September 2018}}
+** Guthixian Cache memories will now display the correct [[walk animation]] when held, no longer being affected by override animations.
+
+* {{UL|type=patch|update=Patch Notes (27 March 2017)|date=27 March 2017}}
+** Achieving maximum points (100) in a Guthixian Cache will no longer bring up a confirmation box when attempting to leave early.
+
+* {{UL|type=patch|update=Patch Notes (12 December 2016)|date=12 December 2016}}
+** Players can now enter Guthixian cache after already completing one today.
+
+* {{UL|type=hotfix|update=Patch Notes (26 September 2016)|date=26 September 2016}}
+** Guthixian caches will now correctly award the post-completion buff every 3 hours.
+
+* {{UL|type=ninja|update=Patch Notes (19 September 2016)|date=19 September 2016}}
+** Divination caches will now spawn once every hour, awarding buffs every 3 hours.
+** Interactions within the Divination cache have been made less clunky.
+** It is now possible to reset the Divination cache minigame with D&D tokens even if you've not reached your daily points limit.
+** It is now possible to enter a Divination cache with a familiar summoned, they will automatically hide themselves.
+** When playing Divination cache, jars which vanish after you've clicked them will now attempt to redirect you to a new one nearby.
+
+* {{UL|type=patch|update=Patch Notes (15 August 2016)|date=15 August 2016}}
+** Training at the cursed divination colony whilst under the effect of the divination cache buff will now grant the correct experience.
+
+* {{UL|type=patch|update=Patch Notes (9 November 2015)|date=9 November 2015}}
+** Opening the Dungeoneering party interface during a Guthixian Cache, Player-Owned Ports or other minigames will no longer remove the Minigame interface.
+
+* {{UL|type=patch|update=Patch Notes (30 March 2015)|date=30 March 2015}}
+** Players who logged in before 00:00 UTC can now reset their daily Guthixian cache XP limit by attempting to enter a cache, eliminating the need to log out and back in.
+
+* {{UL|type=ninja|update=Patch Notes (9 March 2015)|date=9 March 2015}}
+** The Guthixian Cache D&D will now show the number of players transformed into Cres. (Runelabs)
+
+* {{UL|type=patch|update=Patch_Notes_(1 December 2014)|date=1 December 2014}}
+** The 'Subdue all Automatons' ability in Guthixian Caches will now award points.
+
+* {{UL|type=update|update=Broken Home & Guthixian Caches|date=27 October 2014}}
+** Added to game.
+}}
+
+==Trivia==
+* If a player logs out of the game without ever leaving the cache, and relogs when the next cache appears, their points get reset to 0, and the previous points gained last game will not count.
+* The soundtrack that plays within the cache is [[Invaders Must Die II]], but it is not unlocked for players who have not unlocked it previously.
+* Trying to open World Map while in Cache results in the following message: The Guthixian Caches are hidden, and therefore do not exist on the map.
+* Guthixian Cache used to appear every 3 hours. It was changed to appear hourly on [[19 September]] [[2016]], with the 3-hour limit remaining for rewards.
+
+==References==
+{{Reflist}}
+
+{{Dnd}}
+{{Guthixian Cache}}
+[[Category:Divination]]
+[[Category:Repeatable events]]
+[[pt:Depósitos Guthixianos]]

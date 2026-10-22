@@ -1,12 +1,23 @@
 {
-  "name": "Ironpath — RuneScape 3 Group Ironman Companion",
+  "name": "Ironpath | RuneScape 3 Group Ironman Companion",
   "short_name": "Ironpath",
   "description": "A shared progression companion for RuneScape 3 Group Ironman teams.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#10120e",
-  "theme_color": "#d8b75d",
+  "background_color": "#07080a",
+  "theme_color": "#0c0d10",
   "icons": [
-    { "src": "/ironpath-mark-v2.png", "sizes": "1254x1254", "type": "image/png", "purpose": "any maskable" }
+    {
+      "src": "/ironpath-zaros-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/ironpath-zaros-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ]
 }

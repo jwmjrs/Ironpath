@@ -1,0 +1,33 @@
+/* Locally hosted font choices for the whole website. */
+@font-face{font-family:'Ironpath Comfortaa';src:url('/fonts/site/comfortaa-400.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'Ironpath Comfortaa';src:url('/fonts/site/comfortaa-600.ttf') format('truetype');font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:'Ironpath Comfortaa';src:url('/fonts/site/comfortaa-700.ttf') format('truetype');font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:'Ironpath Manrope';src:url('/fonts/site/manrope-400.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'Ironpath Manrope';src:url('/fonts/site/manrope-600.ttf') format('truetype');font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:'Ironpath Manrope';src:url('/fonts/site/manrope-700.ttf') format('truetype');font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:'Ironpath Nunito';src:url('/fonts/site/nunito-400.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'Ironpath Nunito';src:url('/fonts/site/nunito-600.ttf') format('truetype');font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:'Ironpath Nunito';src:url('/fonts/site/nunito-700.ttf') format('truetype');font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:'Ironpath Outfit';src:url('/fonts/site/outfit-400.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'Ironpath Outfit';src:url('/fonts/site/outfit-600.ttf') format('truetype');font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:'Ironpath Outfit';src:url('/fonts/site/outfit-700.ttf') format('truetype');font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:'Ironpath Quicksand';src:url('/fonts/site/quicksand-400.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'Ironpath Quicksand';src:url('/fonts/site/quicksand-600.ttf') format('truetype');font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:'Ironpath Quicksand';src:url('/fonts/site/quicksand-700.ttf') format('truetype');font-style:normal;font-weight:700;font-display:swap}
+html[data-font="comfortaa"]{--ip-selected-font:'Ironpath Comfortaa',system-ui,sans-serif;--app-font:var(--ip-selected-font);--ip-body-font:var(--ip-selected-font);--ip-heading-font:var(--ip-selected-font)}
+html[data-font="quicksand"]{--ip-selected-font:'Ironpath Quicksand',system-ui,sans-serif;--app-font:var(--ip-selected-font);--ip-body-font:var(--ip-selected-font);--ip-heading-font:var(--ip-selected-font)}
+html[data-font="nunito"]{--ip-selected-font:'Ironpath Nunito',system-ui,sans-serif;--app-font:var(--ip-selected-font);--ip-body-font:var(--ip-selected-font);--ip-heading-font:var(--ip-selected-font)}
+html[data-font="manrope"]{--ip-selected-font:'Ironpath Manrope',system-ui,sans-serif;--app-font:var(--ip-selected-font);--ip-body-font:var(--ip-selected-font);--ip-heading-font:var(--ip-selected-font)}
+html[data-font="outfit"]{--ip-selected-font:'Ironpath Outfit',system-ui,sans-serif;--app-font:var(--ip-selected-font);--ip-body-font:var(--ip-selected-font);--ip-heading-font:var(--ip-selected-font)}
+html:is([data-font="comfortaa"],[data-font="quicksand"],[data-font="nunito"],[data-font="manrope"],[data-font="outfit"]) body,html:is([data-font="comfortaa"],[data-font="quicksand"],[data-font="nunito"],[data-font="manrope"],[data-font="outfit"]) body *:not(svg):not(svg *):not(code):not(code *):not(pre):not(pre *){font-family:var(--ip-selected-font)!important}
+.site-font-preferences{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;padding:18px 20px 22px;border-top:1px solid #25272e;background:#07080a;color:#9b9faa}
+.site-font-control{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600}
+.site-font-control select{max-width:100%;min-height:40px;padding:8px 32px 8px 12px;background:#0c0d10;color:#f2f3f5;border:1px solid #514269;border-radius:8px;font-size:12px;cursor:pointer}
+.site-font-control select:hover{border-color:#b8a3f7}.site-font-hint{font-size:11px}
+@media(max-width:700px){.site-font-preferences{gap:10px}.site-font-hint{width:100%;text-align:center}}
+/* Workspace scrolls internally, so keep its picker in the existing footer. */
+body:has(.font-preferences-inline)>.site-font-preferences{display:none}
+.font-preferences-inline{display:flex;align-items:center;flex:0 0 auto}.font-preferences-inline .site-font-control{font-size:11px;gap:7px}.font-preferences-inline select{min-height:36px;max-width:205px;padding:6px 24px 6px 9px;font-size:11px}
+html[data-theme="dark"] .ironpath-entry.story-entry .entry-footer-utility{flex-wrap:wrap}
+@media(max-width:700px){.font-preferences-inline select{max-width:175px}.font-preferences-inline .site-font-control>span{display:inline}}
+html[data-theme="dark"] .app-credit{justify-content:safe center!important}

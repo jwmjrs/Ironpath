@@ -1,0 +1,39 @@
+1
+00:00:00,000 --> 00:00:20,000
+Ironpath is a shared RuneScape 3 companion for Ironman and Group Ironman accounts.
+
+2
+00:00:20,000 --> 00:00:45,000
+Connect your Group Ironman team once. Ironpath uses that selection across the dashboard, progression tools, and recommendations.
+
+3
+00:00:45,000 --> 00:01:25,000
+See the team at a glance: standings, recent activity, and shared item history.
+
+4
+00:01:25,000 --> 00:02:00,000
+Follow a practical Ironman roadmap, one phase and one checklist item at a time.
+
+5
+00:02:00,000 --> 00:02:35,000
+Match training methods and useful unlocks to the account you are playing.
+
+6
+00:02:35,000 --> 00:03:05,000
+Keep dailies, weeklies, and longer-term activities in one clear cycle.
+
+7
+00:03:05,000 --> 00:03:45,000
+Build simple routines around the supplies and routes that matter to an Ironman account.
+
+8
+00:03:45,000 --> 00:04:25,000
+Reference tools turn research-heavy activities into practical checklists and quick lookups.
+
+9
+00:04:25,000 --> 00:04:45,000
+Ironpath is built by players, shaped by practical use, and still growing with community feedback.
+
+10
+00:04:45,000 --> 00:04:52,000
+Plan. Track. Progress. Together.

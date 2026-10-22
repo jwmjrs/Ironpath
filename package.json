@@ -1,7 +1,7 @@
 {
   "name": "sites-project",
   "version": "0.1.1",
-  "description": "Ironpath — a RuneScape 3 Group Ironman companion.",
+  "description": "Ironpath: a RuneScape 3 Group Ironman companion.",
   "author": "Justjay btw",
   "private": true,
   "engines": {

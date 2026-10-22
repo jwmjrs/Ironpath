@@ -1,0 +1,725 @@
+{{External|os}}
+{{Otheruses|def=no|the items which respawn at various locations|Item spawns|free F2P shop items|Sample item}}
+{{Redirect|Daily|daily challenges|Challenge System}}
+{{Has step-by-step guide}}
+'''Repeatable events''' listed here are tasks, often [[quest]] or [[achievements]] rewards, that can be repeated periodically for an experience, coins, or item reward.
+
+==Reset timers==
+:<span id="buyerTimerTable">Last updated {{#time:H:i, j F Y}} (UTC). Click {{Purge|here|tag=span}} to purge.</span>
+{|class="wikitable"
+! Type
+! Time till next reset
+|-
+| Daily
+| {{countdown|{{#time:F d Y|next day}} 00:00:00|nomsg=yes|nosecs=yes}}
+|-
+| Weekly
+| {{countdown|{{#time:F d Y|next wednesday}} 00:00:00|nomsg=yes|nosecs=yes}}
+|-
+| Monthly
+| {{countdown|{{#time:F d Y|first day of next month}} 00:00:00|nomsg=yes|nosecs=yes}}
+|}
+
+==Daily events==
+Most daily events reset every day at 00:00 UTC.
+
+Some events have a [[:Category:Repeatable content with a hard reset|''hard reset'']] whereby they reset at 00:00 UTC regardless of whether a player is logged in or out, whereas other events have a [[:Category:Repeatable content with a soft reset|''soft reset'']] which means at 00:00 UTC the reset will initiate once a player has logged out of the game.
+
+{| class="wikitable sortable sticky-header lighttable align-center-3"
+! style="width:50ch" | Event
+! style="width:50ch" | Requirements
+! Members
+! style="width:40ch" | Reset time<br>minimum wait period
+! style="width:70ch" | Reward/Profit
+|-
+| Run [[Supply run]] (up to 10 supplies a day)
+| {{na|None}}
+| {{Members|yes}}
+| 00:05 and 12:05,
+Resets at 00:00 UTC
+| Depending on the world: {{scl|Agility}} or {{scl|Crafting}}, {{scl|Farming}} or {{scl|Herblore}}, and {{scl|Hunter}} or {{scl|Woodcutting}} supplies can be turned in to [[Quercy]] for experience in those skills.
+|-
+| Enter [[Sinkholes]] (twice)
+| {{na|None}}
+| {{Members|yes}}
+| Twice every 24 hours
+Soft reset at 00:00 UTC
+| Talk to [[Talsar]]. Can be completed for a variety of rewards.
+Access to [[Morytania]] may be required to teleport to sinkholes there.
+|-
+| Participate in the [[Big Chinchompa]] Distraction & Diversion (twice)
+| Different [[soporith moths]] require different {{scl|Hunter}} levels to catch
+| {{Members|yes}}
+| 24 hours
+Resets at 00:00 UTC
+| Substantial {{scl|Hunter}} experience is gained during the activity.
+[[Competence points]] which can be spent on:
+* Private hunter area quota tickets
+* [[Swamp toad]]s
+* [[Swamp tar]]
+* [[Flax]]
+* [[Hunter XP lamp (Big Chinchompa)|Hunter experience lamps]]
+|-
+| Assist players in using skills with the [[Assist System]]
+| Sufficient levels in the assisting skill
+| {{Members|no}}
+| 24 hours
+| Up to 30,000 experience combined in any assistable skill.
+|-
+| [[Slayer|Slaying]] or pruning the [[wild jade vine]]
+| [[Back to my Roots]] quest
+| {{Members|yes}}
+| 15 hours (12 for pruning)
+Ranges from 5.5 to 24 hours.
+| {{Skill XP|Farming|9500}} (check-health)<br>{{Skill XP|Farming|30}} per branch pruned<br>{{Skill XP|Slayer|2500}}
+|-
+| Train using [[The Book of Char]]
+| [[The Firemaker's Curse]] quest
+| {{Members|yes}}
+| Resets at 00:00 UTC
+| One teleport to [[Char's training cave]] and the ability to activate it which gives double the normal {{scl|Firemaking}} experience when you walk over logs.
+|-
+| Do tasks assigned by [[Trinks]]
+| {{na|None}}
+| {{Members|yes}}
+| 24 hours
+Resets at 00:00 UTC
+| 45 [[reputation (Mazcab)|Mazcab reputation]].
+|-
+| Do [[Nemi Forest]] activities
+| {{na|None}}
+| {{Members|yes}}
+| 24 hours
+Resets at 00:00 UTC
+| 45 Mazcab reputation.
+Experience in {{scl|Dungeoneering}}, {{scl|Farming}}, {{scl|Mining}} and {{scl|Prayer}}.
+|-
+| Gain reputation from [[Soul obelisk (Menaphos)|Soul obelisks]]
+| Partial completion of [[The Jack of Spades]] quest
+| {{Members|yes}}
+| 24 hours
+Resets at 00:00 UTC
+| 20,000 [[Reputation (Menaphos)|reputation]] in [[Menaphos]].
+Experience in {{scl|Prayer}} and {{scl|Runecrafting}}.
+|-
+| Complete [[contract|Arc contracts]]
+| [[Impressing the Locals]] quest
+| {{Members|yes}}
+| 24 hours
+Resets at 00:00 UTC
+| {{plink|Chimes}}.
+Experience in several skills.
+|-
+| Complete [[Feng, the Bounty Master|bounties]] in the [[Heart of Gielinor]]
+| {{na|None}}
+| {{Members|yes}}
+| 24 hours
+Stacks up to 5 bounties
+| 150 Heart of Gielinor [[Reputation (Heart of Gielinor)|reputation]].
+|-
+| Hand in 1,000 [[Rune dust (Runespan)|rune dust]] from the [[Runesphere]]
+| {{na|None}}
+| {{Members|yes}}
+| 24 hours
+Resets at 00:00 UTC
+| 25 {{scl|Runecrafting}} experience per dust, for a possible total of 25,000 base experience{{Refn|Boosts such as [[Experience-boosting set]]s and [[Clan avatar]] increase the base XP.|name=extra|group=a}}.
+|}
+{{Reflist|group=a}}
+
+===Daily free claims===
+{| class="wikitable sortable sticky-header lighttable align-center-3"
+! style="width:50ch" | Event
+! style="width:50ch" | Requirements
+! Members
+! style="width:40ch" | Reset time<br>minimum wait period
+! style="width:70ch" | Reward/Profit
+|-
+| Use the [[Explorer's ring 2]] or above to cast:
+* [[Low Level Alchemy]] (30 times)
+| [[Easy Lumbridge achievements]]
+{{Skillreq|Magic|21}}
+| {{Members|no}}
+| 24 hours
+Hard reset at 00:00 UTC
+| {{Skill XP|Magic|930}}.
+[[Coins]] (depending on item used).
+|-
+| Use the [[Explorer's ring 4]] to cast:
+* [[High Level Alchemy]] (15 times)
+* [[Superheat Item]] (27 times)
+| [[Hard Lumbridge achievements]]
+{{Skillreq|Magic|59}}
+| {{Members|no}}
+| 24 hours
+Hard reset at 00:00 UTC
+| {{Skill XP|Magic|2496}}.
+[[Coins]] (depending on item used).
+|-
+| Collect a food [[hamper]] from the [[Cook (Lumbridge)|Cook]] in the Lumbridge Castle kitchen
+| [[Hard Lumbridge achievements]]
+| {{Members|no}}
+| 24 hours
+Resets at 00:00 UTC
+| Each hamper contains 4-12 food items in total:
+* 0-9 {{plink|Swordfish}} ({{Coins|{{GEP|Swordfish|0}}}} - {{Coins|{{GEP|Swordfish|9}}}})
+* 0-9 {{plink|Lobster}} ({{Coins|{{GEP|Lobster|0}}}} - {{Coins|{{GEP|Lobster|9}}}})
+* 0-9 {{plink|Tuna}} ({{Coins|{{GEP|Tuna|0}}}} - {{Coins|{{GEP|Tuna|9}}}})
+* 0-9 {{plink|Plain pizza}} ({{Coins|{{GEP|Plain pizza|0}}}} - {{Coins|{{GEP|Plain pizza|9}}}})
+|-
+| Claim a [[bag of lost items]] from any [[rug merchant]]
+| [[Easy Desert achievements]]
+| {{Members|yes}}
+| 24 hours
+Resets at 00:00 UTC
+| Opening the bag rewards the player with items and coins roughly equal to {{Coins|5000}}.
+|-
+| Use of the [[Desert amulet 2]], [[Desert amulet 3|amulet 3]], or [[Desert amulet 4|amulet 4]] to turn [[soda ash]] into [[molten glass]] while in the Desert
+| [[Medium Desert achievements]]
+| {{Members|yes}}
+| 24 hours
+Resets at 00:00 UTC
+| Profit depends on tier of Desert achievements completed:
+* Medium: {{Coins|{{GEP|molten glass|50}} - {{GEP|soda ash|50}}}} (50 molten glass)
+* Hard: {{Coins|{{GEP|molten glass|100}} - {{GEP|soda ash|100}}}} (100 molten glass)
+* Elite: {{Coins|{{GEP|molten glass|150}} - {{GEP|soda ash|150}}}} (150 molten glass)
+|-
+| Collect free supplies from [[Rosie (supplies)|Rosie]]
+| [[Impressing the Locals]] quest
+| {{Members|yes}}
+| 24 hours
+Resets at 00:00 UTC
+| 5 [[Supplies (Uncharted Isles)|supplies]] used to go on voyages to [[Uncharted Isles]].
+|-
+| Deplete resources on [[Uncharted Isles#Claiming an island|claimed island (Uncharted Isles)]]
+| [[Flag Fall (miniquest)|Flag Fall]] miniquest
+| {{Members|yes}}
+| 24 hours
+Resets at 00:00 UTC
+| A varying amount of [[The Arc/Resources and Commodities|Arc resources]].
+|-
+| Use 3 free casts of the [[Fixate]] ability
+| {{Skillreq|Archaeology|99}}
+[[Master archaeologist's outfit]]
+| {{Members|yes}}
+| Three times every 24 hours
+Soft reset at 00:00 UTC
+| Guarantee the discovery of a chosen damaged [[artefacts|artefact]] during an [[Archaeology]] excavation.
+|}
+
+===Daily shop runs===
+{| class="wikitable sortable sticky-header lighttable align-center-3"
+! style="width:50ch" | Event
+! style="width:50ch" | Requirements
+! Members
+! style="width:40ch" | Reset time<br>minimum wait period
+! style="width:70ch" | Reward/Profit
+|-
+| Exchange 10 [[crystal motherlode shard]]s with [[Wythien]]
+| [[Plague's End]] quest
+| {{Members|yes}}
+| 24 hours
+Resets at 00:00 UTC
+| See [[Wythien#Exchange motherlode shards]].
+|-
+| Convert bones directly into bonemeal and buckets of slime by talking to [[Robin]] in [[The Green Ghost]] inn in [[Port Phasmatys]]
+| [[Medium Morytania achievements]] or greater;
+* [[Morytania legs 2]] allow for 13 bones
+* [[Morytania legs 3]] allow for 26 bones
+* [[Morytania legs 4]] allow for 39 bones
+| {{Members|yes}}
+| 24 hours
+Resets at 00:00 UTC
+| Although using the bonemeal for {{scl|Prayer}} is a common choice, the player could use the daily exchange to get [[wyvern bonemeal]] for making [[super prayer|super prayer potions]], and use the slime with [[demonic ashes]].
+|-
+| Collect resources from the kingdom of [[Miscellania]] (and potentially [[Etceteria]])
+| [[Throne of Miscellania]] quest
+A supply of coins in the coffers (at least {{Coins|500000}} recommended for maximum profit, or {{Coins|750000}} if the [[Royal Trouble]] quest was completed)
+| {{Members|yes}}
+| 24 hours
+Resets at same time you completed either the Throne of Miscellania quest or, if you have completed it, Royal Trouble
+| Various resources to choose from, depending on what subjects are assigned to gather.
+See [[Calculator:Other/Miscellania]] for up-to-date profitability of collecting resources from Miscellania.
+|-
+| Buy [[olive oil]] from [[Razmire Builders' Merchants]] in [[Mort'ton]]
+| Must have at least started the [[Nature Spirit]] quest.
+Starting the quest [[The Branches of Darkmeyer]] is advised for the [[Drakan's medallion]]'s quick banking benefits
+| {{Members|yes}}
+| About 24 hours
+| A profit of {{coins|{{GEP|Olive oil (3)|500}}-500*26}} for 500 vials of olive oil.
+|}
+
+==Weekly events==
+Weekly events generally reset every Wednesday at 00:00 UTC.
+
+{| class="wikitable sortable sticky-header lighttable align-center-3"
+! style="width:50ch" | Event
+! style="width:50ch" | Requirements
+! Members
+! style="width:40ch" | Reset time<br>minimum wait period
+! style="width:70ch" | Reward/Profit
+|-
+| Compete in [[Balthazar Beauregard's Big Top Bonanza]]
+| None;
+* Completion of [[The Firemaker's Curse]] quest unlocks two new {{scl|Firemaking}} events
+* Completion of [[Some Like It Cold]] quest unlocks one {{scl|Thieving}} event
+Higher {{scl|Magic}}, {{scl|Ranged}}, {{scl|Firemaking}} and/or {{scl|Agility}} levels help
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| {{scl|Magic}}, {{scl|Ranged}}, {{scl|Firemaking}}, {{scl|Thieving}}, and/or {{scl|Agility}} experience.
+[[Circus costume]]s.
+|-
+| Play [[Penguin Hide and Seek]]
+| None;
+* Completion of the [[Cold War]], [[Hunt for Red Raktuber]], [[Some Like It Cold]], and [[Back to the Freezer]] quests increase the number of points per week and hence the rewards
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| [[Penguin points]], exchanged for either:
+* One [[Small XP lamp (event)|small experience lamp]] per point
+* {{Coins|10000}} per point
+|-
+| Kill the [[skeletal horror]]
+| [[Rag and Bone Man/Wish list|Rag and Bone Man]] and [[Fur 'n Seek/Wish list|Fur 'n Seek]] wish lists
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| <math>(Level + 1) * 125</math> {{scl|Slayer}} and <math>(Level + 1) * 100</math> {{scl|Prayer}} experience.
+* First completion awards {{Skill XP|Slayer|10000}} and {{Skill XP|Prayer|7000}}.
+Guaranteed [[Sealed clue scroll (elite)]].
+|-
+| Play the [[Tears of Guthix]]
+| [[Tears of Guthix (quest)|Tears of Guthix]] quest
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+* Requires 1 Quest point or 100,000 experience to be gained since it was last played
+| Experience in the player's lowest-levelled skill.
+|-
+| Collect [[hanky points]]
+| [[Buyers and Cellars]] quest
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| {{scl|Thieving}} experience.
+|-
+| Capping at the [[Clan Citadel]]
+| Must be in a clan
+| {{Members|yes}}
+| Weekly
+Resets with the citadel's build tick
+| Experience in whichever skill plot you decide to work at.
+Resources for the clan to upgrade.
+|-
+| Play [[Familiarisation]]
+| {{na|None}}
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| A choice of either:
+
+* A [[charm drop enhancer]]
+* A [[box of summoning ingredients]]
+|-
+| Follow up on [[Player-owned port#A Barmaid's Tip|A Barmaid's Tip]] at the [[player-owned port]]
+| Access to an adventurer in a player-owned port
+| {{Members|yes}}
+| Thursday only
+| Increased port rewards for one voyage.
+* Replaces the voyage in the third slot, if one already exists there.
+|-
+| Talk to [[Thalmund]] and shop at [[Thalmund's Wares]]
+| [[Kili Row]] quest
+| {{Members|yes}}
+| Wednesday only
+| Provides lore progress towards [[Friend of the Imcando]] achievement.
+Every week, Thalmund sells four different items useful for Necromancy, including ensouled materials, necrotic runes, and ritual materials.
+|-
+| Help [[Meg]]
+| {{na|None}}
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| Experience lamp of varying size depending on the quality of your advice in a random [[Player-owned port]] skill.
+[[Coins]].
+|-
+| Kill [[Agoroth]] (twice if [[Member]])
+| [[A Shadow over Ashdale]] quest
+| {{Members|both}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| A [[black pearl]] or {{Coins|<!-- twice a black pearl's max XP -->floor(30,939.6) * 2}}.
+|-
+| Replay [[Broken Home]]
+| [[Broken Home]] quest
+| {{Members|both}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| [[Large XP lamp (Broken Home)]].
+* A [[huge XP lamp (Broken Home)]] if all challenges have been completed.
+|-
+| Replay [[Sliske's Endgame]]
+| [[Sliske's Endgame]] quest
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| [[Agent of the Eldest]] set.
+[[Medium prismatic lamp (Sliske's Endgame)|Medium prismatic lamp]].
+|-
+| Play [[Rush of Blood]]
+| [[Plague's End]] quest
+{{Skillreq|Slayer|85}}
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| See [[Rush of Blood#Rewards]].
+|-
+| Replay [[Dimension of Disaster]]
+| [[Dimension of Disaster]] quest
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| [[Silver penny]].
+* See [[Aris' Reward Shop]].
+|-
+| Play [[Shattered Worlds]] challenge mode
+| {{na|None}}
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| [[Shattered anima]].
+* See [[Shattered Worlds#Weekly challenges]].
+|-
+| Replay [[Memory of Nomad]]
+| [[Nomad's Elegy]] quest
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| See [[Memory of Nomad#Rewards]].
+|-
+| Refight defeated champions from [[Champion's Challenge]]
+| Receiving [[Champion scroll]] and defeating corresponding champion
+* Only the defeated champions can be refought
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| {{scl|Constitution}} experience.
+{{scl|Slayer}} experience.
+|-
+| Play [[Wisps of the Grove]]
+| None;
+It is recommended to have access to [[The Lost Grove]] via the [[Fairy ring]] code {{fairycode|BJS}}
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| {{scl|Farming}} experience.
+{{scl|Hunter}} experience.
+A chance to receive the [[Vinny]] pet.
+|-
+| Play [[Herby Werby]]
+| Access to [[Anachronia]]
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| {{scl|Herblore}} experience.
+{{scl|Firemaking}} experience.
+{{Plink|Potent herbs}} (Spirit points).
+|-
+| [[Advance Time]]
+| {{scl|Magic|93}}
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| See [[Advance Time#Uses]].
+|-
+| Complete [[Soul Reaper]] tasks
+| {{scl|Slayer|45}}
+{{scl|Combat|50}}
+| {{Members|yes}}
+| 7 days
+Tasks may be rerolled with [[Slayer points]]
+| [[Reaper points]].
+{{scl|Slayer}} experience.
+|}
+
+===Weekly free claims===
+{| class="wikitable sortable sticky-header lighttable align-center-3"
+! style="width:50ch" | Event
+! style="width:50ch" | Requirements
+! Members
+! style="width:40ch" | Reset time<br>minimum wait period
+! style="width:70ch" | Reward/Profit
+|-
+| Clean out the [[water filtration system]]
+| {{scl|Construction|20}} to build it the first time
+| {{Members|yes}}
+| A new item is added once every 6 to 30 hours
+
+* Collecting weekly ensures the cap of 40 items is never reached
+| See [[Water filtration system#Rewards]].
+|-
+| Claim noted [[potato cacti]] from the [[Weird Old Man]]
+| [[Medium Desert achievements|Medium]], [[Hard Desert achievements|Hard]], or [[Elite Desert achievements]]
+| {{Members|yes}}
+| 7 days
+Hard reset at 00:00 UTC
+| Profit depends on tier of Desert achievements completed:
+* Medium: 140 potato cacti (worth {{coins|{{GEP|Potato cactus|140}}}})
+* Hard: 210 potato cacti (worth {{coins|{{GEP|Potato cactus|210}}}})
+* Elite: 280 potato cacti (worth {{coins|{{GEP|Potato cactus|280}}}})
+|-
+| Claim noted [[pineapple]]s from [[Dell Monti]]
+| [[Easy Karamja achievements|Easy]] [[Elite Karamja achievements|Karamja achievements]]
+| {{Members|yes}}
+| 7 days
+Hard reset at 00:00 UTC
+| 140 pineapples (worth {{coins|{{GEP|Pineapple|140}}}})
+|-
+| Claim noted [[cooking apple]]s from [[Dell Monti]]
+| [[Elite Karamja achievements]]
+| {{Members|yes}}
+| 7 days
+Hard reset at 00:00 UTC
+| 140 cooking apples (worth {{coins|{{GEP|Cooking apple|140}}}})
+|-
+| Claim noted [[flax]] from [[Geoffrey]]
+| [[Easy Seers' Village achievements|Easy]], [[Medium Seers' Village achievements|Medium]], [[Hard Seers' Village achievements|Hard]] or [[Elite Seers' Village achievements]]
+| {{Members|yes}}
+| 7 days
+Hard reset at 00:00 UTC
+| Profit depends on tier of Seers' Village achievements completed:
+* Easy: 210 flax (worth {{coins|{{GEP|Flax|210}}}})
+* Medium: 420 flax (worth {{coins|{{GEP|Flax|420}}}})
+* Hard: 840 flax (worth {{coins|{{GEP|Flax|840}}}})
+* Elite: 1,400 flax (worth {{coins|{{GEP|Flax|1400}}}})
+|-
+| Claim noted [[pure essence]] from [[Wizard Cromperty]]
+| [[Medium Ardougne achievements|Medium]] or [[Hard Ardougne achievements]]
+| {{Members|yes}}
+| 7 days
+Hard reset at 00:00 UTC
+| Profit depends on tier of Ardougne achievements completed:
+* Medium: 700 pure essence (worth {{coins|{{GEP|pure essence|700}}}})
+* Hard: 1,050 pure essence (worth {{coins|{{GEP|pure essence|1050}}}})
+|-
+| Claim [[buckets of sand]] from [[Bert]] in [[Yanille]] (delivered to your [[bank]])
+| [[The Hand in the Sand]] quest
+* Extra if the [[Elite Ardougne achievements]] are completed
+| {{Members|yes}}
+| 7 days
+Hard reset at 00:00 UTC
+| 294 buckets of sand (worth {{coins|{{GEP|Bucket of sand|294}}}})
+* 420 buckets of sand (worth {{coins|{{GEP|Bucket of sand|420}}}}) if the Elite Ardougne achievements completed
+|-
+| Claim noted planks from [[Razmire]]
+| [[Medium Morytania achievements]]
+| {{Members|yes}}
+| 7 days
+| Planks of the player's choosing:
+* 210 [[Plank|normal planks]] (worth {{Coins|{{GEP|Plank|210}}}})
+* 140 [[oak plank]]s (worth {{Coins|{{GEP|Oak plank|140}}}})
+* 70 [[teak plank]]s (worth {{Coins|{{GEP|Teak plank|70}}}})
+|-
+| Collect from [[aquarium]] decorations
+| Built aquarium and placed decorations
+| {{Members|yes}}
+| 7 days
+Resets at 00:00 UTC on Wednesday
+| Up to 5 [[Seaweed (Aquarium)|Seaweed decorations]]:
+* Each granting 10 [[seaweed]] (worth {{Coins|{{GEP|Seaweed|10}}}})
+Up to 5 [[Kelp decoration]]s:
+* Each granting 10 [[kelp]] (worth {{Coins|{{GEP|Kelp|10}}}})
+Up to 5 [[Oyster (Aquarium)|oysters]]:
+* Each granting either five [[uncut gems]] or [[spirit gems]]
+Up to 3 [[mermaid's purse decoration]]s:
+* Each granting 20 [[teak plank|teak]] or [[mahogany plank]]s (worth {{Coins|{{GEP|teak plank|20}}}} or {{Coins|{{GEP|mahogany plank|20}}}})
+[[Treasure chest decoration]]:
+* A guaranteed [[Sealed clue scroll (elite)]]
+|-
+| Claim noted logs from [[Coeden]]
+| [[Elite Tirannwn achievements]]
+| {{Members|yes}}
+| 7 days
+Resets at 00:00 UTC
+| A mix of 98 [[yew logs|yew]], [[magic logs|magic]] and/or [[elder logs]], valued between:
+* {{Coins|{{GEP|Yew logs|98}}}} (98 yew logs)
+* {{Coins|{{GEP|Magic logs|98}}}} (98 magic logs)
+* {{Coins|{{GEP|Elder logs|98}}}} (98 elder logs)
+|-
+| Claim [[raw bacon]] or [[Spirit pig|Pig familiar pouches]] from [[Eli Bacon]]
+| [[Bringing Home the Bacon]] quest
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| Raw bacon or pig familiar pouches.
+|-
+| Collect free [[Necromancy]] supplies from the [[Soul Supplies]] shop owned by [[Lupe]].
+| [[Easy Underworld achievements|Easy]], [[Medium Underworld achievements|Medium]], [[Hard Underworld achievements|Hard]] or [[Elite Underworld achievements]]
+| {{Members|yes}}
+| 7 days
+Resets at 00:00 UTC
+| [[Bones]], [[ritual candle]]s, and [[ghostly ink]] depending on the tier of [[Underworld achievements]] completed:
+* Easy: {{Coins|{{GETotalqty|name1=Bones|qty1=60}}}}
+* Medium: {{Coins|{{GETotalqty|name1=Bones|qty1=60|name2=Baby dragon bones|qty2=20|name3=Regular ritual candle|qty3=20|name4=Regular ghostly ink|qty4=20}}}}
+* Hard: {{Coins|{{GETotalqty|name1=Bones|qty1=60|name2=Baby dragon bones|qty2=20|name3=Regular ritual candle|qty3=20|name4=Regular ghostly ink|qty4=20|name5=Dragon bones|qty5=20|name6=Greater ritual candle|qty6=12|name7=Greater ghostly ink|qty7=12}}}}
+* Elite: {{Coins|{{GETotalqty|name1=Bones|qty1=60|name2=Baby dragon bones|qty2=20|name3=Regular ritual candle|qty3=20|name4=Regular ghostly ink|qty4=20|name5=Dragon bones|qty5=20|name6=Greater ritual candle|qty6=12|name7=Greater ghostly ink|qty7=12|name8=Powerful ghostly ink|qty8=8}}}}
+|}
+{{Reflist|group=a}}
+
+===Weekly shop runs===
+{| class="wikitable sortable sticky-header lighttable align-center-3"
+! style="width:50ch" | Event
+! style="width:50ch" | Requirements
+! Members
+! style="width:40ch" | Reset time<br>minimum wait period
+! style="width:70ch" | Reward/Profit
+|-
+| Buy [[yak-hide pack]]s from [[Contraband Yak Produce]]
+| [[The Fremennik Isles]] quest
+| {{Members|yes}}
+| 7 days for a full stock
+| {{coins|{{GEP|Yak-hide|70*50}}-70*2500}} profit.
+|-
+| Buy [[raw rabbit pack|raw rabbit]], [[raw bird meat pack|raw bird]], and [[raw beef pack]]s from [[Fresh Meat]] shop in [[Oo'glog]]
+| [[As a First Resort]] quest
+| {{Members|yes}}
+| 7 days for a full stock
+| A profit of:
+* Raw rabbit: {{coins|{{GEP|Raw bird meat|7*50}}-7*3350}}
+* Raw bird meat: {{coins|{{GEP|raw rabbit|21*50}}-21*2950}}
+* Raw beef: {{coins|{{GEP|raw beef|21*50}}-21*3150}}
+A total of {{coins|{{GEP|raw bird meat|7*50}}+{{GEP|raw rabbit|21*50}}+{{GEP|raw beef|21*50}}-{{#expr:7*3350 + 21*2950 + 21*3150}}}}.
+Alternatively, players may choose to keep these for use in the [[player-owned farm]] and/or [[Anachronia Dinosaur Farm]].
+|-
+| Buy [[seaweed]] and [[pineapples]] from [[Arhein's Store]]
+| {{na|None}}
+| {{Members|yes}}
+| 7 days for a full stock
+|280 seaweed (a profit of {{coins|{{GEP|Seaweed|280}} - {{#expr:2*180}}}})
+140 pineapples (a profit of {{coins|{{GEP|Pineapple|140}} - {{#expr:2*140}}}})
+|-
+| Buy [[vial of water pack]]s from [[Obli's General Store]]
+| [[Shilo Village]] quest
+| {{Members|yes}}
+| 7 days for a full stock
+| {{Coins|{{GEP|Vial of water|70*50}} - 70*500}} profit.
+|-
+| Buy various runes from [[Ali's Discount Wares#Runes|Ali Morrisane]], [[Magic Guild Store - Runes and Staves|Magic Guild]], [[Void Knight Magic Store|Void Knights]], and [[Baba Yaga's Magic Shop|Baba Yaga]]
+| {{Skillreq|Magic|66}} for Magic Guild Shop
+[[Lunar Diplomacy]] quest for Baba Yaga's Magic Shop
+| {{Members|yes}}
+| 7 days for a full stock
+| See [[Calculator:Other/Runes from shops|this calculator]] for current profitability of all runes.
+|-
+| Buy [[reinforcing plate]], [[marble block]], [[algarum thread]], [[stone of binding]], [[gold leaf]] and [[bloodweed seed]] from [[Bandit Duty Free]]
+| Player must be [[Skull (status)|skulled]] to access the shop by opting in to PvP combat at [[Vala]];
+[[Medium Wilderness achievements]] recommended for teleport to [[Forinthry Dungeon]] (close to [[Bandit Camp (Wilderness)|Bandit Camp]])
+| {{Members|yes}}
+| 7 days for a full stock
+| A profit of:
+* Reinforcing plate (20): {{Coins|{{GEP|Reinforcing plate|20}}-(450000*20)}}
+* Marble block (20): {{Coins|{{GEP|Marble block|20}}-(292500*20)}}
+* Algarum thread (20): {{Coins|{{GEP|Algarum thread|20}}-(450000*20)}}
+* Stone of binding (20): {{Coins|{{GEP|Stone of binding|20}}-(450000*20)}}
+* Gold leaf (20): {{Coins|{{GEP|Gold leaf|20}}-(117000*20)}}
+* Bloodweed seed (20): {{Coins|{{GEP|Bloodweed seed|20}}-(50000*20)}}
+|-
+| Buy [[chocolate bar]], [[cooking apple]], [[pots of flour]], [[grapes]], [[spice]], [[pot of cream]], [[pat of butter]], and other items from [[Culinaromancer's Chest]]
+| Must have at least started [[Recipe for Disaster]] quest
+| {{Members|yes}}
+| 7 days for a full stock
+| 
+* Chocolate bar (1,500): {{coins|{{GEP|Chocolate bar|1500}}-1500*20}}
+* Cooking apple (250): {{coins|{{GEP|Cooking apple|250}}-250*36}}
+* Pot of flour (500): {{coins|{{GEP|Pot of flour|500}}-500*14}}
+* Grapes (25): {{coins|{{GEP|Grapes|25}}-25*1}}
+* Spice (50): {{coins|{{GEP|Spice|50}}-50*230}}
+* Pot of cream (50): {{coins|{{GEP|Pot of cream|50}}-50*19}}
+* Pat of butter (50): {{coins|{{GEP|Pat of butter|50}}-50*4}}
+A total of {{coins|{{GEP|Chocolate bar|1500}}+{{GEP|Cooking apple|250}}+{{GEP|Pot of flour|500}}+{{GEP|Grapes|25}}+{{GEP|Spice|50}}+{{GEP|Pot of cream|50}}+{{GEP|Pat of butter|50}} - (1500*20+250*36+500*14+25*1+50*230+50*19+50*4)}} profit.
+|-
+| Buy [[limestone]], [[limestone brick]], and [[plank]]s from [[Razmire Builders' Merchants]] in [[Mort'ton]]
+| Must have at least started the [[Nature Spirit]] [[quest]];
+Starting the quest [[The Branches of Darkmeyer]] is advised for the [[Drakan's medallion]]'s quick banking benefits
+| {{Members|yes}}
+| 7 days for a full stock
+| 
+* Limestone (7,000): {{coins|{{GEP|Limestone|7000}}-7000*10}}
+* Limestone brick (7,000): {{coins|{{GEP|Limestone brick|7000}}-7000*21}}
+* Plank (350): {{coins|{{GEP|Plank|350}}-350*100}}
+A total of {{coins|{{GEP|Limestone|7000}}+{{GEP|Limestone brick|7000}}+{{GEP|Plank|350}} - (10*7000+21*7000+350*100)}} profit.
+|-
+| Buy [[port resources]] from [[the Black Marketeer]]
+| [[Player-owned port]] must be unlocked
+| {{Members|yes}}
+| Weekly
+Resets at 00:00 UTC on Wednesday
+| A various amount of different port resources.
+|}
+
+==Monthly events==
+{| class="wikitable sortable sticky-header lighttable align-center-3"
+! style="width:50ch" | Event
+! style="width:50ch" | Requirements
+! Members
+! style="width:40ch" | Reset time<br>minimum wait period
+! style="width:70ch" | Reward/Profit
+|-
+| Play [[Troll Invasion]]
+| {{na|None}}
+| {{Members|yes}}
+| First day of the month at 00:00 UTC
+| [[Reward book]].
+|-
+| Build [[God Statues]]
+| To take part you must satisfy at least one of the following requirements:
+* Completed at least 60 [[Achievements]]
+* [[Let Them Eat Pie]] quest
+* Manually turned off tutorial mode
+| {{Members|yes}}
+| First day of the month at 00:00 UTC
+| {{scl|Construction}} experience.
+{{scl|Slayer}} or {{scl|Prayer}} experience.
+|-
+| Feed the [[Giant Oyster]]
+| [[Beneath Cursed Tides]] quest
+| {{Members|both}}
+| First day of the month at 00:00 UTC
+| {{scl|Fishing}} experience.
+{{scl|Farming}} experience.
+Opening the oyster yields rewards from the [[Treasure Trails#Rewards|Treasure Trails reward table]], ranging from medium to elite.
+|-
+| Power effigies in the [[Effigy Incubator]]
+| [[Desperate Measures]] quest
+Level 85 in one of:
+* {{scl|Invention}}
+* {{scl|Crafting}}
+* {{scl|Runecrafting}}
+* {{scl|Smithing}}
+| {{Members|yes}}
+| First day of the month at 00:00 UTC
+| [[Effigy star]] or [[effigy lamp]] from every effigy gathered when filled.
+|-
+| Shop at the [[Marketplace]]
+| {{na|None}}
+| {{Members|yes}}
+| First day of the month at 00:00 UTC
+| See [[Marketplace/Monthly free items]].
+|-
+| Harvest [[crystal tree blossom]]
+| {{Skillreq|Farming|94}}
+[[Crystal tree (Farming)|Crystal tree]] planted at the [[Tower of Voices]] in [[Prifddinas]]
+| {{Members|yes}}
+| Accumulated at maximum 30 days
+Soft reset at 00:00 UTC per day
+| 15,000 base {{scl|Farming}} experience,{{Refn|Boosts such as [[Experience-boosting set]]s and [[Clan avatar]] increase the base XP.|name=extra|group=b}}.
+1 [[crystal tree blossom]] accumulated per day{{Refn|2 per day when the player owns the [[Tirannwn quiver 4]].|name=additional|group=b}}.
+|}
+{{Reflist|group=b}}
+
+==See also==
+* [[RuneScape clock]]
+* [[Money making guide#Recurring methods]]
+* [[Repeatably lootable chests with consumable keys]]
+
+[[Category:Events]]

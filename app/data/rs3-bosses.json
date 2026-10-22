@@ -1,0 +1,1408 @@
+{
+  "source": "https://runescape.wiki/w/Bosses",
+  "dungeoneeringSource": "https://runescape.wiki/w/Dungeoneering/Bosses",
+  "retrievedAt": "2026-10-14",
+  "bosses": [
+    {
+      "name": "Abomination",
+      "category": "PvM",
+      "location": "Independent mid/low-level bosses"
+    },
+    {
+      "name": "Agoroth",
+      "category": "Distractions & diversions",
+      "location": "Distraction and Diversion"
+    },
+    {
+      "name": "Agrith Naar",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Agrith-Na-Na",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Ahrim the Blighted",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "Akrisae the Doomed",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "Amascut, the Devourer",
+      "category": "PvM",
+      "location": "Independent high-level bosses"
+    },
+    {
+      "name": "Ambassador Jabari",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Apep",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Araxxi",
+      "category": "PvM",
+      "location": "Independent high-level bosses"
+    },
+    {
+      "name": "Araxxor",
+      "category": "PvM",
+      "location": "Independent high-level bosses"
+    },
+    {
+      "name": "Arch-Glacor",
+      "category": "PvM",
+      "location": "Elder God Wars Dungeon"
+    },
+    {
+      "name": "Arrg",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Arzinian Being of Bordanzan",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Astea Frostweb",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Astellarn",
+      "category": "PvM",
+      "location": "Dragonkin Laboratory"
+    },
+    {
+      "name": "Avaryss, the Unceasing",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "Avatar of Amascut (2015 Halloween event)",
+      "category": "Seasonal / historical",
+      "location": "Seasonal / historical"
+    },
+    {
+      "name": "Avatar of Creation",
+      "category": "Minigames",
+      "location": "Minigame"
+    },
+    {
+      "name": "Avatar of Destruction",
+      "category": "Minigames",
+      "location": "Minigame"
+    },
+    {
+      "name": "Ayuni",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Bal'lak the Pummeller",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Balance Elemental",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Bandos avatar",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Banshee mistress",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Barrelchest",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Barrelchest Mk II",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Basilisk boss",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Beastmaster Durzag",
+      "category": "Raids",
+      "location": "Liberation of Mazcab"
+    },
+    {
+      "name": "Black demon",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Black golem",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Black Knight Titan",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Black Knight Titan (Gower Quest)",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Black stone dragon",
+      "category": "PvM",
+      "location": "Dragonkin Laboratory"
+    },
+    {
+      "name": "Blink",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Bork",
+      "category": "Distractions & diversions",
+      "location": "Distraction and Diversion"
+    },
+    {
+      "name": "Bouncer",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Bulwark beast",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Captain Rabid Jack",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Cave Wolf Matriarch",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Champion's Challenge",
+      "category": "Distractions & diversions",
+      "location": "Distraction and Diversion"
+    },
+    {
+      "name": "Chaos Elemental",
+      "category": "PvM",
+      "location": "Independent mid/low-level bosses"
+    },
+    {
+      "name": "Char",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Chronozon",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Cliff",
+      "category": "Distractions & diversions",
+      "location": "Distraction and Diversion"
+    },
+    {
+      "name": "Colonel Grimsson",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Commander Zilyana",
+      "category": "PvM",
+      "location": "God Wars Dungeon"
+    },
+    {
+      "name": "Corporeal Beast",
+      "category": "PvM",
+      "location": "Independent high-level bosses"
+    },
+    {
+      "name": "Count Draynor",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Crassian Leviathan",
+      "category": "PvM",
+      "location": "The Shadow Reef"
+    },
+    {
+      "name": "Croesus",
+      "category": "PvM",
+      "location": "Elder God Wars Dungeon"
+    },
+    {
+      "name": "Culinaromancer",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Dad",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Dagannoth Mother (Blood Runs Deep)",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Dagannoth mother (Horror from the Deep)",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Dagannoth Prime",
+      "category": "PvM",
+      "location": "Dagannoth Kings"
+    },
+    {
+      "name": "Dagannoth Rex",
+      "category": "PvM",
+      "location": "Dagannoth Kings"
+    },
+    {
+      "name": "Dagannoth sentinel",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Dagannoth Supreme",
+      "category": "PvM",
+      "location": "Dagannoth Kings"
+    },
+    {
+      "name": "Damis",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Dark Lord",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Dawn",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Decaying avatar",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Delrith",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Demon boss",
+      "category": "Distractions & diversions",
+      "location": "Distraction and Diversion"
+    },
+    {
+      "name": "Dessourt",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Dessous",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Dharok the Wretched",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "Doomion",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Dragith Nurn",
+      "category": "PvM",
+      "location": "Independent mid/low-level bosses"
+    },
+    {
+      "name": "Dramen tree spirit",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Dreadnaut",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Echo of Jas",
+      "category": "Quests",
+      "location": "Quests"
+    },
+    {
+      "name": "Elvarg",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Enakhra",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Enhanced ice titan",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Eruni",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Evil spirit",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Exiled Kalphite Queen",
+      "category": "PvM",
+      "location": "Independent mid/low-level bosses"
+    },
+    {
+      "name": "Fairy Godfather",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Fareed",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Fenrir",
+      "category": "Seasonal / historical",
+      "location": "Seasonal / historical"
+    },
+    {
+      "name": "Fistandantilus",
+      "category": "Seasonal / historical",
+      "location": "Seasonal / historical"
+    },
+    {
+      "name": "Flambeed",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Flesh-hatcher Mhekarnahz",
+      "category": "PvM",
+      "location": "Independent mid/low-level bosses"
+    },
+    {
+      "name": "Flesh-Spoiler Haasghenahk",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Foreshadow",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Gadderanks",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Gelatinnoth Mother",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "General Graardor",
+      "category": "PvM",
+      "location": "God Wars Dungeon"
+    },
+    {
+      "name": "General Khazard",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Giant mole",
+      "category": "PvM",
+      "location": "Independent mid/low-level bosses"
+    },
+    {
+      "name": "Giant Roc",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Giant scarab",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Giant scarab (Dealing with Scabaras)",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Giant Sea Snake",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Glod",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Gluttonous behemoth",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Gorvek",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "Gravecreeper",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Gregorovic",
+      "category": "PvM",
+      "location": "Heart of Gielinor"
+    },
+    {
+      "name": "Grey golem",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Guthan the Infested",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "Har'Lakk the Riftsplitter",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Har-Aken",
+      "category": "Minigames",
+      "location": "Minigame"
+    },
+    {
+      "name": "Hati",
+      "category": "Seasonal / historical",
+      "location": "Seasonal / historical"
+    },
+    {
+      "name": "Helwyr",
+      "category": "PvM",
+      "location": "Heart of Gielinor"
+    },
+    {
+      "name": "Hermod, the Spirit of War",
+      "category": "PvM",
+      "location": "Rasial's Citadel"
+    },
+    {
+      "name": "Heru",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Hobgoblin Geomancer",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Hollowtoof",
+      "category": "Distractions & diversions",
+      "location": "Distraction and Diversion"
+    },
+    {
+      "name": "Holthion",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Hope devourer",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Hreidmar",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Ice demon",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Ice demon (Ritual of the Mahjarrat)",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Ice Troll King",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Icy Bones",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Ikadia the Exile",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Imbued wight footsoldier",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Ivar, King of Bones",
+      "category": "PvM",
+      "location": "Independent mid/low-level bosses"
+    },
+    {
+      "name": "Jungle demon",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "K'ril Tsutsaroth",
+      "category": "PvM",
+      "location": "God Wars Dungeon"
+    },
+    {
+      "name": "Kal'Ger the Warmonger",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Kalphite King",
+      "category": "PvM",
+      "location": "Independent high-level bosses"
+    },
+    {
+      "name": "Kalphite Queen",
+      "category": "PvM",
+      "location": "Independent mid/low-level bosses"
+    },
+    {
+      "name": "Kalrag",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Kamil",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Karamel",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Karil the Tainted",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "Kerapac, the bound",
+      "category": "PvM",
+      "location": "Elder God Wars Dungeon"
+    },
+    {
+      "name": "Ket-Zek",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Kezalam, the Wanderer",
+      "category": "PvM",
+      "location": "Sanctum of Rebirth"
+    },
+    {
+      "name": "Kharshai",
+      "category": "Quests",
+      "location": "Quests"
+    },
+    {
+      "name": "Khazard ogre",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Khazard scorpion",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "King Black Dragon",
+      "category": "PvM",
+      "location": "Independent mid/low-level bosses"
+    },
+    {
+      "name": "Koschei the Deathless",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Kree'arra",
+      "category": "PvM",
+      "location": "God Wars Dungeon"
+    },
+    {
+      "name": "Kurask overlord",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Lava monster (Elder Kiln)",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Leeuni",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Legio Primus",
+      "category": "PvM",
+      "location": "Monastery of Ascension"
+    },
+    {
+      "name": "Legio Quartus",
+      "category": "PvM",
+      "location": "Monastery of Ascension"
+    },
+    {
+      "name": "Legio Quintus",
+      "category": "PvM",
+      "location": "Monastery of Ascension"
+    },
+    {
+      "name": "Legio Secundus",
+      "category": "PvM",
+      "location": "Monastery of Ascension"
+    },
+    {
+      "name": "Legio Sextus",
+      "category": "PvM",
+      "location": "Monastery of Ascension"
+    },
+    {
+      "name": "Legio Tertius",
+      "category": "PvM",
+      "location": "Monastery of Ascension"
+    },
+    {
+      "name": "Lexicus Runewright",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Linza the Disgraced",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Living rock patriarch",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "Lord Iban",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Lowerniel Drakan",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Lucien",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Luminescent icefiend",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Masuta the Ascended",
+      "category": "PvM",
+      "location": "Temple of Aminishi"
+    },
+    {
+      "name": "Me",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Melzar the Mad",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Mightiest turoth",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Monstrous cave crawler",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Moss giant (Glarial's Tomb)",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Mosschin",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Nakatra, Devourer Eternal",
+      "category": "PvM",
+      "location": "Sanctum of Rebirth"
+    },
+    {
+      "name": "Necrolord",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Nex",
+      "category": "PvM",
+      "location": "God Wars Dungeon"
+    },
+    {
+      "name": "Nex, Angel of Death",
+      "category": "PvM",
+      "location": "God Wars Dungeon"
+    },
+    {
+      "name": "Nezikchened",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Nial Swiftfling",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Night-gazer Khighorahk",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Nomad",
+      "category": "Distractions & diversions",
+      "location": "Distraction and Diversion"
+    },
+    {
+      "name": "Nymora, the Vengeful",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "Orikalka",
+      "category": "PvM",
+      "location": "Rex Matriarchs"
+    },
+    {
+      "name": "Osseous",
+      "category": "PvM",
+      "location": "Rex Matriarchs"
+    },
+    {
+      "name": "Othainian",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Penance King",
+      "category": "Minigames",
+      "location": "Minigame"
+    },
+    {
+      "name": "Penance Queen",
+      "category": "Minigames",
+      "location": "Minigame"
+    },
+    {
+      "name": "Pest Queen",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Pharaoh",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Phoenix",
+      "category": "Distractions & diversions",
+      "location": "Distraction and Diversion"
+    },
+    {
+      "name": "Plane-freezer Lakhrahnaz",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Possessed Priest",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Pthentraken",
+      "category": "PvM",
+      "location": "Rex Matriarchs"
+    },
+    {
+      "name": "Queen Black Dragon",
+      "category": "PvM",
+      "location": "Independent high-level bosses"
+    },
+    {
+      "name": "Raksha, the Shadow Colossus",
+      "category": "PvM",
+      "location": "Independent high-level bosses"
+    },
+    {
+      "name": "Rammernaut",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Rasial, the First Necromancer",
+      "category": "PvM",
+      "location": "Rasial's Citadel"
+    },
+    {
+      "name": "Rathis",
+      "category": "PvM",
+      "location": "Rex Matriarchs"
+    },
+    {
+      "name": "Redeyes",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Runebound behemoth",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Sagittare",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Salarin the Twisted",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "Sea Troll Queen",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Seiryu the Azure Serpent",
+      "category": "PvM",
+      "location": "Temple of Aminishi"
+    },
+    {
+      "name": "Seren",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Shadow-Forger Ihlakhizan",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Sigmund",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Silverquill, the Dreadhog",
+      "category": "PvM",
+      "location": "Independent mid/low-level bosses"
+    },
+    {
+      "name": "Sir Leye",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Sir Mordred",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Skeletal Horde",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Skeletal horror",
+      "category": "Distractions & diversions",
+      "location": "Distraction and Diversion"
+    },
+    {
+      "name": "Skeletal trio",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Sk\u00f6ll",
+      "category": "Seasonal / historical",
+      "location": "Seasonal / historical"
+    },
+    {
+      "name": "Slagilith",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Slash Bash",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Sliske",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Snailfeet",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Snothead",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Solak, Guardian of the Grove",
+      "category": "PvM",
+      "location": "Independent high-level bosses"
+    },
+    {
+      "name": "Spirit Beast",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Stomp",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Strongbones",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Sunfreet",
+      "category": "Minigames",
+      "location": "Minigames"
+    },
+    {
+      "name": "Tanglefoot",
+      "category": "Quests",
+      "location": "Quests"
+    },
+    {
+      "name": "Taraket the Necromancer",
+      "category": "PvM",
+      "location": "The Shadow Reef"
+    },
+    {
+      "name": "Tarn",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Telos, the Warden",
+      "category": "PvM",
+      "location": "Heart of Gielinor"
+    },
+    {
+      "name": "The Ambassador",
+      "category": "PvM",
+      "location": "The Shadow Reef"
+    },
+    {
+      "name": "The Barrows Brothers",
+      "category": "Minigames",
+      "location": "Minigame"
+    },
+    {
+      "name": "The Barrows: Rise of the Six",
+      "category": "PvM",
+      "location": "Independent high-level bosses"
+    },
+    {
+      "name": "The Draugen",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "The Everlasting",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "The Gate of Elidinis",
+      "category": "PvM",
+      "location": "Sanctum of Rebirth"
+    },
+    {
+      "name": "The Ghrazi Blood Knights",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "The Illusive",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "The Inadequacy",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "The Kendal (monster)",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "The Magister",
+      "category": "PvM",
+      "location": "Independent high-level bosses"
+    },
+    {
+      "name": "The Sanctum Guardian",
+      "category": "PvM",
+      "location": "Temple of Aminishi"
+    },
+    {
+      "name": "The Shaikahan",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "The Twin Furies",
+      "category": "PvM",
+      "location": "Heart of Gielinor"
+    },
+    {
+      "name": "The Untouchable",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "To'Kash the Bloodchiller",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "TokHaar-Hok",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "TokHaar-Hok (Fight Cauldron)",
+      "category": "Minigames",
+      "location": "Minigames"
+    },
+    {
+      "name": "TokHaar-Hur (The Elder Kiln)",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "TokHaar-Jad",
+      "category": "Minigames",
+      "location": "Fight Kiln"
+    },
+    {
+      "name": "TokHaar-Ket (The Elder Kiln)",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "TokHaar-Ket Champion (The Elder Kiln)",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "TokHaar-Mej (The Elder Kiln)",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "TokHaar-Xil (The Elder Kiln)",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "TokTz-Ket-Dill",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Tolna",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Torag the Corrupted",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "Tormented wraith",
+      "category": "PvM",
+      "location": "Independent mid/low-level bosses"
+    },
+    {
+      "name": "Treus Dayth",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Tumeken's shadow",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "TzekHaar-Aken",
+      "category": "PvM",
+      "location": "TzekHaar Front"
+    },
+    {
+      "name": "TzekHaar-Jad",
+      "category": "PvM",
+      "location": "TzekHaar Front"
+    },
+    {
+      "name": "TzHaar-Ket (Hardened)",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "TzHaar-Ket-Yit'tal",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "TzHaar-Xil (Hardened)",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "TzKal-Zuk",
+      "category": "PvM",
+      "location": "Elder God Wars Dungeon"
+    },
+    {
+      "name": "TzTok-Jad",
+      "category": "Minigames",
+      "location": "Minigame"
+    },
+    {
+      "name": "Ukunduka",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Ulfric",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Unholy cursebearer",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Unstable wight footsoldier",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Vanstrom Klause",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Verac the Defiled",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "Verak Lith",
+      "category": "PvM",
+      "location": "Dragonkin Laboratory"
+    },
+    {
+      "name": "Vermyx, Brood Mother",
+      "category": "PvM",
+      "location": "Sanctum of Rebirth"
+    },
+    {
+      "name": "Vindicta",
+      "category": "PvM",
+      "location": "Heart of Gielinor"
+    },
+    {
+      "name": "Vorago",
+      "category": "PvM",
+      "location": "Independent high-level bosses"
+    },
+    {
+      "name": "Warped Gulega",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "White golem",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Wight footsoldier (Sliske's Endgame)",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Wight ranger (Sliske's Endgame)",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Witch's experiment",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "World-gorger Shukarhazh",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Wyrd",
+      "category": "Quests",
+      "location": "Quest"
+    },
+    {
+      "name": "Yakamaru",
+      "category": "Raids",
+      "location": "Liberation of Mazcab"
+    },
+    {
+      "name": "Yk'Lagor the Thunderous",
+      "category": "Dungeoneering",
+      "location": "Daemonheim"
+    },
+    {
+      "name": "Yt-MejKot",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Zamorak, Lord of Chaos",
+      "category": "PvM",
+      "location": "The Zamorakian Undercity"
+    },
+    {
+      "name": "Zaromark Sliver",
+      "category": "PvM",
+      "location": "PvM"
+    },
+    {
+      "name": "Zemouregal",
+      "category": "Quests",
+      "location": "Quests with multiple bosses"
+    },
+    {
+      "name": "Zemouregal & Vorkath",
+      "category": "PvM",
+      "location": "Independent high-level bosses"
+    },
+    {
+      "name": "Zenevivia",
+      "category": "Quests",
+      "location": "Quests"
+    },
+    {
+      "name": "Zogoth",
+      "category": "Quests",
+      "location": "Quest"
+    }
+  ],
+  "categorySource": "https://runescape.wiki/w/Category:Bosses"
+}
